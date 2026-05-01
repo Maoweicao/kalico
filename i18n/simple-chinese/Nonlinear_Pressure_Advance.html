@@ -1,0 +1,2462 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/Nonlinear_Pressure_Advance.html">
+      
+      
+      
+      
+      <link rel="icon" href="../../logo/kalico-32x32.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>非线性压力推进 - Kalico Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../_kalico/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3YZJ9658GV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3YZJ9658GV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3YZJ9658GV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="../../logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalico Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              非线性压力推进
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="../../logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    Kalico Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Features.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently Asked Questions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/KalicoCrew/kalico/releases" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Changes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Changes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kalico_Additions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico additions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bleeding Edge Features Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference for Bleeding Edge features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PID.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MPC.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Predictive Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dockable_Probe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockable Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    G-Code Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            G-Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../G-Codes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Command_Templates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../G-Code_Shell_Command.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Code Shell Command Extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Status_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Status reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting up and running
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Getting up and running
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Migrating_from_Klipper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrating from Klipper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OctoPrint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using OctoPrint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMC_Drivers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TMC drivers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_checks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration checks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rotation_Distance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rotation distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Multi_MCU_Homing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Micro-controller Homing and Probing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bed leveling, Probes and Endstops
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_8">
+            <span class="md-nav__icon md-icon"></span>
+            Bed leveling, Probes and Endstops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Z_Calibration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automatic Z-Offset Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bed_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Delta_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delta calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Probe_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Probe calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BLTouch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BL-Touch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Manual_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bed_Mesh.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed Mesh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Endstop_Phase.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endstop phase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Axis_Twist_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Axis Twist Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Skew_Correction.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skew correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tuning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_9">
+            <span class="md-nav__icon md-icon"></span>
+            Tuning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Measuring_Resonances.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Measuring Resonances
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Resonance_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resonance Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pressure advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Slicers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Slicers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Exclude_Object.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exclude Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Using_PWM_Tools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using PWM tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code_Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kinematics.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kinematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API_Server.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MCU_Commands.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MCU commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS_protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Debugging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Benchmarks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Packaging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Packaging Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Device Specific Documents
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Device Specific Documents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Example_Configs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example configurations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDCard_Updates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SDCard updates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RPi_microcontroller.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPi microcontroller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Beaglebone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Beaglebone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bootloaders.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bootloader_Entry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloader Entry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS_Troubleshooting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSL1401CL filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Hall_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hall filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contact.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sponsors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sponsors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      压力推进概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      线性压力推进的问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#g-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过 G-Code 设置值
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      调整程序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调整程序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      直接驱动、低至中等性能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bowden" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bowden 或超高速直接驱动打印机
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sv06-plus" class="md-nav__link">
+    <span class="md-ellipsis">
+      SV06 Plus 示例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能比较
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/Nonlinear_Pressure_Advance.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">非线性压力推进<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本文档提供有关调整 Kalico 的 <code>bleeding_edge_v2</code> 分支中的非线性压力推进的信息，以及一些其他相关固件。</p>
+<p>如果您使用非线性压力推进，这取代了标准的 <a href="Pressure_Advance.html">压力推进文档页面</a>。</p>
+<h2 id="_2">压力推进概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>如果 3D 打印机以完全按比例于工具头速度的速度推动丝材，丝材从喷嘴出来的实际速率将不匹配。</p>
+<p>当挤出机开始移动时，热端中的流动阻力将导致压缩下的丝材在可以的情况下弯曲（特别是在 Bowden 管中），然后线性缩短。</p>
+<p>为了补偿这一点，使用了将热端中的压缩丝材和熔融塑料建模为线性弹簧的"压力推进"，增加了所请求的挤出机位置超过名义位置的量，与名义挤出速度成正比。</p>
+<h2 id="_3">线性压力推进的问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>但是，有几个因素使此模型不完美。</p>
+<p>首先，机械系统本身具有轻微的延迟。
+丝材在挤出机处的运动到达喷嘴尖端需要时间。
+这意味着随着工具头速度的变化，特别是在高加速度下，最小挤出点和最小工具头速度实际发生的实际角之间可能会出现剧烈的不同步。
+这表现为角之前的增厚和角之后的变薄。
+它另外导致在不同加速度下的不同行为。</p>
+<p>其次，压缩下的丝材、张力下的结构和熔池不表现出弹性。
+丝材的弯曲动作相对为低刚性，但一旦管中的所有空间被占用，它就停止进一步合规。
+熔融本身的作用也是非线性的。
+当丝材必须展开以与热块的墙壁接触时，压力因此流速影响热端中熔融和未熔融丝材的比例，这影响弹簧常数。</p>
+<p>这意味着对一个速度和加速度正确的压力推进不会在所有速度和加速度下以最优方式表现。
+很多时候，对更高速度角充分高的 PA 将对较低速度不足，如接缝和过悬挂附近的过渡。</p>
+<p>这些效应对于需要更高 PA 的打印机（如 Bowden 打印机）倍增。</p>
+<h2 id="_4">解释<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>非线性压力推进，而不是按速度按比例推进，允许使用非线性函数来确定所请求挤出相对于名义挤出量提前的量。</p>
+<p>为了在较低速度下提供更高的有效 PA，推进的量可以配置为在低速时快速上升，然后对速度范围的其余部分降低到较低的斜率。</p>
+<p><img alt="非线性丝材推进量相对于丝材流速的图表" src="img/PA_photos/nonlin_advance_vs_flowrate.png" /></p>
+<p>在此示例中，一旦工具头达到其全速，将发生相同的总推进，但非线性推进在每个运动开始时上升得更快。</p>
+<p><img alt="非线性 PA 丝材位置相对于时间" src="img/PA_photos/nonlin_position_vs_time.png" /></p>
+<p>低速时的上升由固件中的两个参数控制：<code>nonlinear_offset</code> 和 <code>linearization_velocity</code>。
+线性化速度之后发生的线性斜率由 <code>linear_advance</code> 控制。</p>
+<p>为了完全清楚，由于实现，它们不是完美独立的。
+低速推进受 <code>linear_advance</code> 设置的轻微影响，同样高速推进受偏移和线性化速度的影响。</p>
+<p>这种交互意味着不同的参数需要通过迭代过程进行调整，不像只有一个变量可微调的标准 PA。</p>
+<p>您可以在 <a href="resources/NonlinearPA_Kalico.ods">这个电子表格</a> 中使用这个。</p>
+<p>除了能够生成上面的两个图表外，还有提供预期丝材流速和加速的图表。
+这在调整高速机器时很有用，知道挤出机的限制。</p>
+<p><img alt="非线性 PA 丝材流速相对于时间" src="img/PA_photos/nonlin_speed_vs_time.png" />
+<img alt="非线性 PA 丝材加速度相对于时间" src="img/PA_photos/nonlin_accel_vs_time.png" /></p>
+<p>根据具体设置，非线性 PA 可以请求更高的速度，几乎总是请求更高的加速度比标准 PA，所以您可以将此与测试结合使用，确保新的设置组合您尝试没有问题。</p>
+<p>请注意有两个不同的非线性函数：倒数和 tanh。
+它们都可以有类似的结果，但倒数提供了低速和高速 PA 之间更好的独立性，所以我们建议您使用它以简化调整。</p>
+<h2 id="_5">设置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>调整非线性压力推进的最佳方式是使用 <code>bleeding-edge-v2</code> Kalico 中内置的调整宏。</p>
+<p>这生成 gcode 来打印调整塔，在改变一个参数的同时测试几个不同的速度转换。
+因为您调整多个参数，您需要这个来查看您的参数是否在整个电路板上工作，或者您是否需要调整固定参数。</p>
+<p>建议将宏和调整塔配置参数放在它们自己的 <code>testing_macros.cfg</code> 文件中。</p>
+<p>根据您的机器的参数设置 <code>[pa_test]</code> 部分。
+通常保持大小和高度不变。
+将起点放在您希望塔的中心位置。</p>
+<p>将中等和快速速度设置在您想要的地方附近。
+对于 300mm/s 打印机，让 <code>fast_velocity</code> 为 300，<code>medium_velocity</code> 为 100。
+最好在 20 处保持缓慢速度，以更好地探测过悬挂和接缝附近的速度。</p>
+<p>在 <code>[delayed_gcode start_pa_test]</code> 部分内，放入您的启动 gcode（无论是单个 <code>print_start</code> 宏还是一系列单个 gcode 调用）。</p>
+<p>如果需要在调整塔上有更多范围，调整适当参数的 <code>FACTOR</code>。</p>
+<div class="highlight"><pre><span></span><code>[pa_test]
+size_x: 100   # X 维度塔尺寸  (mm)
+size_y: 50    # Y 维度塔尺寸  (mm)
+height: 50    # 塔的高度 (mm)
+origin_x: 100 # 床在 X 中的中心
+origin_y: 100 # 床在 Y 中的中心
+layer_height: 0.2 # mm
+first_layer_height: 0.24 # mm
+perimeters: 2 # 要为塔打印的周长数
+brim_width: 6 # 边框宽度 (mm)
+slow_velocity:   20 # PA 测试段的最慢速度 (mm/s)
+medium_velocity: 50 # PA 测试段的中等速度 (mm/s)
+fast_velocity:  150 # PA 测试段的结束速度 (mm/s)
+filament_diameter: 1.75
+fan_speed: 0.5 # 打印边框后应用的风扇速度
+
+[delayed_gcode start_pa_test]
+gcode:
+    {% set vars = printer[&quot;gcode_macro RUN_PA_TEST&quot;] %}
+    ; 在这里放入您的启动 GCODE========================================================
+    {% set flow_percent = vars.flow_rate|float * 100.0 %}
+    {% if flow_percent &gt; 0 %}
+        M221 S{flow_percent}
+    {% endif %}
+    {% set height = printer.configfile.settings.pa_test.height %}
+    {% set pavalue = vars.pa_value %}
+    ; 如果 pa_value 为 0，则我们测试从 0 开始的完整 pa 范围
+    {% if  vars.pa_value == 0 %}
+        {% if vars.testparam == 0 %}
+            TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=ADVANCE START=0 FACTOR=.001 ; Bowden 为 .01
+        {% elif vars.testparam == 1 %}
+            TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=OFFSET START=0 FACTOR=.01 ; Bowden 为 .02
+        {% elif vars.testparam == 2 %}
+            TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=TIME_OFFSET START=0 FACTOR=.0001
+        {% endif %}
+    {% else %}
+        ; 确保 delta 和 start 不能低于 0
+        {% if (vars.pa_value - vars.pa_range &lt;= 0) and (vars.testparam &lt;= 2) %}
+            {% set delta = vars.pa_range %}
+            {% set start = 0 %}
+        {% else %}
+            ; 计算我们想测试的 pa 范围
+            {% set delta = (vars.pa_value + vars.pa_range)  - (vars.pa_value - vars.pa_range)  %}
+            ; 计算 pa 开始值
+            {% set start = vars.pa_value - vars.pa_range %}
+        {% endif %}
+        {% if vars.testparam == 0 %}
+            TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=ADVANCE START={start} FACTOR={delta / height}
+        {% elif vars.testparam == 1 %}
+            TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=OFFSET START={start} FACTOR={delta / height}
+        {% elif vars.testparam == 2 %}
+            TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=TIME_OFFSET START={start} FACTOR={delta / height}
+        {% endif %}
+    {% endif %}
+    ; PRINT_PA_TOWER 必须是 start_pa_test 脚本中的最后一个命令：
+    ; 它启动打印，然后立即返回而不等待打印完成
+    PRINT_PA_TOWER {vars.rawparams} FINAL_GCODE_ID=end_pa_test
+
+[delayed_gcode end_pa_test]
+gcode:
+    END_PRINT
+    RESTORE_GCODE_STATE NAME=PA_TEST_STATE
+
+[gcode_macro RUN_PA_TEST]
+variable_bed_temp: -1
+variable_hotend_temp: -1
+variable_pa_value: 0             # 用于进一步微调 pa 值。如果值不为 0，则测试的 pa 值将仅为 +/-（由 pa_range 变量确定）pa_value 变量周围
+variable_pa_range: 0.03          # 仅在 pa_value 设置为大于 0 时使用。用于设置应测试的 pa_value 周围的 +/- 区域
+variable_flow_rate: -1
+variable_testparam: 0            # 0 = advance，1 = offset，2 = time_offset
+variable_fan_speed: 0.5
+variable_rawparams: &#39;&#39;
+gcode:
+    # 如果未提供所需参数，则尽早失败
+    {% if params.NOZZLE is not defined %}
+    {action_raise_error(&#39;必须提供 NOZZLE= 参数&#39;)}
+    {% endif %}
+    {% if params.TARGET_TEMP is not defined %}
+    {action_raise_error(&#39;必须提供 TARGET_TEMP= 参数&#39;)}
+    {% endif %}
+    SET_GCODE_VARIABLE MACRO=RUN_PA_TEST VARIABLE=bed_temp VALUE={params.BED_TEMP|default(60)}
+    SET_GCODE_VARIABLE MACRO=RUN_PA_TEST VARIABLE=hotend_temp VALUE={params.TARGET_TEMP}
+    SET_GCODE_VARIABLE MACRO=RUN_PA_TEST VARIABLE=pa_value VALUE={params.PA_VALUE|default(0)}
+    SET_GCODE_VARIABLE MACRO=RUN_PA_TEST VARIABLE=pa_range VALUE={params.PA_RANGE|default(0.01)}
+    SET_GCODE_VARIABLE MACRO=RUN_PA_TEST VARIABLE=flow_rate VALUE={params.FLOW_RATE|default(-1)}
+    SET_GCODE_VARIABLE MACRO=RUN_PA_TEST VARIABLE=testparam VALUE={params.TESTPARAM|default(0)}
+    SET_GCODE_VARIABLE MACRO=RUN_PA_TEST VARIABLE=fan_speed VALUE={params.FAN_SPEED|default(0.5)}
+    SET_GCODE_VARIABLE MACRO=RUN_PA_TEST VARIABLE=rawparams VALUE=&quot;&#39;{rawparams}&#39;&quot;
+    SAVE_GCODE_STATE NAME=PA_TEST_STATE
+    UPDATE_DELAYED_GCODE ID=start_pa_test DURATION=0.01
+</code></pre></div>
+
+<p><strong><em>关键注意</em></strong></p>
+<p>PA 测试宏将在打印机 <code>printer.cfg</code> 部分中指定的加速度下运行 <code>[printer]</code>。
+将其设置为您期望在挤出时使用的最高加速度（例如，对于填充）。</p>
+<h3 id="g-code">通过 G-Code 设置值<a class="headerlink" href="#g-code" title="Permanent link">&para;</a></h3>
+<p>要在运行时更改非线性 PA，无论是在打印机命令行还是在您的切片软件丝材设置中，使用 <code>SET_PRESSURE_ADVANCE</code> 命令，带有以下参数：</p>
+<ul>
+<li><code>ADVANCE=</code> linear_advance（线性推进）</li>
+<li><code>OFFSET=</code> nonlinear_offset（非线性偏移）</li>
+<li><code>VELOCITY=</code> linearization_velocity（线性化速度）</li>
+<li><code>TIME_OFFSET=</code> pressure_advance_time_offset（压力推进时间偏移）</li>
+</ul>
+<h2 id="_6">调整程序<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>对于更平凡的打印机（由偏移主导）与超快速打印机（将具有更多线性推进分量）或 Bowden 管打印机（对两者都有大值）的调整程序将略有不同。</p>
+<p>评估由 PA 测试宏生成的调整塔时，使用明亮的灯从极端左或右侧照亮很有帮助。</p>
+<h3 id="_7">直接驱动、低至中等性能<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ol>
+<li>安装 Kalico 并确保使用 <code>bleeding-edge-v2</code> 分支。</li>
+<li>按照设置部分中的说明设置 PA 测试宏，并确保在 <code>[printer]</code> 中设置所需的加速度。</li>
+<li>如果您计划在所有情况下使用输入整形，请进行设置。它影响调整塔的可读性。用 <code>enabled_extruders: extruder</code> 设置挤出机同步。</li>
+<li>在您的打印机配置中，将 <code>pressure_advance_model</code> 设置为 <code>tanh</code>、<code>linear_advance</code> 设置为 0、<code>nonlinear_offset</code> 设置为 0、<code>linearization_velocity</code> 设置为 1，<code>pressure_advance_smooth_time</code> 设置为 0.02。重启打印机以加载新设置。</li>
+<li>使用 <code>NOZZLE</code> 设置为您的喷嘴直径、<code>TARGET_TEMP</code> 设置为您的预期热端温度、<code>TESTPARAM</code> 为 1 运行 pa 测试宏，以改变 <code>nonlinear_offset</code>。</li>
+<li>评估塔，主要看左侧。根据在那里看起来最好的高度（以及测试宏代码中的 <code>factor</code>）在您的打印机配置中设置 <code>nonlinear_offset</code>，然后重启。</li>
+<li>使用您的喷嘴直径、您的预期热端温度、<code>TESTPARAM</code> 为 0 运行 pa 测试宏，以改变 <code>linear_advance</code>。</li>
+<li>评估塔，主要查看左侧和前侧，并进行二分查找以找到最优偏移和推进。
+    1. 如果左侧在前侧下方收敛，则在您的配置中轻微降低 <code>nonlinear_offset</code>（从 10% 开始，如果过度则减少），重启，并用 <code>TESTPARAM</code> 0 重新打印 PA 测试宏。
+    2. 如果左侧在前侧上方收敛，则在您的配置中轻微提高 <code>nonlinear_offset</code>（从 10% 开始，如果过度则减少），重启，并用 <code>TESTPARAM</code> 0 重新打印 PA 测试宏。
+    3. 如果左侧在前侧相同高度收敛，则使用该高度和测试宏代码中的 <code>factor</code> 在您的打印机配置中设置 <code>linear_advance</code>，然后重启。</li>
+<li>使用您的喷嘴直径、您的预期热端温度、<code>TESTPARAM</code> 为 2 运行 pa 测试宏，以改变 <code>pressure_advance_time_offset</code>。</li>
+<li>评估塔，主要查看前侧。这可以<em>非常</em>微妙，所以确保使用良好的照明来显示差异。根据那里看起来最好的高度和测试宏代码中的 <code>factor</code> 在您的配置中设置 <code>pressure_advance_time_offset</code>，然后重启。</li>
+</ol>
+<h3 id="bowden">Bowden 或超高速直接驱动打印机<a class="headerlink" href="#bowden" title="Permanent link">&para;</a></h3>
+<p>确保调整 PA 测试宏中 Bowden 打印机的因素。</p>
+<ol>
+<li>安装 Kalico 并确保使用 <code>bleeding-edge-v2</code> 分支。</li>
+<li>按照设置部分中的说明设置 PA 测试宏，并确保在 <code>[printer]</code> 中设置所需的加速度。</li>
+<li>如果您计划在所有情况下使用输入整形，请进行设置。它影响调整塔的可读性。用 <code>enabled_extruders: extruder</code> 设置挤出机同步。</li>
+<li>在您的打印机配置中，将 <code>pressure_advance_model</code> 设置为 <code>tanh</code>、<code>linear_advance</code> 设置为 0、<code>nonlinear_offset</code> 设置为 0、<code>linearization_velocity</code> 设置为 1（对于 Bowden 为 2 或可能 3，其中高加速度加上大 PA 值可能导致挤出机加速度需求过高和低线性化速度），<code>pressure_advance_smooth_time</code> 设置为 0.02。重启打印机以加载新设置。</li>
+<li>使用 <code>NOZZLE</code> 设置为您的喷嘴直径、<code>TARGET_TEMP</code> 设置为您的预期热端温度、<code>TESTPARAM</code> 为 0 运行 pa 测试宏，以改变 <code>linear_advance</code>。</li>
+<li>评估塔，主要查看前侧。根据那里看起来最好的高度和测试宏代码中的 <code>factor</code> 评估理想的 <code>linear_advance</code>，记下该值，但在配置中将其设置为该值的 80%，然后重启。</li>
+<li>使用您的喷嘴直径、您的预期热端温度、<code>TESTPARAM</code> 为 1 运行 pa 测试宏，以改变 <code>nonlinear_offset</code>。</li>
+<li>评估塔，主要查看左侧和前侧，并进行二分查找以找到最优偏移和推进。
+    1. 如果左侧在前侧下方收敛，则在您的配置中轻微提高 <code>linear_advance</code>（从 10% 开始，如果过度则减少），重启，并用 <code>TESTPARAM</code> 1 重新打印 PA 测试宏。
+    2. 如果左侧在前侧上方收敛，则在您的配置中轻微降低 <code>linear_advance</code>（从 10% 开始，如果过度则减少），重启，并用 <code>TESTPARAM</code> 1 重新打印 PA 测试宏。
+    3. 如果左侧在前侧相同高度收敛，则使用该高度和测试宏代码中的 <code>factor</code> 在您的打印机配置中设置 <code>nonlinear_offset</code>，然后重启。</li>
+<li>使用您的喷嘴直径、您的预期热端温度、<code>TESTPARAM</code> 为 2 运行 pa 测试宏，以改变 <code>pressure_advance_time_offset</code>。</li>
+<li>评估塔，主要查看前侧。这可以<em>非常</em>微妙，所以确保使用良好的照明来显示差异。根据那里看起来最好的高度和测试宏代码中的 <code>factor</code> 在您的配置中设置 <code>pressure_advance_time_offset</code>，然后重启。</li>
+<li>再次用 <code>TESTPARAM</code> 为 1 运行 PA 测试宏，并使用第 8 步中的程序再次微调您的设置。</li>
+</ol>
+<h3 id="sv06-plus">SV06 Plus 示例<a class="headerlink" href="#sv06-plus" title="Permanent link">&para;</a></h3>
+<p>这是在 Sovol SV06 Plus（具有标准火山长度热端的特性，喷嘴尖端稍长）上以 150mm/s 和 5k 加速度调整 Kalico 非线性 PA 的示例，使用 215°C 的标准 PLA。</p>
+<p>首先用测试参数 0 进行 PA 测试塔，并根据前速度转换设置 <code>linear_advance</code>。
+在这种情况下，<code>linear_advance</code> 为 0.04。</p>
+<p><img alt="linear advance test tower" src="img/PA_photos/0.advance=x.001.jpg" /></p>
+<p>接下来，打印了响铃测试塔以设置整形器，因为没有床加速度计。启用了挤出机同步。
+打印了另一个响铃测试塔来检查响铃是否被抑制。</p>
+<p><code>linear_advance</code> 被设置回零、<code>linearization_velocity</code> 设置为 1、<code>pressure_advance_smooth_time</code> 设置为 0.02、<code>pressure_advance_time_offset</code> 设置为 0。
+然后用测试参数 1 打印了 PA 测试塔。</p>
+<p><img alt="linear offset test tower" src="img/PA_photos/1.offset=x.005.jpg" /></p>
+<p>在这种情况下，左侧在大约 27mm * 0.005 处看起来最好，所以 <code>nonlinear_offset</code> 被设置为 0.135 以开始，并用测试参数 0 打印了 PA 测试塔。</p>
+<p><img alt="linear advance test tower with 0.135 linear offset" src="img/PA_photos/2.offset=.135_advance=x.001.jpg" /></p>
+<p>在此测试中，左侧在最下方收敛，但右侧收敛上方，所以 <code>nonlinear_offset</code> 被稍微降低至 0.120。
+回顾一下，查看 <code>nonlinear_offset</code> 的前一个测试塔，左侧上的左行在 24mm 处刚刚开始具有 "厚薄" 模式，右行仅略欠补偿。
+总的来说，最好在初始 <code>nonlinear_offset</code> 上轻微欠补偿，因为 <code>linear_advance</code> 甚至在低速时会给出一点推动。</p>
+<p>在 <code>nonlinear_offset</code> 降低至 0.120 后，用测试参数 0 打印了另一个测试塔。</p>
+<p><img alt="linear advance test tower with 0.120 linear offset" src="img/PA_photos/3.offset=.120_advance=x.001.jpg" /></p>
+<p>这显示了左侧和前侧都在 17mm * 0.001 处的良好收敛，所以理想的 <code>linear_advance</code> 为 0.017，无需进一步微调 <code>nonlinear_offset</code>。</p>
+<p>仅作演示，以下是对 <code>nonlinear_offset</code> 到 0.100 的轻微过度补偿在用测试参数 0 打印测试塔时的样子：</p>
+<p><img alt="linear advance test tower with 0.100 linear offset" src="img/PA_photos/4.offset=.100_advance=x.001.jpg" /></p>
+<p>这不是那么清楚，但左侧收敛的高度略高于测试塔的前侧。如果您看到这个，您会将 <code>nonlinear_offset</code> 轻微向上推动并重新测试。</p>
+<p>最后，时间偏移被调整为正确地使压力推进补偿与实际工具头运动对齐。</p>
+<p>最后一个调整塔用打印机设置为 0.120 线性偏移、0.017 线性推进和宏的测试参数设置为 2 打印。</p>
+<p><img alt="time offset test tower" src="img/PA_photos/5.time_offset=x.0001.jpg" /></p>
+<p>这是很难看到效果的，但极端侧照显示前面上的最左侧和最右侧转换受益于 18mm * 0.0001 的高度，指示 <code>pressure_advance_time_offset</code> 应设置为 0.0018。这意味着压力推进应提前 1.8 毫秒以最好地同步流量与工具头运动。</p>
+<h3 id="_8">性能比较<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>这是用三个不同的线性 PA（无时间偏移）与非线性调整打印的 Voron 测试立方体的比较。</p>
+<p>周长以适度的 3000 mm/s^2 加速度打印以获得最大质量，但即使如此，差异也是可见的。
+在更高加速度处，差异将更加可见。</p>
+<p>此外，此比较不与主分支或 vanilla Klipper 比较，它们不具有与输入整形同步的挤出机。</p>
+<p><img alt="压力推进的校准立方体比较" src="img/PA_photos/voroncube.jpg" /></p>
+<p>从左到右的列是：侧照下、侧照 Y、顶照 Y、侧照 X、顶照 X、顶部的立方体前照。</p>
+<p>在底部，0.025 线性 PA 在 ESE 角有明显的鼓起，而其他的显示很少的差异。</p>
+<p>在侧照 Y 面上，您可以看到所有三个线性 PA 在六边形的侧面和顶面周围具有黑色轮廓，其中存在轻微的降低区域。
+他们也在过悬挂角处明显鼓起，其中线性 PA 在过悬挂的低速处欠补偿。
+相比之下，非线性 PA 的面极其平坦。</p>
+<p>用顶部照明观看，很容易看到非线性 PA 从六边形顶面的鼓起量少多少。</p>
+<p>侧照 X 面显示非线性测试立方体中围绕槽的表面更平坦，而线性测试立方体显示槽右侧的阴影区域。</p>
+<p>当顶照时，0.04 和 0.03 线性 PA 在每个槽后略晚显示大鼓起，铸造下方的阴影。
+0.025 线性 PA 显示可能来自从非常缓慢的桥速转换到墙速的顶部槽的小压痕。
+非线性 PA 表现出类似的效果但程度小得多。</p>
+<p>顶部视图说明 0.03 已经是足够多的线性 PA 以在角周围保持完全挤出。
+0.04 线性具有周长线之间的大间隙，并且在实心填充线的末端开始具有空隙。
+非线性和 0.025 线性都在角周围完全挤出。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://kalico.gg/discord" target="_blank" rel="noopener" title="Join our Discord server!" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>

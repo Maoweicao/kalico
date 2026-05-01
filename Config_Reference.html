@@ -1713,6 +1713,39 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#hc595" class="md-nav__link">
+    <span class="md-ellipsis">
+      [hc595]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[hc595]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hc595-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      HC595 Wiring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hc595-usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      HC595 Usage Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#multi_pin" class="md-nav__link">
     <span class="md-ellipsis">
       [multi_pin]
@@ -5096,6 +5129,39 @@
       [static_digital_output]
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hc595" class="md-nav__link">
+    <span class="md-ellipsis">
+      [hc595]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[hc595]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hc595-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      HC595 Wiring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hc595-usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      HC595 Usage Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -9579,6 +9645,81 @@ pins:
 #   with &quot;!&quot;. This parameter must be provided.
 </code></pre></div>
 
+<h3 id="hc595">[hc595]<a class="headerlink" href="#hc595" title="Permanent link">&para;</a></h3>
+<p>74HC595 shift register output expansion (one may define any number of
+sections with an "hc595" prefix). The 74HC595 is a serial-to-parallel
+shift register that provides 8 additional digital output pins using
+just 3 MCU pins (data, clock, latch). Multiple chips can be
+daisy-chained for up to 32 outputs. The HC595 outputs can be used
+anywhere a standard digital output pin is accepted by referencing them
+as <code>chip_name:N</code> where N is the output number (0 to
+chain_count*8 - 1). The chip_name is the name given in the config
+section header.</p>
+<div class="highlight"><pre><span></span><code>[hc595 my_shift]
+data_pin:
+#   Pin connected to the 74HC595 SER (serial data input) line,
+#   typically pin 14 on the IC. This parameter must be provided.
+clock_pin:
+#   Pin connected to the 74HC595 SRCLK (shift register clock) line,
+#   typically pin 11 on the IC. This parameter must be provided.
+latch_pin:
+#   Pin connected to the 74HC595 RCLK (storage register clock/latch)
+#   line, typically pin 12 on the IC. This parameter must be provided.
+#oe_pin:
+#   Optional pin connected to the 74HC595 OE (output enable) line,
+#   typically pin 13 on the IC. This pin is active low. If not
+#   specified, the OE pin should be tied to ground to permanently
+#   enable the outputs.
+#chain_count: 1
+#   The number of daisy-chained 74HC595 chips. Must be between 1 and 4.
+#   Each chip adds 8 additional output pins. The default is 1.
+</code></pre></div>
+
+<h4 id="hc595-wiring">HC595 Wiring<a class="headerlink" href="#hc595-wiring" title="Permanent link">&para;</a></h4>
+<p>For a single 74HC595, connect:</p>
+<ul>
+<li>74HC595 pin 14 (SER) to the MCU pin specified by <code>data_pin</code></li>
+<li>74HC595 pin 11 (SRCLK) to the MCU pin specified by <code>clock_pin</code></li>
+<li>74HC595 pin 12 (RCLK) to the MCU pin specified by <code>latch_pin</code></li>
+<li>74HC595 pin 13 (OE) to ground (or to the MCU pin specified by <code>oe_pin</code>)</li>
+<li>74HC595 pin 10 (SRCLR) to VCC</li>
+<li>74HC595 pin 8 (GND) to ground</li>
+<li>74HC595 pin 16 (VCC) to +3.3V or +5V</li>
+<li>74HC595 output pins are QA-QH (pins 15, 1-7)</li>
+</ul>
+<p>For daisy-chaining, connect Q7' (pin 9) of the first chip to SER
+(pin 14) of the next chip. All chips share the same CLOCK, LATCH,
+and OE lines.</p>
+<h4 id="hc595-usage-example">HC595 Usage Example<a class="headerlink" href="#hc595-usage-example" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>[hc595 my_shift]
+data_pin: PA1
+clock_pin: PA2
+latch_pin: PA3
+
+# Use HC595 output 0 to control a fan
+[fan]
+pin: my_shift:0
+
+# Use HC595 output 3 to control a heater
+[heater_generic chamber_heater]
+heater_pin: my_shift:3
+max_power: 1.0
+# ... additional heater parameters
+
+# Use HC595 output 7 as a generic output pin
+[output_pin my_output]
+pin: my_shift:7
+value: 0
+shutdown_value: 0
+</code></pre></div>
+
+<p>The following extended G-Code command is available:</p>
+<ul>
+<li><code>SET_HC595 CHIP=&lt;config_name&gt; [BITS=&lt;value&gt;]</code>: Set or query all
+  HC595 output pins at once. Without BITS, the current pin states
+  are reported. With BITS, the given integer value is applied to
+  all outputs (bit 0 = output 0, etc.).</li>
+</ul>
 <h3 id="multi_pin">[multi_pin]<a class="headerlink" href="#multi_pin" title="Permanent link">&para;</a></h3>
 <p>Multiple pin outputs (one may define any number of sections with a
 "multi_pin" prefix). A multi_pin output creates an internal pin alias

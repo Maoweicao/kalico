@@ -1,0 +1,2515 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/Config_Changes.html">
+      
+      
+      
+      
+      <link rel="icon" href="../../logo/kalico-32x32.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>配置变更 - Kalico Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../_kalico/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3YZJ9658GV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3YZJ9658GV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3YZJ9658GV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="../../logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalico Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              配置变更
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="../../logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    Kalico Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Features.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently Asked Questions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/KalicoCrew/kalico/releases" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Changes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Changes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kalico_Additions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico additions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bleeding Edge Features Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference for Bleeding Edge features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PID.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MPC.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Predictive Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dockable_Probe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockable Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    G-Code Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            G-Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../G-Codes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Command_Templates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../G-Code_Shell_Command.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Code Shell Command Extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Status_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Status reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting up and running
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Getting up and running
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Migrating_from_Klipper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrating from Klipper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OctoPrint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using OctoPrint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMC_Drivers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TMC drivers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_checks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration checks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rotation_Distance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rotation distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Multi_MCU_Homing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Micro-controller Homing and Probing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bed leveling, Probes and Endstops
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_8">
+            <span class="md-nav__icon md-icon"></span>
+            Bed leveling, Probes and Endstops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Z_Calibration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automatic Z-Offset Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bed_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Delta_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delta calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Probe_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Probe calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BLTouch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BL-Touch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Manual_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bed_Mesh.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed Mesh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Endstop_Phase.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endstop phase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Axis_Twist_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Axis Twist Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Skew_Correction.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skew correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tuning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_9">
+            <span class="md-nav__icon md-icon"></span>
+            Tuning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Measuring_Resonances.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Measuring Resonances
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Resonance_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resonance Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pressure advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Slicers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Slicers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Exclude_Object.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exclude Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Using_PWM_Tools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using PWM tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code_Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kinematics.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kinematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API_Server.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MCU_Commands.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MCU commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS_protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Debugging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Benchmarks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Packaging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Packaging Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Device Specific Documents
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Device Specific Documents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Example_Configs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example configurations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDCard_Updates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SDCard updates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RPi_microcontroller.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPi microcontroller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Beaglebone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Beaglebone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bootloaders.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bootloader_Entry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloader Entry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS_Troubleshooting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSL1401CL filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Hall_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hall filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contact.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sponsors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sponsors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      变更
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/Config_Changes.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">配置变更<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本文档涵盖了不向后兼容的配置文件最近软件变更。升级Kalico软件时，查阅本文档是一个好主意。</p>
+<p>本文档中的所有日期都是近似的。</p>
+<h2 id="_2">变更<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>20260121: Kalico现在使用自动月度发布标签，格式为
+<code>vYYYY.MM.NN</code>（例如，<code>v2026.01.00</code>）。用户可以配置Moonraker跟踪
+稳定月度发布而不是最新提交。详见
+<a href="Migrating_from_Klipper.html#moonraker-update-configuration">从Klipper迁移</a>
+了解配置详情。</p>
+<p>20250817: gcode_button部分添加了新选项<code>debounce_delay</code>，
+该选项以秒为单位取值，用于在执行任何操作之前消除按钮状态的抖动。
+默认值为0，表示没有消抖。</p>
+<p>20250721: <code>[pca9632]</code>和<code>[mcp4018]</code>模块不再接受
+<code>scl_pin</code>和<code>sda_pin</code>选项。改用<code>i2c_software_scl_pin</code>和
+<code>i2c_software_sda_pin</code>。</p>
+<p>20250425: pwm <code>[output_pin]</code>、
+<code>[pwm_cycle_time]</code>、<code>[pwm_tool]</code>及类似配置部分的最大<code>cycle_time</code>
+现在为3秒（从5秒降低）。<code>[pwm_tool]</code>中的<code>maximum_mcu_duration</code>
+现在也是3秒。</p>
+<p>20250816: filament_switch_sensor添加了新选项<code>debounce_delay</code>，
+该选项以秒为单位取值，用于在执行任何操作之前消除开关状态的抖动。
+默认值为0，表示没有消抖。</p>
+<p>20250426: <code>TEST_RESONANCES</code>和<code>SHAPER_CALIBRATE</code>中的选项<code>CHIPS=&lt;chip_name&gt;</code>
+需要指定加速度计芯片的完整名称。例如，<code>adxl345 rpi</code>而不是短名称<code>rpi</code>。</p>
+<p>20250207: <code>driver_CS</code>参数已添加到tmc5160。之前CS值几乎总是设置为31。
+现在默认为31，但可以更改。</p>
+<p>20250121: 当启用无传感器回零时，stepper配置部分中的
+<code>second_homing_speed</code>默认值现在设置为<code>homing_speed</code>。</p>
+<p>20250107: tmc2240的<code>rref</code>参数现在是强制的，没有默认值。</p>
+<p>20241202: <code>sense_resistor</code>参数现在是强制的，没有默认值。</p>
+<p>20241201: 在某些情况下，Klipper可能忽略了传统G代码命令中的前导字符或
+空格。例如，"99M123"可能被解释为"M123"，"M 321"可能被解释为
+"M321"。Klipper现在会报告这些情况的"未知命令"警告。</p>
+<p>20241125: 风扇配置部分中的<code>off_below</code>参数已弃用。
+它将在不久的将来被删除。改用
+<a href="Config_Reference.html#fans"><code>min_power</code></a>。<code>printer[fan object].speed</code>
+状态将被替换为<code>printer[fan object].value</code>和<code>printer[fan object].power</code>。</p>
+<p>20241223: <code>CLEAR_RETRACTION</code>命令不再将参数重置为
+默认配置值，添加了<a href="G-Codes.html#reset_retraction"><code>RESET_RETRACTION</code></a>
+命令来实现此功能。自动重置行为已被移除。</p>
+<p>20240912: <code>SET_PIN</code>、<code>SET_SERVO</code>、<code>SET_FAN_SPEED</code>、<code>M106</code>和<code>M107</code>
+命令现在被整理。以前，如果对同一对象的许多更新的发送速度快于最小调度时间
+（通常为100毫秒），则实际更新可能会排队到未来很久。现在，如果许多更新
+快速连续发送，可能只有最新请求会被应用。如果需要以前的行为，
+请考虑在更新之间添加显式<code>G4</code>延迟命令。</p>
+<p>20240912: <code>[output_pin]</code>配置部分中对<code>maximum_mcu_duration</code>和<code>static_value</code>
+参数的支持已被移除。这些选项自20240123以来已弃用。</p>
+<p>20240430: <code>[danger_options]</code>配置部分中的<code>adc_ignore_limits</code>参数
+已重命名为<code>temp_ignore_limits</code>，现在涵盖所有可能的温度传感器。</p>
+<p>20240415: <code>[virtual_sdcard]</code>配置部分中的<code>on_error_gcode</code>参数现在有默认值。
+如果未指定此参数，现在默认为<code>TURN_OFF_HEATERS</code>。如果需要以前的行为
+（在虚拟SD卡打印过程中出错时不采取默认操作），则将<code>on_error_gcode</code>
+定义为空值。</p>
+<p>20240313: <code>[printer]</code>配置部分中的<code>max_accel_to_decel</code>参数已弃用。
+<code>SET_VELOCITY_LIMIT</code>命令的<code>ACCEL_TO_DECEL</code>参数已弃用。
+<code>printer.toolhead.max_accel_to_decel</code>状态已被移除。改用
+<a href="Config_Reference.html#printer">最小巡航比率参数</a>。
+弃用的功能将在不久的将来被移除，在此期间使用它们可能会导致
+略微不同的行为。</p>
+<p>20240215: 已移除多个弃用的功能。使用"NTC 100K beta 3950"作为
+热敏电阻名称已被移除（在20211110弃用）。<code>SYNC_STEPPER_TO_EXTRUDER</code>和
+<code>SET_EXTRUDER_STEP_DISTANCE</code>命令已被移除，bed_mesh<code>relative_reference_index</code>
+选项已被移除（在20230619弃用）。</p>
+<p>20240128: <code>printer.kinematics</code>现在接受启用<code>max_{x,y}_accel</code>和
+<code>max_{x,y}_velocity</code>（仅适用于<code>limited_cartesian</code>）的<code>limited_cartesian</code>和
+<code>limited_corexy</code>。将来，此功能可能被移入原始运动学模块（作为可选设置）。</p>
+<p>20240123: output_pin SET_PIN CYCLE_TIME参数已被移除。
+如果需要动态更改pwm引脚的周期时间，使用新的
+<a href="Config_Reference.html#pwm_cycle_time">pwm_cycle_time</a>模块。</p>
+<p>20240123: output_pin<code>maximum_mcu_duration</code>参数已弃用。
+改用<a href="Config_Reference.html#pwm_tool">pwm_tool配置部分</a>。
+该选项将在不久的将来被移除。</p>
+<p>20240123: output_pin<code>static_value</code>参数已弃用。
+替换为<code>value</code>和<code>shutdown_value</code>参数。该选项将在不久的将来被移除。</p>
+<p>20231216: <code>[hall_filament_width_sensor]</code>已更改为在灯丝厚度超过<code>max_diameter</code>时
+触发灯丝耗尽。最大直径默认为<code>default_nominal_filament_diameter + max_difference</code>。
+详见<a href="Config_Reference.html#hall_filament_width_sensor">[hall_filament_width_sensor]配置
+参考</a>了解更多信息。</p>
+<p>20231207: <code>[printer]</code>配置部分中已移除多个未记录的配置参数
+（buffer_time_low、buffer_time_high、buffer_time_start和move_flush_time参数）。</p>
+<p>20231110: Klipper v0.12.0发布。</p>
+<p>20230826: 如果在<code>[dual_carriage]</code>中<code>safe_distance</code>设置或计算为0，
+滑车接近度检查将按文档禁用。用户可能希望明确配置<code>safe_distance</code>
+以防止滑车相互发生意外碰撞。此外，在某些配置中主滑车和双滑车的
+回零顺序已更改（某些两个滑车向同一方向回零的配置，详见
+<a href="Config_Reference.html#dual_carriage">[dual_carriage]配置参考</a>）。</p>
+<p>20230810: flash-sdcard.sh脚本现在支持Bigtreetech SKR-3的两种变体，
+STM32H743和STM32H723。因此，btt-skr-3的原始标签现已更改为
+btt-skr-3-h743或btt-skr-3-h723。</p>
+<p>20230801: 设置<code>fan.off_bellow</code>已更改为<code>fan.min_power</code>。
+但是，此更改不会影响不使用此设置的用户。随着此更新，
+已引入<code>min_power</code>和<code>max_power</code>之间的PWM缩放。需要更高<code>min_power</code>的风扇
+现在可以访问其完整的"安全"功率曲线。通过正确设置<code>min_power</code>，
+任何风扇（如CPAP）应该即使在<code>M106 S1</code>也能启动。建议查看您的切片机/宏
+来调整风扇速度。您之前指定的20%风扇速度可能不再代表您的最低风扇设置，
+但现在将对应于实际的20%风扇速度。
+如果您之前将<code>max_power</code>设置为低于1.0（默认值）的任何值，
+建议使用设置<code>min_power: 0</code>和<code>max_power: 1</code>重新校准<code>min_power</code>和<code>kick_start_time</code>。</p>
+<p>20230729: <code>dual_carriage</code>的导出状态已更改。代替导出<code>mode</code>和<code>active_carriage</code>，
+每个滑车的各个模式导出为<code>printer.dual_carriage.carriage_0</code>和
+<code>printer.dual_carriage.carriage_1</code>。</p>
+<p>20230619: <code>relative_reference_index</code>选项已弃用
+并由<code>zero_reference_position</code>选项取代。详见
+<a href="Bed_Mesh.html#the-deprecated-relative_reference_index">Bed Mesh文档</a>
+了解如何更新配置。随着此弃用，<code>RELATIVE_REFERENCE_INDEX</code>
+不再作为<code>BED_MESH_CALIBRATE</code> gcode命令的参数可用。</p>
+<p>20230530: "make menuconfig"中的默认canbus频率
+现在为1000000。如果使用canbus且需要使用其他频率的canbus，
+请在编译和刷写微控制器时确保选择"启用额外的低级配置选项"
+并指定所需的"CAN总线速度"。</p>
+<p>20230525: 如果<code>[input_shaper]</code>已启用，<code>SHAPER_CALIBRATE</code>命令会立即应用
+输入整形器参数。</p>
+<p>20230407: 日志中和<code>printer.mcu.last_stats</code>字段中的<code>stalled_bytes</code>计数器
+已重命名为<code>upcoming_bytes</code>。</p>
+<p>20230323: 在tmc5160驱动器上，<code>multistep_filt</code>现在默认启用。
+设置<code>driver_MULTISTEP_FILT: False</code>在tmc5160配置中以获得以前的行为。</p>
+<p>20230304: <code>SET_TMC_CURRENT</code>命令现在正确调整了有该寄存器的驱动器的
+全局缩放寄存器。这消除了在tmc5160上无法使用<code>SET_TMC_CURRENT</code>将
+电流提高超过配置文件中设置的<code>run_current</code>值的限制。
+但是，这有一个副作用：运行<code>SET_TMC_CURRENT</code>后，如果使用StealthChop2，
+步进电机必须停止超过130毫秒，以便驱动器执行AT#1校准。</p>
+<p>20230202: <code>printer.screws_tilt_adjust</code>状态信息的格式已更改。
+该信息现在存储为螺钉字典及其产生的测量。详见
+<a href="Status_Reference.html#screws_tilt_adjust">状态参考</a>了解详情。</p>
+<p>20230201: <code>[bed_mesh]</code>模块在启动时不再加载<code>default</code>配置文件。
+建议使用<code>default</code>配置文件的用户将<code>BED_MESH_PROFILE LOAD=default</code>
+添加到其<code>START_PRINT</code>宏（或其切片机的"开始G代码"配置）中。</p>
+<p>20230103: 现在可以使用flash-sdcard.sh脚本刷写Bigtreetech SKR-2的两种变体，
+STM32F407和STM32F429。这意味着btt-skr2的原始标签现已更改为
+btt-skr-2-f407或btt-skr-2-f429。</p>
+<p>20221128: Klipper v0.11.0发布。</p>
+<p>20221122: 以前，使用safe_z_home时，g28回零后的z_hop可能
+会沿负z方向进行。现在，只有在z_hop结果为正跳跃时才在g28后执行z_hop，
+反映了g28回零前发生的z_hop行为。</p>
+<p>20220616: 以前可以通过运行<code>make flash FLASH_DEVICE=first</code>在引导加载程序模式下
+刷写rp2040。等效命令现在是<code>make flash FLASH_DEVICE=2e8a:0003</code>。</p>
+<p>20220612: rp2040微控制器现在有"rp2040-e5" USB勘误表的解决方法。
+这应该使初始USB连接更可靠。但是，可能会导致gpio15引脚的行为改变。
+gpio15行为改变不太可能被注意到。</p>
+<p>20220407: temperature_fan<code>pid_integral_max</code>配置选项已被移除
+（在20210612弃用）。</p>
+<p>20220407: pca9632 LED的默认颜色顺序现在为"RGBW"。
+添加显式<code>color_order: RBGW</code>设置到pca9632配置部分以获得以前的行为。</p>
+<p>20220330: neopixel和dotstar模块的<code>printer.neopixel.color_data</code>状态
+信息格式已更改。该信息现在存储为颜色列表列表（而不是字典列表）。
+详见<a href="Status_Reference.html#led">状态参考</a>了解详情。</p>
+<p>20220307: 如果缺少<code>P</code>，<code>M73</code>将不再将打印进度设置为0。</p>
+<p>20220304: <a href="Config_Reference.html#extruder_stepper">extruder_stepper</a>
+配置部分的<code>extruder</code>参数不再有默认值。如果需要，明确指定
+<code>extruder: extruder</code>以在启动时将步进电机与"挤出机"运动队列相关联。</p>
+<p>20220210: <code>SYNC_STEPPER_TO_EXTRUDER</code>命令已弃用；
+<code>SET_EXTRUDER_STEP_DISTANCE</code>命令已弃用；
+<a href="Config_Reference.html#extruder">extruder</a><code>shared_heater</code>配置选项
+已弃用。这些功能将在不久的将来被移除。
+将<code>SET_EXTRUDER_STEP_DISTANCE</code>替换为<code>SET_EXTRUDER_ROTATION_DISTANCE</code>。
+将<code>SYNC_STEPPER_TO_EXTRUDER</code>替换为<code>SYNC_EXTRUDER_MOTION</code>。
+使用<code>shared_heater</code>替换extruder配置部分为
+<a href="Config_Reference.html#extruder_stepper">extruder_stepper</a>配置部分
+并更新任何激活宏以使用<a href="G-Codes.html#sync_extruder_motion">SYNC_EXTRUDER_MOTION</a>。</p>
+<p>20220116: tmc2130、tmc2208、tmc2209和tmc2660<code>run_current</code>
+计算代码已更改。对于某些<code>run_current</code>设置，驱动器现在可能配置不同。
+此新配置应更准确，但可能使以前的tmc驱动器调整无效。</p>
+<p>20211230: 用于调整输入整形器的脚本（<code>scripts/calibrate_shaper.py</code>
+和<code>scripts/graph_accelerometer.py</code>）已迁移为默认使用Python3。
+因此，用户必须安装某些包的Python3版本
+（例如<code>sudo apt install python3-numpy python3-matplotlib</code>）以继续使用这些脚本。
+详见<a href="Measuring_Resonances.html#software-installation">软件安装</a>。
+或者，用户可以通过在控制台中明确调用Python2解释器来临时强制在Python 2下执行这些脚本：
+<code>python2 ~/klipper/scripts/calibrate_shaper.py ...</code></p>
+<p>20211110: "NTC 100K beta 3950"温度传感器已弃用。
+该传感器将在不久的将来被移除。大多数用户会发现
+"Generic 3950"温度传感器更准确。要继续使用较旧的
+（通常不太准确的）定义，请定义自定义<a href="Config_Reference.html#thermistor">thermistor</a>，
+其中<code>temperature1: 25</code>、<code>resistance1: 100000</code>和<code>beta: 3950</code>。</p>
+<p>20211104: "make menuconfig"中的"step pulse duration"选项已被移除。
+在UART或SPI模式下配置的TMC驱动器的默认步长持续时间现在为100ns。
+需要自定义脉冲持续时间的所有步进电机的<a href="Config_Reference.html#stepper">stepper配置部分</a>
+中应设置新的<code>step_pulse_duration</code>设置。</p>
+<p>20211102: 已移除多个弃用的功能。stepper<code>step_distance</code>选项已被移除
+（在20201222弃用）。<code>rpi_temperature</code>传感器别名已被移除
+（在20210219弃用）。mcu<code>pin_map</code>选项已被移除（在20210325弃用）。
+gcode_macro<code>default_parameter_&lt;name&gt;</code>和宏访问命令参数以外的<code>params</code>
+伪变量的方式已被移除（在20210503弃用）。
+heater<code>pid_integral_max</code>选项已被移除（在20210612弃用）。</p>
+<p>20210929: Klipper v0.10.0发布。</p>
+<p>20210903: 加热器的默认<a href="Config_Reference.html#extruder"><code>smooth_time</code></a>
+已更改为1秒（从2秒）。对于大多数打印机，这将导致更稳定的温度控制。</p>
+<p>20210830: 默认adxl345名称现在为"adxl345"。<code>ACCELEROMETER_MEASURE</code>
+和<code>ACCELEROMETER_QUERY</code>的默认CHIP参数现在也为"adxl345"。</p>
+<p>20210830: adxl345 ACCELEROMETER_MEASURE命令不再支持RATE参数。
+要更改查询速率，请更新printer.cfg文件并发出RESTART命令。</p>
+<p>20210821: <code>printer.configfile.settings</code>中的多个配置设置
+现在将作为列表而不是原始字符串报告。如果需要实际原始字符串，
+改用<code>printer.configfile.config</code>。</p>
+<p>20210819: 在某些情况下，<code>G28</code>回零移动可能以名义上
+在有效运动范围外的位置结束。在罕见情况下，
+这可能导致回零后令人困惑的"移出范围"错误。
+如果发生这种情况，更改您的启动脚本以在回零后立即将工具头移动到有效位置。</p>
+<p>20210814: atmega168和atmega328上仅模拟伪引脚
+已从PE0/PE1重命名为PE2/PE3。</p>
+<p>20210720: controller_fan部分现在默认监视所有步进电机
+（不仅仅是运动学步进电机）。如果需要以前的行为，
+详见<a href="Config_Reference.html#controller_fan">配置参考</a>中的<code>stepper</code>配置选项。</p>
+<p>20210703: <code>samd_sercom</code>配置部分现在必须通过<code>sercom</code>选项
+指定其配置的sercom总线。</p>
+<p>20210612: heater和temperature_fan部分中的<code>pid_integral_max</code>
+配置选项已弃用。该选项将在不久的将来被移除。</p>
+<p>20210503: gcode_macro<code>default_parameter_&lt;name&gt;</code>配置选项已弃用。
+使用<code>params</code>伪变量访问宏参数。访问宏参数的其他方法将在不久的将来被移除。
+大多数用户可以用宏开头的如下所示的行替换<code>default_parameter_NAME: VALUE</code>
+配置选项：<code>{% set NAME = params.NAME|default(VALUE)|float %}</code>。
+详见<a href="Command_Templates.html">命令模板文档</a>了解示例。</p>
+<p>20210430: SET_VELOCITY_LIMIT（和M204）命令现在可以设置
+大于配置文件中指定的值的速度、加速度和square_corner_velocity。</p>
+<p>20210325: 对<code>pin_map</code>配置选项的支持已弃用。使用
+<a href="https://github.com/KalicoCrew/kalico//blob/main/config/sample-aliases.cfg">sample-aliases.cfg</a>文件翻译为
+实际的微控制器引脚名称。<code>pin_map</code>配置选项将在不久的将来被移除。</p>
+<p>20210313: Klipper对使用CAN总线通信的微控制器的支持已更改。
+如果使用CAN总线，则所有微控制器必须重新刷写并且
+<a href="CANBUS.html">Klipper配置必须更新</a>。</p>
+<p>20210310: tmc5160 pwm_freq字段的默认值已从1更改为0。</p>
+<p>20210227: UART或SPI模式下的TMC步进电机驱动器现在每秒查询一次
+（只要它们被启用）——如果无法联系驱动器或驱动器报告错误，
+Klipper将转换为关闭状态。</p>
+<p>20210219: <code>rpi_temperature</code>模块已重命名为<code>temperature_host</code>。
+将任何<code>sensor_type: rpi_temperature</code>替换为<code>sensor_type: temperature_host</code>。
+温度文件的路径可以在<code>sensor_path</code>配置变量中指定。
+<code>rpi_temperature</code>名称已弃用并将在不久的将来被移除。</p>
+<p>20210201: <code>TEST_RESONANCES</code>命令将立即禁用输入整形器
+（如果以前启用过）并在测试后重新启用它。要覆盖此行为
+并保持输入整形器启用，可以向命令传递附加参数<code>INPUT_SHAPING=1</code>。</p>
+<p>20210201: 如果在相应的printer.cfg中给加速度计芯片命名，
+<code>ACCELEROMETER_MEASURE</code>命令现在会将加速度计芯片的名称追加到输出文件名。</p>
+<p>20201222: stepper配置部分中的<code>step_distance</code>设置已弃用。
+建议更新配置以使用<a href="Rotation_Distance.html"><code>rotation_distance</code></a>设置。
+对<code>step_distance</code>的支持将在不久的将来被移除。</p>
+<p>20201218: endstop_phase模块中的<code>endstop_phase</code>设置已被
+<code>trigger_phase</code>替换。如果使用endstop phases模块，则需要转换为
+<a href="Rotation_Distance.html"><code>rotation_distance</code></a>并通过运行
+ENDSTOP_PHASE_CALIBRATE命令重新校准任何endstop phases。</p>
+<p>20201218: 旋转增量和极坐标打印机现在必须为其旋转步进电机指定
+<code>gear_ratio</code>，他们可能不再指定<code>step_distance</code>参数。详见
+<a href="Config_Reference.html#stepper">配置参考</a>了解新gear_ratio参数的格式。</p>
+<p>20201213: 使用"probe:z_virtual_endstop"时指定Z"position_endstop"无效。
+如果使用"probe:z_virtual_endstop"指定Z"position_endstop"，
+现在将引发错误。移除Z"position_endstop"定义来修复错误。</p>
+<p>20201120: <code>[board_pins]</code>配置部分现在在显式<code>mcu:</code>参数中指定mcu名称。
+如果为辅助mcu使用board_pins，则必须更新配置以指定该名称。
+详见<a href="Config_Reference.html#board_pins">配置参考</a>了解进一步详情。</p>
+<p>20201112: <code>print_stats.print_duration</code>报告的时间已更改。
+首次检测到挤出前的持续时间现在被排除。</p>
+<p>20201029: neopixel<code>color_order_GRB</code>配置选项已被移除。
+如果需要，更新配置以将新的<code>color_order</code>选项设置为RGB、GRB、RGBW或GRBW。</p>
+<p>20201029: mcu配置部分中的serial选项不再默认为/dev/ttyS0。
+在/dev/ttyS0为所需串行端口的罕见情况下，必须明确指定。</p>
+<p>20201020: Klipper v0.9.0发布。</p>
+<p>20200902: MAX31865转换器的RTD电阻到温度计算已修正，
+不会读取过低。如果您使用这样的设备，应重新校准打印温度和PID设置。</p>
+<p>20200816: gcode宏<code>printer.gcode</code>对象已重命名为<code>printer.gcode_move</code>。
+<code>printer.toolhead</code>和<code>printer.gcode</code>中的多个未记录变量已被移除。
+详见docs/Command_Templates.md了解可用的模板变量列表。</p>
+<p>20200816: gcode宏"action_"系统已更改。将任何调用
+<code>printer.gcode.action_emergency_stop()</code>替换为<code>action_emergency_stop()</code>，
+<code>printer.gcode.action_respond_info()</code>替换为<code>action_respond_info()</code>，
+<code>printer.gcode.action_respond_error()</code>替换为<code>action_raise_error()</code>。</p>
+<p>20200809: 菜单系统已被重写。如果菜单已自定义，
+则需要更新到新配置。详见config/example-menu.cfg了解配置详情，
+见klippy/extras/display/menu.cfg了解示例。</p>
+<p>20200731: <code>virtual_sdcard</code>打印机对象报告的<code>progress</code>
+属性行为已更改。暂停打印时不再将进度重置为0。
+它现在将始终基于内部文件位置报告进度，或如果当前未加载文件则为0。</p>
+<p>20200725: servo<code>enable</code>配置参数和SET_SERVO<code>ENABLE</code>参数已被移除。
+更新任何宏以使用<code>SET_SERVO SERVO=my_servo WIDTH=0</code>禁用servo。</p>
+<p>20200608: LCD显示支持已更改一些内部"字形"的名称。
+如果实现了自定义显示布局，可能需要更新为最新的字形名称
+（详见klippy/extras/display/display.cfg了解可用字形列表）。</p>
+<p>20200606: linux mcu上的引脚名称已更改。引脚现在具有
+<code>gpiochip&lt;chipid&gt;/gpio&lt;gpio&gt;</code>形式的名称。对于gpiochip0，
+您也可以使用短<code>gpio&lt;gpio&gt;</code>。例如，之前称为<code>P20</code>的现在变为
+<code>gpio20</code>或<code>gpiochip0/gpio20</code>。</p>
+<p>20200603: 默认16x4 LCD布局不再显示打印中的剩余估计时间。
+（仅显示已用时间。）如果需要以前的行为，可以通过使用
+config/example-extras.cfg中display_data的说明自定义菜单显示
+（详见详情）。</p>
+<p>20200531: 默认USB供应商/产品ID现在为0x1d50/0x614e。
+这些新ID为Klipper预留（感谢openmoko项目）。
+此更改不应需要任何配置更改，但新ID可能出现在系统日志中。</p>
+<p>20200524: tmc5160 pwm_freq字段的默认值现在为零（而不是一）。</p>
+<p>20200425: gcode_macro命令模板变量<code>printer.heater</code>已重命名为<code>printer.heaters</code>。</p>
+<p>20200313: 具有16x4屏幕的多挤出机打印机的默认lcd布局已更改。
+单挤出机屏幕布局现在是默认值，将显示当前活动的挤出机。
+要使用以前的显示布局，在printer.cfg文件的[display]部分中设置
+"display_group: _multiextruder_16x4"。</p>
+<p>20200308: 默认<code>__test</code>菜单项已被移除。如果配置文件有自定义菜单，
+请确保移除所有对此<code>__test</code>菜单项的引用。</p>
+<p>20200308: 菜单"deck"和"card"选项已被移除。要自定义lcd屏幕的布局，
+使用新的display_data配置部分（详见config/example-extras.cfg了解详情）。</p>
+<p>20200109: bed_mesh模块现在参考探针位置进行网格配置。
+因此，某些配置选项已重命名以更准确地反映其预期功能。
+对于矩形床，<code>min_point</code>和<code>max_point</code>已重命名为<code>mesh_min</code>和<code>mesh_max</code>。
+对于圆形床，<code>bed_radius</code>已重命名为<code>mesh_radius</code>。为圆形床添加了新的<code>mesh_origin</code>选项。
+请注意，这些更改也与之前保存的网格配置文件不兼容。
+如果检测到不兼容的配置文件，将被忽略并安排删除。可以通过发出
+SAVE_CONFIG命令完成删除过程。用户需要重新校准每个配置文件。</p>
+<p>20191218: display配置部分不再支持"lcd_type: st7567"。
+改用"uc1701"显示类型——设置"lcd_type: uc1701"
+并将"rs_pin: some_pin"更改为"rst_pin: some_pin"。
+可能还需要添加"contrast: 60"配置设置。</p>
+<p>20191210: 内置T0、T1、T2...命令已被移除。extruder
+activate_gcode和deactivate_gcode配置选项已被移除。
+如果这些命令（和脚本）是必要的，则定义个别[gcode_macro T0]
+风格的宏来调用ACTIVATE_EXTRUDER命令。详见config/sample-idex.cfg
+和sample-multi-extruder.cfg文件了解示例。</p>
+<p>20191210: 对M206命令的支持已被移除。替换为调用SET_GCODE_OFFSET。
+如果需要M206支持，添加调用SET_GCODE_OFFSET的[gcode_macro M206]配置部分。
+（例如"SET_GCODE_OFFSET Z=-{params.Z}"。）</p>
+<p>20191202: 对"G4"命令的未记录"S"参数的支持已被移除。
+将任何S出现替换为标准"P"参数（以毫秒为单位指定的延迟）。</p>
+<p>20191126: 具有本机USB支持的微控制器上的USB名称已更改。
+它们现在默认使用唯一的芯片ID（如果可用）。
+如果"mcu"配置部分使用以"/dev/serial/by-id/"开头的"serial"设置，
+可能需要更新配置。在ssh终端中运行"ls /dev/serial/by-id/*"确定新ID。</p>
+<p>20191121: pressure_advance_lookahead_time参数已被移除。
+详见example.cfg了解替代配置设置。</p>
+<p>20191112: tmc步进电机驱动程序虚拟启用功能现在自动启用，
+如果步进电机没有专用步进电机启用引脚。从配置中移除tmcXXXX:virtual_enable
+引用。在stepper enable_pin配置中控制多个引脚的能力已被移除。
+如果需要多个引脚，使用multi_pin配置部分。</p>
+<p>20191107: 主挤出机配置部分必须指定为"extruder"，
+不再可以指定为"extruder0"。查询挤出机状态的gcode命令模板
+现在通过"{printer.extruder}"访问。</p>
+<p>20191021: Klipper v0.8.0发布</p>
+<p>20191003: [safe_z_homing]中的move_to_previous选项现在默认为False。
+（在20190918之前它实际上为False。）</p>
+<p>20190918: [safe_z_homing]中的zhop选项在Z轴回零完成后总是重新应用。
+这可能需要用户更新基于此模块的自定义脚本。</p>
+<p>20190806: SET_NEOPIXEL命令已重命名为SET_LED。</p>
+<p>20190726: mcp4728数模转换代码已更改。默认i2c_address现在为0x60，
+电压参考现在相对于mcp4728的内部2.048伏参考。</p>
+<p>20190710: z_hop选项已从[firmware_retract]配置部分移除。
+z_hop支持不完整，可能导致多个常见切片机的不正确行为。</p>
+<p>20190710: PROBE_ACCURACY命令的可选参数已更改。
+可能需要更新任何使用该命令的宏或脚本。</p>
+<p>20190628: 已从[skew_correction]部分移除所有配置选项。
+skew_correction配置现在通过SET_SKEW gcode完成。
+详见<a href="Skew_Correction.html">斜率校正</a>了解建议的使用方法。</p>
+<p>20190607: gcode_macro的"variable_X"参数（以及SET_GCODE_VARIABLE的
+VALUE参数）现在被解析为Python文字。如果需要为值分配字符串，
+使用引号包装值以使其作为字符串评估。</p>
+<p>20190606: "samples"、"samples_result"和"sample_retract_dist"
+配置选项已移至"probe"配置部分。这些选项不再在"delta_calibrate"、
+"bed_tilt"、"bed_mesh"、"screws_tilt_adjust"、"z_tilt"或
+"quad_gantry_level"配置部分中受支持。</p>
+<p>20190528: gcode_macro模板评估中的魔术"status"变量已重命名为"printer"。</p>
+<p>20190520: SET_GCODE_OFFSET命令已更改；相应更新任何g代码宏。
+该命令将不再对下一个G1命令应用所请求的偏移。旧行为可以通过
+使用新的"MOVE=1"参数来近似。</p>
+<p>20190404: Python主机软件包已更新。用户需要重新运行
+~/klipper/scripts/install-octopi.sh脚本（或以其他方式升级python依赖项，
+如果未使用标准OctoPi安装）。</p>
+<p>20190404: i2c_bus和spi_bus参数（在各种配置部分中）
+现在采用总线名称而不是数字。</p>
+<p>20190404: sx1509配置参数已更改。'address'参数现在为'i2c_address'
+并且必须指定为十进制数。其中之前使用0x3E，现在指定62。</p>
+<p>20190328: [temperature_fan]配置中的min_speed值
+现在将被尊重，风扇在PID模式下将始终以此速度或更高速度运行。</p>
+<p>20190322: [tmc2660]配置部分中"driver_HEND"的默认值已从6更改为3。
+已移除"driver_VSENSE"字段（现在从run_current自动计算）。</p>
+<p>20190310: [controller_fan]配置部分现在总是采用名称
+（如[controller_fan my_controller_fan]）。</p>
+<p>20190308: [tmc2130]和[tmc2208]配置部分中的"driver_BLANK_TIME_SELECT"字段
+已重命名为"driver_TBL"。</p>
+<p>20190308: [tmc2660]配置部分已更改。现在必须提供新的
+sense_resistor配置参数。多个driver_XXX参数的含义已更改。</p>
+<p>20190228: SAMD21开发板上的SPI或I2C用户现在必须通过
+[samd_sercom]配置部分指定总线引脚。</p>
+<p>20190224: bed_mesh中的bed_shape选项已被移除。
+radius选项已重命名为bed_radius。具有圆形床的用户应提供
+bed_radius和round_probe_count选项。</p>
+<p>20190107: mcp4451配置部分中的i2c_address参数已更改。
+这是Smoothieboards上的常见设置。新值是旧值的一半
+（88应更改为44，90应更改为45）。</p>
+<p>20181220: Klipper v0.7.0发布</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://kalico.gg/discord" target="_blank" rel="noopener" title="Join our Discord server!" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>

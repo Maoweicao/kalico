@@ -1,0 +1,3176 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/Config_Reference.html">
+      
+      
+      
+      
+      <link rel="icon" href="../../logo/kalico-32x32.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>配置参考 - Kalico Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../_kalico/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3YZJ9658GV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3YZJ9658GV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3YZJ9658GV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="../../logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalico Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              配置参考
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="../../logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    Kalico Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Features.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently Asked Questions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/KalicoCrew/kalico/releases" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Changes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Changes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kalico_Additions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico additions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bleeding Edge Features Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference for Bleeding Edge features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PID.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MPC.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Predictive Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dockable_Probe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockable Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    G-Code Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            G-Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../G-Codes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Command_Templates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../G-Code_Shell_Command.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Code Shell Command Extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Status_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Status reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting up and running
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Getting up and running
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Migrating_from_Klipper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrating from Klipper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OctoPrint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using OctoPrint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMC_Drivers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TMC drivers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_checks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration checks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rotation_Distance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rotation distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Multi_MCU_Homing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Micro-controller Homing and Probing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bed leveling, Probes and Endstops
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_8">
+            <span class="md-nav__icon md-icon"></span>
+            Bed leveling, Probes and Endstops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Z_Calibration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automatic Z-Offset Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bed_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Delta_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delta calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Probe_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Probe calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BLTouch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BL-Touch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Manual_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bed_Mesh.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed Mesh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Endstop_Phase.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endstop phase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Axis_Twist_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Axis Twist Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Skew_Correction.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skew correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tuning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_9">
+            <span class="md-nav__icon md-icon"></span>
+            Tuning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Measuring_Resonances.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Measuring Resonances
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Resonance_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resonance Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pressure advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Slicers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Slicers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Exclude_Object.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exclude Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Using_PWM_Tools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using PWM tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code_Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kinematics.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kinematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API_Server.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MCU_Commands.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MCU commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS_protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Debugging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Benchmarks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Packaging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Packaging Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Device Specific Documents
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Device Specific Documents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Example_Configs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example configurations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDCard_Updates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SDCard updates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RPi_microcontroller.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPi microcontroller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Beaglebone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Beaglebone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bootloaders.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bootloader_Entry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloader Entry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS_Troubleshooting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSL1401CL filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Hall_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hall filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contact.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sponsors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sponsors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      微控制器配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="微控制器配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      微控制器引脚名称格式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      [mcu]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcu-my_extra_mcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      [mcu my_extra_mcu]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ 危险选项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ 配置引用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      通用运动学设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="通用运动学设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#printer" class="md-nav__link">
+    <span class="md-ellipsis">
+      [printer]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      [stepper]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      直角坐标运动学
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ 带 X 和 Y 轴限制的直角坐标运动学
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      线性 Delta 运动学
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/Config_Reference.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">配置参考<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本文档是 Kalico 配置文件中可用选项的参考。</p>
+<p>带有 ⚠️ 标记的配置段和选项表示与原始 Klipper 不同的配置。</p>
+<p>本文档中的描述格式使得可以直接复制粘贴到打印机配置文件中。有关设置 Kalico 和选择初始配置文件的信息，请参见<a href="Installation.html">安装文档</a>。</p>
+<h2 id="_2">微控制器配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">微控制器引脚名称格式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>许多配置选项需要微控制器引脚的名称。Kalico 使用这些引脚的硬件名称——例如 <code>PA4</code>。</p>
+<p>引脚名称前可以加 <code>!</code> 表示应使用反向极性（例如，低电平触发而非高电平）。</p>
+<p>输入引脚前可以加 <code>^</code> 表示为该引脚启用硬件上拉电阻。如果微控制器支持下拉电阻，则输入引脚前也可以加 <code>~</code>。</p>
+<p>注意，某些配置段可能会"创建"额外的引脚。在这种情况下，定义引脚的配置段必须在任何使用这些引脚的配置段之前在配置文件中列出。</p>
+<h3 id="mcu">[mcu]<a class="headerlink" href="#mcu" title="Permanent link">&para;</a></h3>
+<p>主微控制器的配置。</p>
+<div class="highlight"><pre><span></span><code>[mcu]
+serial:
+#   要连接的串口。如果不确定（或者经常改变），请参见 FAQ 的&quot;我的串口在哪里？&quot;部分。
+#   使用串口时必须提供此参数。
+#baud: 250000
+#   要使用的波特率。默认值为 250000。
+#canbus_uuid:
+#   如果使用连接到 CAN 总线的设备，则设置要连接的唯一芯片标识符。
+#   使用 CAN 总线通信时必须提供此值。
+#canbus_interface:
+#   如果使用连接到 CAN 总线的设备，则设置要使用的 CAN 网络接口。
+#   默认值为&quot;can0&quot;。
+#restart_method:
+#   这控制主机用于重置微控制器的机制。选择为&quot;arduino&quot;、&quot;cheetah&quot;、
+#   &quot;rpi_usb&quot;和&quot;command&quot;。&quot;arduino&quot;方法（切换 DTR）在 Arduino 板及克隆板上很常见。
+#   &quot;cheetah&quot;方法是某些 Fysetc Cheetah 板需要的特殊方法。&quot;rpi_usb&quot;方法在 Raspberry Pi
+#   板上很有用，其微控制器由 USB 供电——它会暂时禁用所有 USB 端口以完成微控制器重置。
+#   &quot;command&quot;方法涉及向微控制器发送 Kalico 命令，以便它可以自行重置。如果微控制器通过
+#   串口通信，默认值为&quot;arduino&quot;，否则为&quot;command&quot;。
+#is_non_critical: False
+#   设置为 True 将允许 MCU 随意断开和重新连接，而不会出现错误。
+#   对 USB 加速度计板和 USB/CAN 探针很有用。
+</code></pre></div>
+
+<h3 id="mcu-my_extra_mcu">[mcu my_extra_mcu]<a class="headerlink" href="#mcu-my_extra_mcu" title="Permanent link">&para;</a></h3>
+<p>额外微控制器（可以使用"mcu"前缀定义任意数量的部分）。额外的微控制器引入可配置为加热器、步进器、风扇等的额外引脚。例如，如果引入了"[mcu extra_mcu]"部分，则可以在配置中的其他位置使用"extra_mcu:ar9"之类的引脚（其中"ar9"是给定 MCU 上的硬件引脚名称或别名）。</p>
+<div class="highlight"><pre><span></span><code>[mcu my_extra_mcu]
+# 参见&quot;mcu&quot;部分以获取配置参数。
+</code></pre></div>
+
+<h2 id="_4">⚠️ 危险选项<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>Kalico 特定的系统选项集合</p>
+<div class="highlight"><pre><span></span><code>[danger_options]
+#error_on_unused_config_options: True
+#   如果未使用的配置选项或部分应导致错误，则为 True；
+#   如果为 False，将发出警告但允许 Kalico 仍然运行。
+#   默认值为 True。
+#allow_plugin_override: False
+#   允许&quot;plugins&quot;中的模块覆盖&quot;extras&quot;中同名的模块。
+#   默认值为 False。
+#single_mcu_trsync_timeout: 0.25
+#   使用单个 MCU 时主轴同步期间的超时时间（以秒为单位）。默认值为 0.25
+#multi_mcu_trsync_timeout: 0.025
+#   使用多个 MCU 时主轴同步期间的超时时间（以秒为单位）。默认值为 0.025
+#homing_elapsed_distance_tolerance: 0.5
+#   第二次主轴移动距离的容差（毫米）。确保在使用无传感器主轴时，
+#   第二次主轴距离与&quot;min_home_dist&quot;紧密匹配。默认值为 0.5mm。
+#temp_ignore_limits: False
+#   设置为 true 时，此参数忽略温度传感器的 min_value 和 max_value 限制。
+#   它通过允许超出指定范围的读数而不触发关闭来防止由于&quot;ADC 超出范围&quot;等错误导致的关闭。
+#   默认值为 False。
+#autosave_includes: False
+#   设置为 true 时，SAVE_CONFIG 将递归读取 [include ...] 块以查找冲突以自动保存数据。
+#   任何更新的配置都将备份到 configs/config_backups。
+#bgflush_extra_time: 0.250
+#   这允许设置额外的刷新时间（以秒为单位）。在某些条件下，低值会导致错误（如果未刷新消息），
+#   高值 (0.250) 会导致主轴/探针延迟。默认值为 0.250
+#homing_start_delay: 0.001
+#   开始主轴移动前的停留时间
+#endstop_sample_time: 0.000015
+#   MCU 应对限位开关状态进行采样的频率
+#endstop_sample_count: 4
+#   主轴时应检查限位开关状态的次数
+#   除非您的限位开关有噪声且不可靠，否则您应该能够将其降低到 1
+
+# 挤出机安全限制覆盖：
+#override_pressure_advance_smooth_time_max: 0.200
+#   覆盖 pressure_advance_smooth_time（配置和 SET_PRESSURE_ADVANCE）的最大值。
+#   对于需要超出内置默认值的非标准设置很有用。默认值为 0.200。
+
+# 日志选项：
+
+#minimal_logging: False
+#   为所有日志选项设置默认值。默认值为 False。
+#log_statistics: True
+#   是否应记录统计信息
+#   (有助于在开发过程中保持日志清洁)
+#   默认值为 True。
+#log_config_file_at_startup: True
+#   启动时是否应记录配置文件
+#   默认值为 True。
+#log_bed_mesh_at_startup: True
+#   启动时是否应记录床网格
+#   (有助于在开发过程中保持日志清洁)
+#   默认值为 True。
+#log_velocity_limit_changes: True
+#   是否应记录速度限制的变化。如果为 False，速度限制将仅在翻转时记录。
+#   某些切片软件会发出非常频繁的 SET_VELOCITY_LIMIT 命令。
+#   默认值为 True
+#log_pressure_advance_changes: True
+#   是否应记录压力提前的变化。如果为 false，压力提前数据将仅在翻转时记录。
+#   默认值为 True。
+#log_shutdown_info: True
+#   发生异常时是否应记录详细的崩溃信息
+#   大部分内容过于冗长和无用，我们仍然会获得常见异常的堆栈跟踪，
+#   因此设置为 False 可以帮助在开发时节省时间
+#   默认值为 True。
+#log_serial_reader_warnings: True
+#log_startup_info: True
+#log_webhook_method_register_messages: False
+</code></pre></div>
+
+<h2 id="_5">⚠️ 配置引用<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>在您的配置中，您可以引用其他值以在多个部分之间共享配置。引用采用 <code>${option}</code> 的形式来复制当前部分中的值，或 <code>${section.option}</code> 来在配置中的其他位置查找值。注意，常数必须始终为小写。</p>
+<p>也可以使用 <code>[constants]</code> 部分专门存储这些值。未使用的常数将显示警告。但是，如果没有使用任何常数，<code>[constants]</code> 将显示错误。</p>
+<div class="highlight"><pre><span></span><code>[constants]
+run_current_ab:  1.0
+i_am_not_used: True  # 将显示&quot;常数&#39;i_am_not_used&#39;未被使用&quot;
+
+[tmc5160 stepper_x]
+run_current: ${constants.run_current_ab}
+
+[tmc5160 stepper_y]
+run_current: ${tmc5160 stepper_x.run_current}
+#   嵌套引用有效，但不建议使用
+</code></pre></div>
+
+<p>如果需要，引用可以转义为 <code>\${such}</code></p>
+<h2 id="_6">通用运动学设置<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="printer">[printer]<a class="headerlink" href="#printer" title="Permanent link">&para;</a></h3>
+<p>打印机部分控制高级打印机设置。</p>
+<div class="highlight"><pre><span></span><code>[printer]
+kinematics:
+#   正在使用的打印机类型。此选项可能是以下之一：cartesian（直角坐标）、
+#   corexy、corexz、hybrid_corexy、hybrid_corexz、rotary_delta、delta、
+#   deltesian、polar、winch 或 none。必须指定此参数。
+max_velocity:
+#   工具头的最大速度（毫米/秒）（相对于打印）。此值可以在运行时使用
+#   SET_VELOCITY_LIMIT 命令更改。必须指定此参数。
+max_accel:
+#   工具头的最大加速度（毫米/秒²）（相对于打印）。虽然此参数被描述为&quot;最大&quot;加速度，
+#   但实际上大多数加速或减速的移动都会以此处指定的速率进行。此处指定的值
+#   可以在运行时使用 SET_VELOCITY_LIMIT 命令更改。必须指定此参数。
+#minimum_cruise_ratio: 0.5
+#   大多数移动会加速到巡航速度、以该巡航速度移动，然后减速。但是，某些
+#   移动距离较短的移动可能会名义上加速然后立即减速。此选项降低这些移动的
+#   最高速度以确保始终有最小距离在巡航速度下移动。也就是说，它强制在相对于
+#   总距离的巡航速度下移动最小距离。它旨在降低短之字形移动的最高速度（从而
+#   减少这些移动对打印机的震动）。例如，0.5 的 minimum_cruise_ratio 将确保
+#   独立的 1.5mm 移动的最小巡航距离为 0.75mm。指定 0.0 以禁用此功能（不会
+#   在加速和减速之间强制执行最小巡航距离）。此处指定的值可以在运行时使用
+#   SET_VELOCITY_LIMIT 命令更改。默认值为 0.5。
+#square_corner_velocity: 5.0
+#   工具头可在 90 度角处移动的最大速度（毫米/秒）。非零值可以通过在转角处启用
+#   工具头的瞬时速度变化来减少挤出机流速的变化。此值配置内部离心速度转角算法；
+#   大于 90 度的角的转角速度将更高，而小于 90 度的角的转角速度将更低。
+#   如果设置为零，工具头将在每个角处减速到零。此处指定的值可以在运行时使用
+#   SET_VELOCITY_LIMIT 命令更改。默认值为 5mm/s。
+#max_accel_to_decel:
+#   此参数已弃用，不应再使用。
+</code></pre></div>
+
+<h3 id="stepper">[stepper]<a class="headerlink" href="#stepper" title="Permanent link">&para;</a></h3>
+<p>步进电机定义。不同的打印机类型（由 [printer] 配置部分中的"kinematics"选项指定）需要步进器的不同名称（例如 <code>stepper_x</code> vs <code>stepper_a</code>）。下面是常见的步进器定义。</p>
+<p>有关计算 <code>rotation_distance</code> 参数的信息，请参见<a href="Rotation_Distance.html">旋转距离文档</a>。有关使用多个微控制器进行主轴的信息，请参见<a href="Multi_MCU_Homing.html">多 MCU 主轴</a>文档。</p>
+<div class="highlight"><pre><span></span><code>[stepper_x]
+step_pin:
+#   步进 GPIO 引脚（高电平触发）。必须提供此参数。
+dir_pin:
+#   方向 GPIO 引脚（高电平表示正方向）。必须提供此参数。
+enable_pin:
+#   启用引脚（默认为启用高电平；使用 ! 表示启用低电平）。如果未提供此参数，
+#   则步进电机驱动必须始终启用。
+rotation_distance:
+#   轴通过一次完整步进电机旋转（如果指定了 gear_ratio，则为最终齿轮）
+#   移动的距离（毫米）。必须提供此参数。
+microsteps:
+#   步进电机驱动使用的微步数。必须提供此参数。
+#full_steps_per_rotation: 200
+#   步进电机一次旋转的完整步数。对于 1.8 度步进电机，设置为 200；
+#   对于 0.9 度电机，设置为 400。默认值为 200。
+#gear_ratio:
+#   如果步进电机通过齿轮箱连接到轴，则为齿轮比。例如，如果使用 5:1 减速箱，
+#   可以指定&quot;5:1&quot;。如果轴有多个齿轮箱，可以指定逗号分隔的齿轮比列表
+#   (例如&quot;57:11, 2:1&quot;)。如果指定了 gear_ratio，则 rotation_distance 指定
+#   轴通过最终齿轮的一次完整旋转移动的距离。默认值为不使用齿轮比。
+#step_pulse_duration:
+#   步进脉冲信号边与随后的&quot;取消步进&quot;信号边之间的最小时间。这也用于设置
+#   步进脉冲与方向更改信号之间的最小时间。对于 UART 或 SPI 模式下配置的 TMC
+#   步进器，默认值为 0.000000100 (100ns)，对于所有其他步进器，默认值为 0.000002 (2us)。
+endstop_pin:
+#   限位开关检测引脚。如果此限位引脚与步进电机在不同的 MCU 上，则启用
+#   &quot;多 MCU 主轴&quot;。对于直角坐标打印机上的 X、Y 和 Z 步进器，必须提供此参数。
+#position_min: 0
+#   用户可能命令步进器移动到的最小有效距离（毫米）。默认值为 0mm。
+position_endstop:
+#   限位开关位置（毫米）。对于直角坐标打印机上的 X、Y 和 Z 步进器，必须提供此参数。
+position_max:
+#   用户可能命令步进器移动到的最大有效距离（毫米）。对于直角坐标打印机上的 X、Y 和 Z 步进器，必须提供此参数。
+#homing_speed: 5.0
+#   主轴时步进器的最大速度（毫米/秒）。默认值为 5mm/s。
+#homing_accel:
+#   主轴时步进器的最大加速度（毫米/秒²）。默认值为使用 [printer] 对象中配置的最大加速度。
+#homing_retract_dist: 5.0
+#   主轴第二次前回退的距离（毫米）。如果 `use_sensorless_homing` 为 false，
+#   可以将此设置设置为零以禁用第二个主轴。如果 `use_sensorless_homing` 为 true，
+#   此设置可以 &gt; 0 以在主轴后回退。默认值为 5mm。
+#homing_retract_speed:
+#   主轴后的回退移动上要使用的速度，以防此速度应与主轴速度不同（默认值）
+#min_home_dist:
+#   主轴前工具头的最小距离（毫米）。如果比 `min_home_dist` 更接近限位开关，
+#   则向该距离远离，然后主轴。如果更远，则直接主轴并回退到 `homing_retract_dist`。
+#   默认值等于 `homing_retract_dist`。
+#second_homing_speed:
+#   执行第二个主轴时步进器的速度（毫米/秒）。默认值为 homing_speed/2。
+#   如果 `use_sensorless_homing` 为 true，默认值为 homing_speed。
+#homing_positive_dir:
+#   如果为 true，主轴会导致步进器向正方向移动（离开零）；如果为 false，则朝零主轴。
+#   最好使用默认值而不是指定此参数。如果 position_endstop 接近 position_max，
+#   则默认值为 true；如果接近 position_min，则默认值为 false。
+#use_sensorless_homing:
+#   如果为 true，且 homing_retract_dist &gt; 0，则禁用第二个主轴动作。
+#   默认值为 true，如果 endstop_pin 配置为使用 virtual_endstop。
+</code></pre></div>
+
+<h3 id="_7">直角坐标运动学<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>查看 <a href="https://github.com/KalicoCrew/kalico//blob/main/config/example-cartesian.cfg">example-cartesian.cfg</a> 获取直角坐标运动学配置文件的示例。</p>
+<p>此处仅描述直角坐标打印机特定的参数——有关可用参数，请参见<a href="#通用运动学设置">通用运动学设置</a>。</p>
+<div class="highlight"><pre><span></span><code>[printer]
+kinematics: cartesian
+max_z_velocity:
+#   这设置沿 z 轴运动的最大速度（毫米/秒）。此设置可用于限制 z 步进电机的最大速度。
+#   默认值是对 max_z_velocity 使用 max_velocity。
+max_z_accel:
+#   这设置沿 z 轴运动的最大加速度（毫米/秒²）。它限制 z 步进电机的加速度。
+#   默认值是对 max_z_accel 使用 max_accel。
+
+# stepper_x 部分用于描述直角坐标机器人中控制 X 轴的步进器。
+[stepper_x]
+
+# stepper_y 部分用于描述直角坐标机器人中控制 Y 轴的步进器。
+[stepper_y]
+
+# stepper_z 部分用于描述直角坐标机器人中控制 Z 轴的步进器。
+[stepper_z]
+</code></pre></div>
+
+<h3 id="x-y">⚠️ 带 X 和 Y 轴限制的直角坐标运动学<a class="headerlink" href="#x-y" title="Permanent link">&para;</a></h3>
+<p>行为与直角坐标运动学完全相同，但允许为 X 和 Y 轴设置速度和加速度限制。这还使命令 <a href="G-Codes.html#set_kinematics_limit"><code>SET_KINEMATICS_LIMIT</code></a> 可用于在运行时设置这些限制。</p>
+<div class="highlight"><pre><span></span><code>[printer]
+kinematics: limited_cartesian
+max_x_velocity:
+#   这设置沿 x 轴运动的最大速度（毫米/秒）。此设置可用于限制 x 步进电机的最大速度。
+#   默认值是对 max_x_velocity 使用 max_velocity。
+max_y_velocity:
+#   这设置沿 y 轴运动的最大速度（毫米/秒）。此设置可用于限制 y 步进电机的最大速度。
+#   默认值是对 max_y_velocity 使用 max_velocity。
+max_z_velocity:
+#   参见上面的 cartesian。
+max_velocity:
+#   为了在对角线上获得最大速度增益，这应该等于或大于 max_x_velocity 和 max_y_velocity
+#   的斜边（sqrt(x*x + y*y)）。
+max_x_accel:
+#   这设置沿 x 轴运动的最大加速度（毫米/秒²）。它限制 x 步进电机的加速度。
+#   默认值是对 max_x_accel 使用 max_accel。
+max_y_accel:
+#   这设置沿 y 轴运动的最大加速度（毫米/秒²）。它限制 y 步进电机的加速度。
+#   默认值是对 max_y_accel 使用 max_accel。
+max_z_accel:
+# 参见上面的 cartesian。
+max_accel:
+# 参见上面的 cartesian。
+scale_xy_accel: False
+#   当为真时，按当前工具头加速度缩放 XY 限制。
+#   系数为：slicer accel / hypot(max_x_accel, max_y_accel)。
+#   参见下文。
+</code></pre></div>
+
+<p>如果 scale_xy_accel 为 <code>False</code>，则由 <code>max_accel</code>、M204 或 SET_VELOCITY_LIMIT 设置的加速度充当第三个限制。在这种情况下，如果移动的加速度低于 <code>max_x_accel</code> 和 <code>max_y_accel</code>，此模块不会应用限制。当 scale_xy_accel 为 <code>True</code> 时，<code>max_x_accel</code> 和 <code>max_y_accel</code> 按动态设置加速度与 max_x_accel 和 <code>max_y_accel</code> 斜边的比率进行缩放，如 <code>SET_KINEMATICS_LIMIT</code> 所报告的。这意味着实际加速度将始终取决于方向。例如，这些设置：</p>
+<div class="highlight"><pre><span></span><code>[printer]
+max_x_accel: 12000
+max_y_accel: 9000
+scale_xy_accel: true
+</code></pre></div>
+
+<p>在 37° 对角线上，<code>SET_KINEMATICS_LIMIT</code> 将报告最大加速度为 15000 mm/s²。如果切片软件发出 <code>M204 S3000</code>（3000 mm/s² 加速度）。在这 37° 和 143° 对角线上，工具头将以 3000 mm/s² 加速。在 X 轴上，加速度将为 12000 * 3000 / 15000 = 2400 mm/s²，而对于纯 Y 移动则为 18000 mm/s²。</p>
+<p>（文档持续...由于篇幅限制，翻译将在多个文件块中继续）</p>
+<h3 id="delta">线性 Delta 运动学<a class="headerlink" href="#delta" title="Permanent link">&para;</a></h3>
+<p>查看 <a href="https://github.com/KalicoCrew/kalico//blob/main/config/example-delta.cfg">example-delta.cfg</a> 获取线性 delta 运动学配置文件的示例。参见 <a href="Delta_Calibrate.html">delta 标定指南</a> 了解标定信息。</p>
+<p>此处仅描述线性 delta 打印机特定的参数——有关可用参数，请参见<a href="#通用运动学设置">通用运动学设置</a>。</p>
+<p>\<br>
+[printer]
+kinematics: delta
+max_z_velocity:</p>
+<h1 id="delta-z">对于 delta 打印机，这限制了具有 z 轴运动的移动的最大速度（毫米/秒）。<a class="headerlink" href="#delta-z" title="Permanent link">&para;</a></h1>
+<h1 id="delta_1">此设置可用于减少向上/向下移动的最大速度（这在 delta 打印机上需要比其他移动更高的步进速率）。<a class="headerlink" href="#delta_1" title="Permanent link">&para;</a></h1>
+<h1 id="max_z_velocity-max_velocity">默认值是对 max_z_velocity 使用 max_velocity。<a class="headerlink" href="#max_z_velocity-max_velocity" title="Permanent link">&para;</a></h1>
+<h1 id="max_z_accel">max_z_accel:<a class="headerlink" href="#max_z_accel" title="Permanent link">&para;</a></h1>
+<h1 id="z-2-xy">这设置沿 z 轴运动的最大加速度（毫米/秒²）。如果打印机可以在 XY 移动上达到更高的加速度<a class="headerlink" href="#z-2-xy" title="Permanent link">&para;</a></h1>
+<h1 id="z">比 Z 移动更高（例如使用输入整形器时），这可能很有用。<a class="headerlink" href="#z" title="Permanent link">&para;</a></h1>
+<h1 id="max_z_accel-max_accel">默认值是对 max_z_accel 使用 max_accel。<a class="headerlink" href="#max_z_accel-max_accel" title="Permanent link">&para;</a></h1>
+<h1 id="minimum_z_position-0">minimum_z_position: 0<a class="headerlink" href="#minimum_z_position-0" title="Permanent link">&para;</a></h1>
+<h1 id="z-0">用户可能命令头部移动到的最小 Z 位置。默认值为 0。<a class="headerlink" href="#z-0" title="Permanent link">&para;</a></h1>
+<p>delta_radius:</p>
+<h1 id="_8">由三个线性轴塔形成的水平圆形的半径（毫米）。此参数也可计算为：<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h1>
+<h1 id="delta_radius-smooth_rod_offset-effector_offset-carriage_offset">delta_radius = smooth_rod_offset - effector_offset - carriage_offset<a class="headerlink" href="#delta_radius-smooth_rod_offset-effector_offset-carriage_offset" title="Permanent link">&para;</a></h1>
+<h1 id="_9">必须提供此参数。<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h1>
+<h1 id="print_radius">print_radius:<a class="headerlink" href="#print_radius" title="Permanent link">&para;</a></h1>
+<h1 id="xy">有效工具头 XY 坐标的半径（毫米）。可以使用此设置来自定义工具头移动的范围检查。<a class="headerlink" href="#xy" title="Permanent link">&para;</a></h1>
+<h1 id="_10">如果在此处指定了大值，则可能可以将工具头命令到与塔的碰撞中。<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h1>
+<h1 id="print_radius-delta_radius">默认值是对 print_radius 使用 delta_radius（这通常会防止塔碰撞）。<a class="headerlink" href="#print_radius-delta_radius" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_a-210">stepper_a 部分描述控制前左塔（位于 210 度）的步进器。<a class="headerlink" href="#stepper_a-210" title="Permanent link">&para;</a></h1>
+<h1 id="homing_speedhoming_retract_dist">此部分也控制所有塔的主轴参数（homing_speed、homing_retract_dist）。<a class="headerlink" href="#homing_speedhoming_retract_dist" title="Permanent link">&para;</a></h1>
+<p>[stepper_a]
+position_endstop:</p>
+<h1 id="_11">喷嘴与床之间的距离（毫米），当喷嘴位于建造面的中心且限位开关触发时。<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_a-stepper_b-stepper_c">此参数必须为 stepper_a 提供；对于 stepper_b 和 stepper_c，此参数默认为<a class="headerlink" href="#stepper_a-stepper_b-stepper_c" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_a">为 stepper_a 指定的值。<a class="headerlink" href="#stepper_a" title="Permanent link">&para;</a></h1>
+<p>arm_length:</p>
+<h1 id="stepper_a_1">连接此塔与打印头的对角线杆的长度（毫米）。此参数必须为 stepper_a 提供；<a class="headerlink" href="#stepper_a_1" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_b-stepper_c-stepper_a">对于 stepper_b 和 stepper_c，此参数默认为为 stepper_a 指定的值。<a class="headerlink" href="#stepper_b-stepper_c-stepper_a" title="Permanent link">&para;</a></h1>
+<h1 id="angle">angle:<a class="headerlink" href="#angle" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_a-210_1">此选项指定塔所在的角度（以度为单位）。stepper_a 的默认值为 210，<a class="headerlink" href="#stepper_a-210_1" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_b-330stepper_c-90">stepper_b 为 330，stepper_c 为 90。<a class="headerlink" href="#stepper_b-330stepper_c-90" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_b-330">stepper_b 部分描述控制前右塔（位于 330 度）的步进器。<a class="headerlink" href="#stepper_b-330" title="Permanent link">&para;</a></h1>
+<p>[stepper_b]</p>
+<h1 id="stepper_c-90">stepper_c 部分描述控制后塔（位于 90 度）的步进器。<a class="headerlink" href="#stepper_c-90" title="Permanent link">&para;</a></h1>
+<p>[stepper_c]</p>
+<h1 id="delta_calibrate-delta_calibrate">delta_calibrate 部分启用可以标定塔限位位置和角度的 DELTA_CALIBRATE<a class="headerlink" href="#delta_calibrate-delta_calibrate" title="Permanent link">&para;</a></h1>
+<h1 id="g">扩展 g 代码命令。<a class="headerlink" href="#g" title="Permanent link">&para;</a></h1>
+<p>[delta_calibrate]
+radius:</p>
+<h1 id="_12">可能被探针的区域的半径（毫米）。这是要探针的喷嘴坐标的半径；<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h1>
+<h1 id="xy_1">如果使用具有 XY 偏移的自动探针，则选择一个足够小的半径，以便探针<a class="headerlink" href="#xy_1" title="Permanent link">&para;</a></h1>
+<h1 id="_13">总是位于床的上方。必须提供此参数。<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h1>
+<h1 id="speed-50">speed: 50<a class="headerlink" href="#speed-50" title="Permanent link">&para;</a></h1>
+<h1 id="50">标定期间非探针移动的速度（毫米/秒）。默认值为 50。<a class="headerlink" href="#50" title="Permanent link">&para;</a></h1>
+<h1 id="horizontal_move_z-5">horizontal_move_z: 5<a class="headerlink" href="#horizontal_move_z-5" title="Permanent link">&para;</a></h1>
+<h1 id="5">在开始探针操作之前应命令头部移动到的高度（毫米）。默认值为 5。<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<h1 id="use_probe_xy_offsets-false">use_probe_xy_offsets: False<a class="headerlink" href="#use_probe_xy_offsets-false" title="Permanent link">&para;</a></h1>
+<h1 id="true-probe-xy-false">如果为 True，将 [probe]\ XY 偏移应用于探针位置。默认值为 False。<a class="headerlink" href="#true-probe-xy-false" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="extruder">[extruder]<a class="headerlink" href="#extruder" title="Permanent link">&para;</a></h3>
+<p>挤出机部分用于描述喷嘴热端的加热器参数以及控制挤出机的步进器。有关其他信息，请参见<a href="G-Codes.html#extruder">命令参考</a>。有关调整压力提前的信息，请参见<a href="Pressure_Advance.html">压力提前指南</a>。有关控制方法的更多详细信息，请参见 <a href="PID.html">PID</a> 或 <a href="MPC.html">MPC</a>。</p>
+<p>\<br>
+[extruder]
+step_pin:
+dir_pin:
+enable_pin:
+microsteps:
+rotation_distance:</p>
+<h1 id="full_steps_per_rotation">full_steps_per_rotation:<a class="headerlink" href="#full_steps_per_rotation" title="Permanent link">&para;</a></h1>
+<h1 id="gear_ratio">gear_ratio:<a class="headerlink" href="#gear_ratio" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_1">参见"stepper"部分以获取对上述参数的描述。如果未指定上述任何参数，<a class="headerlink" href="#stepper_1" title="Permanent link">&para;</a></h1>
+<h1 id="sync_extruder_motion">则不会将任何步进器与喷嘴热端关联（尽管 SYNC_EXTRUDER_MOTION 命令可能在运行时关联一个）。<a class="headerlink" href="#sync_extruder_motion" title="Permanent link">&para;</a></h1>
+<p>nozzle_diameter:</p>
+<h1 id="_14">喷嘴孔径（毫米）。必须提供此参数。<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h1>
+<p>filament_diameter:</p>
+<h1 id="_15">进入挤出机的原始灯丝的名义直径（毫米）。必须提供此参数。<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h1>
+<h1 id="max_extrude_cross_section">max_extrude_cross_section:<a class="headerlink" href="#max_extrude_cross_section" title="Permanent link">&para;</a></h1>
+<h1 id="2">最大挤出截面面积（毫米²）（例如，挤出宽度乘以层高）。此设置可防止<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<h1 id="xy_2">在相对较小的 XY 移动期间过度挤出。如果移动请求超过此值的挤出速率，<a class="headerlink" href="#xy_2" title="Permanent link">&para;</a></h1>
+<h1 id="40-nozzle_diameter2">则会返回错误。默认值为：4.0 * nozzle_diameter^2<a class="headerlink" href="#40-nozzle_diameter2" title="Permanent link">&para;</a></h1>
+<h1 id="instantaneous_corner_velocity-1000">instantaneous_corner_velocity: 1.000<a class="headerlink" href="#instantaneous_corner_velocity-1000" title="Permanent link">&para;</a></h1>
+<h1 id="1mms">两次移动交界处挤出机的最大瞬时速度变化（毫米/秒）。默认值为 1mm/s。<a class="headerlink" href="#1mms" title="Permanent link">&para;</a></h1>
+<h1 id="max_extrude_only_distance-500">max_extrude_only_distance: 50.0<a class="headerlink" href="#max_extrude_only_distance-500" title="Permanent link">&para;</a></h1>
+<h1 id="_16">回退或仅挤出移动可能具有的最大长度（毫米的原始灯丝）。如果回退或仅挤出<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h1>
+<h1 id="50mm">移动请求大于此值的距离，将返回错误。默认值为 50mm。<a class="headerlink" href="#50mm" title="Permanent link">&para;</a></h1>
+<h1 id="max_extrude_only_velocity">max_extrude_only_velocity:<a class="headerlink" href="#max_extrude_only_velocity" title="Permanent link">&para;</a></h1>
+<h1 id="max_extrude_only_accel">max_extrude_only_accel:<a class="headerlink" href="#max_extrude_only_accel" title="Permanent link">&para;</a></h1>
+<h1 id="2_1">挤出机电机对于回退和仅挤出移动的最大速度（毫米/秒）和加速度（毫米/秒²）。<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h1>
+<h1 id="_17">这些设置对正常打印移动没有任何影响。如果未指定，则计算为匹配具有<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h1>
+<h1 id="40nozzle_diameter2-xy">4.0*nozzle_diameter^2 截面的 XY 打印移动所具有的限制。<a class="headerlink" href="#40nozzle_diameter2-xy" title="Permanent link">&para;</a></h1>
+<h1 id="pressure_advance-00">pressure_advance: 0.0<a class="headerlink" href="#pressure_advance-00" title="Permanent link">&para;</a></h1>
+<h1 id="_18">在挤出机加速期间推入挤出机的原始灯丝量。在减速期间回退等量的灯丝。<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h1>
+<h1 id="0">以毫米/毫米/秒为单位。默认值为 0，禁用压力提前。<a class="headerlink" href="#0" title="Permanent link">&para;</a></h1>
+<h1 id="pressure_advance_smooth_time-0040">pressure_advance_smooth_time: 0.040<a class="headerlink" href="#pressure_advance_smooth_time-0040" title="Permanent link">&para;</a></h1>
+<h1 id="_19">用于计算挤出机平均速度以实现压力提前的时间范围（以秒为单位）。<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h1>
+<h1 id="200ms">较大的值会导致更平滑的挤出机移动。此参数不能超过 200ms。<a class="headerlink" href="#200ms" title="Permanent link">&para;</a></h1>
+<h1 id="pressure_advance-004040">此设置仅在 pressure_advance 非零时适用。默认值为 0.040（40 毫秒）。<a class="headerlink" href="#pressure_advance-004040" title="Permanent link">&para;</a></h1>
+<h1 id="_20"><a class="headerlink" href="#_20" title="Permanent link">&para;</a></h1>
+<h1 id="_21">其余变量描述挤出机加热器。<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h1>
+<p>heater_pin:</p>
+<h1 id="pwm">控制加热器的 PWM 输出引脚。必须提供此参数。<a class="headerlink" href="#pwm" title="Permanent link">&para;</a></h1>
+<h1 id="max_power-10">max_power: 1.0<a class="headerlink" href="#max_power-10" title="Permanent link">&para;</a></h1>
+<h1 id="heater_pin-00-10-10">可将 heater_pin 设置为的最大功率（表示为 0.0 到 1.0 的值）。值 1.0 允许<a class="headerlink" href="#heater_pin-00-10-10" title="Permanent link">&para;</a></h1>
+<h1 id="05">在长时间内将引脚设置为完全启用，而 0.5 的值最多允许在一半的时间内启用该引脚。<a class="headerlink" href="#05" title="Permanent link">&para;</a></h1>
+<h1 id="10">此设置可用于限制总功率输出（在扩展时间内）到加热器。默认值为 1.0。<a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
+<p>sensor_type:</p>
+<h1 id="epcos-100k-b57560g104f">传感器类型——常见的温度计是"EPCOS 100K B57560G104F"、<a class="headerlink" href="#epcos-100k-b57560g104f" title="Permanent link">&para;</a></h1>
+<h1 id="atc-semitec-104gt-2atc-semitec-104nt-4-r025h42ggeneric-3950">"ATC Semitec 104GT-2"、"ATC Semitec 104NT-4-R025H42G"、"Generic 3950"、<a class="headerlink" href="#atc-semitec-104gt-2atc-semitec-104nt-4-r025h42ggeneric-3950" title="Permanent link">&para;</a></h1>
+<h1 id="honeywell-100k-135-104lag-j01ntc-100k-mgb18-104f39050l32">"Honeywell 100K 135-104LAG-J01"、"NTC 100K MGB18-104F39050L32"、<a class="headerlink" href="#honeywell-100k-135-104lag-j01ntc-100k-mgb18-104f39050l32" title="Permanent link">&para;</a></h1>
+<h1 id="sliceengineering-450tdk-ntcg104lh104jt1">"SliceEngineering 450"和"TDK NTCG104LH104JT1"。有关其他传感器，<a class="headerlink" href="#sliceengineering-450tdk-ntcg104lh104jt1" title="Permanent link">&para;</a></h1>
+<h1 id="_22">请参见"温度传感器"部分。必须提供此参数。<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h1>
+<p>sensor_pin:</p>
+<h1 id="_23">连接到传感器的模拟输入引脚。必须提供此参数。<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h1>
+<h1 id="pullup_resistor-4700">pullup_resistor: 4700<a class="headerlink" href="#pullup_resistor-4700" title="Permanent link">&para;</a></h1>
+<h1 id="_24">连接到温度计的上拉电阻的电阻（欧姆）。只有在传感器是温度计时，<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h1>
+<h1 id="4700">此参数才有效。默认值为 4700 欧姆。<a class="headerlink" href="#4700" title="Permanent link">&para;</a></h1>
+<h1 id="smooth_time-10">smooth_time: 1.0<a class="headerlink" href="#smooth_time-10" title="Permanent link">&para;</a></h1>
+<h1 id="_25">对温度测量进行平滑处理的时间值（以秒为单位），以减少测量噪声的影响。<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h1>
+<h1 id="1">默认值为 1 秒。<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
+<p>control:</p>
+<h1 id="pidpid_vdual_loop_pidwatermark-mpc">控制算法（pid、pid_v、dual_loop_pid、watermark 或 mpc）。<a class="headerlink" href="#pidpid_vdual_loop_pidwatermark-mpc" title="Permanent link">&para;</a></h1>
+<h1 id="pid_v">必须提供此参数。pid_v 仅应在具有低到中等噪声的良好标定加热器上使用。<a class="headerlink" href="#pid_v" title="Permanent link">&para;</a></h1>
+<h1 id="_26"><a class="headerlink" href="#_26" title="Permanent link">&para;</a></h1>
+<h1 id="control-pidpid_v-dual_loop_pid">如果 control: pid、pid_v 或 dual_loop_pid<a class="headerlink" href="#control-pidpid_v-dual_loop_pid" title="Permanent link">&para;</a></h1>
+<h1 id="pid_kp">pid_Kp:<a class="headerlink" href="#pid_kp" title="Permanent link">&para;</a></h1>
+<h1 id="pid_ki">pid_Ki:<a class="headerlink" href="#pid_ki" title="Permanent link">&para;</a></h1>
+<h1 id="pid_kd">pid_Kd:<a class="headerlink" href="#pid_kd" title="Permanent link">&para;</a></h1>
+<h1 id="pid-pid_kp-pid_ki-pid_kd">PID 反馈控制系统的比例 (pid_Kp)、积分 (pid_Ki) 和导数 (pid_Kd) 设置。<a class="headerlink" href="#pid-pid_kp-pid_ki-pid_kd" title="Permanent link">&para;</a></h1>
+<h1 id="kalico-pid">Kalico 使用以下通用公式评估 PID 设置：<a class="headerlink" href="#kalico-pid" title="Permanent link">&para;</a></h1>
+<h1 id="heater_pwm-kperror-kiintegralerror-kdderivativeerror-255">heater_pwm = (Kp<em>error + Ki</em>integral(error) - Kd*derivative(error)) / 255<a class="headerlink" href="#heater_pwm-kperror-kiintegralerror-kdderivativeerror-255" title="Permanent link">&para;</a></h1>
+<h1 id="errorrequested_temperature-measured_temperature">其中"error"是"requested_temperature - measured_temperature"，<a class="headerlink" href="#errorrequested_temperature-measured_temperature" title="Permanent link">&para;</a></h1>
+<h1 id="heater_pwm00-10">"heater_pwm"是请求的加热速率，0.0 为完全关闭，1.0 为完全打开。<a class="headerlink" href="#heater_pwm00-10" title="Permanent link">&para;</a></h1>
+<h1 id="pid_calibrate-pid_kppid_ki-pid_kd">考虑使用 PID_CALIBRATE 命令来获取这些参数。pid_Kp、pid_Ki 和 pid_Kd<a class="headerlink" href="#pid_calibrate-pid_kppid_ki-pid_kd" title="Permanent link">&para;</a></h1>
+<h1 id="pid">参数必须为 PID 加热器提供。<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h1>
+<h1 id="_27"><a class="headerlink" href="#_27" title="Permanent link">&para;</a></h1>
+<h1 id="control-watermark">如果 control: watermark<a class="headerlink" href="#control-watermark" title="Permanent link">&para;</a></h1>
+<h1 id="max_delta-20">max_delta: 2.0<a class="headerlink" href="#max_delta-20" title="Permanent link">&para;</a></h1>
+<h1 id="watermark">在"watermark"控制的加热器上，这是禁用加热器之前目标温度以上的摄氏度数，<a class="headerlink" href="#watermark" title="Permanent link">&para;</a></h1>
+<h1 id="2_2">以及重新启用加热器之前目标温度以下的摄氏度数。默认值为 2 摄氏度。<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h1>
+<h1 id="_28"><a class="headerlink" href="#_28" title="Permanent link">&para;</a></h1>
+<h1 id="control-mpc">如果 control: mpc<a class="headerlink" href="#control-mpc" title="Permanent link">&para;</a></h1>
+<h1 id="mpcmd">有关这些参数的详细信息，请参见 MPC.md。<a class="headerlink" href="#mpcmd" title="Permanent link">&para;</a></h1>
+<h1 id="heater_power">heater_power:<a class="headerlink" href="#heater_power" title="Permanent link">&para;</a></h1>
+<h1 id="cooling_fan">cooling_fan:<a class="headerlink" href="#cooling_fan" title="Permanent link">&para;</a></h1>
+<h1 id="ambient_temp_sensor">ambient_temp_sensor:<a class="headerlink" href="#ambient_temp_sensor" title="Permanent link">&para;</a></h1>
+<h1 id="filament_diameter-175">filament_diameter: 1.75<a class="headerlink" href="#filament_diameter-175" title="Permanent link">&para;</a></h1>
+<h1 id="filament_density-12">filament_density: 1.2<a class="headerlink" href="#filament_density-12" title="Permanent link">&para;</a></h1>
+<h1 id="filament_heat_capacity-18">filament_heat_capacity: 1.8<a class="headerlink" href="#filament_heat_capacity-18" title="Permanent link">&para;</a></h1>
+<h1 id="_29"><a class="headerlink" href="#_29" title="Permanent link">&para;</a></h1>
+<h1 id="pwm_cycle_time-0100">pwm_cycle_time: 0.100<a class="headerlink" href="#pwm_cycle_time-0100" title="Permanent link">&para;</a></h1>
+<h1 id="pwm-10">每个加热器软件 PWM 周期的时间（秒）。除非有电气要求以每秒超过 10 次的速率<a class="headerlink" href="#pwm-10" title="Permanent link">&para;</a></h1>
+<h1 id="0100">切换加热器，否则不建议设置此值。默认值为 0.100 秒。<a class="headerlink" href="#0100" title="Permanent link">&para;</a></h1>
+<h1 id="min_extrude_temp-170">min_extrude_temp: 170<a class="headerlink" href="#min_extrude_temp-170" title="Permanent link">&para;</a></h1>
+<h1 id="170">可能发出挤出机移动命令的最低温度（摄氏度）。默认值为 170 摄氏度。<a class="headerlink" href="#170" title="Permanent link">&para;</a></h1>
+<p>min_temp:
+max_temp:</p>
+<h1 id="_30">加热器必须保持在其中的有效温度范围（摄氏度）。这控制了在微控制器代码中<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h1>
+<h1 id="_31">实现的安全功能——如果测量的温度曾经超出此范围，微控制器将进入关闭状态。<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h1>
+<h1 id="_32">此检查可以帮助检测某些加热器和传感器硬件故障。设置此范围的宽度足以使得<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h1>
+<h1 id="_33">合理的温度不会导致错误。必须提供这些参数。<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h1>
+<p>per_move_pressure_advance: False</p>
+<h1 id="trapq">如果为真，则在处理移动时使用 trapq 中的压力提前常数。<a class="headerlink" href="#trapq" title="Permanent link">&para;</a></h1>
+<h1 id="_34">这会导致压力提前的更改立即被考虑，对于当前队列中的所有移动，<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h1>
+<h1 id="250ms">而不是在队列刷新后的约 250ms 后。<a class="headerlink" href="#250ms" title="Permanent link">&para;</a></h1>
+<h1 id="_35"><a class="headerlink" href="#_35" title="Permanent link">&para;</a></h1>
+<h1 id="control-dual_loop_pid">如果：control: dual_loop_pid<a class="headerlink" href="#control-dual_loop_pid" title="Permanent link">&para;</a></h1>
+<h1 id="inner_sensor_name">inner_sensor_name:<a class="headerlink" href="#inner_sensor_name" title="Permanent link">&para;</a></h1>
+<h1 id="temperature_sensor-dual_loop_pid">第二个传感器的 temperature_sensor 名称，用于 dual_loop_pid 进行温度控制。<a class="headerlink" href="#temperature_sensor-dual_loop_pid" title="Permanent link">&para;</a></h1>
+<h1 id="inner_max_temp">此传感器将限制加热器功率，以不允许温度超过"inner_max_temp"值。<a class="headerlink" href="#inner_max_temp" title="Permanent link">&para;</a></h1>
+<h1 id="_36"><a class="headerlink" href="#_36" title="Permanent link">&para;</a></h1>
+<h1 id="control-dual_loop_pid_1">如果：control: dual_loop_pid<a class="headerlink" href="#control-dual_loop_pid_1" title="Permanent link">&para;</a></h1>
+<h1 id="inner_max_temp_1">inner_max_temp:<a class="headerlink" href="#inner_max_temp_1" title="Permanent link">&para;</a></h1>
+<h1 id="_37">内传感器将允许的最大温度目标。<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h1>
+<h1 id="_38"><a class="headerlink" href="#_38" title="Permanent link">&para;</a></h1>
+<h1 id="control-dual_loop_pid_2">如果 control: dual_loop_pid<a class="headerlink" href="#control-dual_loop_pid_2" title="Permanent link">&para;</a></h1>
+<h1 id="inner_pid_kp">inner_pid_Kp:<a class="headerlink" href="#inner_pid_kp" title="Permanent link">&para;</a></h1>
+<h1 id="inner_pid_ki">inner_pid_Ki:<a class="headerlink" href="#inner_pid_ki" title="Permanent link">&para;</a></h1>
+<h1 id="inner_pid_kd">inner_pid_Kd:<a class="headerlink" href="#inner_pid_kd" title="Permanent link">&para;</a></h1>
+<h1 id="dual_loop_pid-pid-pid">"dual_loop_pid"控制使用两个 PID 循环来控制温度。内（次要）PID 循环<a class="headerlink" href="#dual_loop_pid-pid-pid" title="Permanent link">&para;</a></h1>
+<h1 id="pid-pid-pid">直接控制温度。主 PID 循环控制次 PID 循环的功率。这允许主 PID 循环针对<a class="headerlink" href="#pid-pid-pid" title="Permanent link">&para;</a></h1>
+<h1 id="pid_1">温度控制进行调整，而次 PID 循环可以针对功率控制进行调整，不超过在<a class="headerlink" href="#pid_1" title="Permanent link">&para;</a></h1>
+<h1 id="inner_max_temp_2">"inner_max_temp"上设置的温度限制。<a class="headerlink" href="#inner_max_temp_2" title="Permanent link">&para;</a></h1>
+<h1 id="_39">主传感器位置靠近温度测量应更准确的地方（例如床面）。<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h1>
+<h1 id="_40">次传感器位置靠近温度测量不应超过限制的地方（例如硅加热器上）。<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="heater_bed">[heater_bed]<a class="headerlink" href="#heater_bed" title="Permanent link">&para;</a></h3>
+<p>heater_bed 部分描述加热的床。它使用"extruder"部分中描述的相同加热器设置。</p>
+<p>\<br>
+[heater_bed]
+heater_pin:
+sensor_type:
+sensor_pin:
+control:
+min_temp:
+max_temp:</p>
+<h1 id="extruder_1">参见"extruder"部分以获取对上述参数的描述。<a class="headerlink" href="#extruder_1" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="pid_profile">[pid_profile]<a class="headerlink" href="#pid_profile" title="Permanent link">&para;</a></h3>
+<p>Pid 配置文件指定可在运行时加载的一组 PID 值。</p>
+<p>\<br>
+[pid_profile <heater> <profile-name>]
+pid_version: 1</p>
+<h1 id="1_1">这定义了保存时的版本，对兼容性检查很重要，保持在 1！<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h1>
+<p>pid_target:</p>
+<h1 id="_41">仅供参考，指定配置文件标定的温度。<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h1>
+<h1 id="_42">如果创建自定义配置文件，请输入配置文件的预期使用温度或将其留空。<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h1>
+<p>pid_tolerance:</p>
+<h1 id="_43">自动标定配置文件时使用的容差。如果定义自定义配置文件，请将其留空。<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h1>
+<p>control: <pid|pid_v></p>
+<h1 id="pid-pid_v">必须是 pid 或 pid_v。<a class="headerlink" href="#pid-pid_v" title="Permanent link">&para;</a></h1>
+<h1 id="_44">必须提供此参数。<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h1>
+<p>pid_kp:</p>
+<h1 id="pid-p">PID 控制的 P 值。<a class="headerlink" href="#pid-p" title="Permanent link">&para;</a></h1>
+<h1 id="_45">必须提供此参数。<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h1>
+<p>pid_ki:</p>
+<h1 id="pid-i">PID 控制的 I 值。<a class="headerlink" href="#pid-i" title="Permanent link">&para;</a></h1>
+<h1 id="_46">必须提供此参数。<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h1>
+<p>pid_kd:</p>
+<h1 id="pid-d">PID 控制的 D 值。<a class="headerlink" href="#pid-d" title="Permanent link">&para;</a></h1>
+<h1 id="_47">必须提供此参数。<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<p>有关详细信息，请阅读 docs/PID.md</p>
+<h3 id="hc595">⚠️ [hc595]<a class="headerlink" href="#hc595" title="Permanent link">&para;</a></h3>
+<p>74HC595 移位寄存器输出扩展（可以使用"hc595"前缀定义任意数量的部分）。74HC595 是一个串行到并行移位寄存器，仅使用 3 个 MCU 引脚（数据、时钟、锁存）提供 8 个额外的数字输出引脚。多个芯片可以菊花链式连接以获得最多 32 个输出。HC595 输出可在任何接受标准数字输出引脚的位置使用，方法是将其引用为 \chip_name:N\，其中 N 是输出编号（0 到 chain_count*8 - 1）。chip_name 是配置部分标题中给定的名称。</p>
+<p>\<br>
+[hc595 my_shift]
+data_pin:</p>
+<h1 id="74hc595-ser">连接到 74HC595 SER（串行数据输入）线的引脚，<a class="headerlink" href="#74hc595-ser" title="Permanent link">&para;</a></h1>
+<h1 id="ic-14">通常是 IC 上的 14 引脚。必须提供此参数。<a class="headerlink" href="#ic-14" title="Permanent link">&para;</a></h1>
+<p>clock_pin:</p>
+<h1 id="74hc595-srclk">连接到 74HC595 SRCLK（移位寄存器时钟）线的引脚，<a class="headerlink" href="#74hc595-srclk" title="Permanent link">&para;</a></h1>
+<h1 id="ic-11">通常是 IC 上的 11 引脚。必须提供此参数。<a class="headerlink" href="#ic-11" title="Permanent link">&para;</a></h1>
+<p>latch_pin:</p>
+<h1 id="74hc595-rclk">连接到 74HC595 RCLK（存储寄存器时钟/锁存）线的引脚，<a class="headerlink" href="#74hc595-rclk" title="Permanent link">&para;</a></h1>
+<h1 id="ic-12">通常是 IC 上的 12 引脚。必须提供此参数。<a class="headerlink" href="#ic-12" title="Permanent link">&para;</a></h1>
+<h1 id="oe_pin">oe_pin:<a class="headerlink" href="#oe_pin" title="Permanent link">&para;</a></h1>
+<h1 id="74hc595-oe">可选引脚连接到 74HC595 OE（输出启用）线，<a class="headerlink" href="#74hc595-oe" title="Permanent link">&para;</a></h1>
+<h1 id="ic-13">通常是 IC 上的 13 引脚。此引脚处于低电平。如果未<a class="headerlink" href="#ic-13" title="Permanent link">&para;</a></h1>
+<h1 id="oe">指定，OE 引脚应接地以永久启用输出。<a class="headerlink" href="#oe" title="Permanent link">&para;</a></h1>
+<h1 id="chain_count-1">chain_count: 1<a class="headerlink" href="#chain_count-1" title="Permanent link">&para;</a></h1>
+<h1 id="74hc595-1-4">菊花链式 74HC595 芯片的数量。必须在 1 到 4 之间。<a class="headerlink" href="#74hc595-1-4" title="Permanent link">&para;</a></h1>
+<h1 id="8-1">每个芯片添加 8 个额外的输出引脚。默认值为 1。<a class="headerlink" href="#8-1" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h4 id="hc595_1">HC595 接线<a class="headerlink" href="#hc595_1" title="Permanent link">&para;</a></h4>
+<p>对于单个 74HC595，连接：</p>
+<ul>
+<li>74HC595 14 引脚 (SER) 到 MCU 引脚由 \data_pin\ 指定</li>
+<li>74HC595 11 引脚 (SRCLK) 到 MCU 引脚由 \clock_pin\ 指定</li>
+<li>74HC595 12 引脚 (RCLK) 到 MCU 引脚由 \latch_pin\ 指定</li>
+<li>74HC595 13 引脚 (OE) 到地（或到 MCU 引脚由 \oe_pin\ 指定）</li>
+<li>74HC595 10 引脚 (SRCLR) 到 VCC</li>
+<li>74HC595 8 引脚 (GND) 到地</li>
+<li>74HC595 16 引脚 (VCC) 到 +3.3V 或 +5V</li>
+<li>74HC595 输出引脚为 QA-QH（15、1-7 引脚）</li>
+</ul>
+<p>对于菊花链式，将第一个芯片的 Q7'（9 引脚）连接到下一个芯片的 SER（14 引脚）。
+所有芯片共享相同的 CLOCK、LATCH 和 OE 线。</p>
+<h4 id="hc595_2">HC595 使用示例<a class="headerlink" href="#hc595_2" title="Permanent link">&para;</a></h4>
+<p>\<br>
+[hc595 my_shift]
+data_pin: PA1
+clock_pin: PA2
+latch_pin: PA3</p>
+<h1 id="hc595-0">使用 HC595 输出 0 控制风扇<a class="headerlink" href="#hc595-0" title="Permanent link">&para;</a></h1>
+<p>[fan]
+pin: my_shift:0</p>
+<h1 id="hc595-3">使用 HC595 输出 3 控制加热器<a class="headerlink" href="#hc595-3" title="Permanent link">&para;</a></h1>
+<p>[heater_generic chamber_heater]
+heater_pin: my_shift:3
+max_power: 1.0</p>
+<h1 id="_48">... 其他加热器参数<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h1>
+<h1 id="hc595-7">使用 HC595 输出 7 作为通用输出引脚<a class="headerlink" href="#hc595-7" title="Permanent link">&para;</a></h1>
+<p>[output_pin my_output]
+pin: my_shift:7
+value: 0
+shutdown_value: 0
+\<br></p>
+<p>提供以下扩展 G 代码命令：</p>
+<ul>
+<li>\SET_HC595 CHIP=<config_name> [BITS=<value>]\：同时设置或查询所有
+  HC595 输出引脚。不带 BITS，报告当前引脚状态。
+  使用 BITS，将给定的整数值应用于所有输出（位 0 = 输出 0 等）。</li>
+</ul>
+<h3 id="stepper_z1">[stepper_z1]<a class="headerlink" href="#stepper_z1" title="Permanent link">&para;</a></h3>
+<p>在一个"可升级的加热床"上添加额外的步进电机。（参见运动学文档。）</p>
+<p>此部分支持stepper部分中描述的所有参数。</p>
+<h3 id="stepper_z2">[stepper_z2]<a class="headerlink" href="#stepper_z2" title="Permanent link">&para;</a></h3>
+<p>在一个"可升级的加热床"上添加额外的步进电机。此部分支持stepper部分中描述的所有参数。</p>
+<h3 id="stepper_z3">[stepper_z3]<a class="headerlink" href="#stepper_z3" title="Permanent link">&para;</a></h3>
+<p>在一个"可升级的加热床"上添加额外的步进电机。此部分支持stepper部分中描述的所有参数。</p>
+<h3 id="extruder1">[extruder1]<a class="headerlink" href="#extruder1" title="Permanent link">&para;</a></h3>
+<p>在多挤出机打印机中添加额外的挤出机。此部分支持extruder部分中描述的所有参数。</p>
+<h3 id="dual_carriage">[dual_carriage]<a class="headerlink" href="#dual_carriage" title="Permanent link">&para;</a></h3>
+<p>使用"可升级运动学"支持"双托架"打印机。</p>
+<p>\<br>
+[dual_carriage]
+axis:</p>
+<h1 id="xy_3">此对偶托架使用的轴(x或y)。必须提供此参数。<a class="headerlink" href="#xy_3" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="extruder_stepper">[extruder_stepper]<a class="headerlink" href="#extruder_stepper" title="Permanent link">&para;</a></h3>
+<p>支持使用"分步式外挤出机"的打印机(一个步进电动机在工具头上，一个或多个步进电动机在打印机机构本身)。</p>
+<p>\<br>
+[extruder_stepper my_stepper]
+extruder:</p>
+<h1 id="_49">此步进器对应的挤出机的名称。如果未指定，则不进行自动<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h1>
+<h1 id="_50">挤出机同步。可以使用一个虚拟名称"分享"来同步所有定义<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h1>
+<h1 id="_51">的挤出机(注意：这个虚拟名称在工具头情况下不能使用)。<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h1>
+<p>step_pin:
+dir_pin:
+enable_pin:</p>
+<h1 id="stepper_2">参见"stepper"部分以获取对这些参数的描述。<a class="headerlink" href="#stepper_2" title="Permanent link">&para;</a></h1>
+<p>microsteps:
+rotation_distance:</p>
+<h1 id="stepper_3">参见"stepper"部分以获取对这些参数的描述。如果在此处指定<a class="headerlink" href="#stepper_3" title="Permanent link">&para;</a></h1>
+<h1 id="rotation_distancesync_extruder_motion">rotation_distance，则此步进器的旋转距离将在SYNC_EXTRUDER_MOTION<a class="headerlink" href="#rotation_distancesync_extruder_motion" title="Permanent link">&para;</a></h1>
+<h1 id="rotation_distance">命令期间用于覆盖挤出机的rotation_distance。<a class="headerlink" href="#rotation_distance" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="manual_stepper">[manual_stepper]<a class="headerlink" href="#manual_stepper" title="Permanent link">&para;</a></h3>
+<p>手动步进电机（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[manual_stepper my_stepper]
+step_pin:
+dir_pin:
+enable_pin:</p>
+<h1 id="stepper_4">参见"stepper"部分以获取对这些参数的描述。必须提供<a class="headerlink" href="#stepper_4" title="Permanent link">&para;</a></h1>
+<h1 id="step_pinenable_pindir_pin">step_pin、enable_pin或dir_pin。<a class="headerlink" href="#step_pinenable_pindir_pin" title="Permanent link">&para;</a></h1>
+<p>velocity:</p>
+<h1 id="manual_steppermms-mms2">通过MANUAL_STEPPER命令移动时使用的默认速度(mm/s或 mm/s²)。<a class="headerlink" href="#manual_steppermms-mms2" title="Permanent link">&para;</a></h1>
+<h1 id="5_1">默认值为5。<a class="headerlink" href="#5_1" title="Permanent link">&para;</a></h1>
+<p>accel:</p>
+<h1 id="manual_stepper_1">通过MANUAL_STEPPER命令移动时使用的默认加速度<a class="headerlink" href="#manual_stepper_1" title="Permanent link">&para;</a></h1>
+<h1 id="mms2-mms300">(mm/s² 或 mm/s³)。值0表示无加速。默认值为0。<a class="headerlink" href="#mms2-mms300" title="Permanent link">&para;</a></h1>
+<h1 id="microsteps">microsteps:<a class="headerlink" href="#microsteps" title="Permanent link">&para;</a></h1>
+<h1 id="rotation_distance_1">rotation_distance:<a class="headerlink" href="#rotation_distance_1" title="Permanent link">&para;</a></h1>
+<h1 id="stepper_5">参见"stepper"部分以获取对这些参数的描述。<a class="headerlink" href="#stepper_5" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="verify_heater">[verify_heater]<a class="headerlink" href="#verify_heater" title="Permanent link">&para;</a></h3>
+<p>验证加热器配置。如果加热器未能在指定的时间段内达到指定的温度，将生成错误消息。</p>
+<p>\<br>
+[verify_heater extruder]</p>
+<h1 id="max_error-120">max_error: 120<a class="headerlink" href="#max_error-120" title="Permanent link">&para;</a></h1>
+<h1 id="_52">如果加热器无法在指定的秒数内从当前温度内达到目标温度，<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h1>
+<h1 id="120">如果回到温度增长小于此值，生成错误。默认值为120秒。<a class="headerlink" href="#120" title="Permanent link">&para;</a></h1>
+<h1 id="check_gain_time">check_gain_time:<a class="headerlink" href="#check_gain_time" title="Permanent link">&para;</a></h1>
+<h1 id="check_gain_time-max_error">如果加热器没有在指定秒数内增加（"check_gain_time" / "max_error"）<a class="headerlink" href="#check_gain_time-max_error" title="Permanent link">&para;</a></h1>
+<h1 id="20">摄氏度以上，生成一个错误。默认值为20秒。<a class="headerlink" href="#20" title="Permanent link">&para;</a></h1>
+<h1 id="hysteresis-5">hysteresis: 5<a class="headerlink" href="#hysteresis-5" title="Permanent link">&para;</a></h1>
+<h1 id="_53">在超温冷却启用时，冷却程度的范围（摄氏度）。当加热器在<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h1>
+<h1 id="-hysteresis">超温冷却过程中达到目标温度时（目标温度 - hysteresis），<a class="headerlink" href="#-hysteresis" title="Permanent link">&para;</a></h1>
+<h1 id="_54">加热器被置于待命状态，直到达到新的目标温度。<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h1>
+<h1 id="5_2">默认值为5。<a class="headerlink" href="#5_2" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="homing_heaters">[homing_heaters]<a class="headerlink" href="#homing_heaters" title="Permanent link">&para;</a></h3>
+<p>该工具在G28运动期间禁用加热器。</p>
+<p>\<br>
+[homing_heaters]</p>
+<h1 id="steppers-extruder-stepper_z">steppers: extruder, stepper_z<a class="headerlink" href="#steppers-extruder-stepper_z" title="Permanent link">&para;</a></h1>
+<h1 id="_55">在归位运动时要禁用其加热器的步进器的逗号分隔列表。<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h1>
+<h1 id="z_1">默认行为是在所有Z轴归位运动期间禁用挤出机加热器。<a class="headerlink" href="#z_1" title="Permanent link">&para;</a></h1>
+<h1 id="_56">注意：如果启用了双托架、双升降或多个上升轴，则可能需要<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h1>
+<h1 id="_57">配置此选项。<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="thermistor">[thermistor]<a class="headerlink" href="#thermistor" title="Permanent link">&para;</a></h3>
+<p>热敏电阻（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[thermistor my_thermistor]
+temperature1:
+resistance1:
+temperature2:
+resistance2:
+temperature3:
+resistance3:</p>
+<h1 id="_58">三个温度/电阻点。它们应该跨越所考虑的温度范围。如果<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h1>
+<h1 id="_59">挤出机温度是通过这些点进行外推而计算的，则这三个参数<a class="headerlink" href="#_59" title="Permanent link">&para;</a></h1>
+<h1 id="steinhart-hart">都是必需的。注意：这些参数本身取代了任何"Steinhart-Hart<a class="headerlink" href="#steinhart-hart" title="Permanent link">&para;</a></h1>
+<h1 id="_60">系数"参数。<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="adc_temperature">[adc_temperature]<a class="headerlink" href="#adc_temperature" title="Permanent link">&para;</a></h3>
+<p>ADC温度传感器（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[adc_temperature my_adc_temperature]
+sensor_pin:</p>
+<h1 id="adc">连接到温度传感器的ADC引脚。此参数必须提供。<a class="headerlink" href="#adc" title="Permanent link">&para;</a></h1>
+<h1 id="pullup_resistor-4700_1">pullup_resistor: 4700<a class="headerlink" href="#pullup_resistor-4700_1" title="Permanent link">&para;</a></h1>
+<h1 id="_61">连接到温度计的上拉电阻的电阻(欧姆)。<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h1>
+<h1 id="4700_1">默认值为4700欧姆。<a class="headerlink" href="#4700_1" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="temperature_sensor">[temperature_sensor]<a class="headerlink" href="#temperature_sensor" title="Permanent link">&para;</a></h3>
+<p>通用温度传感器（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[temperature_sensor my_sensor]
+sensor_type:</p>
+<h1 id="epcos-100k-b57560g104f_1">温度传感器的类型。支持的类型有："EPCOS 100K B57560G104F"、<a class="headerlink" href="#epcos-100k-b57560g104f_1" title="Permanent link">&para;</a></h1>
+<h1 id="pt1000pt100ads1220ads131m02ads131m04">"PT1000"、"PT100"、"ADS1220"、"ADS131M02"、"ADS131M04"。<a class="headerlink" href="#pt1000pt100ads1220ads131m02ads131m04" title="Permanent link">&para;</a></h1>
+<h1 id="_62">必须提供此参数。<a class="headerlink" href="#_62" title="Permanent link">&para;</a></h1>
+<p>sensor_pin:</p>
+<h1 id="adciicds18b20one-wire">连接到温度传感器的ADC引脚或IIC地址。如果温度传感器是DS18B20（one-wire）、<a class="headerlink" href="#adciicds18b20one-wire" title="Permanent link">&para;</a></h1>
+<h1 id="pt100-rtdpt1000-rtdmcuads">PT100 (RTD)、PT1000 (RTD)、则需要MCU引脚名称。对于ADS等外部传感器，<a class="headerlink" href="#pt100-rtdpt1000-rtdmcuads" title="Permanent link">&para;</a></h1>
+<h1 id="iic">则需要IIC地址。必须提供此参数。<a class="headerlink" href="#iic" title="Permanent link">&para;</a></h1>
+<h1 id="min_temp-40">min_temp: -40<a class="headerlink" href="#min_temp-40" title="Permanent link">&para;</a></h1>
+<h1 id="_63">最小温度。如果温度低于此值，将自动关闭打印机。<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h1>
+<h1 id="-40">默认值为-40摄氏度。<a class="headerlink" href="#-40" title="Permanent link">&para;</a></h1>
+<h1 id="max_temp-85">max_temp: 85<a class="headerlink" href="#max_temp-85" title="Permanent link">&para;</a></h1>
+<h1 id="_64">最大温度。如果温度超过此值，将自动关闭打印机。<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h1>
+<h1 id="85">默认值为85摄氏度。<a class="headerlink" href="#85" title="Permanent link">&para;</a></h1>
+<h1 id="gcode_id">gcode_id:<a class="headerlink" href="#gcode_id" title="Permanent link">&para;</a></h1>
+<h1 id="octoprintgcode_id">OctoPrint在报告温度时使用的gcode_id。<a class="headerlink" href="#octoprintgcode_id" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="heater_generic">[heater_generic]<a class="headerlink" href="#heater_generic" title="Permanent link">&para;</a></h3>
+<p>通用加热器配置（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[heater_generic my_heater]
+heater_pin:
+max_power:
+sensor_type:
+sensor_pin:
+control:
+min_temp:
+max_temp:</p>
+<h1 id="extruder_2">参见"extruder"部分以获取对这些参数的描述。<a class="headerlink" href="#extruder_2" title="Permanent link">&para;</a></h1>
+<h1 id="gcode_id_1">gcode_id:<a class="headerlink" href="#gcode_id_1" title="Permanent link">&para;</a></h1>
+<h1 id="octoprintgcode_id_1">OctoPrint在报告温度时使用的gcode_id。<a class="headerlink" href="#octoprintgcode_id_1" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="fan">[fan]<a class="headerlink" href="#fan" title="Permanent link">&para;</a></h3>
+<p>打印风扇。</p>
+<p>\<br>
+[fan]
+pin:</p>
+<h1 id="pwm_1">控制风扇的PWM输出引脚。必须提供此参数。<a class="headerlink" href="#pwm_1" title="Permanent link">&para;</a></h1>
+<h1 id="max_power-10_1">max_power: 1.0<a class="headerlink" href="#max_power-10_1" title="Permanent link">&para;</a></h1>
+<h1 id="0010">可将引脚设置为的最大功率(表示为0.0到1.0的值)。<a class="headerlink" href="#0010" title="Permanent link">&para;</a></h1>
+<h1 id="1005">1.0的值允许在长时间内将引脚设置为完全启用，而0.5的值<a class="headerlink" href="#1005" title="Permanent link">&para;</a></h1>
+<h1 id="_65">最多允许在一半的时间内启用该引脚。此设置可用于限制总功率<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h1>
+<h1 id="10_1">输出(在扩展时间内)到风扇。默认值为1.0。<a class="headerlink" href="#10_1" title="Permanent link">&para;</a></h1>
+<h1 id="shutdown_speed-0">shutdown_speed: 0<a class="headerlink" href="#shutdown_speed-0" title="Permanent link">&para;</a></h1>
+<h1 id="0010_1">风扇在微控制器关闭时应设置的所需速度(表示为0.0到1.0之间的值)。<a class="headerlink" href="#0010_1" title="Permanent link">&para;</a></h1>
+<h1 id="0_1">默认值为0。<a class="headerlink" href="#0_1" title="Permanent link">&para;</a></h1>
+<h1 id="cycle_time-0010">cycle_time: 0.010<a class="headerlink" href="#cycle_time-0010" title="Permanent link">&para;</a></h1>
+<h1 id="pwm10">每个PWM周期的时间(秒)。除非有电气要求以每秒超过10次的速率<a class="headerlink" href="#pwm10" title="Permanent link">&para;</a></h1>
+<h1 id="0010_2">切换输出，否则不建议设置此值。默认值为0.010秒。<a class="headerlink" href="#0010_2" title="Permanent link">&para;</a></h1>
+<h1 id="hardware_pwm-false">hardware_pwm: False<a class="headerlink" href="#hardware_pwm-false" title="Permanent link">&para;</a></h1>
+<h1 id="pwmpwmpwm">使用硬件PWM而不是软件PWM。使用硬件PWM通常可以达到更高的脉冲<a class="headerlink" href="#pwmpwmpwm" title="Permanent link">&para;</a></h1>
+<h1 id="_66">宽度调制频率，但是会有一些限制——某些脚位置之间的引脚可能无法<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h1>
+<h1 id="pwmfalse">实现独立的硬件PWM。默认值为False。<a class="headerlink" href="#pwmfalse" title="Permanent link">&para;</a></h1>
+<h1 id="kick_start_time-0100">kick_start_time: 0.100<a class="headerlink" href="#kick_start_time-0100" title="Permanent link">&para;</a></h1>
+<h1 id="_67">当启用风扇时，必须以最大功率打开的最短时间(以秒为单位)。<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h1>
+<h1 id="_68">这仅适用于无法通过低功率设置检测到风扇旋转的情况。<a class="headerlink" href="#_68" title="Permanent link">&para;</a></h1>
+<h1 id="0100_1">默认值为0.100秒。<a class="headerlink" href="#0100_1" title="Permanent link">&para;</a></h1>
+<h1 id="off_below-00">off_below: 0.0<a class="headerlink" href="#off_below-00" title="Permanent link">&para;</a></h1>
+<h1 id="pwm_2">最小输入速度，可使用PWM控制打开风扇。如果下面指定的速度<a class="headerlink" href="#pwm_2" title="Permanent link">&para;</a></h1>
+<h1 id="00">更低，则风扇将处于关闭状态。默认值为0.0。<a class="headerlink" href="#00" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="heater_fan">[heater_fan]<a class="headerlink" href="#heater_fan" title="Permanent link">&para;</a></h3>
+<p>加热器冷却风扇(风扇将在指定时间内与加热器一同打开和关闭)。</p>
+<p>\<br>
+[heater_fan my_heater_fan]
+pin:
+max_power:
+shutdown_speed:
+cycle_time:
+hardware_pwm:
+kick_start_time:
+off_below:</p>
+<h1 id="fan_1">参见"fan"部分以获取对这些参数的描述。<a class="headerlink" href="#fan_1" title="Permanent link">&para;</a></h1>
+<p>heater: extruder</p>
+<h1 id="_69">关联此风扇的加热器的配置部分名称。<a class="headerlink" href="#_69" title="Permanent link">&para;</a></h1>
+<h1 id="_70">如果加热器被启用，则此风扇会被启用。<a class="headerlink" href="#_70" title="Permanent link">&para;</a></h1>
+<h1 id="_71">必须提供此参数。<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h1>
+<h1 id="heater_temp-500">heater_temp: 50.0<a class="headerlink" href="#heater_temp-500" title="Permanent link">&para;</a></h1>
+<h1 id="_72">加热器必须超过的温度以启用此风扇。<a class="headerlink" href="#_72" title="Permanent link">&para;</a></h1>
+<h1 id="50_1">默认值为50摄氏度。<a class="headerlink" href="#50_1" title="Permanent link">&para;</a></h1>
+<h1 id="fan_speed-10">fan_speed: 1.0<a class="headerlink" href="#fan_speed-10" title="Permanent link">&para;</a></h1>
+<h1 id="pwm0010">启用此风扇时的PWM速度(表示为0.0到1.0之间的值)。<a class="headerlink" href="#pwm0010" title="Permanent link">&para;</a></h1>
+<h1 id="10_2">默认值为1.0。<a class="headerlink" href="#10_2" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="controller_fan">[controller_fan]<a class="headerlink" href="#controller_fan" title="Permanent link">&para;</a></h3>
+<p>控制器冷却风扇(一个向微控制器或其他电子设备供冷的风扇)。</p>
+<p>\<br>
+[controller_fan my_controller_fan]
+pin:
+max_power:
+shutdown_speed:
+cycle_time:
+hardware_pwm:
+kick_start_time:
+off_below:</p>
+<h1 id="fan_2">参见"fan"部分以获取对这些参数的描述。<a class="headerlink" href="#fan_2" title="Permanent link">&para;</a></h1>
+<h1 id="fan_speed-10_1">fan_speed: 1.0<a class="headerlink" href="#fan_speed-10_1" title="Permanent link">&para;</a></h1>
+<h1 id="pwm0010_1">启用此风扇时的PWM速度(表示为0.0到1.0之间的值)。<a class="headerlink" href="#pwm0010_1" title="Permanent link">&para;</a></h1>
+<h1 id="10_3">默认值为1.0。<a class="headerlink" href="#10_3" title="Permanent link">&para;</a></h1>
+<h1 id="idle_timeout-30">idle_timeout: 30<a class="headerlink" href="#idle_timeout-30" title="Permanent link">&para;</a></h1>
+<h1 id="_73">如果打印机没有进行任何运动或加热/冷却活动时间超过<a class="headerlink" href="#_73" title="Permanent link">&para;</a></h1>
+<h1 id="idle_timeout">idle_timeout秒数，风扇将被禁用。<a class="headerlink" href="#idle_timeout" title="Permanent link">&para;</a></h1>
+<h1 id="30">默认值为30秒。<a class="headerlink" href="#30" title="Permanent link">&para;</a></h1>
+<h1 id="idle_speed-00">idle_speed: 0.0<a class="headerlink" href="#idle_speed-00" title="Permanent link">&para;</a></h1>
+<h1 id="idle_timeoutpwm">在idle_timeout秒后要设置风扇的PWM速度。<a class="headerlink" href="#idle_timeoutpwm" title="Permanent link">&para;</a></h1>
+<h1 id="00_1">默认值为0.0。<a class="headerlink" href="#00_1" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="temperature_fan">[temperature_fan]<a class="headerlink" href="#temperature_fan" title="Permanent link">&para;</a></h3>
+<p>温度激活的风扇。</p>
+<p>\<br>
+[temperature_fan my_temp_fan]
+pin:
+max_power:
+shutdown_speed:
+cycle_time:
+hardware_pwm:
+kick_start_time:
+off_below:</p>
+<h1 id="fan_3">参见"fan"部分以获取对这些参数的描述。<a class="headerlink" href="#fan_3" title="Permanent link">&para;</a></h1>
+<p>sensor_type:
+sensor_pin:
+control:
+min_temp:
+max_temp:</p>
+<h1 id="extruder_3">参见"extruder"部分以获取对这些参数的描述。<a class="headerlink" href="#extruder_3" title="Permanent link">&para;</a></h1>
+<h1 id="target_temp-400">target_temp: 40.0<a class="headerlink" href="#target_temp-400" title="Permanent link">&para;</a></h1>
+<h1 id="_74">目标温度。此参数必须提供。<a class="headerlink" href="#_74" title="Permanent link">&para;</a></h1>
+<h1 id="max_speed-10">max_speed: 1.0<a class="headerlink" href="#max_speed-10" title="Permanent link">&para;</a></h1>
+<h1 id="0010_3">当传感器温度超过目标温度的最大风扇速度(表示为0.0到1.0之间的值)。<a class="headerlink" href="#0010_3" title="Permanent link">&para;</a></h1>
+<h1 id="10_4">默认值为1.0。<a class="headerlink" href="#10_4" title="Permanent link">&para;</a></h1>
+<h1 id="min_speed-03">min_speed: 0.3<a class="headerlink" href="#min_speed-03" title="Permanent link">&para;</a></h1>
+<h1 id="0010_4">最小风扇速度(表示为0.0到1.0之间的值)当传感器温度高于目标温度时。<a class="headerlink" href="#0010_4" title="Permanent link">&para;</a></h1>
+<h1 id="03">默认值为0.3。<a class="headerlink" href="#03" title="Permanent link">&para;</a></h1>
+<h1 id="hysteresis-20">hysteresis: 2.0<a class="headerlink" href="#hysteresis-20" title="Permanent link">&para;</a></h1>
+<h1 id="hysteresis">当传感器温度减少到目标温度下方hysteresis摄氏度时，<a class="headerlink" href="#hysteresis" title="Permanent link">&para;</a></h1>
+<h1 id="2_3">风扇的速度将减少。默认值为2摄氏度。<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="fan_generic">[fan_generic]<a class="headerlink" href="#fan_generic" title="Permanent link">&para;</a></h3>
+<p>通用定速度风扇(此部分可使用任意标识符定义多次)。</p>
+<p>\<br>
+[fan_generic extruder_cooling_fan]
+pin:
+max_power:
+shutdown_speed:
+cycle_time:
+hardware_pwm:
+kick_start_time:
+off_below:</p>
+<h1 id="fan_4">参见"fan"部分以获取对这些参数的描述。<a class="headerlink" href="#fan_4" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="led">[led]<a class="headerlink" href="#led" title="Permanent link">&para;</a></h3>
+<p>LED支持（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[led my_led]
+pin:</p>
+<h1 id="ledpwm">控制LED的PWM输出引脚。必须提供此参数。<a class="headerlink" href="#ledpwm" title="Permanent link">&para;</a></h1>
+<h1 id="pwm_3">此引脚必须使用"PWM"功能进行配置(不是"数字输出")。<a class="headerlink" href="#pwm_3" title="Permanent link">&para;</a></h1>
+<h1 id="red_pin">red_pin:<a class="headerlink" href="#red_pin" title="Permanent link">&para;</a></h1>
+<h1 id="green_pin">green_pin:<a class="headerlink" href="#green_pin" title="Permanent link">&para;</a></h1>
+<h1 id="blue_pin">blue_pin:<a class="headerlink" href="#blue_pin" title="Permanent link">&para;</a></h1>
+<h1 id="white_pin">white_pin:<a class="headerlink" href="#white_pin" title="Permanent link">&para;</a></h1>
+<h1 id="rgbrgbw-ledpwm">对于RGB或RGBW LED，红色、绿色、蓝色、白色输出的PWM引脚。<a class="headerlink" href="#rgbrgbw-ledpwm" title="Permanent link">&para;</a></h1>
+<h1 id="red_pinpin">至少要指定red_pin或pin中的一个。<a class="headerlink" href="#red_pinpin" title="Permanent link">&para;</a></h1>
+<h1 id="cycle_time-0010_1">cycle_time: 0.010<a class="headerlink" href="#cycle_time-0010_1" title="Permanent link">&para;</a></h1>
+<h1 id="pwm0010_2">每个PWM周期的时间(秒)。默认值为0.010秒。<a class="headerlink" href="#pwm0010_2" title="Permanent link">&para;</a></h1>
+<h1 id="hardware_pwm-false_1">hardware_pwm: False<a class="headerlink" href="#hardware_pwm-false_1" title="Permanent link">&para;</a></h1>
+<h1 id="pwmpwmpwm_1">使用硬件PWM而不是软件PWM。硬件PWM通常可以达到<a class="headerlink" href="#pwmpwmpwm_1" title="Permanent link">&para;</a></h1>
+<h1 id="_75">更高的脉冲宽度调制频率，因此可以获得更平滑的尺寸变化。<a class="headerlink" href="#_75" title="Permanent link">&para;</a></h1>
+<h1 id="false">默认值为False。<a class="headerlink" href="#false" title="Permanent link">&para;</a></h1>
+<h1 id="initial_red-00">initial_RED: 0.0<a class="headerlink" href="#initial_red-00" title="Permanent link">&para;</a></h1>
+<h1 id="initial_green-00">initial_GREEN: 0.0<a class="headerlink" href="#initial_green-00" title="Permanent link">&para;</a></h1>
+<h1 id="initial_blue-00">initial_BLUE: 0.0<a class="headerlink" href="#initial_blue-00" title="Permanent link">&para;</a></h1>
+<h1 id="initial_white-00">initial_WHITE: 0.0<a class="headerlink" href="#initial_white-00" title="Permanent link">&para;</a></h1>
+<h1 id="ledled0010">LED的初始LED状态。每个值应该在0.0到1.0之间。<a class="headerlink" href="#ledled0010" title="Permanent link">&para;</a></h1>
+<h1 id="0_2">默认值为0。<a class="headerlink" href="#0_2" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="neopixel">[neopixel]<a class="headerlink" href="#neopixel" title="Permanent link">&para;</a></h3>
+<p>Neopixel (WS2812) LED支持（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[neopixel my_neopixel]
+pin:</p>
+<h1 id="neopixel_1">连接到neopixel数据线的输出引脚。此参数必须提供。<a class="headerlink" href="#neopixel_1" title="Permanent link">&para;</a></h1>
+<p>chain_count:</p>
+<h1 id="chained-neopixels1led">chained neopixels的数目。默认值为1(只有一个led)。<a class="headerlink" href="#chained-neopixels1led" title="Permanent link">&para;</a></h1>
+<h1 id="color_order-grb">color_order: GRB<a class="headerlink" href="#color_order-grb" title="Permanent link">&para;</a></h1>
+<h1 id="pixelrgbgrbrgbwgrb">设置pixel颜色顺序。可以是RGB、GRB或RGBW。默认值为GRB。<a class="headerlink" href="#pixelrgbgrbrgbwgrb" title="Permanent link">&para;</a></h1>
+<h1 id="initial_red-00_1">initial_RED: 0.0<a class="headerlink" href="#initial_red-00_1" title="Permanent link">&para;</a></h1>
+<h1 id="initial_green-00_1">initial_GREEN: 0.0<a class="headerlink" href="#initial_green-00_1" title="Permanent link">&para;</a></h1>
+<h1 id="initial_blue-00_1">initial_BLUE: 0.0<a class="headerlink" href="#initial_blue-00_1" title="Permanent link">&para;</a></h1>
+<h1 id="initial_white-00_1">initial_WHITE: 0.0<a class="headerlink" href="#initial_white-00_1" title="Permanent link">&para;</a></h1>
+<h1 id="led00100">初始LED状态。每个值应该在0.0到1.0之间。默认值为0。<a class="headerlink" href="#led00100" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="output_pin">[output_pin]<a class="headerlink" href="#output_pin" title="Permanent link">&para;</a></h3>
+<p>输出引脚（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[output_pin my_pin]
+pin:</p>
+<h1 id="mcu_1">要输出到的MCU引脚。此参数必须提供。<a class="headerlink" href="#mcu_1" title="Permanent link">&para;</a></h1>
+<h1 id="pwm-false">pwm: False<a class="headerlink" href="#pwm-false" title="Permanent link">&para;</a></h1>
+<h1 id="pwmfalse_1">如果输出引脚应该能够PWM。如果为False，则输出引脚<a class="headerlink" href="#pwmfalse_1" title="Permanent link">&para;</a></h1>
+<h1 id="pwm_4">应该使用数字输出。如果未指定，则使用PWM。<a class="headerlink" href="#pwm_4" title="Permanent link">&para;</a></h1>
+<h1 id="value-00">value: 0.0<a class="headerlink" href="#value-00" title="Permanent link">&para;</a></h1>
+<h1 id="pwmtrue00">引脚应该输出到的初始值。如果pwm为True，则应该在0.0<a class="headerlink" href="#pwmtrue00" title="Permanent link">&para;</a></h1>
+<h1 id="10010">到1.0之间，否则应该为0或1。默认值为0。<a class="headerlink" href="#10010" title="Permanent link">&para;</a></h1>
+<h1 id="shutdown_value-0">shutdown_value: 0<a class="headerlink" href="#shutdown_value-0" title="Permanent link">&para;</a></h1>
+<h1 id="_76">当微控制器关闭时，引脚应该设置到的值。<a class="headerlink" href="#_76" title="Permanent link">&para;</a></h1>
+<h1 id="pwmtrue001001">如果pwm为True，则应该在0.0到1.0之间，否则应该为0或1。<a class="headerlink" href="#pwmtrue001001" title="Permanent link">&para;</a></h1>
+<h1 id="0_3">默认值为0。<a class="headerlink" href="#0_3" title="Permanent link">&para;</a></h1>
+<h1 id="maximum_mcu_duration-0">maximum_mcu_duration: 0<a class="headerlink" href="#maximum_mcu_duration-0" title="Permanent link">&para;</a></h1>
+<h1 id="_77">最长时间长期驱动输出脉冲的最大时间长度。<a class="headerlink" href="#_77" title="Permanent link">&para;</a></h1>
+<h1 id="0mcu">如果不是0，MCU将周期性停止驱动该线并等待主机重新启用该输出。<a class="headerlink" href="#0mcu" title="Permanent link">&para;</a></h1>
+<h1 id="mcu_2">这对于驱动可能在意外MCU硬件故障后无限期致动的设备（如继电器）很有用。<a class="headerlink" href="#mcu_2" title="Permanent link">&para;</a></h1>
+<h1 id="0_4">默认值为0(禁用)。<a class="headerlink" href="#0_4" title="Permanent link">&para;</a></h1>
+<h1 id="cycle_time-0100">cycle_time: 0.100<a class="headerlink" href="#cycle_time-0100" title="Permanent link">&para;</a></h1>
+<h1 id="pwmpwmtrue00043600">每个PWM周期的时间(秒)。如果pwm为True，此值应该在0.004到3600之间。<a class="headerlink" href="#pwmpwmtrue00043600" title="Permanent link">&para;</a></h1>
+<h1 id="0100_2">默认值为0.100秒。<a class="headerlink" href="#0100_2" title="Permanent link">&para;</a></h1>
+<h1 id="hardware_pwm-false_2">hardware_pwm: False<a class="headerlink" href="#hardware_pwm-false_2" title="Permanent link">&para;</a></h1>
+<h1 id="pwmpwmpwm_2">使用硬件PWM而不是软件PWM。使用硬件PWM通常可以达到更高的脉冲<a class="headerlink" href="#pwmpwmpwm_2" title="Permanent link">&para;</a></h1>
+<h1 id="mcu_3">宽度调制频率，但仍然受到MCU能力的限制。<a class="headerlink" href="#mcu_3" title="Permanent link">&para;</a></h1>
+<h1 id="false_1">默认值为False。<a class="headerlink" href="#false_1" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="servo">[servo]<a class="headerlink" href="#servo" title="Permanent link">&para;</a></h3>
+<p>伺服（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[servo my_servo]
+pin:</p>
+<h1 id="pwm_5">控制伺服的PWM输出引脚。必须提供此参数。<a class="headerlink" href="#pwm_5" title="Permanent link">&para;</a></h1>
+<h1 id="maximum_servo_angle-180">maximum_servo_angle: 180<a class="headerlink" href="#maximum_servo_angle-180" title="Permanent link">&para;</a></h1>
+<h1 id="_78">伺服可以命令到的最大角度。<a class="headerlink" href="#_78" title="Permanent link">&para;</a></h1>
+<h1 id="180">默认值为180。<a class="headerlink" href="#180" title="Permanent link">&para;</a></h1>
+<h1 id="minimum_pulse_width-0001">minimum_pulse_width: 0.001<a class="headerlink" href="#minimum_pulse_width-0001" title="Permanent link">&para;</a></h1>
+<h1 id="_79">最小脉冲宽度时间(秒)。<a class="headerlink" href="#_79" title="Permanent link">&para;</a></h1>
+<h1 id="00001">对应于0度角。默认值为0.001秒。<a class="headerlink" href="#00001" title="Permanent link">&para;</a></h1>
+<h1 id="maximum_pulse_width-0002">maximum_pulse_width: 0.002<a class="headerlink" href="#maximum_pulse_width-0002" title="Permanent link">&para;</a></h1>
+<h1 id="maximum_servo_angle">最大脉冲宽度时间(秒)。对应于maximum_servo_angle。<a class="headerlink" href="#maximum_servo_angle" title="Permanent link">&para;</a></h1>
+<h1 id="0002">默认值为0.002秒。<a class="headerlink" href="#0002" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="static_digital_output">[static_digital_output]<a class="headerlink" href="#static_digital_output" title="Permanent link">&para;</a></h3>
+<p>静态数字输出（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[static_digital_output my_output]
+pins:</p>
+<h1 id="_80">输出引脚列表(使用逗号分隔)。至少必须提供一个输出引脚。<a class="headerlink" href="#_80" title="Permanent link">&para;</a></h1>
+<h1 id="_81">此参数必须提供。<a class="headerlink" href="#_81" title="Permanent link">&para;</a></h1>
+<h1 id="value-0">value: 0<a class="headerlink" href="#value-0" title="Permanent link">&para;</a></h1>
+<h1 id="00v133v">要输出到引脚的初始值。0为低(0V)，1为高(+3.3V)。<a class="headerlink" href="#00v133v" title="Permanent link">&para;</a></h1>
+<h1 id="0_5">默认值为0。<a class="headerlink" href="#0_5" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<h3 id="multi_pin">[multi_pin]<a class="headerlink" href="#multi_pin" title="Permanent link">&para;</a></h3>
+<p>多引脚输出（此部分可使用任意标识符定义多次）。</p>
+<p>\<br>
+[multi_pin my_multi_pin]
+pins:</p>
+<h1 id="_82">逗号分隔的引脚列表。至少必须提供两个引脚。<a class="headerlink" href="#_82" title="Permanent link">&para;</a></h1>
+<h1 id="_83">此参数必须提供。<a class="headerlink" href="#_83" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<p>完成日期：2024年</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://kalico.gg/discord" target="_blank" rel="noopener" title="Join our Discord server!" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>
