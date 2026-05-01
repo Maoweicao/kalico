@@ -4315,6 +4315,87 @@ pins:
 #   with "!". This parameter must be provided.
 ```
 
+### [hc595]
+
+74HC595 shift register output expansion (one may define any number of
+sections with an "hc595" prefix). The 74HC595 is a serial-to-parallel
+shift register that provides 8 additional digital output pins using
+just 3 MCU pins (data, clock, latch). Multiple chips can be
+daisy-chained for up to 32 outputs. The HC595 outputs can be used
+anywhere a standard digital output pin is accepted by referencing them
+as `chip_name:N` where N is the output number (0 to
+chain_count*8 - 1). The chip_name is the name given in the config
+section header.
+
+```
+[hc595 my_shift]
+data_pin:
+#   Pin connected to the 74HC595 SER (serial data input) line,
+#   typically pin 14 on the IC. This parameter must be provided.
+clock_pin:
+#   Pin connected to the 74HC595 SRCLK (shift register clock) line,
+#   typically pin 11 on the IC. This parameter must be provided.
+latch_pin:
+#   Pin connected to the 74HC595 RCLK (storage register clock/latch)
+#   line, typically pin 12 on the IC. This parameter must be provided.
+#oe_pin:
+#   Optional pin connected to the 74HC595 OE (output enable) line,
+#   typically pin 13 on the IC. This pin is active low. If not
+#   specified, the OE pin should be tied to ground to permanently
+#   enable the outputs.
+#chain_count: 1
+#   The number of daisy-chained 74HC595 chips. Must be between 1 and 4.
+#   Each chip adds 8 additional output pins. The default is 1.
+```
+
+#### HC595 Wiring
+
+For a single 74HC595, connect:
+- 74HC595 pin 14 (SER) to the MCU pin specified by `data_pin`
+- 74HC595 pin 11 (SRCLK) to the MCU pin specified by `clock_pin`
+- 74HC595 pin 12 (RCLK) to the MCU pin specified by `latch_pin`
+- 74HC595 pin 13 (OE) to ground (or to the MCU pin specified by `oe_pin`)
+- 74HC595 pin 10 (SRCLR) to VCC
+- 74HC595 pin 8 (GND) to ground
+- 74HC595 pin 16 (VCC) to +3.3V or +5V
+- 74HC595 output pins are QA-QH (pins 15, 1-7)
+
+For daisy-chaining, connect Q7' (pin 9) of the first chip to SER
+(pin 14) of the next chip. All chips share the same CLOCK, LATCH,
+and OE lines.
+
+#### HC595 Usage Example
+
+```
+[hc595 my_shift]
+data_pin: PA1
+clock_pin: PA2
+latch_pin: PA3
+
+# Use HC595 output 0 to control a fan
+[fan]
+pin: my_shift:0
+
+# Use HC595 output 3 to control a heater
+[heater_generic chamber_heater]
+heater_pin: my_shift:3
+max_power: 1.0
+# ... additional heater parameters
+
+# Use HC595 output 7 as a generic output pin
+[output_pin my_output]
+pin: my_shift:7
+value: 0
+shutdown_value: 0
+```
+
+The following extended G-Code command is available:
+
+- `SET_HC595 CHIP=<config_name> [BITS=<value>]`: Set or query all
+  HC595 output pins at once. Without BITS, the current pin states
+  are reported. With BITS, the given integer value is applied to
+  all outputs (bit 0 = output 0, etc.).
+
 ### [multi_pin]
 
 Multiple pin outputs (one may define any number of sections with a

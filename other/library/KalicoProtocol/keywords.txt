@@ -1,0 +1,68 @@
+# KalicoProtocol Library Keywords
+# Syntax: https://docs.arduino.cc/arduino-cli/library-specification/
+
+#######################################
+# Types (KEYWORD1)
+#######################################
+Kalico	KEYWORD1
+MessageParser	KEYWORD1
+MessageEncoder	KEYWORD1
+MessageBlock	KEYWORD1
+VLQ	KEYWORD1
+CRC16CCITT	KEYWORD1
+PT_uint32	KEYWORD1
+PT_int32	KEYWORD1
+PT_uint16	KEYWORD1
+PT_int16	KEYWORD1
+PT_byte	KEYWORD1
+PT_string	KEYWORD1
+PT_buffer	KEYWORD1
+PT_progmem_buffer	KEYWORD1
+ParamType	KEYWORD1
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+MESSAGE_MIN	LITERAL1
+MESSAGE_MAX	LITERAL1
+MESSAGE_HEADER_SIZE	LITERAL1
+MESSAGE_TRAILER_SIZE	LITERAL1
+MESSAGE_POS_LEN	LITERAL1
+MESSAGE_POS_SEQ	LITERAL1
+MESSAGE_SYNC	LITERAL1
+MESSAGE_DEST	LITERAL1
+MESSAGE_PAYLOAD_MAX	LITERAL1
+MESSAGE_SEQ_MASK	LITERAL1
+MSGID_IDENTIFY	LITERAL1
+MSGID_IDENTIFY_RESPONSE	LITERAL1
+
+#######################################
+# Functions (KEYWORD2)
+#######################################
+encode	KEYWORD2
+decode	KEYWORD2
+compute	KEYWORD2
+verify	KEYWORD2
+frame	KEYWORD2
+validate	KEYWORD2
+feed	KEYWORD2
+reset	KEYWORD2
+setHandler	KEYWORD2
+setIdentifyHandler	KEYWORD2
+encodePayload	KEYWORD2
+encodeParam	KEYWORD2
+encodeIdentify	KEYWORD2
+encodeMsgId	KEYWORD2
+parseMsgId	KEYWORD2
+encodedLength	KEYWORD2
+encodeChecked	KEYWORD2
+computeBytes	KEYWORD2
+getSequence	KEYWORD2
+getPayload	KEYWORD2
+getPayloadLength	KEYWORD2
+frameWithMsgId	KEYWORD2
+encodeString	KEYWORD2
+nextSequence	KEYWORD2
+advanceSeq	KEYWORD2
+currentSeq	KEYWORD2
+clearSync	KEYWORD2
