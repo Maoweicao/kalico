@@ -2,6 +2,7 @@
 #define __SCHED_H
 
 #include <stdint.h> // uint32_t
+#include "compiler.h" // __noreturn
 
 // Use linker-section based task/init/shutdown registration
 // instead of the original compile_time_request string approach.

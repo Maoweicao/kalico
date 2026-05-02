@@ -7,7 +7,18 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include "registrations.c"  // Include the explicit lists
+// Type definitions matching registrations.c
+typedef void (*init_func_t)(void);
+typedef void (*task_func_t)(void);
+typedef void (*shutdown_func_t)(void);
+
+// Extern declarations for the registration lists from registrations.c
+extern init_func_t ctr_init_list[];
+extern const unsigned int ctr_init_count;
+extern task_func_t ctr_task_list[];
+extern const unsigned int ctr_task_count;
+extern shutdown_func_t ctr_shutdown_list[];
+extern const unsigned int ctr_shutdown_count;
 
 // These functions are called by sched.c (sched_main / run_tasks / run_shutdown)
 

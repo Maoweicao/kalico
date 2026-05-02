@@ -161,6 +161,18 @@ A collection of Kalico-specific system options
 #log_serial_reader_warnings: True
 #log_startup_info: True
 #log_webhook_method_register_messages: False
+#log_component_interactions: False
+#   When set to True, enables detailed debug logging of all hardware
+#   component interactions (heaters PWM/temp, toolhead moves, stepper
+#   direction/position/homing, MCU commands, etc.) at DEBUG level.
+#   Use together with the -v CLI flag or log_module_categories for
+#   enhanced diagnostics. The default is False.
+#log_module_categories: False
+#   When set to True, creates separate per-module log files
+#   (module_heaters.log, module_toolhead.log, module_stepper.log,
+#   module_mcu.log, etc.) in the same directory as the main log file.
+#   Each file contains only log entries from its respective module.
+#   The default is False.
 ```
 
 ## ⚠️ Configuration references

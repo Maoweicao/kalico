@@ -8,6 +8,7 @@ import logging
 import math
 
 from . import chelper
+from . import queuelogger
 from .extras.danger_options import get_danger_options
 from .kinematics import extruder
 
@@ -460,6 +461,7 @@ class ToolHead:
             self._calc_print_time()
         # Queue moves into trapezoid motion queue (trapq)
         next_move_time = self.print_time
+        log_interactions = queuelogger.should_log_component_interactions()
         for move in moves:
             if move.is_kinematic_move:
                 self.trapq_append(
@@ -478,8 +480,22 @@ class ToolHead:
                     move.cruise_v,
                     move.accel,
                 )
+                if log_interactions:
+                    logging.debug(
+                        "move: start=(%.3f,%.3f,%.3f) end=(%.3f,%.3f,%.3f) "
+                        "v=%.1f a=%.1f t_acc=%.4f t_cru=%.4f t_dec=%.4f",
+                        move.start_pos[0], move.start_pos[1], move.start_pos[2],
+                        move.end_pos[0], move.end_pos[1], move.end_pos[2],
+                        move.cruise_v, move.accel,
+                        move.accel_t, move.cruise_t, move.decel_t,
+                    )
             if move.axes_d[3]:
                 self.extruder.move(next_move_time, move)
+                if log_interactions:
+                    logging.debug(
+                        "extrude: pos=%.3f dist=%.3f t=%.4f",
+                        move.end_pos[3], move.axes_d[3], next_move_time,
+                    )
             next_move_time = (
                 next_move_time + move.accel_t + move.cruise_t + move.decel_t
             )

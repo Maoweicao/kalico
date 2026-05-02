@@ -1,0 +1,14 @@
+# mcu_sim — Kalico MCU 固件模拟器
+#
+# Copyright (C) 2025-2026 KalicoCrew
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# Runtime dependencies for mcu_sim.
+# Install: pip install -r requirements.txt
+
+# No external Python dependencies required for basic operation.
+# The simulator uses only Python stdlib + QEMU (installed separately).
+#
+# Optional — for running kalico_debug_tool alongside:
+# pyserial>=3.5
+# tkinter (included with most Python distributions)

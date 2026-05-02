@@ -6,6 +6,7 @@
 
 #include "stepper.h"
 #include "sched.h"
+#include "command.h"          // shutdown() macro
 
 unsigned int
 stepper_event(struct timer *t)

@@ -12,7 +12,7 @@
 #define __ARDUINO_IO_H
 
 #include <stdint.h>
-#include "../../compiler.h"
+#include "compiler.h"
 
 // Memory barrier for volatile access ordering
 #ifndef barrier

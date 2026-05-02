@@ -9,7 +9,9 @@
 #define __ARDUINO_INTERNAL_H
 
 #include <stdint.h>
+#ifndef __bool_true_false_are_defined
 #include <stdbool.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,6 +30,12 @@ void arduino_timer_irq_clear(void);
 
 /** Forward declaration from timer_irq.c */
 uint32_t timer_dispatch_many(void);
+
+/**
+ * Re-arm the hardware timer with the next scheduled wake time.
+ * Called from irq_poll() after timer_dispatch_many() so COMPA keeps firing.
+ */
+void timer_kick_next(uint32_t next_time);
 
 // ---- Serial (serial.c) ----------------------------------------------------
 

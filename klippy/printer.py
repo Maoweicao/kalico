@@ -302,9 +302,12 @@ class Printer:
         config = pconfig.read_main_config()
         self._load_modules(config)
         self.load_object(config, "danger_options")
+        # Setup per-module logging if enabled
+        danger_opts = get_danger_options()
+        self._setup_module_logging(danger_opts)
         if (
             self.bglogger is not None
-            and get_danger_options().log_config_file_at_startup
+            and danger_opts.log_config_file_at_startup
         ):
             pconfig.log_config(config)
         # Register subsystem components
@@ -327,8 +330,29 @@ class Printer:
         for m in [toolhead]:
             m.add_printer_objects(config)
         # Validate that there are no undefined parameters in the config file
-        error_on_unused = get_danger_options().error_on_unused_config_options
+        error_on_unused = danger_opts.error_on_unused_config_options
         pconfig.check_unused_options(config, error_on_unused)
+
+    def _setup_module_logging(self, danger_opts):
+        """Configure per-module log files and component interaction logging."""
+        # Enable/disable hardware component interaction logging
+        queuelogger.set_component_interactions_enabled(
+            danger_opts.log_component_interactions
+        )
+        # Set up per-module categorized log files if enabled
+        if danger_opts.log_module_categories:
+            start_args = self.get_start_args()
+            log_file = start_args.get("log_file", "")
+            if log_file:
+                log_dir = os.path.dirname(log_file)
+            else:
+                log_dir = "/tmp"
+            queuelogger.setup_module_logging(
+                log_dir, danger_opts.log_module_categories
+            )
+            logging.info(
+                "Per-module log files enabled in %s", log_dir
+            )
 
     def _build_protocol_error_message(self, e):
         host_version = self.start_args["software_version"]

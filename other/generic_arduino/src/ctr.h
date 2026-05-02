@@ -28,7 +28,7 @@
 // Declare a compile time request with an integer expression
 #define DECL_CTR_INT(REQUEST, PARAM_COUNT, args...)     \
     static struct {                                     \
-        char _request[sizeof(REQUEST)-1];               \
+        char _request[sizeof(REQUEST)];                 \
         char _values[(PARAM_COUNT)][12];                \
         char _end_of_line;                              \
     } __PASTE(_DECLI_, __LINE__) __attribute__((used))  \

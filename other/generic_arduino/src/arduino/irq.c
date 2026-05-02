@@ -11,6 +11,10 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+#include <Arduino.h>
+#if defined(__AVR__)
+#include <avr/sleep.h>
+#endif
 #include "irq.h"
 #include "internal.h"
 
@@ -65,26 +69,44 @@ irq_restore(irqstatus_t flag)
 }
 
 // Wait for an interrupt (sleep until next IRQ)
+//
+// IMPORTANT: This port uses polled serial (Arduino's HardwareSerial),
+// NOT interrupt-driven UART.  During the 500µs delay below, Arduino's
+// UART RX ISR puts bytes into the internal HardwareSerial buffer, BUT
+// arduino_serial_drain_rx() / serial_rx_byte() / sched_wake_tasks()
+// are the ONLY way those bytes get fed into Kalico's command parser.
+//
+// If we don't drain them here, run_tasks() sleeps forever because
+// sched_wake_tasks() is never called and tasks_status stays TS_IDLE.
+//
 void
 irq_wait(void)
 {
-    // On AVR: sleep_cpu() with interrupts enabled will wake on next IRQ
-    // On ARM: __WFI() does the same
 #if defined(__AVR__)
     interrupts();
-    // AVR sleep modes: idle mode wakes on any interrupt
-    SMCR = (SMCR & ~(_BV(SM0) | _BV(SM1) | _BV(SM2))) | (0 << SM0); // Idle
-    sleep_cpu();
+    delayMicroseconds(500);
+    noInterrupts();
 #elif defined(__arm__) || defined(__ARM_ARCH)
     __enable_irq();
-    __WFI();
+    delayMicroseconds(500);
     __disable_irq();
 #else
-    // Fallback: brief yield via delay
     interrupts();
-    delayMicroseconds(10);
+    delayMicroseconds(500);
     noInterrupts();
 #endif
+    // 🔑 Drain serial bytes that arrived during the delay window.
+    // Without this, data accumulates in Arduino's HardwareSerial buffer
+    // but never reaches Kalico's command parser → system deadlocks.
+    if (arduino_serial_rx_pending()) {
+        arduino_serial_drain_rx();
+    }
+    // Also handle any timer events that fired.
+    if (arduino_timer_irq_pending()) {
+        arduino_timer_irq_clear();
+        uint32_t next = timer_dispatch_many();
+        timer_kick_next(next);
+    }
 }
 
 // Poll for pending work (called from main loop)
@@ -95,10 +117,11 @@ irq_poll(void)
     if (arduino_serial_rx_pending()) {
         arduino_serial_drain_rx();
     }
-
     // Check if timer ISR needs attention
     if (arduino_timer_irq_pending()) {
         arduino_timer_irq_clear();
-        timer_dispatch_many();
+        uint32_t next = timer_dispatch_many();
+        // Re-arm timer hardware so COMPA keeps firing
+        timer_kick_next(next);
     }
 }

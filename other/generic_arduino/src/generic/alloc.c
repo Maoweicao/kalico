@@ -6,6 +6,9 @@
 
 #include "board/misc.h" // dynmem_start
 
+// Non-AVR: use a static pool
+// AVR uses its own heap-based dynmem from gpio.c
+#if !defined(__AVR__)
 static char dynmem_pool[20 * 1024];
 
 // Return the start of memory available for dynamic allocations
@@ -21,3 +24,4 @@ dynmem_end(void)
 {
     return &dynmem_pool[sizeof(dynmem_pool)];
 }
+#endif

@@ -24,33 +24,70 @@ extern "C" void sched_main(void);
 // Arduino Setup
 // ============================================================================
 
+// Macro magic: map CONFIG_DEBUG_SERIAL_PORT to the right Serial object
+#if CONFIG_DEBUG_SERIAL_PORT == 0
+  #define DEBUG_SERIAL   Serial
+#elif CONFIG_DEBUG_SERIAL_PORT == 1
+  #define DEBUG_SERIAL   SerialUSB
+#elif CONFIG_DEBUG_SERIAL_PORT == 2
+  // Debug serial disabled — define as a no-op stream
+  #define DEBUG_SERIAL_OFF  1
+#else
+  #define DEBUG_SERIAL   Serial
+#endif
+
 void setup()
 {
+#if !defined(DEBUG_SERIAL_OFF)
     // ---- Debug serial (USB) ----
-    Serial.begin(115200);
-    while (!Serial && millis() < 3000) {
+    DEBUG_SERIAL.begin(CONFIG_DEBUG_SERIAL_BAUD);
+    while (!DEBUG_SERIAL && millis() < 3000) {
         // Wait for USB serial on native USB boards (timeout 3s)
     }
-    Serial.println();
-    Serial.println(F("=== Kalico generic_arduino firmware ==="));
-    Serial.print(F("Clock: "));
-    Serial.print(CONFIG_CLOCK_FREQ);
-    Serial.print(F(" Hz, Baud: "));
-    Serial.println(CONFIG_SERIAL_BAUD);
+    DEBUG_SERIAL.println();
+    DEBUG_SERIAL.println(F("=== Kalico generic_arduino firmware ==="));
+    DEBUG_SERIAL.print(F("Clock: "));
+    DEBUG_SERIAL.print(CONFIG_CLOCK_FREQ);
+    DEBUG_SERIAL.print(F(" Hz, Baud: "));
+    DEBUG_SERIAL.println(CONFIG_SERIAL_BAUD);
+    DEBUG_SERIAL.print(F("MCU Serial: "));
+#if CONFIG_MCU_SERIAL_TYPE == 0
+    DEBUG_SERIAL.print(F("Hardware UART"));
+    #if CONFIG_MCU_SERIAL_HW_PORT == 0
+      DEBUG_SERIAL.println(F(" (Serial)"));
+    #elif CONFIG_MCU_SERIAL_HW_PORT == 1
+      DEBUG_SERIAL.println(F(" (Serial1)"));
+    #elif CONFIG_MCU_SERIAL_HW_PORT == 2
+      DEBUG_SERIAL.println(F(" (Serial2)"));
+    #elif CONFIG_MCU_SERIAL_HW_PORT == 3
+      DEBUG_SERIAL.println(F(" (Serial3)"));
+    #endif
+#else
+    DEBUG_SERIAL.print(F("Software Serial (RX="));
+    DEBUG_SERIAL.print(CONFIG_MCU_SERIAL_SW_RX);
+    DEBUG_SERIAL.print(F(", TX="));
+    DEBUG_SERIAL.print(CONFIG_MCU_SERIAL_SW_TX);
+    DEBUG_SERIAL.println(F(")"));
+#endif
+#endif // !DEBUG_SERIAL_OFF
 
     // ---- Initialize Arduino platform layer ----
     arduino_serial_init();
     arduino_timer_init();
 
-    Serial.println(F("[INIT] Platform initialized."));
-    Serial.println(F("[INIT] Entering Kalico scheduler loop..."));
+#if !defined(DEBUG_SERIAL_OFF)
+    DEBUG_SERIAL.println(F("[INIT] Platform initialized."));
+    DEBUG_SERIAL.println(F("[INIT] Entering Kalico scheduler loop..."));
+#endif
 
     // ---- Enter Kalico main loop ----
     // sched_main() never returns — it runs the cooperative scheduler forever.
     sched_main();
 
     // Unreachable
-    Serial.println(F("[FATAL] sched_main returned!"));
+#if !defined(DEBUG_SERIAL_OFF)
+    DEBUG_SERIAL.println(F("[FATAL] sched_main returned!"));
+#endif
     for (;;) { delay(1000); }
 }
 

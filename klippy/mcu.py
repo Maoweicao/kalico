@@ -9,6 +9,7 @@ import os
 import zlib
 
 from . import chelper, clocksync, msgproto, pins, serialhdl
+from . import queuelogger
 from .extras.danger_options import get_danger_options
 
 
@@ -99,6 +100,11 @@ class CommandQueryWrapper:
     def _do_send(self, cmds, minclock, reqclock, retry):
         xh = self._xmit_helper(self._serial, self._response, self._oid)
         reqclock = max(minclock, reqclock)
+        if queuelogger.should_log_component_interactions():
+            logging.debug(
+                "mcu_cmd: oid=%d ncmds=%d minclock=%d reqclock=%d retry=%s",
+                self._oid, len(cmds), minclock, reqclock, retry,
+            )
         try:
             return xh.get_response(
                 cmds, self._cmd_queue, minclock, reqclock, retry
@@ -134,14 +140,30 @@ class CommandWrapper:
             cmd_queue = serial.get_default_command_queue()
         self._cmd_queue = cmd_queue
         self._msgtag = msgparser.lookup_msgid(msgformat) & 0xFFFFFFFF
+        self._send_count = 0
+        self._last_log_time = 0.0
 
     def send(self, data=(), minclock=0, reqclock=0):
         cmd = self._cmd.encode(data)
         self._serial.raw_send(cmd, minclock, reqclock, self._cmd_queue)
+        if queuelogger.should_log_component_interactions():
+            self._send_count += 1
 
     def send_wait_ack(self, data=(), minclock=0, reqclock=0):
         cmd = self._cmd.encode(data)
         self._serial.raw_send_wait_ack(cmd, minclock, reqclock, self._cmd_queue)
+        if queuelogger.should_log_component_interactions():
+            self._send_count += 1
+
+    def _log_periodic(self, eventtime):
+        if self._send_count and eventtime - self._last_log_time > 1.0:
+            logging.debug(
+                "mcu_cmd_wrapper: tag=0x%x rate=%d/s",
+                self._msgtag,
+                int(self._send_count / (eventtime - self._last_log_time)),
+            )
+            self._send_count = 0
+            self._last_log_time = eventtime
 
     def get_command_tag(self):
         return self._msgtag

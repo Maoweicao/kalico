@@ -1,0 +1,6 @@
+# generic_arduino tools dependencies
+# Install: pip install -r tools/requirements.txt
+
+textual>=0.52.0        # Terminal UI framework (configure_autoconf.py, build_flash_tui.py)
+rich>=13.0.0           # Rich text rendering (dependency of textual)
+pyserial>=3.5          # Serial port detection (build_flash_tui.py fallback)

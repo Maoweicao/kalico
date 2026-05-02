@@ -195,37 +195,9 @@ gpio_pwm_write(struct gpio_pwm g, uint8_t val)
           return (void*)SP - CONFIG_AVR_STACK_SIZE;
       return (void*)__brkval;
   }
-#elif defined(__arm__) || defined(__ARM_ARCH)
-  extern char _end;
-  extern char _sstack;
-
-  void *
-  dynmem_start(void)
-  {
-      return (void*)&_end;
-  }
-
-  void *
-  dynmem_end(void)
-  {
-      return (void*)&_sstack - CONFIG_AVR_STACK_SIZE;
-  }
 #else
-  // Generic fallback: use a static buffer
-  #define DYNMEM_SIZE 4096
-  static uint8_t dynmem_pool[DYNMEM_SIZE];
-
-  void *
-  dynmem_start(void)
-  {
-      return dynmem_pool;
-  }
-
-  void *
-  dynmem_end(void)
-  {
-      return dynmem_pool + DYNMEM_SIZE;
-  }
+  // Non-AVR: dynmem_start/dynmem_end provided by generic/alloc.c (20KB pool)
+  // Includes: ARM (Due, Teensy), Xtensa (ESP32), etc.
 #endif
 
 // ============================================================================

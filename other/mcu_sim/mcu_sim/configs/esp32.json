@@ -1,0 +1,20 @@
+{
+  "name": "esp32",
+  "arch": "xtensa",
+  "qemu_binary": "qemu-system-xtensa",
+  "qemu_machine": "esp32",
+  "description": "ESP32 DevKit (Xtensa LX6, 240 MHz)",
+  "clock_hz": 240000000,
+  "flash_size": 4194304,
+  "ram_size": 532480,
+  "flash_base": "0x3F400000",
+  "ram_base": "0x3FF80000",
+  "uart_count": 3,
+  "spi_count": 4,
+  "i2c_count": 2,
+  "peripherals": {
+    "UART0": {"address": "0x3FF40000"},
+    "UART1": {"address": "0x3FF50000"},
+    "UART2": {"address": "0x3FF6E000"}
+  }
+}

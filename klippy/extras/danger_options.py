@@ -23,6 +23,12 @@ class DangerOptions:
         self.log_webhook_method_register_messages = config.getboolean(
             "log_webhook_method_register_messages", verbose
         )
+        self.log_component_interactions = config.getboolean(
+            "log_component_interactions", False
+        )
+        self.log_module_categories = config.getboolean(
+            "log_module_categories", False
+        )
         self.error_on_unused_config_options = config.getboolean(
             "error_on_unused_config_options", True
         )

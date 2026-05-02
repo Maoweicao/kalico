@@ -1,5 +1,7 @@
 # generic_arduino — Kalico MCU Firmware for Arduino
 
+> **🌐 Languages**: English · [简体中文](README_CN.md)
+
 A PlatformIO-based project that ports the Kalico/Klipper 3D printer firmware
 MCU code to run on **any Arduino-compatible board** (AVR, ARM Cortex-M,
 ESP32, etc.).
@@ -39,7 +41,11 @@ ESP32, etc.).
 ```
 generic_arduino/
 ├── platformio.ini              # PlatformIO build configuration
-├── README.md                   # This file
+├── README.md                   # This file (English)
+├── README_CN.md                # Documentation in Chinese
+├── tools/
+│   ├── requirements.txt        # TUI config tool dependencies
+│   └── configure_autoconf.py   # TUI configuration tool ⭐
 ├── src/
 │   ├── main.cpp                # Arduino entry point (setup/loop)
 │   ├── autoconf.h              # Static Kconfig-equivalent configuration
@@ -125,7 +131,37 @@ pio device monitor -b 115200
 
 ### Configuration
 
-Edit `src/autoconf.h` to match your board:
+You can configure the firmware using **two methods**:
+
+#### 🖥️ TUI Configuration Tool (recommended)
+
+A terminal-based visual configuration tool is provided:
+
+```bash
+# Install dependency (one-time)
+pip install -r tools/requirements.txt
+
+# Launch the TUI configurator
+python tools/configure_autoconf.py
+```
+
+| Key | Action |
+|-----|--------|
+| `↑/↓` | Navigate options |
+| `Tab` | Switch panel (category ↔ options) |
+| `Enter` | Edit selected value |
+| `/` | Search |
+| `s` | Save changes |
+| `q` / `Esc` | Quit |
+| `?` | Show help |
+
+The tool parses `autoconf.h` and presents all options organized by category
+(Machine, Clock, Serial, Memory, Features, Stepper, etc.). Changes are saved
+directly back to the file.
+
+#### ✏️ Manual Editing
+
+Edit `src/autoconf.h` directly:
 
 ```c
 // Clock frequency (check your board's specs):
@@ -144,6 +180,70 @@ Edit `src/autoconf.h` to match your board:
 #define CONFIG_WANT_SPI       0    // SPI support
 #define CONFIG_WANT_I2C       0    // I2C support
 ```
+
+## 🔨 Build & Flash TUI Tool
+
+In addition to running `pio run` manually, this project provides a **terminal-based
+visual build & flash tool** with board selection, device detection, one-click
+build/upload, and serial monitor launch.
+
+```bash
+# Launch the build & flash TUI (dependencies must be installed first)
+python tools/build_flash_tui.py
+```
+
+**Layout preview:**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ 🧩 Board Selection  │ 🎯 Actions       │ 📋 Build/Flash Log    │
+│──────────────────────│──────────────────│───────────────────────│
+│ ◉ Arduino Mega      │ [📦 Build]       │ 📦 Building Arduino   │
+│ ○ Arduino Uno       │ [📤 Upload]      │ Mega...               │
+│ ○ Arduino Due       │ [🗑️  Clean]      │ Compiling .pio/...   │
+│ ○ Teensy 4.0        │ [🔄 Refresh]     │ ✅ Build successful!  │
+│ ○ ESP32 DevKit      │ [📟 Monitor]     │                       │
+│──────────────────────│──────────────────│                       │
+│ ATmega2560 @ 16MHz  │ 🔌 Serial Devices│                       │
+│                      │ • COM3 - Mega    │                       │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Workflow
+
+1. **Select board** — Use `↑/↓` to pick your target, press `Enter` to confirm
+2. **Build firmware** — Press `b` to compile with real-time log output
+3. **Connect device** — Plug in the board via USB, press `d` to scan serial ports
+4. **Flash firmware** — Press `u` to upload the firmware to the board
+5. **Serial monitor** — Press `s` to launch an external serial monitor
+
+### Key Bindings
+
+| Key | Action |
+|-----|--------|
+| `↑/↓` | Navigate lists |
+| `Tab` | Switch panel (Board ↔ Actions ↔ Log) |
+| `Enter` | Select board / confirm |
+| `b` | Build firmware for selected board |
+| `u` | Upload / flash firmware |
+| `c` | Clean build artifacts |
+| `d` | Refresh serial device list |
+| `s` | Launch serial monitor |
+| `q` / `Esc` | Quit |
+| `?` | Show help |
+
+### Supported Boards
+
+| Env Name | Board | Architecture |
+|----------|-------|-------------|
+| `mega2560` | Arduino Mega 2560 | AVR (ATmega2560) |
+| `uno` | Arduino Uno | AVR (ATmega328P) |
+| `due` | Arduino Due | ARM Cortex-M3 |
+| `teensy40` | Teensy 4.0 | ARM Cortex-M7 |
+| `esp32dev` | ESP32 DevKit | Xtensa LX6 |
+
+> **Note**: Ensure PlatformIO CLI (`pio` command) is available and your
+> board is connected via USB before building/flashing.
 
 ### Klipper Host Configuration
 

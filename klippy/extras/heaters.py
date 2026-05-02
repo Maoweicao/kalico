@@ -8,6 +8,8 @@ import logging
 import os
 import threading
 
+from .. import queuelogger
+
 from .control_mpc import (
     FILAMENT_TEMP_SRC_AMBIENT,
     FILAMENT_TEMP_SRC_FIXED,
@@ -167,9 +169,10 @@ class Heater:
         )
         self.last_pwm_value = value
         self.mcu_pwm.set_pwm(pwm_time, value)
-        # logging.debug("%s: pwm=%.3f@%.3f (from %.3f@%.3f [%.3f])",
-        #              self.name, value, pwm_time,
-        #              self.last_temp, self.last_temp_time, self.target_temp)
+        if queuelogger.should_log_component_interactions():
+            logging.debug("%s: pwm=%.3f@%.3f (from %.3f@%.3f [%.3f])",
+                          self.name, value, pwm_time,
+                          self.last_temp, self.last_temp_time, self.target_temp)
 
     def temperature_callback(self, read_time, temp):
         with self.lock:
@@ -183,7 +186,8 @@ class Heater:
             self.can_extrude = (
                 self.smoothed_temp >= self.min_extrude_temp or self.cold_extrude
             )
-        # logging.debug("temp: %.3f %f = %f", read_time, temp)
+        if queuelogger.should_log_component_interactions():
+            logging.debug("temp: %.3f %f = %f", read_time, temp)
         for mpc_sensor in self.mpc_sensors:
             mpc_sensor.process_temp_update(self.get_control(), read_time)
 

@@ -15,6 +15,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+#include <Arduino.h>            // millis, micros, noInterrupts, interrupts
 #include "autoconf.h"           // CONFIG_CLOCK_FREQ
 #include "irq.h"                // irq_save
 #include "misc.h"               // timer_from_us (declared; defined in generic/)
@@ -75,6 +76,24 @@ void
 timer_kick(void)
 {
     OCR1A = TCNT1 + 50;
+    TIFR1 = 1 << OCF1A;
+}
+
+// Re-arm timer with a 32-bit absolute timer value.
+// Extracts the low 16 bits for OCR1A (compare) but also ensures
+// the overflow count is consistent.
+void
+timer_kick_next(uint32_t next_time)
+{
+    // next_time is (overflow << 16) | compare.  We only write the
+    // compare value to OCR1A; the overflow ISR will extend the count
+    // transparently.
+    uint16_t compare = (uint16_t)(next_time & 0xFFFF);
+    // Avoid setting OCR1A too close to TCNT1 (must be > ~10 ticks ahead).
+    uint16_t now = TCNT1;
+    if ((int16_t)(compare - now) < 10)
+        compare = now + 50;
+    OCR1A = compare;
     TIFR1 = 1 << OCF1A;
 }
 
@@ -146,6 +165,15 @@ arduino_timer_init(void)
     // ARM Arduino: SysTick already runs, rely on irq_poll periodic calling
 }
 
+void
+timer_kick_next(uint32_t next_time)
+{
+    (void)next_time;
+    // ARM: timer dispatch happens synchronously in irq_poll().
+    // No hardware timer to re-arm — timer_kick() sets the flag,
+    // irq_poll() calls timer_dispatch_many() synchronously.
+}
+
 #else
 
 // ---- Generic fallback (ESP32, etc.) ----
@@ -179,6 +207,15 @@ void
 arduino_timer_init(void)
 {
     // Generic: no hardware timer setup needed (poll-based)
+}
+
+// Non-AVR fallback for timer_kick_next — not needed because
+// timer_dispatch_many() re-arms via the irq_poll loop.
+void timer_kick_next(uint32_t next_time)
+{
+    (void)next_time;
+    // On ARM/ESP32, timer dispatch happens synchronously in irq_poll()
+    // so no hardware re-arm is needed.
 }
 
 #endif

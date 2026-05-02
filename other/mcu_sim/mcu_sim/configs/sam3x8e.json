@@ -1,0 +1,21 @@
+{
+  "name": "sam3x8e",
+  "arch": "arm-cortex-m",
+  "qemu_binary": "qemu-system-arm",
+  "qemu_machine": "none",
+  "cpu": "cortex-m3",
+  "description": "Arduino Due (ATSAM3X8E, Cortex-M3, 84 MHz)",
+  "clock_hz": 84000000,
+  "flash_size": 524288,
+  "ram_size": 98304,
+  "flash_base": "0x00080000",
+  "ram_base": "0x20000000",
+  "uart_count": 5,
+  "peripherals": {
+    "UART": {"address": "0x400E0800"},
+    "USART0": {"address": "0x40098000"},
+    "USART1": {"address": "0x4009C000"},
+    "USART2": {"address": "0x400A0000"},
+    "USART3": {"address": "0x400A4000"}
+  }
+}

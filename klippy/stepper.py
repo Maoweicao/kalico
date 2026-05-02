@@ -4,9 +4,11 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import collections
+import logging
 import math
 
 from . import chelper
+from . import queuelogger
 
 
 class error(Exception):
@@ -196,6 +198,11 @@ class MCU_stepper:
         ffi_main, ffi_lib = chelper.get_ffi()
         ffi_lib.stepcompress_set_invert_sdir(self._stepqueue, invert_dir)
         self._mcu.get_printer().send_event("stepper:set_dir_inverted", self)
+        if queuelogger.should_log_component_interactions():
+            logging.debug(
+                "stepper %s: dir_inverted=%s",
+                self._name, invert_dir,
+            )
 
     def calc_position_from_coord(self, coord):
         ffi_main, ffi_lib = chelper.get_ffi()
@@ -209,6 +216,11 @@ class MCU_stepper:
         ffi_main, ffi_lib = chelper.get_ffi()
         ffi_lib.itersolve_set_position(sk, coord[0], coord[1], coord[2])
         self._set_mcu_position(mcu_pos)
+        if queuelogger.should_log_component_interactions():
+            logging.debug(
+                "stepper %s: set_pos=(%.3f,%.3f,%.3f) mcu_pos=%d",
+                self._name, coord[0], coord[1], coord[2], mcu_pos,
+            )
 
     def get_commanded_position(self):
         ffi_main, ffi_lib = chelper.get_ffi()
@@ -311,6 +323,11 @@ class MCU_stepper:
             if ret:
                 cbs = self._active_callbacks
                 self._active_callbacks = []
+                if queuelogger.should_log_component_interactions():
+                    logging.debug(
+                        "stepper %s: endstop_trigger ret=%d flush=%.6f",
+                        self._name, ret, flush_time,
+                    )
                 for cb in cbs:
                     cb(ret)
         # Generate steps

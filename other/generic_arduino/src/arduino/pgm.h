@@ -37,7 +37,9 @@
 
   extern void __force_link_error__unknown_type(void);
 
+  #ifndef PROGMEM
   #define PROGMEM __attribute__((__progmem__))
+  #endif
   #define memcpy_P(dest, src, n) memcpy_P((dest), (src), (n))
 
 #else

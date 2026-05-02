@@ -1,0 +1,26 @@
+{
+  "name": "atmega2560",
+  "arch": "avr",
+  "qemu_binary": "qemu-system-avr",
+  "qemu_machine": "mega2560",
+  "description": "Arduino Mega 2560 (ATmega2560, 16 MHz)",
+  "clock_hz": 16000000,
+  "flash_size": 262144,
+  "ram_size": 8192,
+  "eeprom_size": 4096,
+  "uart_count": 4,
+  "spi_count": 1,
+  "i2c_count": 1,
+  "peripherals": {
+    "TIMER0": {"bits": 8, "address": "0x44"},
+    "TIMER1": {"bits": 16, "address": "0x80"},
+    "TIMER2": {"bits": 8, "address": "0xB0"},
+    "TIMER3": {"bits": 16, "address": "0x90"},
+    "TIMER4": {"bits": 16, "address": "0xA0"},
+    "TIMER5": {"bits": 16, "address": "0x120"},
+    "USART0": {"address": "0xC0"},
+    "USART1": {"address": "0xC8"},
+    "USART2": {"address": "0xD0"},
+    "USART3": {"address": "0x130"}
+  }
+}

@@ -129,6 +129,16 @@ Kalico 特定的系统选项集合
 #log_serial_reader_warnings: True
 #log_startup_info: True
 #log_webhook_method_register_messages: False
+#log_component_interactions: False
+#   设置为 True 时，启用所有硬件部件交互的详细调试日志
+#   （加热器 PWM/温度、工具头移动、步进器方向/位置/归零、
+#   MCU 命令等），以 DEBUG 级别记录。与 -v CLI 参数或
+#   log_module_categories 一起使用以增强诊断。默认值为 False。
+#log_module_categories: False
+#   设置为 True 时，在主日志文件所在目录创建按模块分类的
+#   独立日志文件（module_heaters.log、module_toolhead.log、
+#   module_stepper.log、module_mcu.log 等）。每个文件仅包含
+#   其对应模块的日志条目。默认值为 False。
 ```
 
 ## ⚠️ 配置引用

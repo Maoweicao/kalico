@@ -1,0 +1,15 @@
+{
+  "name": "imxrt1062",
+  "arch": "arm-cortex-m",
+  "qemu_binary": "qemu-system-arm",
+  "qemu_machine": "none",
+  "cpu": "cortex-m7",
+  "description": "Teensy 4.0 (iMXRT1062, Cortex-M7, 600 MHz)",
+  "clock_hz": 600000000,
+  "flash_size": 2031616,
+  "ram_size": 1048576,
+  "flash_base": "0x60000000",
+  "ram_base": "0x20200000",
+  "uart_count": 8,
+  "note": "QEMU support for iMXRT1062 is limited; consider Renode for full peripheral support"
+}
