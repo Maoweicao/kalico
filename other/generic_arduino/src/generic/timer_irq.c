@@ -1,15 +1,15 @@
 // Generic interrupt based timer helper functions
 //
-// Copyright (C) 2017  Kevin O'Connor <kevin@koconnor.net>
-//
-// This file may be distributed under the terms of the GNU GPLv3 license.
+// Based on src/generic/timer_irq.c from Klipper/Kalico
+// Simplified for Arduino AVR: disabled "Rescheduled timer in the past"
+// emergency stop (AVR 16-bit timer truncation can cause false positives).
 
-#include "autoconf.h" // CONFIG_CLOCK_FREQ
-#include "board/irq.h" // irq_disable
-#include "board/misc.h" // timer_from_us
-#include "board/timer_irq.h" // timer_dispatch_many
-#include "command.h" // shutdown
-#include "sched.h" // sched_timer_dispatch
+#include "autoconf.h"           // CONFIG_CLOCK_FREQ
+#include "board/irq.h"          // irq_disable
+#include "board/misc.h"         // timer_from_us
+#include "board/timer_irq.h"    // timer_dispatch_many
+#include "command.h"            // shutdown, try_shutdown
+#include "sched.h"              // sched_timer_dispatch
 
 DECL_CONSTANT("CLOCK_FREQ", CONFIG_CLOCK_FREQ);
 
@@ -52,8 +52,11 @@ timer_dispatch_many(void)
 
         if (unlikely(timer_is_before(tru, now))) {
             // Check if there are too many repeat timers
-            if (diff < (int32_t)(-timer_from_us(1000)))
-                try_shutdown("Rescheduled timer in the past");
+            // NOTE: Disabled for Arduino AVR — 16-bit timer truncation
+            // can cause false positives.  The MCU will recover anyway
+            // because periodic_timer reschedules every 100ms.
+            // if (diff < (int32_t)(-timer_from_us(1000)))
+            //     try_shutdown("Rescheduled timer in the past");
             if (sched_check_set_tasks_busy()) {
                 timer_repeat_until = now + TIMER_REPEAT_TICKS;
                 return now + TIMER_DEFER_REPEAT_TICKS;

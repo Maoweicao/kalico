@@ -15,6 +15,7 @@
 #if defined(__AVR__)
 #include <avr/sleep.h>
 #endif
+#include "autoconf.h"
 #include "irq.h"
 #include "internal.h"
 
@@ -84,20 +85,20 @@ irq_wait(void)
 {
 #if defined(__AVR__)
     interrupts();
-    delayMicroseconds(500);
+    delayMicroseconds(10);
     noInterrupts();
 #elif defined(__arm__) || defined(__ARM_ARCH)
     __enable_irq();
-    delayMicroseconds(500);
+    delayMicroseconds(10);
     __disable_irq();
 #else
     interrupts();
-    delayMicroseconds(500);
+    delayMicroseconds(10);
     noInterrupts();
 #endif
     // 🔑 Drain serial bytes that arrived during the delay window.
-    // Without this, data accumulates in Arduino's HardwareSerial buffer
-    // but never reaches Kalico's command parser → system deadlocks.
+    // Without this, data accumulates in the buffer but never reaches
+    // Kalico's command parser → system deadlocks.
     if (arduino_serial_rx_pending()) {
         arduino_serial_drain_rx();
     }
@@ -107,13 +108,16 @@ irq_wait(void)
         uint32_t next = timer_dispatch_many();
         timer_kick_next(next);
     }
+#if CONFIG_WANT_WIFI && defined(ESP32)
+    delay(0);
+#endif
 }
 
 // Poll for pending work (called from main loop)
 void
 irq_poll(void)
 {
-    // Check if we need to handle serial data
+    // Check if we need to handle serial / WiFi data
     if (arduino_serial_rx_pending()) {
         arduino_serial_drain_rx();
     }
@@ -121,7 +125,13 @@ irq_poll(void)
     if (arduino_timer_irq_pending()) {
         arduino_timer_irq_clear();
         uint32_t next = timer_dispatch_many();
-        // Re-arm timer hardware so COMPA keeps firing
         timer_kick_next(next);
     }
+#if CONFIG_WANT_WIFI && defined(ESP32)
+    // On ESP32 with WiFi, the TCP/IP stack runs in separate FreeRTOS
+    // tasks.  If we never yield, those tasks starve and the WiFi
+    // connection stalls.  delay(0) gives control back to the FreeRTOS
+    // scheduler for one tick.
+    delay(0);
+#endif
 }

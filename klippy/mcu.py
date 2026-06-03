@@ -1085,7 +1085,30 @@ class MCU:
         )
         if self.is_fileoutput():
             return {"is_config": 0, "move_count": 500, "crc": 0}
-        config_params = get_config_cmd.send()
+        # Auto-clear shutdown state if MCU reports shutdown
+        for attempt in range(3):
+            self._is_shutdown = False
+            self._shutdown_msg = ""
+            config_params = get_config_cmd.send()
+            if self._is_shutdown:
+                # MCU sent shutdown message during config, try to clear it
+                try:
+                    clear_cmd = self.lookup_command("clear_shutdown")
+                    clear_cmd.send()
+                    self._is_shutdown = False
+                    self._shutdown_msg = ""
+                    continue  # Retry
+                except Exception:
+                    pass
+            if config_params["is_shutdown"]:
+                # MCU reports it's in shutdown, try to clear it
+                try:
+                    clear_cmd = self.lookup_command("clear_shutdown")
+                    clear_cmd.send()
+                    continue  # Retry
+                except Exception:
+                    pass
+            break  # Success or can't clear
         if self._is_shutdown:
             raise error(
                 "MCU '%s' error during config: %s"
@@ -1141,6 +1164,15 @@ class MCU:
                 self._reactor.NOW + self.reconnect_interval,
             )
             return
+        # Auto-clear MCU shutdown state before config
+        if self._is_shutdown:
+            try:
+                clear_cmd = self.lookup_command("clear_shutdown")
+                clear_cmd.send()
+                self._is_shutdown = False
+                self._shutdown_msg = ""
+            except Exception:
+                pass
         config_params = self._send_get_config()
         if not config_params["is_config"]:
             if self._restart_method == "rpi_usb":

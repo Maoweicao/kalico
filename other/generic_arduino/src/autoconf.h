@@ -33,7 +33,7 @@
 #define CONFIG_MCU_SERIAL_TYPE       0
 
 // Baud rate for communication with the host (e.g. Raspberry Pi)
-#define CONFIG_SERIAL_BAUD       250000
+#define CONFIG_SERIAL_BAUD       115200
 
 // Software Serial pins (only used when CONFIG_MCU_SERIAL_TYPE = 1)
 // RX pin = receive from host; TX pin = transmit to host
@@ -57,7 +57,7 @@
 
 // Use double-speed mode on AVR (U2X)
 #ifdef ARDUINO_AVR_UNO
-  #define CONFIG_SERIAL_BAUD_U2X       1
+  #define CONFIG_SERIAL_BAUD_U2X       0
 #else
   #define CONFIG_SERIAL_BAUD_U2X       1
 #endif
@@ -68,7 +68,7 @@
 //   0 = Serial  (USB, always available on boards with USB-to-serial)
 //   1 = SerialUSB (native USB on Due/Teensy/ESP32-S2)
 //   2 = Disabled (no debug output at all — saves flash & RAM)
-#define CONFIG_DEBUG_SERIAL_PORT      0
+#define CONFIG_DEBUG_SERIAL_PORT      2
 
 // Baud rate for debug serial output
 // Common values: 9600, 115200, 250000, 500000, 1000000
@@ -91,7 +91,7 @@
 // Enable hardware I2C peripheral (if available on target MCU)
 #define CONFIG_HAVE_GPIO_I2C       0
 // Enable hardware PWM support (analogWrite / timer-based PWM)
-#define CONFIG_HAVE_GPIO_HARD_PWM       1
+#define CONFIG_HAVE_GPIO_HARD_PWM       0
 // Enable software bit-banging for generic GPIO protocols
 #define CONFIG_WANT_GPIO_BITBANGING       1
 // Build software (bit-bang) SPI implementation

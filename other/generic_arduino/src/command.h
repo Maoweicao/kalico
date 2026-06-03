@@ -92,13 +92,23 @@ extern const struct command_parser command_index[];
 extern const uint16_t command_index_size;
 extern const uint8_t command_identify_data[];
 extern const uint32_t command_identify_size;
-const struct command_encoder *ctr_lookup_encoder(const char *str);
+const struct command_encoder *ctr_lookup_encoder(uint16_t hash);
 const struct command_encoder *ctr_lookup_output(const char *str);
 uint8_t ctr_lookup_static_string(const char *str);
 
+/*
+ * Compile-time hash from format string literal.
+ * hash = sizeof(FMT)*31 + (FMT)[0] + (FMT)[sizeof(FMT)-2]
+ *
+ * Verified unique for all 11 response types. The compiler evaluates this
+ * entirely at compile time — no string data is touched at runtime.
+ */
+#define _ENCODER_HASH(FMT) ((uint16_t)( \
+    sizeof(FMT) * 31 + ((const char *)(FMT))[0] + ((const char *)(FMT))[sizeof(FMT)-2] ))
+
 #define _DECL_ENCODER(FMT) ({                   \
     DECL_CTR("_DECL_ENCODER " FMT);             \
-    ctr_lookup_encoder(FMT); })
+    ctr_lookup_encoder(_ENCODER_HASH(FMT)); })
 
 #define _DECL_OUTPUT(FMT) ({                    \
     DECL_CTR("_DECL_OUTPUT " FMT);              \

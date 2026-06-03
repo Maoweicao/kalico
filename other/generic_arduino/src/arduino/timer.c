@@ -79,22 +79,23 @@ timer_kick(void)
     TIFR1 = 1 << OCF1A;
 }
 
-// Re-arm timer with a 32-bit absolute timer value.
-// Extracts the low 16 bits for OCR1A (compare) but also ensures
-// the overflow count is consistent.
+// Re-arm timer with a 32-bit absolute next-time value.
+// Only the low 16 bits matter for OCR1A; the overflow ISR
+// handles the upper 16 bits transparently.
+//
+// IMPORTANT: Do NOT add a "too close to TCNT1" guard here.
+// On a 16-bit timer, the low 16 bits of a 32-bit future time
+// may appear to be in the past (wrap-around), but the AVR
+// hardware correctly handles this: OCR1A=21600 and TCNT1=60000
+// will match after TCNT1 wraps past 65535→0→21600 (~1ms).
+// Adding a guard like `if ((int16_t)(compare - now) < 10)`
+// would instead set OCR1A to now+50, causing COMPA to fire
+// every 3µs → periodic_event saturates → 32-bit timer overflow.
 void
 timer_kick_next(uint32_t next_time)
 {
-    // next_time is (overflow << 16) | compare.  We only write the
-    // compare value to OCR1A; the overflow ISR will extend the count
-    // transparently.
-    uint16_t compare = (uint16_t)(next_time & 0xFFFF);
-    // Avoid setting OCR1A too close to TCNT1 (must be > ~10 ticks ahead).
-    uint16_t now = TCNT1;
-    if ((int16_t)(compare - now) < 10)
-        compare = now + 50;
-    OCR1A = compare;
-    TIFR1 = 1 << OCF1A;
+    OCR1A = (uint16_t)(next_time & 0xFFFF);
+    TIFR1 = 1 << OCF1A;  // clear pending COMPA flag
 }
 
 bool
@@ -112,6 +113,13 @@ arduino_timer_irq_clear(void)
 void
 arduino_timer_init(void)
 {
+    // Guard against double-initialization (setup() calls us explicitly,
+    // and sched_main() may also call us via ctr_init_list).
+    static bool initialized = false;
+    if (initialized)
+        return;
+    initialized = true;
+
     irqstatus_t flag = irq_save();
 
     TCCR1A = 0;                          // Normal mode

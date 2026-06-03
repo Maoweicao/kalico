@@ -12,16 +12,13 @@
 
 #include <stddef.h>
 
-// ============================================================================
-// Known init functions (called once at startup, in order)
-// ============================================================================
+/* ============================================================================
+ * Init functions (called once at startup, in order)
+ * ============================================================================ */
 
-extern void alloc_init(void);       // from basecmd.c
-extern void arduino_serial_init(void);  // from arduino/serial.c
-extern void arduino_timer_init(void);   // from arduino/timer.c
-
-// NOTE: timer_init() from generic/timer_irq.c is NOT included here
-// because arduino_timer_init() replaces it on Arduino.
+extern void alloc_init(void);           /* from basecmd.c */
+extern void arduino_serial_init(void);          /* from arduino/serial.cpp */
+extern void arduino_timer_init(void);   /* from arduino/timer.c */
 
 typedef void (*init_func_t)(void);
 init_func_t ctr_init_list[] = {
@@ -31,33 +28,41 @@ init_func_t ctr_init_list[] = {
 };
 const unsigned int ctr_init_count = sizeof(ctr_init_list) / sizeof(ctr_init_list[0]);
 
-// ============================================================================
-// Known task functions (called periodically in the main loop)
-// ============================================================================
+/* ============================================================================
+ * Task functions (called periodically in the main loop)
+ * ============================================================================ */
 
 typedef void (*task_func_t)(void);
 
-// From generic/serial_irq.c:
+/* From generic/serial_irq.c: */
 extern void console_task(void);
 
-// From generic/timer_irq.c:
+/* From generic/timer_irq.c: */
 extern void timer_task(void);
+
+/* From buttons.c: */
+extern void buttons_task(void);
 
 task_func_t ctr_task_list[] = {
     console_task,
     timer_task,
+    buttons_task,
 };
 const unsigned int ctr_task_count = sizeof(ctr_task_list) / sizeof(ctr_task_list[0]);
 
-// ============================================================================
-// Known shutdown functions (called on emergency stop)
-// ============================================================================
+/* ============================================================================
+ * Shutdown functions (called on emergency stop)
+ * ============================================================================ */
 
-// From command.c:
+/* From command.c: */
 extern void sendf_shutdown(void);
+
+/* From gpiocmds.c: */
+extern void digital_out_shutdown(void);
 
 typedef void (*shutdown_func_t)(void);
 shutdown_func_t ctr_shutdown_list[] = {
     sendf_shutdown,
+    digital_out_shutdown,
 };
 const unsigned int ctr_shutdown_count = sizeof(ctr_shutdown_list) / sizeof(ctr_shutdown_list[0]);

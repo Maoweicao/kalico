@@ -14,6 +14,12 @@
 
 #include <Arduino.h>
 #include "autoconf.h"
+
+// When WiFi is enabled, the UART serial transport is replaced by
+// wifi_serial.cpp.  Skip all UART code to avoid pin conflicts and
+// confusing identify data with duplicate constant declarations.
+#if !CONFIG_WANT_WIFI
+
 #include "misc.h"
 #include "serial.h"
 #include "internal.h"
@@ -127,6 +133,15 @@ arduino_serial_rx_pending(void)
 void
 arduino_serial_init(void)
 {
+    // Guard against double-initialization.
+    // setup() calls us explicitly, and sched_main() may also call us
+    // via the ctr_init_list in registrations.c.  Calling begin() twice
+    // would reinitialize the UART, potentially flushing in-progress data.
+    static bool initialized = false;
+    if (initialized)
+        return;
+    initialized = true;
+
     KALICO_SERIAL.begin(CONFIG_SERIAL_BAUD);
 
     DECL_CONSTANT("SERIAL_BAUD", CONFIG_SERIAL_BAUD);
@@ -152,3 +167,5 @@ arduino_serial_init(void)
 #ifdef __cplusplus
 }
 #endif
+
+#endif // !CONFIG_WANT_WIFI

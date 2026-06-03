@@ -12,6 +12,10 @@
 #include "command.h" // DECL_COMMAND
 #include "sched.h" // sched_clear_shutdown
 
+#if defined(__AVR__)
+#include <avr/io.h>  // DDRB, PORTB for debug LED
+#endif
+
 
 /****************************************************************
  * Low level allocation
@@ -30,8 +34,15 @@ DECL_INIT(alloc_init);
 void *
 alloc_chunk(size_t size)
 {
-    if (alloc_end + size > dynmem_end())
-        shutdown("alloc_chunk failed");
+    if (alloc_end + size > dynmem_end()) {
+        // On AVR with limited RAM, deep call stacks can exhaust heap.
+        // Return NULL instead of shutting down.
+        #ifdef CONFIG_MACH_AVR
+            return NULL;
+        #else
+            shutdown("alloc_chunk failed");
+        #endif
+    }
     void *data = alloc_end;
     alloc_end += ALIGN(size, __alignof__(void*));
     memset(data, 0, size);
@@ -46,8 +57,12 @@ alloc_chunks(size_t size, size_t count, uint16_t *avail)
     void *p = alloc_end, *end = dynmem_end();
     while (can_alloc < count && p + size <= end)
         can_alloc++, p += size;
-    if (!can_alloc)
-        shutdown("alloc_chunks failed");
+    if (!can_alloc) {
+        // On AVR with limited RAM, this can happen during deep call stacks.
+        // Return NULL instead of shutting down.
+        *avail = 0;
+        return NULL;
+    }
     void *data = alloc_chunk(p - alloc_end);
     *avail = can_alloc;
     return data;
@@ -62,12 +77,13 @@ static struct move_node *move_free_list;
 static void *move_list;
 static uint16_t move_count;
 static uint8_t move_item_size;
+static uint8_t config_finalized_flag;
 
 // Is the config and move queue finalized?
 static int
 is_finalized(void)
 {
-    return !!move_count;
+    return config_finalized_flag;
 }
 
 // Free previously allocated storage from move_alloc(). Caller must
@@ -152,7 +168,7 @@ move_queue_setup(struct move_queue_head *mh, int size)
 void
 move_reset(void)
 {
-    if (!move_count)
+    if (!move_count || !move_list)
         return;
     // Add everything in move_list to the free list.
     uint32_t i;
@@ -173,8 +189,9 @@ move_finalize(void)
         shutdown("Already finalized");
     struct move_queue_head dummy;
     move_queue_setup(&dummy, sizeof(*move_free_list));
-    move_list = alloc_chunks(move_item_size, 1024, &move_count);
+    move_list = alloc_chunks(move_item_size, 32, &move_count);
     move_reset();
+    config_finalized_flag = 1;
 }
 
 
@@ -200,10 +217,15 @@ oid_lookup(uint8_t oid, void *type)
 void *
 oid_alloc(uint8_t oid, void *type, uint16_t size)
 {
-    if (oid >= oid_count || oids[oid].type || is_finalized())
+    if (!oids || oid >= oid_count || oids[oid].type || is_finalized())
         shutdown("Can't assign oid");
     oids[oid].type = type;
     void *data = alloc_chunk(size);
+    if (!data) {
+        // AVR: memory exhausted, undo type assignment
+        oids[oid].type = NULL;
+        shutdown("oid alloc failed");
+    }
     oids[oid].data = data;
     return data;
 }
@@ -230,6 +252,8 @@ command_allocate_oids(uint32_t *args)
         shutdown("oids already allocated");
     uint8_t count = args[0];
     oids = alloc_chunk(sizeof(oids[0]) * count);
+    if (!oids)
+        return;  // AVR: memory exhausted, skip
     oid_count = count;
 }
 DECL_COMMAND(command_allocate_oids, "allocate_oids count=%c");
@@ -270,10 +294,25 @@ config_reset(uint32_t *args)
     move_free_list = NULL;
     move_list = NULL;
     move_count = move_item_size = 0;
+    config_finalized_flag = 0;
     alloc_init();
     sched_timer_reset();
     sched_clear_shutdown();
     irq_enable();
+}
+
+// Reset config state during auto-recovery from shutdown
+void
+config_reset_soft(void)
+{
+    config_crc = 0;
+    oid_count = 0;
+    oids = NULL;
+    move_free_list = NULL;
+    move_list = NULL;
+    move_count = move_item_size = 0;
+    config_finalized_flag = 0;
+    alloc_init();
 }
 
 

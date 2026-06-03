@@ -37,6 +37,14 @@ class ClockSync:
     def connect(self, serial):
         self.serial = serial
         self.mcu_freq = serial.msgparser.get_constant_float("CLOCK_FREQ")
+        # Full reset of all synchronization state
+        self.last_clock = 0
+        self.time_avg = self.time_variance = 0.0
+        self.clock_avg = self.clock_covariance = 0.0
+        self.prediction_variance = 0.0
+        self.last_prediction_time = 0.0
+        self.min_half_rtt = 999999999.9
+        self.min_rtt_time = 0.0
         # Load initial clock and frequency
         params = serial.send_with_response("get_uptime", "uptime")
         self.last_clock = (params["high"] << 32) | params["clock"]
@@ -77,6 +85,27 @@ class ClockSync:
         # Extend clock to 64bit
         last_clock = self.last_clock
         clock_delta = (params["clock"] - last_clock) & 0xFFFFFFFF
+        # Detect MCU restart: if delta > 2^31, clock went backwards
+        # (MCU rebooted and 32-bit counter reset to ~0)
+        if clock_delta > 0x80000000:
+            logging.info(
+                "MCU clock reset detected (delta=%d) — "
+                "resetting clock synchronization",
+                clock_delta,
+            )
+            self.last_clock = params["clock"]
+            self.clock_avg = params["clock"]
+            sent_time = params.get("#sent_time")
+            if sent_time:
+                self.time_avg = sent_time
+            self.time_variance = 0.0
+            self.clock_covariance = 0.0
+            self.prediction_variance = (0.001 * self.mcu_freq) ** 2
+            self.min_half_rtt = 999999999.9
+            self.min_rtt_time = 0.0
+            self.last_prediction_time = 0.0
+            self.clock_est = (self.time_avg, self.clock_avg, self.mcu_freq)
+            return
         self.last_clock = clock = last_clock + clock_delta
         # Check if this is the best round-trip-time seen so far
         sent_time = params["#sent_time"]

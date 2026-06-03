@@ -179,21 +179,21 @@ gpio_pwm_write(struct gpio_pwm g, uint8_t val)
 
 #if defined(__AVR__)
   #include <avr/io.h>
-  extern unsigned int __heap_start;
-  extern void *__brkval;
 
+  // Return the start of memory available for dynamic allocations
   void *
   dynmem_start(void)
   {
-      return (void*)&__heap_start;
+      extern char _end;
+      return &_end;
   }
 
+  // Return the end of memory available for dynamic allocations
+  // Matches original Klipper: ALIGN(SP, 256) - CONFIG_AVR_STACK_SIZE
   void *
   dynmem_end(void)
   {
-      if ((int)__brkval == 0)
-          return (void*)SP - CONFIG_AVR_STACK_SIZE;
-      return (void*)__brkval;
+      return (void*)ALIGN(AVR_STACK_POINTER_REG, 256) - CONFIG_AVR_STACK_SIZE;
   }
 #else
   // Non-AVR: dynmem_start/dynmem_end provided by generic/alloc.c (20KB pool)

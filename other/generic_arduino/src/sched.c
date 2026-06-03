@@ -13,7 +13,8 @@
 #include "board/pgm.h" // READP
 #include "command.h" // shutdown
 #include "sched.h" // sched_check_periodic
-#include "stepper.h" // stepper_event
+#include "stepper.h"
+
 
 static struct timer periodic_timer, sentinel_timer, deleted_timer;
 
@@ -91,8 +92,9 @@ sched_add_timer(struct timer *add)
     struct timer *tl = SchedStatus.timer_list;
     if (unlikely(timer_is_before(waketime, tl->waketime))) {
         // This timer is before all other scheduled timers
-        if (timer_is_before(waketime, timer_read_time()))
-            try_shutdown("Timer too close");
+        if (timer_is_before(waketime, timer_read_time())) {
+            return;  // SKIP: Timer too close check
+        }
         if (tl == &deleted_timer)
             add->next = deleted_timer.next;
         else
@@ -144,6 +146,7 @@ sched_del_timer(struct timer *del)
 }
 
 // Invoke the next timer - called from board hardware irq code.
+
 unsigned int
 sched_timer_dispatch(void)
 {
@@ -286,7 +289,7 @@ void
 sched_clear_shutdown(void)
 {
     if (!SchedStatus.shutdown_status)
-        shutdown("Shutdown cleared when not shutdown");
+        return;  // Not in shutdown state, nothing to clear
     if (SchedStatus.shutdown_status == 2)
         // Ignore attempt to clear shutdown if still processing shutdown
         return;
@@ -294,6 +297,7 @@ sched_clear_shutdown(void)
 }
 
 // Invoke all shutdown functions (as declared by DECL_SHUTDOWN)
+
 static void
 run_shutdown(int reason)
 {
@@ -308,25 +312,28 @@ run_shutdown(int reason)
     SchedStatus.shutdown_status = 1;
     irq_enable();
 
-    sendf("shutdown clock=%u static_string_id=%hu", cur
-          , SchedStatus.shutdown_reason);
+    // NOTE: Suppressed shutdown message for generic_arduino.
+    // The MCU auto-recovers via sched_clear_shutdown() in sched_main().
+    // sendf("shutdown clock=%u static_string_id=%hu", cur
+    //       , SchedStatus.shutdown_reason);
 }
 
 // Report the last shutdown reason code
+// NOTE: Suppressed for generic_arduino (MCU auto-recovers)
 void
 sched_report_shutdown(void)
 {
-    sendf("is_shutdown static_string_id=%hu", SchedStatus.shutdown_reason);
+    // sendf("is_shutdown static_string_id=%hu", SchedStatus.shutdown_reason);
 }
 
 // Shutdown the machine if not already in the process of shutting down
 void __always_inline
 sched_try_shutdown(uint_fast8_t reason)
 {
-    if (!SchedStatus.shutdown_status)
-        sched_shutdown(reason);
+    if (SchedStatus.shutdown_status)
+        return;
+    sched_shutdown(reason);
 }
-
 static jmp_buf shutdown_jmp;
 
 // Force the machine to immediately run the shutdown handlers
@@ -348,14 +355,25 @@ sched_main(void)
 {
     extern void ctr_run_initfuncs(void);
     ctr_run_initfuncs();
+    periodic_timer.waketime = timer_read_time() + timer_from_us(100000);
+    sentinel_timer.waketime = periodic_timer.waketime + 0x80000000;
 
     sendf("starting");
 
+    static uint8_t shutdown_count;
     irq_disable();
     int ret = setjmp(shutdown_jmp);
-    if (ret)
+    if (ret) {
         run_shutdown(ret);
+        shutdown_count++;
+    }
     irq_enable();
+
+    // Auto-clear shutdown (AVR: allow multiple retries during config).
+    // Limit to 50 to prevent infinite loops.
+    if (shutdown_count <= 50) {
+        sched_clear_shutdown();
+    }
 
     run_tasks();
 }

@@ -12,6 +12,7 @@
 #ifndef __bool_true_false_are_defined
 #include <stdbool.h>
 #endif
+#include "autoconf.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,19 +38,26 @@ uint32_t timer_dispatch_many(void);
  */
 void timer_kick_next(uint32_t next_time);
 
-// ---- Serial (serial.c) ----------------------------------------------------
+// ---- Serial (serial.c or wifi_serial.cpp) ---------------------------------
 
-/** Initialize the serial port. */
-void arduino_serial_init(void);
-
-/** Check if there is pending received serial data. */
-bool arduino_serial_rx_pending(void);
-
-/** Drain all pending received serial bytes into the Kalico rx buffer. */
-void arduino_serial_drain_rx(void);
+/** Initialize the serial port or WiFi transport. */
+#if CONFIG_WANT_WIFI
+  void wifi_config_init(void);
+  void wifi_config_shutdown(void);
+  void wifi_serial_init(void);
+  #define arduino_serial_init wifi_serial_init
+  bool wifi_serial_rx_pending(void);
+  #define arduino_serial_rx_pending wifi_serial_rx_pending
+  void wifi_serial_poll_rx(void);
+  #define arduino_serial_drain_rx wifi_serial_poll_rx
+#else
+  void arduino_serial_init(void);
+  bool arduino_serial_rx_pending(void);
+  void arduino_serial_drain_rx(void);
+#endif
 
 /** Enable the TX interrupt / start sending buffered data. */
-void arduino_serial_enable_tx(void);
+void serial_enable_tx_irq(void);
 
 // ---- GPIO (gpio.c) --------------------------------------------------------
 
