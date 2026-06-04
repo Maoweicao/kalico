@@ -1,4 +1,8 @@
 /**
- * board/io.h - Forwarding header → arduino/io.h
+ * board/io.h - Platform-conditional forwarding header
  */
-#include "arduino/io.h"
+#if CONFIG_MACH_STM32
+  #include "stm32/io.h"
+#else
+  #include "arduino/io.h"
+#endif

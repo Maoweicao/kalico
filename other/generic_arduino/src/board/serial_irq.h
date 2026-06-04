@@ -1,16 +1,16 @@
 /**
- * board/serial_irq.h - Forwarding header → arduino/serial.h
+ * board/serial_irq.h - Platform-conditional forwarding header
  *
- * The original Kalico serial_irq.h declares:
- *   void serial_enable_tx_irq(void);
- *   void serial_rx_byte(uint_fast8_t data);
- *   int serial_get_tx_byte(uint8_t *pdata);
- *
- * Our arduino/serial.h provides serial_enable_tx_irq.
- * serial_rx_byte/serial_get_tx_byte are in arduino/serial.c.
+ * Declares serial_enable_tx_irq and serial_rx_byte / serial_get_tx_byte.
+ * serial_enable_tx_irq is provided by platform serial code.
+ * serial_rx_byte / serial_get_tx_byte are provided by generic/serial_irq.c.
  */
-#include "arduino/serial.h"
+#if CONFIG_MACH_STM32
+  #include "stm32/serial.h"
+#else
+  #include "arduino/serial.h"
+#endif
 
-// These are declared globally from arduino/serial.c
+/* These are declared globally from generic/serial_irq.c */
 void serial_rx_byte(uint_fast8_t data);
 int serial_get_tx_byte(uint8_t *pdata);

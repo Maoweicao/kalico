@@ -37,6 +37,14 @@ extern void command_buttons_query(uint32_t *args);
 extern void command_buttons_add(uint32_t *args);
 extern void command_config_buttons(uint32_t *args);
 
+/* Stepper command handlers (from stepper.c) */
+extern void command_config_stepper(uint32_t *args);
+extern void command_queue_step(uint32_t *args);
+extern void command_set_next_step_dir(uint32_t *args);
+extern void command_reset_step_clock(uint32_t *args);
+extern void command_stepper_get_position(uint32_t *args);
+extern void command_stepper_stop_on_trigger(uint32_t *args);
+
 /* ============================================================================
  * Identify data
  * ============================================================================ */
@@ -136,6 +144,12 @@ static const uint8_t pt_buttons_add[] PROGMEM = { PT_byte, PT_byte, PT_uint32, P
 static const uint8_t pt_config_buttons[] PROGMEM = { PT_byte, PT_byte };
 static const uint8_t pt_identify_response[] PROGMEM = { PT_uint32, PT_progmem_buffer };
 static const uint8_t pt_empty[] PROGMEM = { };
+static const uint8_t pt_config_stepper[] PROGMEM = { PT_byte, PT_byte, PT_byte, PT_int16, PT_uint32 };
+static const uint8_t pt_queue_step[] PROGMEM = { PT_byte, PT_uint32, PT_uint16, PT_int16 };
+static const uint8_t pt_set_next_step_dir[] PROGMEM = { PT_byte, PT_byte };
+static const uint8_t pt_reset_step_clock[] PROGMEM = { PT_byte, PT_uint32 };
+static const uint8_t pt_stepper_get_position[] PROGMEM = { PT_byte };
+static const uint8_t pt_stepper_stop_on_trigger[] PROGMEM = { PT_byte, PT_byte };
 
 const struct command_parser command_index[] PROGMEM = {
     [0] = { .encoded_msgid = 0, .num_args = 0, .flags = 0, .num_params = 2, .param_types = pt_identify_response, .func = 0 },
@@ -156,13 +170,15 @@ const struct command_parser command_index[] PROGMEM = {
     [15] = { .encoded_msgid = 15, .num_args = 3, .flags = 0, .num_params = 3, .param_types = pt_queue_digital_out, .func = command_queue_digital_out },
     [16] = { .encoded_msgid = 16, .num_args = 2, .flags = 0, .num_params = 2, .param_types = pt_set_digital_out_pwm_cycle, .func = command_set_digital_out_pwm_cycle },
     [17] = { .encoded_msgid = 17, .num_args = 5, .flags = 0, .num_params = 5, .param_types = pt_config_digital_out, .func = command_config_digital_out },
-    [18] = { .func = 0 }, [19] = { .func = 0 }, [20] = { .func = 0 }, [21] = { .func = 0 },
-    [22] = { .func = 0 }, [23] = { .func = 0 }, [24] = { .func = 0 }, [25] = { .func = 0 },
-    [26] = { .func = 0 }, [27] = { .func = 0 }, [28] = { .func = 0 }, [29] = { .func = 0 },
-    [30] = { .func = 0 }, [31] = { .func = 0 }, [32] = { .func = 0 }, [33] = { .func = 0 },
-    [34] = { .func = 0 }, [35] = { .func = 0 }, [36] = { .func = 0 }, [37] = { .func = 0 },
-    [38] = { .func = 0 }, [39] = { .func = 0 }, [40] = { .func = 0 }, [41] = { .func = 0 },
-    [42] = { .func = 0 }, [43] = { .func = 0 }, [44] = { .func = 0 }, [45] = { .func = 0 },
+    /* Stepper commands (IDs 18-23) */
+    [18] = { .encoded_msgid = 18, .num_args = 5, .flags = 0, .num_params = 5, .param_types = pt_config_stepper, .func = command_config_stepper },
+    [19] = { .encoded_msgid = 19, .num_args = 4, .flags = 0, .num_params = 4, .param_types = pt_queue_step, .func = command_queue_step },
+    [20] = { .encoded_msgid = 20, .num_args = 2, .flags = 0, .num_params = 2, .param_types = pt_set_next_step_dir, .func = command_set_next_step_dir },
+    [21] = { .encoded_msgid = 21, .num_args = 2, .flags = 0, .num_params = 2, .param_types = pt_reset_step_clock, .func = command_reset_step_clock },
+    [22] = { .encoded_msgid = 22, .num_args = 1, .flags = 0, .num_params = 1, .param_types = pt_stepper_get_position, .func = command_stepper_get_position },
+    [23] = { .encoded_msgid = 23, .num_args = 2, .flags = 0, .num_params = 2, .param_types = pt_stepper_stop_on_trigger, .func = command_stepper_stop_on_trigger },
+    [24] = { .func = 0 }, [25] = { .func = 0 }, [26] = { .func = 0 }, [27] = { .func = 0 },
+    [28] = { .func = 0 }, [29] = { .func = 0 }, [30] = { .func = 0 }, [31] = { .func = 0 },
     [46] = { .encoded_msgid = 46, .num_args = 2, .flags = 0, .num_params = 2, .param_types = pt_buttons_ack, .func = command_buttons_ack },
     [47] = { .encoded_msgid = 47, .num_args = 5, .flags = 0, .num_params = 5, .param_types = pt_buttons_query, .func = command_buttons_query },
     [48] = { .encoded_msgid = 48, .num_args = 4, .flags = 0, .num_params = 4, .param_types = pt_buttons_add, .func = command_buttons_add },
@@ -201,6 +217,9 @@ static const struct command_encoder enc_debug_result PROGMEM = { .encoded_msgid 
 
 static const struct command_encoder enc_buttons_state PROGMEM = { .encoded_msgid = 250, .max_size = 64, .num_params = 3, .param_types = enc_pt_buttons_state };
 
+static const uint8_t enc_pt_stepper_position[] PROGMEM = { PT_byte, PT_int32 };
+static const struct command_encoder enc_stepper_position PROGMEM = { .encoded_msgid = 244, .max_size = 24, .num_params = 2, .param_types = enc_pt_stepper_position };
+
 
 /* ============================================================================
 
@@ -229,6 +248,7 @@ ctr_lookup_encoder(uint16_t hash)
     case  661:  return &enc_pong;              /* "pong data=%*s" */
     case  837:  return &enc_debug_result;      /* "debug_result val=%u" */
     case 1577:  return &enc_buttons_state;     /* "buttons_state oid=%c ack_count=%c state=%*s" */
+    case 1181:  return &enc_stepper_position;  /* "stepper_position oid=%c pos=%i" */
     default:    return &enc_starting;
     }
 }

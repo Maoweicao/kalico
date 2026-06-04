@@ -1,10 +1,8 @@
 /**
- * stepper.h - Stub stepper header for generic_arduino
+ * stepper.h - Stepper motor driver declarations
  *
- * The stepper subsystem is not enabled in this generic build
- * (CONFIG_INLINE_STEPPER_HACK=0, CONFIG_WANT_STEPPER=0).
- *
- * This stub provides the minimum declarations needed for sched.c to compile.
+ * Copyright (C) 2016-2025  Kevin O'Connor <kevin@koconnor.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 #ifndef __STEPPER_H
@@ -13,6 +11,7 @@
 #include <stdint.h>
 
 struct timer;
-unsigned int stepper_event(struct timer *t);
+uint_fast8_t stepper_event(struct timer *t);
+void stepper_shutdown(void);
 
 #endif // __STEPPER_H

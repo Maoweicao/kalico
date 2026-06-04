@@ -1,4 +1,8 @@
 /**
- * board/misc.h - Forwarding header → arduino/misc.h
+ * board/misc.h - Platform-conditional forwarding header
  */
-#include "arduino/misc.h"
+#if CONFIG_MACH_STM32
+  #include "stm32/misc.h"
+#else
+  #include "arduino/misc.h"
+#endif

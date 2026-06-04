@@ -1,10 +1,10 @@
 /**
  * arduino/irq.c - Interrupt management implementation for Arduino
  *
- * Maps Kalico's irq_* API to Arduino's noInterrupts()/interrupts()
- * and Architecture-specific interrupt primitives.
+ * Maps Klipper's irq_* API to platform-specific primitives.
  *
- * Derived from src/avr/irq.h and src/linux/timer.c
+ * AVR: ISR-native timer dispatch — irq_poll() only handles serial.
+ * ARM/ESP32: Poll-based — irq_poll() handles both serial and timers.
  *
  * Copyright (C) 2016-2024  Kevin O'Connor <kevin@koconnor.net>
  * Arduino port contributors.
@@ -19,8 +19,7 @@
 #include "irq.h"
 #include "internal.h"
 
-// Arduino core provides noInterrupts()/interrupts() macros
-// which map to cli()/sei() on AVR or __disable_irq()/__enable_irq() on ARM
+// ---- irq_disable / irq_enable ----
 
 void
 irq_disable(void)
@@ -37,14 +36,11 @@ irq_enable(void)
 irqstatus_t
 irq_save(void)
 {
-    // On Arduino, we use the SREG (AVR) or PRIMASK (ARM) as status
-    // For simplicity, we use a flag-based approach
     uint8_t primask;
 #if defined(__AVR__)
     primask = SREG & 0x80;  // Global Interrupt Enable flag
     noInterrupts();
 #elif defined(__arm__) || defined(__ARM_ARCH)
-    // Read PRIMASK
     __asm__ __volatile__("mrs %0, primask" : "=r"(primask));
     __disable_irq();
 #else
@@ -69,40 +65,49 @@ irq_restore(irqstatus_t flag)
 #endif
 }
 
-// Wait for an interrupt (sleep until next IRQ)
+// ---- irq_wait ----
+// Sleep until next interrupt, then drain any pending serial data.
 //
-// IMPORTANT: This port uses polled serial (Arduino's HardwareSerial),
-// NOT interrupt-driven UART.  During the 500µs delay below, Arduino's
-// UART RX ISR puts bytes into the internal HardwareSerial buffer, BUT
-// arduino_serial_drain_rx() / serial_rx_byte() / sched_wake_tasks()
-// are the ONLY way those bytes get fed into Kalico's command parser.
+// On AVR with ISR-native timer dispatch, timers are handled entirely
+// inside the Timer1 COMPA ISR.  irq_wait() only needs to drain serial.
 //
-// If we don't drain them here, run_tasks() sleeps forever because
-// sched_wake_tasks() is never called and tasks_status stays TS_IDLE.
-//
+// On ARM/ESP32 with poll-based dispatch, irq_wait() also checks for
+// pending timer events.
+
 void
 irq_wait(void)
 {
 #if defined(__AVR__)
-    interrupts();
-    delayMicroseconds(10);
-    noInterrupts();
+    // AVR ISR-native: brief interrupt window for pending ISRs.
+    // Timer dispatch happens entirely inside the Timer1 COMPA ISR.
+    // Arduino HardwareSerial accumulates bytes in its own buffer —
+    // we must drain them here so serial_rx_byte() sees MESSAGE_SYNC
+    // and calls sched_wake_tasks(), breaking us out of the idle loop.
+    irq_enable();
+    if (arduino_serial_rx_pending())
+        arduino_serial_drain_rx();
+    else
+        __asm__ __volatile__("nop" ::: "memory");
+    irq_disable();
 #elif defined(__arm__) || defined(__ARM_ARCH)
     __enable_irq();
-    delayMicroseconds(10);
+    __asm__ __volatile__("nop" ::: "memory");
     __disable_irq();
-#else
-    interrupts();
-    delayMicroseconds(10);
-    noInterrupts();
-#endif
-    // 🔑 Drain serial bytes that arrived during the delay window.
-    // Without this, data accumulates in the buffer but never reaches
-    // Kalico's command parser → system deadlocks.
     if (arduino_serial_rx_pending()) {
         arduino_serial_drain_rx();
     }
-    // Also handle any timer events that fired.
+    if (arduino_timer_irq_pending()) {
+        arduino_timer_irq_clear();
+        uint32_t next = timer_dispatch_many();
+        timer_kick_next(next);
+    }
+#else
+    interrupts();
+    __asm__ __volatile__("nop" ::: "memory");
+    noInterrupts();
+    if (arduino_serial_rx_pending()) {
+        arduino_serial_drain_rx();
+    }
     if (arduino_timer_irq_pending()) {
         arduino_timer_irq_clear();
         uint32_t next = timer_dispatch_many();
@@ -110,28 +115,36 @@ irq_wait(void)
     }
 #if CONFIG_WANT_WIFI && defined(ESP32)
     delay(0);
+#endif
 #endif
 }
 
-// Poll for pending work (called from main loop)
+// ---- irq_poll ----
+// Called from main loop to handle pending work.
+//
+// On AVR with ISR-native mode: only drains serial data.
+// On ARM/ESP32: drains serial AND dispatches pending timers.
+
 void
 irq_poll(void)
 {
-    // Check if we need to handle serial / WiFi data
+#if defined(__AVR__)
+    // AVR ISR-native: timers dispatched in ISR, only handle serial here
     if (arduino_serial_rx_pending()) {
         arduino_serial_drain_rx();
     }
-    // Check if timer ISR needs attention
+#else
+    // ARM/ESP32 poll-based: check both serial and timer
+    if (arduino_serial_rx_pending()) {
+        arduino_serial_drain_rx();
+    }
     if (arduino_timer_irq_pending()) {
         arduino_timer_irq_clear();
         uint32_t next = timer_dispatch_many();
         timer_kick_next(next);
     }
 #if CONFIG_WANT_WIFI && defined(ESP32)
-    // On ESP32 with WiFi, the TCP/IP stack runs in separate FreeRTOS
-    // tasks.  If we never yield, those tasks starve and the WiFi
-    // connection stalls.  delay(0) gives control back to the FreeRTOS
-    // scheduler for one tick.
     delay(0);
+#endif
 #endif
 }

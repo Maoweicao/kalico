@@ -1,0 +1,104 @@
+# Makefile.stm32 - Build generic_arduino for STM32H723 using system ARM GCC
+#
+# Usage: make -f Makefile.stm32
+#
+# Requires: arm-none-eabi-gcc (installed via apt)
+# CMSIS headers: from Klipper lib/ directory
+
+PREFIX = arm-none-eabi-
+CC = $(PREFIX)gcc
+OBJCOPY = $(PREFIX)objcopy
+SIZE = $(PREFIX)size
+
+# Project paths
+SRCDIR = src
+BUILDDIR = build_stm32
+KLIPPER_LIB = ../..
+
+# CMSIS headers from Klipper
+CMSIS_DEVICE = $(KLIPPER_LIB)/lib/stm32h7/include
+CMSIS_CORE = $(KLIPPER_LIB)/lib/cmsis-core
+
+# Source files
+SRC_C = \
+	$(SRCDIR)/stm32/clock.c \
+	$(SRCDIR)/stm32/gpio.c \
+	$(SRCDIR)/stm32/irq.c \
+	$(SRCDIR)/stm32/serial.c \
+	$(SRCDIR)/stm32/timer.c \
+	$(SRCDIR)/main.cpp \
+	$(SRCDIR)/sched.c \
+	$(SRCDIR)/command.c \
+	$(SRCDIR)/basecmd.c \
+	$(SRCDIR)/stepper.c \
+	$(SRCDIR)/gpiocmds.c \
+	$(SRCDIR)/buttons.c \
+	$(SRCDIR)/debugcmds.c \
+	$(SRCDIR)/registrations.c \
+	$(SRCDIR)/ctr_run.c \
+	$(SRCDIR)/compile_time_request.c \
+	$(SRCDIR)/generic/serial_irq.c \
+	$(SRCDIR)/generic/timer_irq.c \
+	$(SRCDIR)/generic/crc16_ccitt.c \
+	$(SRCDIR)/generic/alloc.c
+
+# Include paths
+INCLUDES = \
+	-I$(SRCDIR) \
+	-I$(SRCDIR)/board \
+	-I$(SRCDIR)/stm32 \
+	-I$(SRCDIR)/generic \
+	-I$(SRCDIR)/lib/KalicoProtocol/src \
+	-I$(CMSIS_DEVICE) \
+	-I$(CMSIS_CORE)
+
+# Compiler flags
+CFLAGS = \
+	-mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16 \
+	-O2 -g \
+	-ffunction-sections -fdata-sections \
+	-fno-builtin \
+	-std=gnu11 \
+	-DSTM32H723xx \
+	-DCONFIG_MACH_STM32=1 \
+	-DCONFIG_BOARD_DIRECTORY='"stm32"' \
+	-DCONFIG_CLOCK_FREQ=528000000UL \
+	-DCONFIG_SERIAL_BAUD=250000 \
+	-DCONFIG_STM32_SERIAL_USART3=1 \
+	-Wall -Wextra -Wno-unused-parameter \
+	$(INCLUDES)
+
+CXXFLAGS = $(CFLAGS) -std=gnu++17 -fno-exceptions -fno-rtti
+
+# Linker flags (no linker script for now - just check compilation)
+LDFLAGS = \
+	-mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16 \
+	-Wl,--gc-sections \
+	--specs=nano.specs --specs=nosys.specs \
+	-lm -lc -lnosys
+
+# Object files
+OBJ = $(patsubst $(SRCDIR)/%.c,$(BUILDDIR)/%.o,$(filter %.c,$(SRC_C))) \
+      $(patsubst $(SRCDIR)/%.cpp,$(BUILDDIR)/%.o,$(filter %.cpp,$(SRC_C)))
+
+TARGET = $(BUILDDIR)/generic_arduino_stm32h723
+
+.PHONY: all clean
+
+all: $(TARGET).elf
+	@$(SIZE) $(TARGET).elf
+
+$(TARGET).elf: $(OBJ)
+	$(CC) $(LDFLAGS) -o $@ $^
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.c | dirs
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp | dirs
+	$(CC) $(CXXFLAGS) -c -o $@ $<
+
+dirs:
+	@mkdir -p $(BUILDDIR)/stm32 $(BUILDDIR)/generic
+
+clean:
+	rm -rf $(BUILDDIR)

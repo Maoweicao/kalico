@@ -4,9 +4,6 @@
  * Because generic_arduino does not have the Kalico build script to
  * extract these from object files, we maintain them manually here.
  *
- * When you add a new DECL_INIT(), DECL_TASK(), or DECL_SHUTDOWN()
- * in your source files, add the function to the appropriate list below.
- *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -60,9 +57,13 @@ extern void sendf_shutdown(void);
 /* From gpiocmds.c: */
 extern void digital_out_shutdown(void);
 
+/* From stepper.c: */
+extern void stepper_shutdown(void);
+
 typedef void (*shutdown_func_t)(void);
 shutdown_func_t ctr_shutdown_list[] = {
     sendf_shutdown,
     digital_out_shutdown,
+    stepper_shutdown,
 };
 const unsigned int ctr_shutdown_count = sizeof(ctr_shutdown_list) / sizeof(ctr_shutdown_list[0]);

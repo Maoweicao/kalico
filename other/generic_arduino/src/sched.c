@@ -312,18 +312,16 @@ run_shutdown(int reason)
     SchedStatus.shutdown_status = 1;
     irq_enable();
 
-    // NOTE: Suppressed shutdown message for generic_arduino.
-    // The MCU auto-recovers via sched_clear_shutdown() in sched_main().
-    // sendf("shutdown clock=%u static_string_id=%hu", cur
-    //       , SchedStatus.shutdown_reason);
+    // Send shutdown notification to host (required for stepper support)
+    sendf("shutdown clock=%u static_string_id=%hu", cur
+          , SchedStatus.shutdown_reason);
 }
 
 // Report the last shutdown reason code
-// NOTE: Suppressed for generic_arduino (MCU auto-recovers)
 void
 sched_report_shutdown(void)
 {
-    // sendf("is_shutdown static_string_id=%hu", SchedStatus.shutdown_reason);
+    sendf("is_shutdown static_string_id=%hu", SchedStatus.shutdown_reason);
 }
 
 // Shutdown the machine if not already in the process of shutting down

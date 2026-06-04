@@ -1,50 +1,88 @@
 /**
- * main.cpp - Arduino entry point for the Kalico MCU firmware
+ * main.cpp - Entry point for the Kalico MCU firmware
  *
- * Maps Arduino's setup()/loop() to the Kalico scheduler's sched_main().
+ * Maps platform-specific entry points to the Kalico scheduler's sched_main().
  *
- * Setup flow:
- *   1. Disable Arduino's Timer0 ISR (we have our own timer)
- *   2. Call sched_main() — enters the Kalico cooperative scheduler loop
+ * AVR (Arduino):  setup()/loop() → sched_main()
+ * STM32H723:      main() → clock_setup() → sched_main()
  *
  * Copyright (C) 2024 Arduino port contributors.
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include <Arduino.h>
-#include <avr/interrupt.h>
 #include "autoconf.h"
-#include "arduino/internal.h"
 
 // Kalico core entry point (defined in sched.c)
 extern "C" void sched_main(void);
 
 // ============================================================================
-// Arduino Setup
+// STM32 Entry Point
 // ============================================================================
+
+#if CONFIG_MACH_STM32
+
+#include "stm32/internal.h"
+
+// Declared in stm32/timer.c
+extern "C" void stm32_timer_init(void);
+
+// Declared in stm32/serial.c
+extern "C" void stm32_serial_init(void);
+
+// Forward declarations for registration-based init
+extern "C" void alloc_init(void);
+extern "C" void arduino_serial_init(void);
+extern "C" void arduino_timer_init(void);
+
+// Override the registration names so registrations.c links correctly.
+// stm32_serial_init() and stm32_timer_init() are the actual implementations.
+void arduino_serial_init(void) { stm32_serial_init(); }
+void arduino_timer_init(void)  { stm32_timer_init(); }
+
+extern "C"
+int main(void)
+{
+    // ---- Configure system clock to 528MHz via PLL1 ----
+    // Must be done before any peripheral access that depends on clock speed.
+    stm32_clock_setup();
+
+    // ---- Enter Kalico main loop ----
+    // Serial init and timer init are handled by registrations.c → ctr_run_initfuncs().
+    // sched_main() never returns.
+    sched_main();
+
+    // Should never reach here
+    for (;;) ;
+}
+
+// ============================================================================
+// Arduino Entry Point (AVR / ARM / ESP32)
+// ============================================================================
+
+#else // !CONFIG_MACH_STM32
+
+#include <Arduino.h>
+#if defined(__AVR__)
+#include <avr/interrupt.h>
+#endif
+#include "arduino/internal.h"
 
 void setup()
 {
-    // ---- Disable Arduino's Timer0 overflow interrupt ----
-    // Arduino's init() enables TIMER0_OVF for millis()/micros().
-    // We don't need it — Klipper has its own timer system.
-    // Leaving it active wastes stack space on every ISR (~50 bytes)
-    // and can cause stack overflow on AVR with limited RAM.
+#if defined(__AVR__)
+    // Disable Arduino's Timer0 overflow interrupt (we have our own timer)
     TIMSK0 = 0;
+#endif
 
-    // ---- Enter Kalico main loop ----
-    // sched_main() never returns — it runs the cooperative scheduler forever.
-    // Serial init and timer init are handled by registrations.c → ctr_run_initfuncs().
+    // Enter Kalico main loop
     sched_main();
 }
 
-// ============================================================================
-// Arduino Loop (should never be called — sched_main runs forever)
-// ============================================================================
-
 void loop()
 {
-    // sched_main() contains its own infinite loop (run_tasks).
+    // sched_main() contains its own infinite loop.
     // If we ever get here, something went wrong.
     delay(1000);
 }
+
+#endif // CONFIG_MACH_STM32

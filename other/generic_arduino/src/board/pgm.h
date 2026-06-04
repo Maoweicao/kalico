@@ -1,4 +1,8 @@
 /**
- * board/pgm.h - Forwarding header → arduino/pgm.h
+ * board/pgm.h - Platform-conditional forwarding header
  */
-#include "arduino/pgm.h"
+#if CONFIG_MACH_STM32
+  #include "stm32/pgm.h"
+#else
+  #include "arduino/pgm.h"
+#endif

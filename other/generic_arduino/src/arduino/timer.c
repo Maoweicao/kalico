@@ -1,36 +1,30 @@
-﻿/**
+/**
  * arduino/timer.c - Hardware timer implementation for Arduino
  *
- * Provides platform-specific timer functions:
- *   timer_read_time(), timer_kick(),
- *   arduino_timer_init(), arduino_timer_irq_*()
+ * Platform-specific timer functions with ISR-native dispatch on AVR
+ * and poll-based dispatch on ARM/ESP32.
  *
- * The generic functions (timer_from_us, timer_is_before, timer_dispatch_many)
- * are provided by generic/timer_irq.c.
+ * AVR: Timer1 COMPA ISR directly calls sched_timer_dispatch() —
+ *      same as native Klipper src/avr/timer.c, enabling real-time
+ *      stepper ISR scheduling.
  *
- * Derived from src/avr/timer.c
+ * ARM/ESP32: Timer ISR sets a flag; irq_poll() dispatches timers.
  *
  * Copyright (C) 2016-2024  Kevin O'Connor <kevin@koconnor.net>
  * Arduino port contributors.
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include <Arduino.h>            // millis, micros, noInterrupts, interrupts
 #include "autoconf.h"           // CONFIG_CLOCK_FREQ
-#include "irq.h"                // irq_save
+#include "irq.h"                // irq_save, irq_enable, irq_disable
 #include "misc.h"               // timer_from_us (declared; defined in generic/)
 #include "internal.h"           // arduino_timer_*
 #include "../command.h"         // DECL_CONSTANT
 #include "../sched.h"           // sched_timer_dispatch
 
-// Timer IRQ pending flag (set by timer ISR, cleared by irq_poll)
-static volatile bool timer_irq_pending_flag = false;
-
-// ---- Forward: timer_dispatch_many (from generic/timer_irq.c) -------------
-extern uint32_t timer_dispatch_many(void);
 
 // ============================================================================
-// Platform-specific timer implementation
+// AVR: ISR-native timer dispatch (directly from Timer1 COMPA ISR)
 // ============================================================================
 
 #if defined(__AVR__)
@@ -38,83 +32,160 @@ extern uint32_t timer_dispatch_many(void);
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
-// ---- AVR Timer1 (16-bit) ----
-// Timer1 is used because Timer0 is reserved for millis()/micros()
-
 DECL_CONSTANT("CLOCK_FREQ", CONFIG_CLOCK_FREQ);
 
-// AVR 32-bit time: extended by counting Timer1 overflows
-static volatile uint32_t timer_overflow_count = 0;
+// ---- 32-bit timer: high 16 bits from overflow counting ----
+static uint16_t timer_high;
 
-// Timer1 overflow ISR — extends the 16-bit counter to 32-bit
-ISR(TIMER1_OVF_vect)
-{
-    timer_overflow_count++;
-}
+// Wrap timer: handles 16→32 bit overflow extension
+static struct timer wrap_timer;
 
-// Timer1 compare match A ISR — signals that a timer dispatch is needed
-ISR(TIMER1_COMPA_vect)
-{
-    timer_irq_pending_flag = true;
-}
+// Forward declarations
+extern void sched_add_timer(struct timer *add);
 
-uint32_t
-timer_read_time(void)
+static uint_fast8_t
+timer_event(struct timer *t)
 {
-    uint8_t sreg = SREG;
-    noInterrupts();
-    uint16_t cnt = TCNT1;
-    uint32_t ovf = timer_overflow_count;
-    if ((TIFR1 & (1 << TOV1)) && cnt < 32768) {
-        ovf++;
+    uint16_t *nextwake = (void*)&wrap_timer.waketime;
+    if (TIFR1 & (1<<TOV1)) {
+        TIFR1 = 1<<TOV1;
+        timer_high++;
+        // Schedule next overflow check at mid-point of next 16-bit cycle
+        uint32_t nw = ((uint32_t)timer_high << 16) | 0x8000;
+        *nextwake = (uint16_t)nw;
+    } else {
+        // Not overflowed yet — check again after wrap
+        uint32_t nw = ((uint32_t)(timer_high + 1)) << 16;
+        *nextwake = (uint16_t)nw;
     }
-    SREG = sreg;
-    return (ovf << 16) | cnt;
+    return SF_RESCHEDULE;
 }
 
+static struct timer wrap_timer = {
+    .func = timer_event,
+    .waketime = 0x8000,
+};
+
+// ---- ISR timing constants (from native Klipper) ----
+#define TIMER_REPEAT_TICKS 3000
+#define TIMER_MIN_ENTRY_TICKS 44
+#define TIMER_MIN_EXIT_TICKS 47
+#define TIMER_MIN_TRY_TICKS (TIMER_MIN_ENTRY_TICKS + TIMER_MIN_EXIT_TICKS)
+#define TIMER_DEFER_REPEAT_TICKS 256
+
+static inline uint16_t
+timer_get(void)
+{
+    return TCNT1;
+}
+
+static inline void
+timer_set(uint16_t next)
+{
+    OCR1A = next;
+}
+
+static inline void
+timer_repeat_set(uint16_t next)
+{
+    OCR1B = next;
+    // Clear OCF1B flag — hand-coded for efficiency
+    uint8_t dummy;
+    asm volatile("ldi %0, %2\n    out %1, %0"
+                 : "=d"(dummy) : "i"(&TIFR1 - 0x20), "i"(1<<OCF1B));
+}
+
+// Activate timer dispatch as soon as possible
 void
 timer_kick(void)
 {
-    OCR1A = TCNT1 + 50;
-    TIFR1 = 1 << OCF1A;
+    timer_set(timer_get() + 50);
+    TIFR1 = 1<<OCF1A;
 }
 
-// Re-arm timer with a 32-bit absolute next-time value.
-// Only the low 16 bits matter for OCR1A; the overflow ISR
-// handles the upper 16 bits transparently.
-//
-// IMPORTANT: Do NOT add a "too close to TCNT1" guard here.
-// On a 16-bit timer, the low 16 bits of a 32-bit future time
-// may appear to be in the past (wrap-around), but the AVR
-// hardware correctly handles this: OCR1A=21600 and TCNT1=60000
-// will match after TCNT1 wraps past 65535→0→21600 (~1ms).
-// Adding a guard like `if ((int16_t)(compare - now) < 10)`
-// would instead set OCR1A to now+50, causing COMPA to fire
-// every 3µs → periodic_event saturates → 32-bit timer overflow.
 void
 timer_kick_next(uint32_t next_time)
 {
+    // Only the low 16 bits matter for OCR1A
     OCR1A = (uint16_t)(next_time & 0xFFFF);
-    TIFR1 = 1 << OCF1A;  // clear pending COMPA flag
+    TIFR1 = 1 << OCF1A;
 }
 
-bool
-arduino_timer_irq_pending(void)
+// Return the current time (in absolute clock ticks, 32-bit)
+uint32_t
+timer_read_time(void)
 {
-    return timer_irq_pending_flag;
+    irqstatus_t flag = irq_save();
+    uint16_t cnt = timer_get();
+    uint16_t hi = timer_high;
+    if (unlikely(TIFR1 & (1<<TOV1))) {
+        irq_restore(flag);
+        if ((uint8_t)(cnt >> 8) < 0xff)
+            hi++;
+        return ((uint32_t)hi << 16) | cnt;
+    }
+    irq_restore(flag);
+    return ((uint32_t)hi << 16) | cnt;
 }
 
-void
-arduino_timer_irq_clear(void)
+// ---- Timer1 COMPA ISR: directly dispatches software timers ----
+// This is the key change from poll-based to ISR-native mode.
+// The stepper_event() function runs directly inside this ISR,
+// ensuring deterministic, low-latency step pulse timing.
+ISR(TIMER1_COMPA_vect)
 {
-    timer_irq_pending_flag = false;
+    uint16_t next;
+    for (;;) {
+        // Run the next software timer (may call stepper_event)
+        next = sched_timer_dispatch();
+
+        for (;;) {
+            int16_t diff = timer_get() - next;
+            if (likely(diff >= 0)) {
+                // Timer has expired — run next one
+                // Briefly allow nested irqs to check for defer
+                irq_enable();
+                if (unlikely(TIFR1 & (1<<OCF1B)))
+                    goto check_defer;
+                irq_disable();
+                break;
+            }
+
+            if (likely(diff <= -(int16_t)TIMER_MIN_TRY_TICKS))
+                // Timer is far enough in the future — schedule it
+                goto done;
+
+            // Timer is close — spin-wait
+            irq_enable();
+            if (unlikely(TIFR1 & (1<<OCF1B)))
+                goto check_defer;
+            irq_disable();
+            continue;
+
+        check_defer:
+            // Too many repeat timers — defer to main loop
+            irq_disable();
+            uint16_t now = timer_get();
+            if ((int16_t)(next - now) < (int16_t)(-timer_from_us(1000)))
+                try_shutdown("Rescheduled timer in the past");
+            if (sched_check_set_tasks_busy()) {
+                timer_repeat_set(now + TIMER_REPEAT_TICKS);
+                next = now + TIMER_DEFER_REPEAT_TICKS;
+                goto done;
+            }
+            timer_repeat_set(now + TIMER_REPEAT_TICKS);
+            timer_set(now);
+        }
+    }
+
+done:
+    timer_set(next);
 }
 
+// ---- Initialization ----
 void
 arduino_timer_init(void)
 {
-    // Guard against double-initialization (setup() calls us explicitly,
-    // and sched_main() may also call us via ctr_init_list).
     static bool initialized = false;
     if (initialized)
         return;
@@ -123,36 +194,76 @@ arduino_timer_init(void)
     irqstatus_t flag = irq_save();
 
     TCCR1A = 0;                          // Normal mode
-    TCCR1B = (1 << CS10);                // Prescaler = 1
+    TCCR1B = (1 << CS10);                // Prescaler = 1 (16 MHz)
     TCCR1C = 0;
     TCNT1 = 0;
-    timer_overflow_count = 0;
-    TIMSK1 = (1 << TOIE1) | (1 << OCIE1A);
-    OCR1A = timer_from_us(100);
+    timer_high = 0;
+
+    // Setup for first IRQ
+    timer_kick();
+    timer_repeat_set(timer_get() + 50);
+
+    // Register wrap_timer for 16→32 bit overflow handling
+    sched_add_timer(&wrap_timer);
+
+    // Clear overflow flag and enable COMPA interrupt
+    TIFR1 = 1<<TOV1;
+    TIMSK1 = (1 << OCIE1A);
 
     irq_restore(flag);
 }
 
+// AVR ISR-native mode: these functions are not used in the main loop
+// (timer dispatch happens entirely inside the ISR)
+bool
+arduino_timer_irq_pending(void)
+{
+    return false;
+}
+
+void
+arduino_timer_irq_clear(void)
+{
+    // No-op: ISR handles everything
+}
+
+// ============================================================================
+// ARM (Arduino Due, Teensy 3.x/4.x) — Poll-based timer dispatch
+// ============================================================================
+
 #elif defined(__arm__) || defined(__ARM_ARCH)
 
-// ---- ARM Cortex-M (Arduino Due, Teensy 3.x/4.x, etc.) ----
-// Uses the SysTick timer extended to 32-bit via millis()/micros()
+#include <Arduino.h>
 
 DECL_CONSTANT("CLOCK_FREQ", CONFIG_CLOCK_FREQ);
 
+static volatile bool timer_irq_pending_flag = false;
+
+extern uint32_t timer_dispatch_many(void);
+
+// ARM SysTick-based 32-bit timer
 uint32_t
 timer_read_time(void)
 {
-    uint32_t ms = millis();
-    uint32_t us_part = micros() % 1000;
-    uint32_t total_us = ms * 1000UL + us_part;
-    return timer_from_us(total_us);
+    // Use DWT cycle counter if available, else micros()
+#if defined(DWT_BASE) && defined(DWT_CYCCNT)
+    return DWT->CYCCNT;
+#else
+    return micros() * (CONFIG_CLOCK_FREQ / 1000000UL);
+#endif
 }
 
 void
 timer_kick(void)
 {
     timer_irq_pending_flag = true;
+}
+
+void
+timer_kick_next(uint32_t next_time)
+{
+    (void)next_time;
+    // On ARM, timer dispatch happens synchronously in irq_poll()
 }
 
 bool
@@ -170,22 +281,22 @@ arduino_timer_irq_clear(void)
 void
 arduino_timer_init(void)
 {
-    // ARM Arduino: SysTick already runs, rely on irq_poll periodic calling
+    // ARM: SysTick/DWT already running by Arduino core
 }
 
-void
-timer_kick_next(uint32_t next_time)
-{
-    (void)next_time;
-    // ARM: timer dispatch happens synchronously in irq_poll().
-    // No hardware timer to re-arm — timer_kick() sets the flag,
-    // irq_poll() calls timer_dispatch_many() synchronously.
-}
+// ============================================================================
+// ESP32 / Generic fallback — Poll-based timer dispatch
+// ============================================================================
 
 #else
 
-// ---- Generic fallback (ESP32, etc.) ----
+#include <Arduino.h>
+
 DECL_CONSTANT("CLOCK_FREQ", CONFIG_CLOCK_FREQ);
+
+static volatile bool timer_irq_pending_flag = false;
+
+extern uint32_t timer_dispatch_many(void);
 
 uint32_t
 timer_read_time(void)
@@ -199,6 +310,12 @@ timer_kick(void)
     timer_irq_pending_flag = true;
 }
 
+void
+timer_kick_next(uint32_t next_time)
+{
+    (void)next_time;
+}
+
 bool
 arduino_timer_irq_pending(void)
 {
@@ -214,16 +331,7 @@ arduino_timer_irq_clear(void)
 void
 arduino_timer_init(void)
 {
-    // Generic: no hardware timer setup needed (poll-based)
-}
-
-// Non-AVR fallback for timer_kick_next — not needed because
-// timer_dispatch_many() re-arms via the irq_poll loop.
-void timer_kick_next(uint32_t next_time)
-{
-    (void)next_time;
-    // On ARM/ESP32, timer dispatch happens synchronously in irq_poll()
-    // so no hardware re-arm is needed.
+    // ESP32: no hardware timer setup needed (poll-based)
 }
 
 #endif
