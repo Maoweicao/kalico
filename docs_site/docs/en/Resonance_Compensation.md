@@ -1,0 +1,1 @@
+/home/mellow/klipper/docs/Resonance_Compensation.md

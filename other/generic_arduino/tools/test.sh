@@ -1,0 +1,14 @@
+#!/bin/bash
+PORT=$(readlink -f /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0 2>/dev/null | xargs basename)
+echo "PORT=$PORT"
+kill -9 $(pgrep -f 'moonraker|klippy.*printer' 2>/dev/null) 2>/dev/null || true
+sleep 1.5
+avrdude -q -c arduino -p m328p -P /dev/$PORT -b 115200 -U flash:w:/tmp/kf.hex:i
+echo "FLASHED"
+sleep 3
+timeout 15 /home/armbian/klippy-env/bin/python /home/armbian/klipper/klippy/klippy.py \
+    /home/armbian/printer_data/config/printer.cfg -l /tmp/kr2.log 2>&1
+echo "DONE"
+grep -E 'Loaded|Sending|Configured|Printer is ready|Welcome|shutdown|error' /tmp/kr2.log | head -10
+echo "==="
+tail -3 /tmp/kr2.log

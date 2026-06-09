@@ -1,0 +1,115 @@
+/**
+ * arduino/internal.h - Internal declarations for the Arduino Kalico port
+ *
+ * Copyright (C) 2024 Arduino port contributors.
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+#ifndef __ARDUINO_INTERNAL_H
+#define __ARDUINO_INTERNAL_H
+
+#include <stdint.h>
+#ifndef __bool_true_false_are_defined
+#include <stdbool.h>
+#endif
+#include "autoconf.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ---- Timer (timer.c) ------------------------------------------------------
+
+/** Initialize the hardware timer used for Kalico scheduling. */
+void arduino_timer_init(void);
+
+/** Check if the timer ISR has fired and needs handling. */
+bool arduino_timer_irq_pending(void);
+
+/** Clear the timer IRQ pending flag. */
+void arduino_timer_irq_clear(void);
+
+/** Forward declaration from timer_irq.c */
+uint32_t timer_dispatch_many(void);
+
+/**
+ * Re-arm the hardware timer with the next scheduled wake time.
+ * Called from irq_poll() after timer_dispatch_many() so COMPA keeps firing.
+ */
+void timer_kick_next(uint32_t next_time);
+
+// ---- Serial (serial.c or wifi_serial.cpp) ---------------------------------
+
+/** Initialize the serial port or WiFi transport. */
+#if CONFIG_WANT_WIFI
+  void wifi_config_init(void);
+  void wifi_config_shutdown(void);
+  void wifi_serial_init(void);
+  #define arduino_serial_init wifi_serial_init
+  bool wifi_serial_rx_pending(void);
+  #define arduino_serial_rx_pending wifi_serial_rx_pending
+  void wifi_serial_poll_rx(void);
+  #define arduino_serial_drain_rx wifi_serial_poll_rx
+#else
+  void arduino_serial_init(void);
+  bool arduino_serial_rx_pending(void);
+  void arduino_serial_drain_rx(void);
+#endif
+
+/** Enable the TX interrupt / start sending buffered data. */
+void serial_enable_tx_irq(void);
+
+// ---- GPIO (gpio.c) --------------------------------------------------------
+
+/** Forward-declare the GPIO types used by base Kalico. */
+struct gpio_out {
+    uint8_t pin;        // Arduino digital pin number
+    uint8_t invert;     // Invert output (1 = active-low)
+    uint8_t is_static;  // Static (non-PWM) output flag
+    void*   pwm_ptr;    // Opaque pointer to PWM hardware (platform-specific)
+};
+
+struct gpio_in {
+    uint8_t pin;        // Arduino digital pin number
+    uint8_t invert;     // Invert input (1 = active-low)
+};
+
+struct gpio_adc {
+    uint8_t pin;        // Arduino analog pin number (A0→0, A1→1, ...)
+};
+
+struct gpio_pwm {
+    uint8_t pin;        // Arduino digital pin number
+    uint8_t channel;    // PWM channel (platform-specific)
+    void*   hw;         // Opaque pointer to PWM hardware
+};
+
+// GPIO function declarations that must be provided by gpio.c
+struct gpio_out gpio_out_setup(uint8_t pin, uint8_t val);
+void gpio_out_reset(struct gpio_out g, uint8_t val);
+void gpio_out_toggle_noirq(struct gpio_out g);
+void gpio_out_toggle(struct gpio_out g);
+void gpio_out_write(struct gpio_out g, uint8_t val);
+uint8_t gpio_out_valid(struct gpio_out g, uint8_t val);
+
+struct gpio_in gpio_in_setup(uint8_t pin, int8_t pull_up);
+void gpio_in_reset(struct gpio_in g, int8_t pull_up);
+uint8_t gpio_in_read(struct gpio_in g);
+
+struct gpio_adc gpio_adc_setup(uint8_t pin);
+void gpio_adc_reset(struct gpio_adc g);
+uint32_t gpio_adc_sample(struct gpio_adc g);
+uint16_t gpio_adc_read(struct gpio_adc g);
+void gpio_adc_cancel_sample(struct gpio_adc g);
+
+struct gpio_pwm gpio_pwm_setup(uint8_t pin, uint32_t cycle_time, uint8_t val);
+void gpio_pwm_write(struct gpio_pwm g, uint8_t val);
+
+// ---- CRC-16 CCITT (provided by generic/crc16_ccitt.c or local) ------------
+uint16_t crc16_ccitt(uint8_t *buf, uint_fast8_t len);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // __ARDUINO_INTERNAL_H

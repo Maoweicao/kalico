@@ -1,0 +1,11 @@
+--- a/klippy/mcu.py
++++ b/klippy/mcu.py
+@@ -1087,6 +1087,9 @@ class MCU:
+         if self.is_fileoutput():
+             return {"is_config": 0, "move_count": 500, "crc": 0}
++        # Reset transient shutdown flag before querying config.
++        # (generic_arduino MCU may auto-clear shutdown in get_config handler)
++        self._is_shutdown = False
+         config_params = get_config_cmd.send()
+         if self._is_shutdown:
+             raise error(

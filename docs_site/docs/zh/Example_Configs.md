@@ -1,0 +1,1 @@
+/home/mellow/klipper/docs/i18n/simple-chinese/Example_Configs.md

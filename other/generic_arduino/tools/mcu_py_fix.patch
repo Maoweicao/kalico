@@ -1,0 +1,7 @@
+--- a/klippy/mcu.py
++++ b/klippy/mcu.py
+@@ -902,4 +902,4 @@ class MCU:
+         if clock is not None:
+             self._shutdown_clock = self.clock32_to_clock64(clock)
+-        self._shutdown_msg = msg = params["static_string_id"]
++        self._shutdown_msg = msg = str(params.get("static_string_id", "?"))

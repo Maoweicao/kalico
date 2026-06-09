@@ -1,0 +1,59 @@
+site_name: Kalico / Klipper Docs
+site_url: http://0.0.0.0:8000
+site_description: Kalico/Klipper 3D Printer Firmware Documentation
+
+theme:
+  name: material
+  language: en
+  navigation_depth: 3
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - content.code.copy
+
+plugins:
+  - search:
+      prebuild_index: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - attr_list
+
+extra:
+  alternate:
+    - name: English
+      link: /
+      link_en: /
+    - name: 简体中文
+      link: zh/
+      link_zh: zh/
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Kalico3D/Kalico
+
+extra_css:
+  - stylesheets/extra.css

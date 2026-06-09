@@ -1,0 +1,12 @@
+COPYING
+README.md
+pyproject.toml
+src/Kalico.egg-info/PKG-INFO
+src/Kalico.egg-info/SOURCES.txt
+src/Kalico.egg-info/dependency_links.txt
+src/Kalico.egg-info/entry_points.txt
+src/Kalico.egg-info/requires.txt
+src/Kalico.egg-info/top_level.txt
+test/test_autosave.py
+test/test_extruder_overrides_simple.py
+test/test_imports.py

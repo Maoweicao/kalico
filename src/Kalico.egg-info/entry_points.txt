@@ -1,0 +1,2 @@
+[console_scripts]
+kalico = scripts.kalico_cli:main
