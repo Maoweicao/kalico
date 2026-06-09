@@ -1,0 +1,3455 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/Plugin_Development.html">
+      
+      
+      
+      
+      <link rel="icon" href="../../logo/kalico-32x32.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>插件开发指南 - Kalico Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../_kalico/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3YZJ9658GV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3YZJ9658GV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3YZJ9658GV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="../../logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalico Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              插件开发指南
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="../../logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    Kalico Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Features.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently Asked Questions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/KalicoCrew/kalico/releases" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Changes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Changes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kalico_Additions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico additions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bleeding Edge Features Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference for Bleeding Edge features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PID.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MPC.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Predictive Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dockable_Probe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockable Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    G-Code Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            G-Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../G-Codes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Command_Templates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../G-Code_Shell_Command.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Code Shell Command Extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Status_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Status reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting up and running
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Getting up and running
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Migrating_from_Klipper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrating from Klipper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OctoPrint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using OctoPrint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMC_Drivers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TMC drivers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_checks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration checks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rotation_Distance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rotation distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Multi_MCU_Homing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Micro-controller Homing and Probing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bed leveling, Probes and Endstops
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_8">
+            <span class="md-nav__icon md-icon"></span>
+            Bed leveling, Probes and Endstops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Z_Calibration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automatic Z-Offset Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bed_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Delta_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delta calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Probe_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Probe calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BLTouch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BL-Touch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Manual_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bed_Mesh.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed Mesh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Endstop_Phase.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endstop phase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Axis_Twist_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Axis Twist Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Skew_Correction.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skew correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tuning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_9">
+            <span class="md-nav__icon md-icon"></span>
+            Tuning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Measuring_Resonances.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Measuring Resonances
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Resonance_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resonance Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pressure advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Slicers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Slicers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Exclude_Object.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exclude Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Using_PWM_Tools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using PWM tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Code_Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kinematics.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kinematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API_Server.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MCU_Commands.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MCU commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS_protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Debugging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Benchmarks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Packaging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Packaging Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Device Specific Documents
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Device Specific Documents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Example_Configs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example configurations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDCard_Updates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SDCard updates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RPi_microcontroller.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPi microcontroller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Beaglebone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Beaglebone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bootloaders.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Bootloader_Entry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloader Entry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANBUS_Troubleshooting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSL1401CL filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Hall_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hall filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contact.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sponsors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sponsors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      关键设计决策
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速入门
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      插件目录结构
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="插件目录结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      单文件 vs 子包
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      导入规则
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      架构
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      生命周期
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="生命周期">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      各阶段详情
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      插件 API 参考
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="插件 API 参考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load_configconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_config(config) → 对象
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_config_prefixconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_config_prefix(config) → 对象
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_componentssubsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      register_components(subsystem)（可选）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configwrapper-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConfigWrapper API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      子系统组件注册
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="子系统组件注册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      提供方（注册到子系统）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      消费方（从子系统查询）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      服务定位器模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="服务定位器模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#printer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Printer 上的关键方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么使用拉取式？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      生命周期事件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="生命周期事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准事件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      事件处理函数规范
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      G-code 命令注册
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G-code 命令注册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gcmd-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      gcmd 对象 API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Webhooks / 远程 API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Webhooks / 远程 API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_status() 自动状态暴露
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本配置段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_config_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过 load_config_prefix 实现多实例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      插件覆盖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      包含其他配置文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      最佳实践
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试与自检
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试与自检">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list_modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      LIST_MODULES 命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      日志
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extras-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      从 extras/ 迁移到 plugins/
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="从 extras/ 迁移到 plugins/">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      自动迁移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      手动迁移步骤
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allow_plugin_override" class="md-nav__link">
+    <span class="md-ellipsis">
+      何时使用 allow_plugin_override
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用插件安装器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用插件安装器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      工作流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例输出
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      从本地目录安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      从 GitHub 仓库安装
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      完整示例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      故障排除
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="故障排除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-xxx-found-in-both-extras-and-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Module 'xxx' found in both extras and plugins!"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unable-to-load-module-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Unable to load module 'xxx'"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unknown-config-object-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Unknown config object 'xxx'"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_modules_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      插件在 LIST_MODULES 中不显示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_modules-unused" class="md-nav__link">
+    <span class="md-ellipsis">
+      在 LIST_MODULES 中显示为 "unused"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/Plugin_Development.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">插件开发指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本文档介绍了如何为 Kalico 开发、安装和管理插件。插件可以在不修改核心源代码树的情况下
+扩展 Kalico 的功能，确保自定义代码不会因为更新而丢失。</p>
+<h2 id="_2">目录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#快速入门">快速入门</a></li>
+<li><a href="#插件目录结构">插件目录结构</a></li>
+<li><a href="#架构">架构</a></li>
+<li><a href="#生命周期">生命周期</a></li>
+<li><a href="#插件-api-参考">插件 API 参考</a></li>
+<li><a href="#子系统组件注册">子系统组件注册</a></li>
+<li><a href="#服务定位器模式">服务定位器模式</a></li>
+<li><a href="#生命周期事件">生命周期事件</a></li>
+<li><a href="#g-code-命令注册">G-code 命令注册</a></li>
+<li><a href="#webhooks--远程-api">Webhooks / 远程 API</a></li>
+<li><a href="#配置">配置</a></li>
+<li><a href="#最佳实践">最佳实践</a></li>
+<li><a href="#调试与自检">调试与自检</a></li>
+<li><a href="#从-extras-迁移到-plugins">从 <code>extras/</code> 迁移到 <code>plugins/</code></a></li>
+<li><a href="#使用插件安装器">使用插件安装器</a></li>
+<li><a href="#完整示例">完整示例</a></li>
+<li><a href="#故障排除">故障排除</a></li>
+</ul>
+<hr />
+<h2 id="_3">概述<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Kalico 的插件系统采用 <strong>约定优于配置</strong> 的设计。不需要 XML 清单、JSON 元数据或插件注册表——
+一个插件就是一个普通的 Python 模块（<code>.py</code> 文件或子包），放到 <code>klippy/plugins/</code> 目录即可。
+文件的存在本身就是注册。</p>
+<p><strong>核心概念：</strong></p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>extras</strong></td>
+<td>Kalico 内置模块，位于 <code>klippy/extras/</code></td>
+</tr>
+<tr>
+<td><strong>plugins</strong></td>
+<td>用户/外部模块，位于 <code>klippy/plugins/</code>（git 不跟踪）</td>
+</tr>
+<tr>
+<td><strong>PrinterModule</strong></td>
+<td>已发现模块的包装器；负责延迟加载和错误追踪</td>
+</tr>
+<tr>
+<td><strong>配置段</strong></td>
+<td><code>printer.cfg</code> 中的 <code>[name]</code> 或 <code>[name suffix]</code> 条目，触发模块实例化</td>
+</tr>
+<tr>
+<td><strong>Printer.objects</strong></td>
+<td>核心 OrderedDict，所有已实例化模块实例的集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">关键设计决策<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>没有启用/禁用列表。</strong> 插件只有在 <code>printer.cfg</code> 中存在对应的 <code>[section]</code> 时才会加载。
+  如果没有配置段，模块会被导入但永远不会实例化（在 <code>LIST_MODULES</code> 中标记为"unused"）。</li>
+<li><strong><code>plugins/</code> 目录不受 git 跟踪。</strong> 它不存在于上游 Kalico 仓库中。随意往里面放文件——
+  不会产生 dirty git tree。</li>
+<li><strong>插件覆盖受开关控制。</strong> 如果插件名称与内置 extra 同名，Kalico 会报错，除非在
+  <code>[danger_options]</code> 中设置 <code>allow_plugin_override: True</code>。这可以防止意外覆盖。</li>
+</ul>
+<hr />
+<h2 id="_5">快速入门<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>创建 <code>klippy/plugins/my_tool.py</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyTool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_COMMAND&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_COMMAND</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;klippy:ready&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_ready</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>  <span class="c1"># 需要已连接打印机的初始化工作</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_COMMAND</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;Hello from my_tool!&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MyTool</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>在 <code>printer.cfg</code> 中添加：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
+</code></pre></div>
+
+<p>重启 Kalico，在控制台中运行 <code>MY_COMMAND</code> —— 即可看到 "Hello from my_tool!"。</p>
+<hr />
+<h2 id="_6">插件目录结构<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>klippy/
+├── extras/                  # 内置模块（Kalico 核心的一部分）
+│   ├── __init__.py
+│   ├── respond.py
+│   └── ...
+├── plugins/                 # 用户插件（git 不跟踪）
+│   ├── __init__.py          # 包标记（始终存在）
+│   ├── my_tool.py           # 单文件插件
+│   ├── my_complex_plugin/   # 子包插件
+│   │   ├── __init__.py      # 包含 load_config / load_config_prefix
+│   │   ├── helpers.py
+│   │   └── sensor.py
+│   └── ...
+</code></pre></div>
+
+<h3 id="vs">单文件 vs 子包<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>适用场景</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>单个 <code>.py</code> 文件</strong></td>
+<td>简单插件，无辅助文件</td>
+<td><code>my_tool.py</code></td>
+</tr>
+<tr>
+<td><strong>含 <code>__init__.py</code> 的子包</strong></td>
+<td>包含多个模块/辅助文件/数据文件的插件</td>
+<td><code>my_complex_plugin/</code></td>
+</tr>
+</tbody>
+</table>
+<p>两种方式都会被自动发现。模块名称是文件名（去掉 <code>.py</code>）或目录名。</p>
+<h3 id="_7">导入规则<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>你的插件位于 <code>klippy.plugins</code> 包中。需要从内置 extras 导入时，使用完整的 <code>klippy.extras.*</code> 路径：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>  <span class="c1"># 正确</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.servo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Servo</span>            <span class="c1"># 正确</span>
+</code></pre></div>
+
+<p>插件子包内部的相对导入照常工作：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">my_helper</span>                   <span class="c1"># 插件子包内部</span>
+</code></pre></div>
+
+<hr />
+<h2 id="_8">架构<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>下图展示了各关键组件之间的交互：</p>
+<p><img alt="插件架构图" src="https://github.com/KalicoCrew/kalico//blob/main/img/zh/plugin-architecture.svg" /></p>
+<ul>
+<li><strong>printer.cfg</strong> 提供 <code>[section]</code> 定义和选项值。</li>
+<li><strong>ConfigWrapper</strong> 包装每个配置段，提供类型化访问（<code>get()</code>、<code>getfloat()</code>、<code>getint()</code> 等）。</li>
+<li>你的 <strong>插件</strong> 实现 <code>load_config(config)</code> 或 <code>load_config_prefix(config)</code>，接收一个 <code>ConfigWrapper</code>。</li>
+<li><strong>Printer</strong> 充当 <strong>服务定位器</strong> —— 你的插件按名称拉取依赖：<ul>
+<li><code>printer.lookup_object("gcode")</code> — 获取已注册的服务</li>
+<li><code>printer.load_object(config, "heaters")</code> — 懒加载其他模块</li>
+<li><code>printer.register_event_handler("klippy:ready", cb)</code> — 订阅事件</li>
+<li><code>printer.lookup_components("load_cell_sensors")</code> — 查询子系统注册表</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="_9">生命周期<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p><img alt="插件生命周期" src="https://github.com/KalicoCrew/kalico//blob/main/img/zh/plugin-lifecycle.svg" /></p>
+<h3 id="_10">各阶段详情<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><strong>阶段 1 – 发现</strong>（<code>printer.py:_load_modules</code>）
+<code>klippy/extras/</code> 和 <code>klippy/plugins/</code> 中的所有 <code>*.py</code> 文件通过
+<code>pkgutil.iter_modules()</code> 被发现。每个文件变成一个 <code>PrinterModule</code>，存储在
+<code>printer.printer_modules</code> 中。如果插件与已有的 extra 同名，除非设置了
+<code>allow_plugin_override: True</code>，否则 Kalico 会报错。</p>
+<p><strong>阶段 2 – 加载</strong>（<code>printer.py:_load_modules</code>）
+每个 <code>PrinterModule.load()</code> 调用 <code>importlib.import_module(module_info.name)</code>。
+导入期间的异常会被捕获并暂存——只有当该模块实际被使用时才会抛出错误。这意味着
+一个损坏的、从未在 <code>printer.cfg</code> 中被引用的插件不会导致启动崩溃。</p>
+<p><strong>阶段 3 – 组件注册</strong>（<code>printer.py:_register_subsystem_components</code>）
+如果模块定义了 <code>register_components(subsystem)</code>，它会被调用来填充命名的子系统注册表。
+这是可选的，通常由提供驱动类组件的插件使用（例如，用于称重传感器系统的传感器类型）。</p>
+<p><strong>阶段 4 – 配置初始化</strong>（<code>printer.py:_read_config</code>）
+对于 <code>printer.cfg</code> 中的每个 <code>[section]</code>，<code>printer.load_object(config, section)</code>
+找到匹配的 <code>PrinterModule</code> 并调用其 <code>load_config(config)</code> 或
+<code>load_config_prefix(config)</code>。返回的实例存储在 <code>printer.objects</code> 中。
+配置段必须在此阶段读取其所有参数；未读取的参数会被标记为错误。</p>
+<p><strong>阶段 5 – 连接</strong>（<code>printer.py:_connect</code>）
+<code>"klippy:connect"</code> 事件在所有模块实例化后触发。在此阶段进行跨模块查找、
+配置验证和硬件握手。</p>
+<p><strong>阶段 6 – 就绪</strong>（<code>printer.py:_connect</code>）
+<code>"klippy:ready"</code> 事件在所有 connect 处理程序完成后触发。
+打印机已准备好处理 G-code 命令。请勿在此处抛出错误。</p>
+<p><strong>阶段 7 – 关闭 / 重启</strong>（<code>printer.py:run</code>）
+在 <code>RESTART</code> 或 <code>FIRMWARE_RESTART</code> 时，<code>Printer</code> 和 <code>Reactor</code> 被销毁并
+从头重建。所有模块会被重新导入和重新初始化。不支持热插拔——需要完全重启。</p>
+<hr />
+<h2 id="api">插件 API 参考<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
+<p>每个插件模块必须暴露以下至少一个模块级函数：</p>
+<h3 id="load_configconfig"><code>load_config(config)</code> → 对象<a class="headerlink" href="#load_configconfig" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>当 <code>printer.cfg</code> 包含 <code>[my_plugin]</code>（精确匹配，无后缀）时调用。
+接收该配置段的 <code>ConfigWrapper</code>。必须返回构造好的对象。</p>
+<h3 id="load_config_prefixconfig"><code>load_config_prefix(config)</code> → 对象<a class="headerlink" href="#load_config_prefixconfig" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_config_prefix</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>用于 <code>[my_plugin instance1]</code>、<code>[my_plugin instance2]</code> 等形式的配置段（前缀匹配）。
+支持同一模块的多个实例。</p>
+<h3 id="register_componentssubsystem"><code>register_components(subsystem)</code>（可选）<a class="headerlink" href="#register_componentssubsystem" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
+    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span> <span class="s2">&quot;my_component&quot;</span><span class="p">,</span> <span class="n">MyDriver</span><span class="p">)</span>
+</code></pre></div>
+
+<p>在启动期间调用，用于将命名组件注册到子系统注册表中。
+详见<a href="#子系统组件注册">子系统组件注册</a>。</p>
+<h3 id="configwrapper-api"><code>ConfigWrapper</code> API<a class="headerlink" href="#configwrapper-api" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;option_name&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">flag</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">&quot;bool_option&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">num</span>   <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;float_option&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;int_option&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">choice</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;fast&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;slow&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s2">&quot;fast&quot;</span><span class="p">)</span>
+<span class="n">name</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>         <span class="c1"># 完整配置段名称，如 &quot;my_plugin instance1&quot;</span>
+<span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>    <span class="c1"># Printer 服务定位器</span>
+<span class="n">section</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getsection</span><span class="p">(</span><span class="s2">&quot;subsection&quot;</span><span class="p">)</span>  <span class="c1"># 获取嵌套配置段</span>
+</code></pre></div>
+
+<hr />
+<h2 id="_11">子系统组件注册<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>有些插件不是"独立模块"，而是为更大的子系统提供组件。
+例如，每个 ADC 传感器驱动都向 <code>"load_cell_sensors"</code> 子系统注册自己，
+主 <code>[load_cell]</code> 配置段通过 <code>config.getchoice("sensor_type", sensors)</code> 让用户选择。</p>
+<h3 id="_12">提供方（注册到子系统）<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 在插件的 register_components() 中：</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
+    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span>
+        <span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span>           <span class="c1"># 子系统名称（字符串键）</span>
+        <span class="s2">&quot;my_driver_v1&quot;</span><span class="p">,</span>           <span class="c1"># 组件名称（配置中显示给用户）</span>
+        <span class="n">MyDriverClass</span>             <span class="c1"># 组件（类、函数或值）</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+<p>参考 <code>klippy/extras/load_cell/__init__.py:14</code> 中的实际例子。</p>
+<h3 id="_13">消费方（从子系统查询）<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">sensors</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">)</span>  <span class="c1"># → {&quot;my_driver_v1&quot;: MyDriverClass, ...}</span>
+<span class="n">chosen</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;driver_type&quot;</span><span class="p">,</span> <span class="n">sensors</span><span class="p">)</span>    <span class="c1"># 用户从选项中选取</span>
+<span class="n">instance</span> <span class="o">=</span> <span class="n">chosen</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>                             <span class="c1"># 实例化选中的组件</span>
+</code></pre></div>
+
+<hr />
+<h2 id="_14">服务定位器模式<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>Kalico 使用 <strong>服务定位器</strong>（拉取式）模式，而不是依赖注入（推送式）。
+你的插件负责从 <code>Printer</code> 实例中拉取所需的依赖。</p>
+<h3 id="printer"><code>Printer</code> 上的关键方法<a class="headerlink" href="#printer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 获取 Printer 实例的引用</span>
+<span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+
+<span class="c1"># 通过配置段名称查找之前注册的对象</span>
+<span class="n">gcode</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<span class="n">toolhead</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
+
+<span class="c1"># 懒加载另一个模块（后续调用返回缓存的实例）</span>
+<span class="n">heaters</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;heaters&quot;</span><span class="p">)</span>
+
+<span class="c1"># 查询子系统组件注册表</span>
+<span class="n">components</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;load_cell_sensors&quot;</span><span class="p">)</span>
+
+<span class="c1"># 获取 reactor（用于定时器、文件 I/O、sleep）</span>
+<span class="n">reactor</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_reactor</span><span class="p">()</span>
+
+<span class="c1"># 获取启动参数</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_start_args</span><span class="p">()</span>
+
+<span class="c1"># 检查打印机是否处于关闭状态</span>
+<span class="k">if</span> <span class="n">printer</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+    <span class="k">return</span>
+</code></pre></div>
+
+<h3 id="_15">为什么使用拉取式？<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>初始化顺序不是线性的——你的插件被构造时，并非所有模块都存在。
+  将依赖查找推迟到事件处理函数（如 <code>"klippy:connect"</code>）中执行，以避免缺少依赖。</li>
+<li><code>gcode</code> 和 <code>pins</code> 对象始终可以早期获取。</li>
+<li>使用 <code>printer.load_object(config, "module_name")</code> 来强制加载一个依赖。</li>
+</ul>
+<hr />
+<h2 id="_16">生命周期事件<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>通过注册事件处理函数来挂钩 Kalico 的生命周期：</p>
+<div class="highlight"><pre><span></span><code><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;event_name&quot;</span><span class="p">,</span> <span class="n">callback_function</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="_17">标准事件<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>阶段</th>
+<th>常见用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"klippy:connect"</code></td>
+<td>所有模块实例化后</td>
+<td>跨模块查找、配置验证、硬件检查和握手</td>
+</tr>
+<tr>
+<td><code>"klippy:ready"</code></td>
+<td>打印机完全就绪</td>
+<td>开始自动例程、启用功能</td>
+</tr>
+<tr>
+<td><code>"klippy:disconnect"</code></td>
+<td>重启/关闭期间</td>
+<td>关闭文件、socket，清理资源</td>
+</tr>
+<tr>
+<td><code>"klippy:shutdown"</code></td>
+<td>错误/故障关闭</td>
+<td>安全停止硬件，记录状态</td>
+</tr>
+<tr>
+<td><code>"klippy:firmware_restart"</code></td>
+<td>固件重启前</td>
+<td>MCU 复位前保存状态</td>
+</tr>
+<tr>
+<td><code>"klippy:mcu_identify"</code></td>
+<td>MCU 识别阶段</td>
+<td>注册 MCU 相关对象</td>
+</tr>
+<tr>
+<td><code>"gcode:command_error"</code></td>
+<td>G-code 解析错误</td>
+<td>自定义错误恢复</td>
+</tr>
+<tr>
+<td><code>"gcode:unknown_command"</code></td>
+<td>未识别的 G-code</td>
+<td>实现自定义命令解析</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_18">事件处理函数规范<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_handle_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># 安全：查找其他对象</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">toolhead</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_handle_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># 安全：开始操作，发送命令</span>
+    <span class="c1"># 不要在这里抛出错误</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_handle_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>  <span class="c1"># 在关闭期间抑制错误</span>
+</code></pre></div>
+
+<hr />
+<h2 id="g-code">G-code 命令注册<a class="headerlink" href="#g-code" title="Permanent link">&para;</a></h2>
+<p>在模块的 <code>__init__</code> 中注册自定义 G-code 命令：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_CMD&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_CMD</span><span class="p">,</span> <span class="s2">&quot;帮助描述文本&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_CMD</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+        <span class="c1"># 读取参数</span>
+        <span class="n">speed</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PARAM&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 向控制台回复</span>
+        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got S=</span><span class="si">{</span><span class="n">speed</span><span class="si">}</span><span class="s2">, PARAM=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 输入无效时抛出错误</span>
+        <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Speed must be positive&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="gcmd-api"><code>gcmd</code> 对象 API<a class="headerlink" href="#gcmd-api" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>              <span class="c1"># 字符串参数</span>
+<span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># 浮点参数</span>
+<span class="n">gcmd</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>       <span class="c1"># 整数参数</span>
+<span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>                 <span class="c1"># 标准回复</span>
+<span class="n">gcmd</span><span class="o">.</span><span class="n">respond_raw</span><span class="p">(</span><span class="s2">&quot;raw text&quot;</span><span class="p">)</span>                 <span class="c1"># 原始输出</span>
+<span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;error message&quot;</span><span class="p">)</span>                  <span class="c1"># 抛出错误（终止命令执行）</span>
+</code></pre></div>
+
+<hr />
+<h2 id="webhooks-api">Webhooks / 远程 API<a class="headerlink" href="#webhooks-api" title="Permanent link">&para;</a></h2>
+<p>为外部客户端（Mainsail、Fluidd 等）暴露 JSON-RPC 端点：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="n">webhooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;webhooks&quot;</span><span class="p">)</span>
+        <span class="n">webhooks</span><span class="o">.</span><span class="n">register_endpoint</span><span class="p">(</span><span class="s2">&quot;my_plugin/get_status&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_api</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">web_request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">42.0</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<h3 id="get_status"><code>get_status()</code> 自动状态暴露<a class="headerlink" href="#get_status" title="Permanent link">&para;</a></h3>
+<p>在你的打印机对象上定义 <code>get_status()</code> 方法，即可通过 API 服务器和 Jinja 模板
+自动暴露其状态：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span>
+            <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">,</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<p>状态值必须是：<code>int</code>、<code>float</code>、<code>str</code>、<code>bool</code>、<code>list</code>、<code>dict</code>、<code>tuple</code> 或 <code>None</code>。
+导出的列表和字典必须视为"不可变"——如果内容发生变化，必须从 <code>get_status()</code> 返回新对象，
+否则 API 服务器不会检测到这些变化。</p>
+<hr />
+<h2 id="_19">配置<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<h3 id="_20">基本配置段<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
+<span class="na">option1</span><span class="o">:</span><span class="w"> </span><span class="s">some_value</span>
+<span class="na">option2</span><span class="o">:</span><span class="w"> </span><span class="s">3.14</span>
+<span class="na">option3</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
+</code></pre></div>
+
+<h3 id="load_config_prefix">通过 <code>load_config_prefix</code> 实现多实例<a class="headerlink" href="#load_config_prefix" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[my_tool extruder]</span>
+<span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">hotend_left</span>
+<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">300</span>
+
+<span class="k">[my_tool bed]</span>
+<span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">heated_bed</span>
+<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">120</span>
+</code></pre></div>
+
+<p>你的 <code>load_config_prefix()</code> 会为每个实例收到单独的 <code>ConfigWrapper</code>。</p>
+<h3 id="_21">插件覆盖<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>如果你的插件与内置 extra 同名（例如创建了 <code>klippy/plugins/respond.py</code>），
+则必须启用覆盖：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[danger_options]</span>
+<span class="na">allow_plugin_override</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
+</code></pre></div>
+
+<p>否则 Kalico 会报错：<code>"Module 'respond' found in both extras and plugins!"</code>。</p>
+<h3 id="_22">包含其他配置文件<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p>在插件的配置中使用 <code>!!include</code> 引入更大的配置：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
+<span class="na">!!include path/to/my_tool_defaults.cfg</span>
+<span class="na">custom_option</span><span class="o">:</span><span class="w"> </span><span class="s">my_value</span>
+</code></pre></div>
+
+<hr />
+<h2 id="_23">最佳实践<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>不要使用全局变量。</strong> 所有状态都应存储在打印机对象实例中。
+   <code>RESTART</code> 会重新创建 <code>Printer</code>，全局变量会导致状态泄露。</p>
+</li>
+<li>
+<p><strong>在 <code>__init__</code> 中分配所有成员变量。</strong> 避免动态创建属性——
+   在构造函数中使用 <code>self.xyz = None</code>。</p>
+</li>
+<li>
+<p><strong>浮点值使用浮点常量。</strong> 优先使用 <code>self.speed = 1.</code> 而不是 <code>self.speed = 1</code>，
+   优先使用 <code>self.speed = 2. * x</code> 而不是 <code>self.speed = 2 * x</code>。
+   这可以避免 Python 类型转换中的隐蔽错误。</p>
+</li>
+<li>
+<p><strong>在构造期间读取所有配置选项。</strong> 在 <code>__init__</code> 期间未读取的参数
+   会被标记为拼写错误并导致配置错误。</p>
+</li>
+<li>
+<p><strong>不要访问其他模块的 <code>_</code> 前缀成员。</strong> 这些是可能会不通知就更改的私有实现细节。</p>
+</li>
+<li>
+<p><strong>将繁重的工作推迟到事件处理函数中执行。</strong> 使用 <code>"klippy:connect"</code> 查找可能
+   还不存在的模块，使用 <code>"klippy:ready"</code> 需要完全初始化打印机的操作。</p>
+</li>
+<li>
+<p><strong>在 disconnect 时关闭文件/socket。</strong> 注册 <code>"klippy:disconnect"</code> 事件：</p>
+<p><code>python
+ self.printer.register_event_handler("klippy:disconnect", self._cleanup)</code></p>
+</li>
+<li>
+<p><strong>在 shutdown 处理函数中抑制错误。</strong> 在紧急关闭期间，记录错误并吞下异常
+   比阻止关闭序列执行更好。</p>
+</li>
+</ol>
+<hr />
+<h2 id="_24">调试与自检<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<h3 id="list_modules"><code>LIST_MODULES</code> 命令<a class="headerlink" href="#list_modules" title="Permanent link">&para;</a></h3>
+<p>检查所有已加载模块的状态：</p>
+<div class="highlight"><pre><span></span><code>LIST_MODULES DETAIL=1
+</code></pre></div>
+
+<p>输出示例：</p>
+<div class="highlight"><pre><span></span><code>Loaded modules:
+
+  my_tool (plugins, loaded)
+    Path: klippy/plugins/my_tool.py
+    Loaded: 2025-05-14 12:00:00
+    Used: yes
+</code></pre></div>
+
+<p>字段说明：</p>
+<ul>
+<li><strong>source</strong>：<code>"plugins"</code> 或 <code>"extras"</code> —— 模块来源</li>
+<li><strong>loaded</strong>：模块是否导入成功（导入错误会在此处报告）</li>
+<li><strong>used</strong>：是否有 <code>printer.cfg</code> 的配置段引用了此模块</li>
+<li><strong>error</strong>：加载失败的异常详情（仅在 <code>loaded: False</code> 时显示）</li>
+</ul>
+<h3 id="_25">日志<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;信息性消息&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;警告消息&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;异常回溯&quot;</span><span class="p">)</span>  <span class="c1"># 在 except 块中使用</span>
+</code></pre></div>
+
+<p>日志输出到 Kalico 的 <code>klippy.log</code>（如果未配置日志文件则输出到 stderr）。</p>
+<h3 id="_26">测试<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>以 <code>test/klippy_testing_plugin.py</code> 参考测试插件为模板。
+使用 <code>scripts/test_klippy.py</code> 运行测试。</p>
+<hr />
+<h2 id="extras-plugins">从 <code>extras/</code> 迁移到 <code>plugins/</code><a class="headerlink" href="#extras-plugins" title="Permanent link">&para;</a></h2>
+<p>如果你在 <code>klippy/extras/</code> 中已有模块，想迁移到 <code>klippy/plugins/</code> 以保持 Kalico 仓库干净：</p>
+<h3 id="_27">自动迁移<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<p>使用插件安装器并指定本地路径：</p>
+<div class="highlight"><pre><span></span><code>python scripts/install_plugin.py /path/to/your/local/plugin --name my_plugin
+</code></pre></div>
+
+<p>详见<a href="#使用插件安装器">使用插件安装器</a>。</p>
+<h3 id="_28">手动迁移步骤<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>移动文件。</strong> 将 <code>klippy/extras/my_module.py</code> → <code>klippy/plugins/my_module.py</code>。</p>
+</li>
+<li>
+<p><strong>检查导入。</strong> 如果你的模块从 <code>klippy.extras.*</code> 导入，这些导入已经是
+   完全限定的，<strong>不需要修改</strong>。<code>extras/</code> 和 <code>plugins/</code> 模块都在 <code>klippy</code> 包下。</p>
+</li>
+<li>
+<p><strong>从 extras 中删除。</strong> 从 <code>klippy/extras/</code> 中删除原文件。</p>
+</li>
+<li>
+<p><strong>添加配置段。</strong> 确保 <code>printer.cfg</code> 中有 <code>[my_module]</code>。</p>
+</li>
+<li>
+<p><strong>启用覆盖（如适用）。</strong> 如果你要替换同名的内置模块，
+   在 <code>[danger_options]</code> 中添加 <code>allow_plugin_override: True</code>。</p>
+</li>
+<li>
+<p><strong>重启 Kalico。</strong> 运行 <code>RESTART</code> 或重启 Kalico 服务。</p>
+</li>
+</ol>
+<h3 id="allow_plugin_override">何时使用 <code>allow_plugin_override</code><a class="headerlink" href="#allow_plugin_override" title="Permanent link">&para;</a></h3>
+<p>只有当你的插件名称与已有的 extra 模块名称<strong>完全相同时</strong>才需要。
+对于独特的插件名称，不需要覆盖标志。</p>
+<hr />
+<h2 id="_29">使用插件安装器<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h2>
+<p>Kalico 提供了 <code>scripts/install_plugin.py</code>，一个自动化获取、分析和安装
+git 仓库插件的工具。</p>
+<h3 id="_30">基本用法<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>&lt;url&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--branch &lt;name&gt;</code></td>
+<td>克隆指定 git 分支（默认：默认分支）</td>
+</tr>
+<tr>
+<td><code>--name &lt;name&gt;</code></td>
+<td>强制指定安装后的模块名称（默认：从仓库推断）</td>
+</tr>
+<tr>
+<td><code>--force</code></td>
+<td>覆盖已有的同名插件</td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td>仅分析和报告，不安装任何文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_31">工作流程<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<ol>
+<li>将 git 仓库克隆到临时目录。</li>
+<li>扫描插件文件 —— 包含 <code>load_config</code> 或 <code>load_config_prefix</code> 的任何 <code>.py</code> 文件。</li>
+<li>检测正确的安装布局（单文件 vs 子包）。</li>
+<li>使用 AST 分析发现：<ul>
+<li><strong>G-code 命令</strong>：任何 <code>gcode.register_command("CMD", ...)</code> 调用</li>
+<li><strong>依赖关系</strong>：任何 <code>printer.lookup_object("name")</code> 或
+   <code>printer.load_object(config, "name")</code> 调用</li>
+</ul>
+</li>
+<li>将插件复制到 <code>klippy/plugins/&lt;module_name&gt;/</code>。</li>
+<li>打印友好的安装摘要。</li>
+</ol>
+<h3 id="_32">示例输出<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Fetching plugin from https://github.com/user/kalico-my-cool-sensor...
+
+[1/4] Cloning repository... done.
+[2/4] Scanning for plugin modules...
+       Found: my_cool_sensor.py (entry: load_config)
+[3/4] Analyzing plugin...
+       G-code commands detected: COOL_CALIBRATE, COOL_REPORT
+       Dependencies detected: gcode, heaters, toolhead
+[4/4] Installing to klippy/plugins/...
+       klippy/plugins/my_cool_sensor.py installed.
+
+========================================
+ Plugin installed: my_cool_sensor
+========================================
+
+  Source:        https://github.com/user/kalico-my-cool-sensor
+  Install path:  klippy/plugins/my_cool_sensor.py
+  Entry point:   load_config(config)
+
+  Available G-code commands:
+    COOL_CALIBRATE    → calibrate the cool sensor
+    COOL_REPORT       → report current readings
+
+  Required config section (add to printer.cfg):
+    [my_cool_sensor]
+    sensor_pin: PA0
+    # see the plugin&#39;s README for full options
+
+  Dependencies (ensure these exist in your config):
+    gcode
+    heaters
+    toolhead
+
+  To activate: send RESTART to Kalico
+========================================
+</code></pre></div>
+
+<h3 id="_33">从本地目录安装<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<p>你也可以将安装器指向本地路径，将插件从 <code>extras/</code> 迁移过来：</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>./klippy/extras/my_module.py<span class="w"> </span>--name<span class="w"> </span>my_module
+</code></pre></div>
+
+<h3 id="github">从 GitHub 仓库安装<a class="headerlink" href="#github" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 默认分支</span>
+python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin
+
+<span class="c1"># 指定分支或标签</span>
+python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin<span class="w"> </span>--branch<span class="w"> </span>v1.2.0
+</code></pre></div>
+
+<hr />
+<h2 id="_34">完整示例<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h2>
+<p>以下是基于 <code>test/klippy_testing_plugin.py</code> 的完整插件示例。
+它注册了一个自定义 G-code 命令 <code>ASSERT</code>，用于评估 Jinja2 表达式。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># klippy/plugins/assert_plugin.py</span>
+<span class="c1">#</span>
+<span class="c1"># 评估表达式，如果为 False 则报错。</span>
+<span class="c1"># 用法：ASSERT TEST=&quot;{1 + 1 == 2}&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AssertPlugin</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;gcode_macro&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
+            <span class="s2">&quot;gcode:command_error&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_command_error</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
+            <span class="s2">&quot;gcode:unknown_command&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_unknown_command</span>
+        <span class="p">)</span>
+        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;ASSERT&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_ASSERT</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_command_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span><span class="s2">&quot;测试期间发生异常&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_unknown_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;测试期间出现未知命令: </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_ASSERT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+        <span class="n">expression</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TEST&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">env</span><span class="p">,</span>
+                <span class="s2">&quot;ASSERT:runtime_expression&quot;</span><span class="p">,</span>
+                <span class="n">expression</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: 无法解析 &#39;</span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">create_template_context</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: </span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">AssertPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>printer.cfg</code> 中的配置：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[assert_plugin]</span>
+</code></pre></div>
+
+<hr />
+<h2 id="_35">故障排除<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h2>
+<h3 id="module-xxx-found-in-both-extras-and-plugins">"Module 'xxx' found in both extras and plugins!"<a class="headerlink" href="#module-xxx-found-in-both-extras-and-plugins" title="Permanent link">&para;</a></h3>
+<p>你的插件与内置模块同名。要么：</p>
+<ul>
+<li>将插件重命名为唯一的名称，或者</li>
+<li>在 <code>[danger_options]</code> 中添加 <code>allow_plugin_override: True</code></li>
+</ul>
+<h3 id="unable-to-load-module-xxx">"Unable to load module 'xxx'"<a class="headerlink" href="#unable-to-load-module-xxx" title="Permanent link">&para;</a></h3>
+<p>配置中有 <code>[xxx]</code> 段，但在 <code>extras/</code> 或 <code>plugins/</code> 中找不到名为 <code>xxx</code> 的模块。请检查：</p>
+<ul>
+<li>文件名完全匹配（例如 <code>my_tool.py</code> → <code>[my_tool]</code>）</li>
+<li>文件在 <code>klippy/plugins/</code> 中</li>
+<li>没有 Python 语法错误</li>
+</ul>
+<h3 id="unknown-config-object-xxx">"Unknown config object 'xxx'"<a class="headerlink" href="#unknown-config-object-xxx" title="Permanent link">&para;</a></h3>
+<p>你调用了 <code>printer.lookup_object("xxx")</code> 但模块 <code>xxx</code> 尚未加载。要么：</p>
+<ul>
+<li>将查找移到 <code>"klippy:connect"</code> 事件处理函数中</li>
+<li>先用 <code>printer.load_object(config, "xxx")</code> 强制加载</li>
+</ul>
+<h3 id="list_modules_1">插件在 LIST_MODULES 中不显示<a class="headerlink" href="#list_modules_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>确保文件放在 <code>klippy/plugins/&lt;name&gt;.py</code>（精确路径）</li>
+<li>重启 Kalico（需要 <code>RESTART</code>——不支持动态重新加载）</li>
+<li>检查 <code>klippy.log</code> 中的 Python 导入错误</li>
+</ul>
+<h3 id="list_modules-unused">在 LIST_MODULES 中显示为 "unused"<a class="headerlink" href="#list_modules-unused" title="Permanent link">&para;</a></h3>
+<p>模块已被加载，但没有配置段引用它。在 <code>printer.cfg</code> 中添加 <code>[module_name]</code>。
+没有这个配置段，模块会被导入但永远不会实例化。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://kalico.gg/discord" target="_blank" rel="noopener" title="Join our Discord server!" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>
