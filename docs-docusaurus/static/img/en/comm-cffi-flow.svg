@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 130">
+  <defs>
+    <marker id="aR" markerWidth="10" markerHeight="7" refX="10" refY="3.5">
+      <path d="M0,0 L10,3.5 L0,7 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="aL" markerWidth="10" markerHeight="7" refX="0" refY="3.5">
+      <path d="M10,0 L0,3.5 L10,7 Z" fill="#059669"/>
+    </marker>
+  </defs>
+  <!-- Python box -->
+  <rect x="10" y="15" width="220" height="100" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="120" y="42" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1e40af">Python Code</text>
+  <text x="120" y="62" text-anchor="middle" font-family="monospace" font-size="11" fill="#3b82f6">klippy/</text>
+  <text x="120" y="82" text-anchor="middle" font-family="monospace" font-size="10" fill="#60a5fa">chelper/__init__.py</text>
+  <!-- C Helper box -->
+  <rect x="330" y="15" width="220" height="100" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="440" y="42" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#065f46">C Helper Library</text>
+  <text x="440" y="62" text-anchor="middle" font-family="monospace" font-size="11" fill="#10b981">c_helper.so</text>
+  <text x="440" y="82" text-anchor="middle" font-family="monospace" font-size="10" fill="#34d399">stepcompress.c · itersolve.c</text>
+  <!-- Python → C (top, left to right) -->
+  <line x1="230" y1="44" x2="324" y2="44" stroke="#2563eb" stroke-width="2" marker-end="url(#aR)"/>
+  <text x="277" y="37" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#2563eb">Python calls C function</text>
+  <!-- C → Python (bottom, right to left) -->
+  <line x1="330" y1="86" x2="236" y2="86" stroke="#059669" stroke-width="2" marker-end="url(#aL)"/>
+  <text x="283" y="103" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#059669">C calls Python callback</text>
+</svg>

@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 880">
+  <defs>
+    <marker id="aD" markerWidth="8" markerHeight="6" refX="4" refY="6">
+      <path d="M0,0 L8,0 L4,6 Z" fill="#6b7280"/>
+    </marker>
+    <marker id="aR" markerWidth="10" markerHeight="7" refX="10" refY="3.5">
+      <path d="M0,0 L10,3.5 L0,7 Z" fill="#6b7280"/>
+    </marker>
+    <linearGradient id="hdrH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="hdrM" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d97706"/><stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+  </defs>
+  <!-- ===== HOST SECTION ===== -->
+  <rect x="15" y="5" width="810" height="400" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <path d="M15,17 A12,12 0 0,1 27,5 h786 a0,0 0 0,1 0,35 H15 Z" fill="url(#hdrH)"/>
+  <text x="420" y="27" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">主机（树莓派 / Linux）</text>
+
+  <!-- Row 1: Python processing chain -->
+  <g transform="translate(30,60)">
+    <rect x="0" y="0" width="170" height="50" rx="6" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="85" y="20" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e40af">G-code 解析器</text>
+    <text x="85" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">gcode.py</text>
+  </g>
+  <g transform="translate(240,60)">
+    <rect x="0" y="0" width="170" height="50" rx="6" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="85" y="20" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e40af">ToolHead 运动</text>
+    <text x="85" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">toolhead.py</text>
+  </g>
+  <g transform="translate(450,60)">
+    <rect x="0" y="0" width="170" height="50" rx="6" fill="white" stroke="#059669" stroke-width="1.5"/>
+    <text x="85" y="20" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#065f46">运动学求解器</text>
+    <text x="85" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">itersolve.c (CFFI)</text>
+  </g>
+  <g transform="translate(660,60)">
+    <rect x="0" y="0" width="140" height="50" rx="6" fill="white" stroke="#059669" stroke-width="1.5"/>
+    <text x="70" y="20" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#065f46">步进控制</text>
+    <text x="70" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">stepcompress</text>
+  </g>
+
+  <!-- Arrows between Row 1 boxes -->
+  <line x1="200" y1="85" x2="235" y2="85" stroke="#2563eb" stroke-width="1.5" marker-end="url(#aR)"/>
+  <line x1="410" y1="85" x2="445" y2="85" stroke="#2563eb" stroke-width="1.5" marker-end="url(#aR)"/>
+  <line x1="620" y1="85" x2="655" y2="85" stroke="#2563eb" stroke-width="1.5" marker-end="url(#aR)"/>
+
+  <!-- Layer annotation -->
+  <text x="770" y="80" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#7c3aed" font-style="italic">Python</text>
+  <text x="770" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#059669" font-style="italic">CFFI (C)</text>
+
+  <!-- Row 2: serialqueue.c -->
+  <g transform="translate(300,140)">
+    <rect x="0" y="0" width="200" height="50" rx="6" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="100" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#5b21b6">serialqueue.c</text>
+    <text x="100" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">串口 I/O 队列（C 线程）</text>
+  </g>
+  <line x1="730" y1="110" x2="730" y2="133" stroke="#6b7280" stroke-width="1.2"/>
+  <line x1="730" y1="133" x2="505" y2="133" stroke="#6b7280" stroke-width="1.2"/>
+  <line x1="505" y1="133" x2="400" y2="139" stroke="#6b7280" stroke-width="1.2" marker-end="url(#aD)"/>
+
+  <!-- Row 3: msgproto -->
+  <g transform="translate(300,220)">
+    <rect x="0" y="0" width="200" height="50" rx="6" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="100" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#5b21b6">msgproto.py</text>
+    <text x="100" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">二进制编解码 · CRC16 + VLQ</text>
+  </g>
+  <line x1="400" y1="190" x2="400" y2="214" stroke="#6b7280" stroke-width="1.5" marker-end="url(#aD)"/>
+
+  <!-- Row 4: Transport -->
+  <g transform="translate(250,295)">
+    <rect x="0" y="0" width="300" height="40" rx="6" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="150" y="18" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#5b21b6">串口 / CAN / USB 传输层</text>
+    <text x="150" y="34" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa">pyserial · python-can (socketcan)</text>
+  </g>
+  <line x1="400" y1="270" x2="400" y2="289" stroke="#6b7280" stroke-width="1.5" marker-end="url(#aD)"/>
+
+  <!-- API Server (side) -->
+  <g transform="translate(580,220)">
+    <rect x="0" y="0" width="200" height="50" rx="6" fill="white" stroke="#059669" stroke-width="1.5"/>
+    <text x="100" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#065f46">API 服务器</text>
+    <text x="100" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">Unix 套接字 + JSON</text>
+  </g>
+  <line x1="680" y1="270" x2="680" y2="289" stroke="#6b7280" stroke-width="1.5" marker-end="url(#aD)"/>
+  <line x1="680" y1="289" x2="555" y2="289" stroke="#6b7280" stroke-width="1.2"/>
+
+  <line x1="400" y1="335" x2="400" y2="360" stroke="#6b7280" stroke-width="1.5" marker-end="url(#aD)"/>
+
+  <!-- Boundary cross bar -->
+  <rect x="15" y="365" width="810" height="28" rx="5" fill="#dbeafe"/>
+  <text x="420" y="384" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e40af">══════ 物理连接（UART / CAN 总线 / USB）══════</text>
+
+  <line x1="400" y1="393" x2="400" y2="418" stroke="#6b7280" stroke-width="1.5" marker-end="url(#aD)"/>
+
+  <!-- ===== MCU SECTION ===== -->
+  <rect x="15" y="415" width="810" height="430" rx="12" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <path d="M15,427 A12,12 0 0,1 27,415 h786 a0,0 0 0,1 0,35 H15 Z" fill="url(#hdrM)"/>
+  <text x="420" y="437" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white">MCU（微控制器 / src/）</text>
+
+  <!-- serial_irq -->
+  <g transform="translate(300,465)">
+    <rect x="0" y="0" width="200" height="45" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+    <text x="100" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#92400e">serial_irq.c / serial.c</text>
+    <text x="100" y="36" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">中断驱动的收发</text>
+  </g>
+
+  <!-- command.c -->
+  <g transform="translate(260,535)">
+    <rect x="0" y="0" width="280" height="55" rx="6" fill="white" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="140" y="20" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#991b1b">command.c</text>
+    <text x="140" y="37" text-anchor="middle" font-family="monospace" font-size="9" fill="#6366f1">command_find_and_dispatch() · VLQ 编解码 · CRC-16 CCITT</text>
+  </g>
+  <line x1="400" y1="510" x2="400" y2="529" stroke="#6b7280" stroke-width="1.5" marker-end="url(#aD)"/>
+
+  <!-- Peripheral modules -->
+  <g transform="translate(30,625)">
+    <rect x="0" y="0" width="180" height="55" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+    <text x="90" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#92400e">stepper.c</text>
+    <text x="90" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">步进脉冲生成</text>
+  </g>
+  <g transform="translate(230,625)">
+    <rect x="0" y="0" width="180" height="55" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+    <text x="90" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#92400e">gpio.c</text>
+    <text x="90" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">引脚输入 / 输出</text>
+  </g>
+  <g transform="translate(430,625)">
+    <rect x="0" y="0" width="180" height="55" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+    <text x="90" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#92400e">endstop.c</text>
+    <text x="90" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">限位开关检测</text>
+  </g>
+  <g transform="translate(630,625)">
+    <rect x="0" y="0" width="170" height="55" rx="6" fill="white" stroke="#d97706" stroke-width="1.5"/>
+    <text x="85" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#92400e">其他模块</text>
+    <text x="85" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">ADC · PWM · SPI · I²C</text>
+  </g>
+
+  <!-- Distribution from command.c to peripherals -->
+  <path d="M400,590 L400,605 L120,605 L120,619" stroke="#6b7280" stroke-width="1.2" fill="none" marker-end="url(#aD)"/>
+  <path d="M400,590 L400,608 L320,608 L320,619" stroke="#6b7280" stroke-width="1.2" fill="none" marker-end="url(#aD)"/>
+  <path d="M400,590 L400,611 L520,611 L520,619" stroke="#6b7280" stroke-width="1.2" fill="none" marker-end="url(#aD)"/>
+  <path d="M400,590 L400,614 L715,614 L715,619" stroke="#6b7280" stroke-width="1.2" fill="none" marker-end="url(#aD)"/>
+
+  <!-- Hardware layer -->
+  <rect x="35" y="710" width="770" height="55" rx="8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="420" y="733" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#374151">硬件外设</text>
+  <text x="420" y="753" text-anchor="middle" font-family="monospace" font-size="10" fill="#6b7280">步进电机驱动 · 加热器 MOSFET · 热敏电阻 ADC · 限位开关 · 风扇 · 显示器</text>
+</svg>

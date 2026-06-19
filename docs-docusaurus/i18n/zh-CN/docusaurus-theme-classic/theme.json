@@ -1,0 +1,10 @@
+{
+  "theme.common.skipToMainContent": {
+    "message": "跳到主内容",
+    "description": "The skip to main content link"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← 返回主菜单",
+    "description": "The label of the back button in mobile navbar secondary menu"
+  }
+}

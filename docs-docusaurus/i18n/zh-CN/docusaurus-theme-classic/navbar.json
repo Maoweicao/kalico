@@ -1,0 +1,18 @@
+{
+  "item.label.Docs": {
+    "message": "文档",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Releases": {
+    "message": "发布版本",
+    "description": "Navbar item with label Releases"
+  },
+  "title": {
+    "message": "Kalico",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Kalico Logo",
+    "description": "The alt text of navbar logo"
+  }
+}
