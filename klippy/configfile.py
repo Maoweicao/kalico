@@ -6,6 +6,7 @@
 import configparser
 import glob
 import io
+import json
 import logging
 import os
 import pathlib
@@ -32,6 +33,169 @@ def _fix_include_path(source_file: str, match: re.Match) -> pathlib.Path:
     if not new_path.is_file():
         raise error(f"Attempted to include non-existent file {new_path}")
     return f"!!include {new_path}"
+
+
+def _json_value_to_string(value):
+    """Convert a JSON value to a string suitable for CFG format."""
+    if isinstance(value, bool):
+        return "True" if value else "False"
+    elif isinstance(value, (int, float)):
+        return str(value)
+    elif isinstance(value, list):
+        return ", ".join(str(item) for item in value)
+    elif isinstance(value, dict):
+        raise error("Nested JSON objects not supported in config conversion")
+    elif value is None:
+        return ""
+    return str(value)
+
+
+def _json_to_cfg(json_data, source_file=""):
+    """Convert JSON configuration data to CFG format string.
+    
+    JSON structure is mapped to CFG as follows:
+    - JSON objects become sections
+    - JSON key-value pairs become options
+    - JSON arrays become comma-separated strings
+    - Special key 'include' is handled for file includes
+    
+    Args:
+        json_data: Parsed JSON data (dict)
+        source_file: Source file path for include resolution
+        
+    Returns:
+        String in CFG format
+    """
+    lines = []
+    
+    # Handle top-level include directive
+    if "include" in json_data:
+        includes = json_data["include"]
+        if isinstance(includes, str):
+            includes = [includes]
+        for include_path in includes:
+            lines.append(f"[include {include_path}]")
+        lines.append("")
+    
+    # Process sections
+    for section, values in json_data.items():
+        if section == "include":
+            continue
+        
+        if not isinstance(values, dict):
+            # Top-level scalar values go to [printer] section
+            lines.append("[printer]")
+            lines.append(f"{section}: {_json_value_to_string(values)}")
+            lines.append("")
+            continue
+        
+        lines.append(f"[{section}]")
+        for key, value in values.items():
+            if isinstance(value, dict):
+                # Nested object - treat as sub-section
+                for sub_key, sub_value in value.items():
+                    lines.append(
+                        f"{key}_{sub_key}: {_json_value_to_string(sub_value)}"
+                    )
+            else:
+                lines.append(f"{key}: {_json_value_to_string(value)}")
+        lines.append("")
+    
+    return "\n".join(lines)
+
+
+def _read_json_config_file(filename):
+    """Read a JSON configuration file and convert to CFG format.
+    
+    Args:
+        filename: Path to JSON config file
+        
+    Returns:
+        Tuple of (cfg_data, json_autosave_path)
+        - cfg_data: Configuration in CFG format string
+        - json_autosave_path: Path to JSON autosave file (or None)
+    """
+    try:
+        with open(filename, "r") as f:
+            json_data = json.load(f)
+    except json.JSONDecodeError as e:
+        msg = f"Unable to parse JSON config file {filename}: {e}"
+        logging.exception(msg)
+        raise error(msg)
+    except Exception:
+        msg = f"Unable to open config file {filename}"
+        logging.exception(msg)
+        raise error(msg)
+    
+    if not isinstance(json_data, dict):
+        raise error(f"JSON config file {filename} must contain a JSON object")
+    
+    # Convert JSON to CFG format
+    cfg_data = _json_to_cfg(json_data, filename)
+    
+    # Determine autosave file path
+    json_autosave_path = None
+    if filename.endswith(".json"):
+        json_autosave_path = filename[:-5] + ".autosave.json"
+    
+    return cfg_data, json_autosave_path
+
+
+def cfg_to_json(cfg_data, filename="<string>"):
+    """Convert CFG format data to a JSON-serializable dict.
+    
+    This is the inverse of _json_to_cfg(). Useful for converting
+    existing .cfg files to .json format.
+    
+    Args:
+        cfg_data: Configuration in CFG format string
+        filename: Source filename for error messages
+        
+    Returns:
+        dict suitable for json.dump()
+    """
+    fileconfig = configparser.RawConfigParser(
+        strict=False,
+        inline_comment_prefixes=(";", "#"),
+    )
+    sbuffer = io.StringIO(cfg_data)
+    fileconfig.read_file(sbuffer, filename)
+    
+    result = {}
+    for section in fileconfig.sections():
+        section_dict = {}
+        for option in fileconfig.options(section):
+            value = fileconfig.get(section, option)
+            # Try to convert to appropriate type
+            if value.lower() in ("true", "yes", "on"):
+                section_dict[option] = True
+            elif value.lower() in ("false", "no", "off"):
+                section_dict[option] = False
+            else:
+                try:
+                    section_dict[option] = int(value)
+                except ValueError:
+                    try:
+                        section_dict[option] = float(value)
+                    except ValueError:
+                        # Handle comma-separated lists
+                        if "," in value:
+                            items = [v.strip() for v in value.split(",")]
+                            converted = []
+                            for item in items:
+                                try:
+                                    converted.append(int(item))
+                                except ValueError:
+                                    try:
+                                        converted.append(float(item))
+                                    except ValueError:
+                                        converted.append(item)
+                            section_dict[option] = converted
+                        else:
+                            section_dict[option] = value
+        result[section] = section_dict
+    
+    return result
 
 
 class SectionInterpolation(configparser.Interpolation):
@@ -343,6 +507,8 @@ class PrinterConfig:
     def __init__(self, printer):
         self.printer = printer
         self.autosave = None
+        self.json_autosave_path = None
+        self.is_json_config = False
         self.deprecated = {}
         self.runtime_warnings = []
         self.deprecate_warnings = []
@@ -365,6 +531,14 @@ class PrinterConfig:
         return self.printer
 
     def _read_config_file(self, filename):
+        # Check if this is a JSON config file
+        if filename.endswith(".json"):
+            cfg_data, json_autosave_path = _read_json_config_file(filename)
+            self.is_json_config = True
+            self.json_autosave_path = json_autosave_path
+            return cfg_data
+        
+        # Regular CFG file
         try:
             f = open(filename, "r")
             data = f.read()
@@ -520,12 +694,57 @@ class PrinterConfig:
     def read_main_config(self):
         filename = self.printer.get_start_args()["config_file"]
         data = self._read_config_file(filename)
-        regular_data, autosave_data = self._find_autosave_data(data)
-        regular_config = self._build_config_wrapper(regular_data, filename)
-        autosave_data = self._strip_duplicates(autosave_data, regular_config)
-        self.autosave = self._build_config_wrapper(autosave_data, filename)
-        cfg = self._build_config_wrapper(regular_data + autosave_data, filename)
+        
+        if self.is_json_config:
+            # JSON config uses separate autosave file
+            autosave_data = self._load_json_autosave()
+            regular_config = self._build_config_wrapper(data, filename)
+            autosave_data = self._strip_duplicates(autosave_data, regular_config)
+            self.autosave = self._build_config_wrapper(autosave_data, filename)
+            cfg = self._build_config_wrapper(data + autosave_data, filename)
+        else:
+            # Traditional CFG config with inline autosave
+            regular_data, autosave_data = self._find_autosave_data(data)
+            regular_config = self._build_config_wrapper(regular_data, filename)
+            autosave_data = self._strip_duplicates(autosave_data, regular_config)
+            self.autosave = self._build_config_wrapper(autosave_data, filename)
+            cfg = self._build_config_wrapper(regular_data + autosave_data, filename)
+        
         return cfg
+
+    def _load_json_autosave(self):
+        """Load autosave data from JSON autosave file."""
+        if not self.json_autosave_path:
+            return ""
+        
+        if not os.path.exists(self.json_autosave_path):
+            return ""
+        
+        try:
+            with open(self.json_autosave_path, "r") as f:
+                autosave_json = json.load(f)
+        except json.JSONDecodeError as e:
+            logging.warning(
+                "Can't read JSON autosave file %s: %s",
+                self.json_autosave_path, e
+            )
+            return ""
+        except Exception:
+            logging.warning(
+                "Unable to read JSON autosave file %s",
+                self.json_autosave_path
+            )
+            return ""
+        
+        if not isinstance(autosave_json, dict):
+            logging.warning(
+                "JSON autosave file %s must contain a JSON object",
+                self.json_autosave_path
+            )
+            return ""
+        
+        # Convert JSON autosave to CFG format
+        return _json_to_cfg(autosave_json, self.json_autosave_path)
 
     def check_unused_options(self, config, error_on_unused):
         fileconfig = config.fileconfig
@@ -769,6 +988,89 @@ class PrinterConfig:
     def cmd_SAVE_CONFIG(self, gcmd):
         if not self.autosave.fileconfig.sections():
             return
+        gcode = self.printer.lookup_object("gcode")
+        
+        if self.is_json_config:
+            self._save_json_config(gcmd)
+        else:
+            self._save_cfg_config(gcmd)
+
+    def _save_json_config(self, gcmd):
+        """Save configuration for JSON config files."""
+        gcode = self.printer.lookup_object("gcode")
+        
+        # Build autosave JSON data
+        autosave_json = {}
+        for section in self.autosave.fileconfig.sections():
+            autosave_json[section] = {}
+            for option in self.autosave.fileconfig.options(section):
+                value = self.autosave.fileconfig.get(section, option)
+                autosave_json[section][option] = value
+        
+        # Write to JSON autosave file
+        if not self.json_autosave_path:
+            gcode.respond_info("No JSON autosave path configured")
+            return
+        
+        try:
+            # Create backup if file exists
+            if os.path.exists(self.json_autosave_path):
+                self._write_json_backup(self.json_autosave_path, gcode)
+            
+            # Write new autosave data
+            with open(self.json_autosave_path, "w") as f:
+                json.dump(autosave_json, f, indent=2)
+            
+            logging.info(
+                "SAVE_CONFIG to '%s'",
+                self.json_autosave_path
+            )
+        except Exception as e:
+            msg = f"Unable to write JSON autosave file: {e}"
+            logging.exception(msg)
+            raise gcode.error(msg)
+        
+        # If requested restart or no restart just flag config saved
+        require_restart = gcmd.get_int("RESTART", 1, minval=0, maxval=1)
+        if require_restart:
+            gcode.request_restart("restart")
+        else:
+            self.save_config_pending = False
+            gcode.respond_info("Config update without restart successful")
+
+    def _write_json_backup(self, filepath, gcode):
+        """Create a backup of a JSON file."""
+        configdir = os.path.dirname(filepath)
+        backupdir = os.path.join(configdir, "config_backups")
+        
+        # Create backup directory if it doesn't exist
+        if not os.path.exists(backupdir):
+            os.mkdir(backupdir)
+        
+        # Generate backup filename
+        datestr = time.strftime("-%Y%m%d_%H%M%S")
+        basename = os.path.basename(filepath)
+        backup_path = os.path.join(backupdir, basename + datestr)
+        
+        logging.info(
+            "Backup JSON config '%s' to '%s'",
+            filepath, backup_path
+        )
+        
+        try:
+            # Read current content and write to backup
+            with open(filepath, "r") as f:
+                current_data = f.read()
+            with open(backup_path, "w") as f:
+                f.write(current_data)
+        except Exception as e:
+            logging.warning(
+                "Unable to create backup of JSON file %s: %s",
+                filepath, e
+            )
+
+    def _save_cfg_config(self, gcmd):
+        """Save configuration for traditional CFG config files."""
         gcode = self.printer.lookup_object("gcode")
         # Create string containing autosave data
         autosave_data = self._build_config_string(self.autosave)
