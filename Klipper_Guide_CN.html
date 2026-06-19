@@ -1,0 +1,4210 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.kalico.gg/Klipper_Guide_CN.html">
+      
+      
+      
+      
+      <link rel="icon" href="logo/kalico-32x32.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>Klipper 新手入门教程 - Kalico Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="_kalico/css/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3YZJ9658GV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3YZJ9658GV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3YZJ9658GV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#klipper" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalico Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Klipper 新手入门教程
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    Kalico Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Features.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="FAQ.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently Asked Questions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/KalicoCrew/kalico/releases" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Config_Changes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration Changes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Config_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kalico_Additions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico additions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bleeding Edge Features Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration reference for Bleeding Edge features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PID.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="MPC.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Predictive Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dockable_Probe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockable Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    G-Code Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            G-Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="G-Codes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Command_Templates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="G-Code_Shell_Command.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    G-Code Shell Command Extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Status_Reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Status reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting up and running
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Getting up and running
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Migrating_from_Klipper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrating from Klipper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using OctoPrint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="TMC_Drivers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TMC drivers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Config_checks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration checks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Rotation_Distance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rotation distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Multi_MCU_Homing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Micro-controller Homing and Probing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bed leveling, Probes and Endstops
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_8">
+            <span class="md-nav__icon md-icon"></span>
+            Bed leveling, Probes and Endstops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Z_Calibration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automatic Z-Offset Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bed_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Delta_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delta calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Probe_Calibrate.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Probe calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BLTouch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BL-Touch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Manual_Level.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual leveling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bed_Mesh.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bed Mesh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Endstop_Phase.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endstop phase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Axis Twist Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skew_Correction.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skew correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tuning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_9">
+            <span class="md-nav__icon md-icon"></span>
+            Tuning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Measuring_Resonances.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Measuring Resonances
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Resonance_Compensation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resonance Compensation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pressure advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Slicers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Slicers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slicers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Exclude_Object.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exclude Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Using_PWM_Tools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using PWM tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Code_Overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kinematics.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kinematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="API_Server.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="MCU_Commands.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MCU commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_protocol.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Debugging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Benchmarks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Packaging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Packaging Kalico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Device Specific Documents
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Device Specific Documents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Example_Configs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example configurations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SDCard_Updates.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SDCard updates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RPi_microcontroller.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RPi microcontroller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Beaglebone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Beaglebone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bootloaders.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootloader Entry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANBUS Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSL1401CL filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hall filament width sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Contact.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sponsors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sponsors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      目录
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/Klipper_Guide_CN.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="klipper">Klipper 新手入门教程<a class="headerlink" href="#klipper" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本教程面向完全零基础用户，从软硬件角度全面介绍 Klipper 固件的使用。</p>
+</blockquote>
+<hr />
+<h2 id="_1">目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#第一部分klipper-基础介绍">第一部分：Klipper 基础介绍</a></li>
+<li><a href="#第二部分主板连接方式">第二部分：主板连接方式</a></li>
+<li><a href="#第三部分固件编译与烧录">第三部分：固件编译与烧录</a></li>
+<li><a href="#第四部分基础配置">第四部分：基础配置</a></li>
+<li><a href="#第五部分宏编写">第五部分：宏编写</a></li>
+<li><a href="#第六部分基础架构">第六部分：基础架构</a></li>
+</ul>
+<hr />
+<h1 id="klipper_1">第一部分：Klipper 基础介绍<a class="headerlink" href="#klipper_1" title="Permanent link">&para;</a></h1>
+<h2 id="11-klipper">1.1 什么是 Klipper<a class="headerlink" href="#11-klipper" title="Permanent link">&para;</a></h2>
+<p>Klipper 是一个 3D 打印机固件，它的核心理念是：<strong>将复杂的运动计算交给性能更强的上位机（如树莓派），让打印机主板专注于执行步进脉冲。</strong></p>
+<h3 id="vs-klipper">传统固件 vs Klipper<a class="headerlink" href="#vs-klipper" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>传统固件 (Marlin 等)</th>
+<th>Klipper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运算位置</td>
+<td>打印机主板</td>
+<td>上位机（树莓派）</td>
+</tr>
+<tr>
+<td>计算能力</td>
+<td>受限于 8/32 位 MCU</td>
+<td>几乎无限（Linux 主机）</td>
+</tr>
+<tr>
+<td>配置修改</td>
+<td>需要重新编译固件</td>
+<td>只需修改配置文件</td>
+</tr>
+<tr>
+<td>运动精度</td>
+<td>受限于 MCU 性能</td>
+<td>高精度（25微秒级）</td>
+</tr>
+<tr>
+<td>扩展性</td>
+<td>有限</td>
+<td>支持多 MCU、CAN 总线等</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-klipper">1.2 Klipper 的优势<a class="headerlink" href="#12-klipper" title="Permanent link">&para;</a></h2>
+<h3 id="_2">高精度步进运动<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Klipper 使用应用处理器（如树莓派）计算打印机运动，将步进事件压缩后发送给 MCU 执行。每个步进事件的精度可达 25 微秒或更好。</p>
+<h3 id="_3">顶级性能<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>即使在旧的 8 位 MCU 上，Klipper 也能达到 175K+ 步/秒的步进速率。在较新的 MCU 上，可达到数百万步/秒。</p>
+<h3 id="mcu">多 MCU 支持<a class="headerlink" href="#mcu" title="Permanent link">&para;</a></h3>
+<p>Klipper 支持多个 MCU 协同工作，例如：</p>
+<ul>
+<li>一个 MCU 控制挤出机</li>
+<li>一个 MCU 控制加热器</li>
+<li>一个 MCU 控制打印机其他部分</li>
+</ul>
+<h3 id="_4">配置简单<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>所有配置都存储在一个简单的配置文件中，无需重新编译固件即可修改设置。</p>
+<h3 id="_5">高级功能<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>压力提前 (Pressure Advance)</strong>：减少挤出机渗漏，改善打印边角质量</li>
+<li><strong>输入整形 (Input Shaping)</strong>：减少打印中的振纹（ringing/ghosting）</li>
+<li><strong>自定义宏</strong>：可以在配置文件中定义新的 G-Code 命令</li>
+</ul>
+<h2 id="13">1.3 硬件需求<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<h3 id="host">上位机（Host）<a class="headerlink" href="#host" title="Permanent link">&para;</a></h3>
+<p>运行 Klipper 主机软件（Klippy）的设备，推荐：</p>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>树莓派 3B/4B/5</td>
+<td>最常用，社区支持最好</td>
+</tr>
+<tr>
+<td>树莓派 Zero 2 W</td>
+<td>小巧，适合小型打印机</td>
+</tr>
+<tr>
+<td>Orange Pi</td>
+<td>性价比高</td>
+</tr>
+<tr>
+<td>BeagleBone</td>
+<td>支持 PRU 实时控制</td>
+</tr>
+<tr>
+<td>x86 Linux 电脑</td>
+<td>性能最强</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mcu_1">下位机（MCU）<a class="headerlink" href="#mcu_1" title="Permanent link">&para;</a></h3>
+<p>打印机主板，常见型号：</p>
+<table>
+<thead>
+<tr>
+<th>芯片架构</th>
+<th>常见型号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STM32</td>
+<td>STM32F103, STM32F407, STM32F446, STM32G0B1</td>
+<td>最常见，性能好</td>
+</tr>
+<tr>
+<td>AVR</td>
+<td>ATmega2560</td>
+<td>传统 8 位 MCU</td>
+</tr>
+<tr>
+<td>RP2040/RP2350</td>
+<td>树莓派 Pico</td>
+<td>新兴选择</td>
+</tr>
+<tr>
+<td>LPC</td>
+<td>LPC1768, LPC1769</td>
+<td>旧款主板</td>
+</tr>
+<tr>
+<td>SAM</td>
+<td>SAM3X8E, SAM4S8C, SAME70</td>
+<td>Arduino Due 等</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">常见打印机主板<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>主板</th>
+<th>MCU</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTT SKR Mini E3</td>
+<td>STM32F103</td>
+<td>入门级，性价比高</td>
+</tr>
+<tr>
+<td>BTT SKR 1.4</td>
+<td>LPC1768/1769</td>
+<td>功能丰富</td>
+</tr>
+<tr>
+<td>BTT SKR 2</td>
+<td>STM32F407</td>
+<td>高性能</td>
+</tr>
+<tr>
+<td>BTT SKR Pico</td>
+<td>RP2040</td>
+<td>新兴选择</td>
+</tr>
+<tr>
+<td>MKS Robin</td>
+<td>STM32F103/F407</td>
+<td>常见选择</td>
+</tr>
+<tr>
+<td>Fysetc Cheetah</td>
+<td>STM32F103</td>
+<td>性价比高</td>
+</tr>
+<tr>
+<td>RAMPS 1.4</td>
+<td>ATmega2560</td>
+<td>经典 Arduino 主板</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="_7">第二部分：主板连接方式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h1>
+<p>Klipper 支持 6 种不同的 MCU 连接方式，每种方式适用于不同的场景。</p>
+<h2 id="21">2.1 连接方式概览<a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>方式</th>
+<th>配置项</th>
+<th>传输介质</th>
+<th>拓扑结构</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>UART/Serial (USB)</td>
+<td><code>serial</code> + <code>baud</code></td>
+<td>USB CDC ACM / 物理串口</td>
+<td>点对点</td>
+</tr>
+<tr>
+<td>2</td>
+<td>CAN Bus</td>
+<td><code>canbus_uuid</code></td>
+<td>SocketCAN</td>
+<td>多点总线</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Pipe/PTY</td>
+<td><code>serial</code> (无 baud)</td>
+<td>命名管道 / PTY</td>
+<td>本地 IPC</td>
+</tr>
+<tr>
+<td>4</td>
+<td>TCP</td>
+<td><code>tcp_host</code> + <code>tcp_port</code></td>
+<td>TCP/IP 流</td>
+<td>网络</td>
+</tr>
+<tr>
+<td>5</td>
+<td>UDP</td>
+<td><code>udp_host</code> + <code>udp_port</code></td>
+<td>UDP/IP 数据报</td>
+<td>网络</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Debug File</td>
+<td>命令行参数</td>
+<td>文件回放</td>
+<td>离线调试</td>
+</tr>
+</tbody>
+</table>
+<h2 id="22-uartserial-usb-">2.2 UART/Serial (USB) - 最常用<a class="headerlink" href="#22-uartserial-usb-" title="Permanent link">&para;</a></h2>
+<p>这是最常见的连接方式，MCU 通过 USB 虚拟串口或物理 UART 连接到上位机。</p>
+<h3 id="_8">配置示例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[mcu]</span>
+<span class="na">serial</span><span class="o">:</span><span class="w"> </span><span class="s">/dev/serial/by-id/usb-Klipper_stm32f103xe_12345-if00</span>
+<span class="na">baud</span><span class="o">:</span><span class="w"> </span><span class="s">250000</span>
+<span class="na">restart_method</span><span class="o">:</span><span class="w"> </span><span class="s">arduino</span>
+</code></pre></div>
+
+<h3 id="id">如何获取串口 ID<a class="headerlink" href="#id" title="Permanent link">&para;</a></h3>
+<p>在终端中运行：</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>/dev/serial/by-id/*
+</code></pre></div>
+
+<p>输出示例：</p>
+<div class="highlight"><pre><span></span><code>/dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0
+</code></pre></div>
+
+<h3 id="restart_method">重启方式 (restart_method)<a class="headerlink" href="#restart_method" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arduino</code></td>
+<td>切换 DTR 线（Arduino/STM32 常用）</td>
+</tr>
+<tr>
+<td><code>cheetah</code></td>
+<td>Fysetc Cheetah 主板专用</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td>发送 Klipper 协议复位命令</td>
+</tr>
+<tr>
+<td><code>rpi_usb</code></td>
+<td>通过 hub-ctrl 切换 USB 端口电源</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">适用场景<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>单 MCU 打印机</li>
+<li>入门级配置</li>
+<li>USB 连接的主板</li>
+</ul>
+<h2 id="23-can-bus-">2.3 CAN Bus - 多设备总线<a class="headerlink" href="#23-can-bus-" title="Permanent link">&para;</a></h2>
+<p>CAN 总线是一种多点通信协议，允许多个设备共享同一条总线，每个设备通过 UUID 标识。</p>
+<h3 id="_10">配置示例<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[mcu]</span>
+<span class="na">canbus_uuid</span><span class="o">:</span><span class="w"> </span><span class="s">0a1b2c3d4e5f</span>
+<span class="na">canbus_interface</span><span class="o">:</span><span class="w"> </span><span class="s">can0</span>
+</code></pre></div>
+
+<h3 id="mcu_2">多 MCU 配置示例<a class="headerlink" href="#mcu_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 主板通过 USB</span>
+<span class="k">[mcu]</span>
+<span class="na">serial</span><span class="o">:</span><span class="w"> </span><span class="s">/dev/serial/by-id/usb-main_board</span>
+
+<span class="c1"># 工具头通过 CAN</span>
+<span class="k">[mcu toolhead]</span>
+<span class="na">canbus_uuid</span><span class="o">:</span><span class="w"> </span><span class="s">1a2b3c4d5e6f</span>
+
+<span class="c1"># 加速度计通过 TCP</span>
+<span class="k">[mcu accelerometer]</span>
+<span class="na">tcp_host</span><span class="o">:</span><span class="w"> </span><span class="s">192.168.1.200</span>
+<span class="na">tcp_port</span><span class="o">:</span><span class="w"> </span><span class="s">5500</span>
+<span class="na">is_non_critical</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
+</code></pre></div>
+
+<h3 id="can">发现 CAN 设备<a class="headerlink" href="#can" title="Permanent link">&para;</a></h3>
+<p>使用 Klipper 自带工具：</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>~/klipper/scripts/canbus_query.py<span class="w"> </span>can0
+</code></pre></div>
+
+<h3 id="_11">适用场景<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>多 MCU 打印机</li>
+<li>工具头主板</li>
+<li>需要减少布线的场景</li>
+</ul>
+<h2 id="24-pipepty-linux-mcu">2.4 Pipe/PTY - Linux MCU<a class="headerlink" href="#24-pipepty-linux-mcu" title="Permanent link">&para;</a></h2>
+<p>用于主机 MCU（Linux 进程）或 BeagleBone PRU 设备。</p>
+<h3 id="_12">配置示例<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[mcu host]</span>
+<span class="na">serial</span><span class="o">:</span><span class="w"> </span><span class="s">/tmp/klipper_host_mcu</span>
+</code></pre></div>
+
+<h3 id="_13">适用场景<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>使用树莓派 GPIO 的 Linux MCU</li>
+<li>BeagleBone PRU 控制</li>
+<li>本地进程间通信</li>
+</ul>
+<h2 id="25-tcp-">2.5 TCP - 网络流<a class="headerlink" href="#25-tcp-" title="Permanent link">&para;</a></h2>
+<p>通过 TCP/IP 网络连接 MCU，适用于有线以太网或 WiFi 连接。</p>
+<h3 id="_14">配置示例<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[mcu]</span>
+<span class="na">tcp_host</span><span class="o">:</span><span class="w"> </span><span class="s">192.168.1.100</span>
+<span class="na">tcp_port</span><span class="o">:</span><span class="w"> </span><span class="s">5500</span>
+</code></pre></div>
+
+<h3 id="_15">使用场景<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>远程 MCU 控制</li>
+<li>通过 WiFi 连接的打印机</li>
+<li>ESP32 等 WiFi MCU</li>
+</ul>
+<h3 id="_16">实现方式<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>桥接设备</strong>：MCU 通过 UART 连接到 ESP32/RPi，ESP32/RPi 通过 TCP 连接到 Klippy</li>
+<li><strong>原生 TCP</strong>：MCU 固件直接实现 TCP/IP 协议栈（如 STM32 + W5500）</li>
+</ol>
+<h2 id="26-udp-">2.6 UDP - 网络数据报<a class="headerlink" href="#26-udp-" title="Permanent link">&para;</a></h2>
+<p>通过 UDP/IP 连接 MCU，适合低延迟场景。</p>
+<h3 id="_17">配置示例<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[mcu]</span>
+<span class="na">udp_host</span><span class="o">:</span><span class="w"> </span><span class="s">192.168.1.100</span>
+<span class="na">udp_port</span><span class="o">:</span><span class="w"> </span><span class="s">5500</span>
+</code></pre></div>
+
+<h3 id="tcp-vs-udp">TCP vs UDP 对比<a class="headerlink" href="#tcp-vs-udp" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方面</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可靠性</td>
+<td>保证送达</td>
+<td>尽力而为</td>
+</tr>
+<tr>
+<td>有序性</td>
+<td>保证顺序</td>
+<td>不保证</td>
+</tr>
+<tr>
+<td>连接状态</td>
+<td>面向连接</td>
+<td>无连接</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>较高</td>
+<td>较低</td>
+</tr>
+<tr>
+<td>开销</td>
+<td>连接建立 + 断开</td>
+<td>最小</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>通用远程 MCU</td>
+<td>低延迟、局域网</td>
+</tr>
+</tbody>
+</table>
+<h2 id="27-debug-file-">2.7 Debug File - 离线调试<a class="headerlink" href="#27-debug-file-" title="Permanent link">&para;</a></h2>
+<p>用于离线调试，Klippy 从预录制的串口流量文件读取数据。</p>
+<h3 id="_18">使用方法<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>klippy.py<span class="w"> </span>--debugoutput<span class="o">=</span>/tmp/klipper.log<span class="w"> </span>--dictionary<span class="o">=</span>/tmp/dict.bin
+</code></pre></div>
+
+<h3 id="_19">适用场景<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<ul>
+<li>开发调试</li>
+<li>复现问题</li>
+<li>无硬件测试</li>
+</ul>
+<h2 id="28">2.8 连接方式选择流程<a class="headerlink" href="#28" title="Permanent link">&para;</a></h2>
+<p>Klippy 按以下顺序检测配置：</p>
+<ol>
+<li><code>tcp_host</code> 已设置 → <strong>TCP</strong></li>
+<li><code>udp_host</code> 已设置 → <strong>UDP</strong></li>
+<li><code>canbus_uuid</code> 已设置 → <strong>CAN Bus</strong></li>
+<li><code>serial</code> 已设置，路径以 <code>/dev/rpmsg_</code> 或 <code>/tmp/klipper_host_</code> 开头 → <strong>Pipe/PTY</strong></li>
+<li><code>serial</code> 已设置，其他路径 → <strong>UART/Serial</strong></li>
+</ol>
+<p><strong>注意</strong>：每个 <code>[mcu]</code> 部分只能指定一种连接方式，这些选项互斥。</p>
+<hr />
+<h1 id="_20">第三部分：固件编译与烧录<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h1>
+<h2 id="31">3.1 编译环境准备<a class="headerlink" href="#31" title="Permanent link">&para;</a></h2>
+<h3 id="_21">安装依赖<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>在上位机（树莓派等）上安装编译工具：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>build-essential<span class="w"> </span>libncurses-dev
+</code></pre></div>
+
+<h3 id="klipper_2">进入 Klipper 目录<a class="headerlink" href="#klipper_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/klipper/
+</code></pre></div>
+
+<h2 id="32-menuconfig">3.2 menuconfig 配置<a class="headerlink" href="#32-menuconfig" title="Permanent link">&para;</a></h2>
+<p>运行配置工具：</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>menuconfig
+</code></pre></div>
+
+<h3 id="_22">界面说明<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────┐
+│  Klipper Firmware Configuration                    │
+├─────────────────────────────────────────────────────┤
+│  [*] Micro-controller Architecture (STMicroelectronics STM32) │
+│  [ ] Bootloader offset (No bootloader)              │
+│  [ ] Communication Interface (Serial (on USB PA10/PA9)) │
+│                                                   │
+│      &lt;Ok&gt;                &lt;Save&gt;                &lt;Exit&gt; │
+└─────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="_23">常见配置选项<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<h4 id="1-mcu">1. 选择 MCU 架构<a class="headerlink" href="#1-mcu" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>芯片架构</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atmel AVR</td>
+<td>ATmega2560 等</td>
+</tr>
+<tr>
+<td>Atmel SAM</td>
+<td>SAM3X8E, SAM4S8C 等</td>
+</tr>
+<tr>
+<td>STMicroelectronics STM32</td>
+<td>STM32F103, STM32F407 等</td>
+</tr>
+<tr>
+<td>RP2040/RP2350</td>
+<td>树莓派 Pico</td>
+</tr>
+<tr>
+<td>NXP LPC176x</td>
+<td>LPC1768, LPC1769</td>
+</tr>
+<tr>
+<td>SAMD21/SAMD51</td>
+<td>ATSAMD21, ATSAMD51</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-stm32">2. 选择主板型号（以 STM32 为例）<a class="headerlink" href="#2-stm32" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STM32F103</td>
+<td>常见入门级主板</td>
+</tr>
+<tr>
+<td>STM32F407</td>
+<td>高性能主板</td>
+</tr>
+<tr>
+<td>STM32F446</td>
+<td>高性能主板</td>
+</tr>
+<tr>
+<td>STM32G0B1</td>
+<td>新款低成本 MCU</td>
+</tr>
+<tr>
+<td>STM32H723</td>
+<td>顶级性能</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3">3. 选择通信接口<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serial (on USB PA10/PA9)</td>
+<td>USB 虚拟串口</td>
+</tr>
+<tr>
+<td>Serial (UART1)</td>
+<td>物理 UART</td>
+</tr>
+<tr>
+<td>CAN bus</td>
+<td>CAN 总线</td>
+</tr>
+<tr>
+<td>TCP (Network)</td>
+<td>网络连接</td>
+</tr>
+</tbody>
+</table>
+<h2 id="33">3.3 编译固件<a class="headerlink" href="#33" title="Permanent link">&para;</a></h2>
+<p>配置完成后，按 <code>Q</code> 退出，按 <code>Y</code> 保存。</p>
+<p>编译固件：</p>
+<div class="highlight"><pre><span></span><code>make
+</code></pre></div>
+
+<p>编译成功后，固件文件位于：</p>
+<ul>
+<li>AVR: <code>out/klipper.elf.hex</code></li>
+<li>ARM: <code>out/klipper.bin</code></li>
+</ul>
+<h2 id="34">3.4 烧录固件<a class="headerlink" href="#34" title="Permanent link">&para;</a></h2>
+<h3 id="usb-avr">方法一：USB 串口烧录（AVR 芯片）<a class="headerlink" href="#usb-avr" title="Permanent link">&para;</a></h3>
+<p>适用于 ATmega2560 等 AVR 芯片：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 停止 Klipper 服务</span>
+sudo<span class="w"> </span>service<span class="w"> </span>klipper<span class="w"> </span>stop
+
+<span class="c1"># 烧录固件（替换为实际串口）</span>
+make<span class="w"> </span>flash<span class="w"> </span><span class="nv">FLASH_DEVICE</span><span class="o">=</span>/dev/serial/by-id/usb-Klipper_stm32f103xe_12345-if00
+
+<span class="c1"># 启动 Klipper 服务</span>
+sudo<span class="w"> </span>service<span class="w"> </span>klipper<span class="w"> </span>start
+</code></pre></div>
+
+<h3 id="sd-stm32">方法二：SD 卡烧录（STM32 芯片）<a class="headerlink" href="#sd-stm32" title="Permanent link">&para;</a></h3>
+<p>适用于 STM32F103, STM32F407 等：</p>
+<ol>
+<li><strong>断开 USB 连接</strong>（重要！防止供电冲突）</li>
+<li>将编译好的 <code>firmware.bin</code> 复制到 SD 卡根目录</li>
+<li>将 SD 卡插入主板</li>
+<li>给主板上电</li>
+<li>等待几秒后取出 SD 卡</li>
+<li>重新连接 USB</li>
+</ol>
+<p><strong>注意</strong>：某些主板需要将 SD 卡命名为特定名称（如 <code>firmware.bin</code>）。</p>
+<h3 id="rp2040">方法三：RP2040 烧录<a class="headerlink" href="#rp2040" title="Permanent link">&para;</a></h3>
+<p>适用于树莓派 Pico 等 RP2040 主板：</p>
+<ol>
+<li>按住 BOOTSEL 按钮</li>
+<li>连接 USB</li>
+<li>板子会作为 USB 存储设备出现</li>
+<li>复制 <code>firmware.uf2</code> 到存储设备</li>
+<li>板子会自动重启</li>
+</ol>
+<p>命令行方式：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>service<span class="w"> </span>klipper<span class="w"> </span>stop
+make<span class="w"> </span>flash<span class="w"> </span><span class="nv">FLASH_DEVICE</span><span class="o">=</span>first
+sudo<span class="w"> </span>service<span class="w"> </span>klipper<span class="w"> </span>start
+</code></pre></div>
+
+<h3 id="lpc176x">方法四：LPC176x 烧录<a class="headerlink" href="#lpc176x" title="Permanent link">&para;</a></h3>
+<p>适用于 LPC1768/LPC1769 主板：</p>
+<ol>
+<li>将编译好的 <code>firmware.bin</code> 复制到 SD 卡</li>
+<li>重命名为 <code>firmware.bin</code>（确保名称正确）</li>
+<li>插入 SD 卡并重启主板</li>
+</ol>
+<h3 id="_24">烧录后验证<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p>烧录完成后，验证连接：</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>/dev/serial/by-id/*
+</code></pre></div>
+
+<p>如果能看到设备，说明烧录成功。</p>
+<hr />
+<h1 id="_25">第四部分：基础配置<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h1>
+<h2 id="41">4.1 配置文件结构<a class="headerlink" href="#41" title="Permanent link">&para;</a></h2>
+<p>Klipp 配置文件是 INI 格式的文本文件，存放在 <code>~/printer.cfg</code>。</p>
+<h3 id="_26">基本结构<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 这是注释</span>
+
+<span class="k">[mcu]</span>
+<span class="na">serial</span><span class="o">:</span><span class="w"> </span><span class="s">/dev/serial/by-id/usb-Klipper_xxx</span>
+<span class="na">baud</span><span class="o">:</span><span class="w"> </span><span class="s">250000</span>
+
+<span class="k">[printer]</span>
+<span class="na">kinematics</span><span class="o">:</span><span class="w"> </span><span class="s">cartesian</span>
+<span class="na">max_velocity</span><span class="o">:</span><span class="w"> </span><span class="s">300</span>
+<span class="na">max_accel</span><span class="o">:</span><span class="w"> </span><span class="s">3000</span>
+
+<span class="k">[stepper_x]</span>
+<span class="na">step_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC0</span>
+<span class="na">dir_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC1</span>
+<span class="na">enable_pin</span><span class="o">:</span><span class="w"> </span><span class="s">!PC2</span>
+<span class="na">...</span>
+</code></pre></div>
+
+<h3 id="_27">配置引用<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<p>Klipper 支持配置引用，可以在多个部分之间共享值：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[constants]</span>
+<span class="na">run_current</span><span class="o">:</span><span class="w"> </span><span class="s">1.0</span>
+
+<span class="k">[tmc2209 stepper_x]</span>
+<span class="na">run_current</span><span class="o">:</span><span class="w"> </span><span class="s">${constants.run_current}</span>
+
+<span class="k">[tmc2209 stepper_y]</span>
+<span class="na">run_current</span><span class="o">:</span><span class="w"> </span><span class="s">${tmc2209 stepper_x.run_current}</span>
+</code></pre></div>
+
+<h2 id="42-mcu">4.2 MCU 配置<a class="headerlink" href="#42-mcu" title="Permanent link">&para;</a></h2>
+<h3 id="mcu_3">基本 MCU 配置<a class="headerlink" href="#mcu_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[mcu]</span>
+<span class="c1"># 串口连接（USB 方式）</span>
+<span class="na">serial</span><span class="o">:</span><span class="w"> </span><span class="s">/dev/serial/by-id/usb-Klipper_stm32f103xe_12345-if00</span>
+<span class="na">baud</span><span class="o">:</span><span class="w"> </span><span class="s">250000</span>
+<span class="na">restart_method</span><span class="o">:</span><span class="w"> </span><span class="s">arduino</span>
+</code></pre></div>
+
+<h3 id="can-mcu">CAN 总线 MCU 配置<a class="headerlink" href="#can-mcu" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[mcu toolhead]</span>
+<span class="na">canbus_uuid</span><span class="o">:</span><span class="w"> </span><span class="s">1a2b3c4d5e6f</span>
+<span class="na">canbus_interface</span><span class="o">:</span><span class="w"> </span><span class="s">can0</span>
+</code></pre></div>
+
+<h3 id="mcu_4">多 MCU 配置<a class="headerlink" href="#mcu_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 主 MCU</span>
+<span class="k">[mcu]</span>
+<span class="na">serial</span><span class="o">:</span><span class="w"> </span><span class="s">/dev/serial/by-id/usb-main_board</span>
+
+<span class="c1"># 工具头 MCU</span>
+<span class="k">[mcu toolhead]</span>
+<span class="na">serial</span><span class="o">:</span><span class="w"> </span><span class="s">/dev/serial/by-id/usb-toolhead_board</span>
+
+<span class="c1"># 非关键 MCU（可断开）</span>
+<span class="k">[mcu accelerometer]</span>
+<span class="na">serial</span><span class="o">:</span><span class="w"> </span><span class="s">/dev/serial/by-id/usb-accelerometer</span>
+<span class="na">is_non_critical</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
+</code></pre></div>
+
+<h3 id="_28">引脚名称格式<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>引脚名称使用硬件名称，如 <code>PA4</code>、<code>PC0</code> 等。</p>
+<ul>
+<li><code>!</code> 前缀：反转极性（低电平有效）</li>
+<li><code>^</code> 前缀：启用内部上拉电阻</li>
+<li><code>~</code> 前缀：启用内部下拉电阻</li>
+</ul>
+<p>示例：</p>
+<ul>
+<li><code>PC0</code> - 普通引脚</li>
+<li><code>!PC0</code> - 反转极性</li>
+<li><code>^PC0</code> - 启用上拉</li>
+<li><code>!^PC0</code> - 反转 + 上拉</li>
+</ul>
+<h2 id="43">4.3 打印机运动学配置<a class="headerlink" href="#43" title="Permanent link">&para;</a></h2>
+<h3 id="printer">[printer] 部分<a class="headerlink" href="#printer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[printer]</span>
+<span class="c1"># 运动学类型（必须）</span>
+<span class="na">kinematics</span><span class="o">:</span><span class="w"> </span><span class="s">cartesian</span>
+
+<span class="c1"># 最大速度（必须）</span>
+<span class="na">max_velocity</span><span class="o">:</span><span class="w"> </span><span class="s">300</span><span class="w">  </span><span class="c1"># mm/s</span>
+
+<span class="c1"># 最大加速度（必须）</span>
+<span class="na">max_accel</span><span class="o">:</span><span class="w"> </span><span class="s">3000</span><span class="w">  </span><span class="c1"># mm/s^2</span>
+
+<span class="c1"># Z 轴最大速度（可选）</span>
+<span class="na">max_z_velocity</span><span class="o">:</span><span class="w"> </span><span class="s">5</span>
+
+<span class="c1"># Z 轴最大加速度（可选）</span>
+<span class="na">max_z_accel</span><span class="o">:</span><span class="w"> </span><span class="s">100</span>
+
+<span class="c1"># 最小巡航比例（可选）</span>
+<span class="na">minimum_cruise_ratio</span><span class="o">:</span><span class="w"> </span><span class="s">0.5</span>
+
+<span class="c1"># 直角速度（可选）</span>
+<span class="na">square_corner_velocity</span><span class="o">:</span><span class="w"> </span><span class="s">5.0</span>
+</code></pre></div>
+
+<h3 id="_29">支持的运动学类型<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>适用打印机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cartesian</code></td>
+<td>笛卡尔坐标</td>
+<td>传统 XYZ 打印机</td>
+</tr>
+<tr>
+<td><code>corexy</code></td>
+<td>CoreXY 结构</td>
+<td>高速打印机</td>
+</tr>
+<tr>
+<td><code>corexz</code></td>
+<td>CoreXZ 结构</td>
+<td>特殊结构</td>
+</tr>
+<tr>
+<td><code>hybrid_corexy</code></td>
+<td>混合 CoreXY</td>
+<td>Markforged 类型</td>
+</tr>
+<tr>
+<td><code>delta</code></td>
+<td>三角洲结构</td>
+<td>Delta 打印机</td>
+</tr>
+<tr>
+<td><code>polar</code></td>
+<td>极坐标</td>
+<td>实验性</td>
+</tr>
+<tr>
+<td><code>winch</code></td>
+<td>绳索牵引</td>
+<td>实验性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="44">4.4 步进电机配置<a class="headerlink" href="#44" title="Permanent link">&para;</a></h2>
+<h3 id="stepper_x">[stepper_x] 基本配置<a class="headerlink" href="#stepper_x" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[stepper_x]</span>
+<span class="c1"># 步进引脚（必须）</span>
+<span class="na">step_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC0</span>
+
+<span class="c1"># 方向引脚（必须）</span>
+<span class="na">dir_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC1</span>
+
+<span class="c1"># 使能引脚（可选）</span>
+<span class="na">enable_pin</span><span class="o">:</span><span class="w"> </span><span class="s">!PC2</span><span class="w">  </span><span class="c1"># ! 表示低电平有效</span>
+
+<span class="c1"># 旋转距离（必须）</span>
+<span class="c1"># 计算公式：皮带齿距 × 驱动轮齿数 / 电机齿数</span>
+<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">40</span><span class="w">  </span><span class="c1"># 例如 2GT 皮带，20 齿驱动轮</span>
+
+<span class="c1"># 微步数（必须）</span>
+<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">16</span>
+
+<span class="c1"># 每圈全步数（可选）</span>
+<span class="na">full_steps_per_rotation</span><span class="o">:</span><span class="w"> </span><span class="s">200</span><span class="w">  </span><span class="c1"># 1.8 度电机</span>
+
+<span class="c1"># 齿轮比（可选）</span>
+<span class="c1"># gear_ratio: 5:1</span>
+
+<span class="c1"># 限位开关引脚（必须，X/Y/Z 轴需要）</span>
+<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PC3</span>
+
+<span class="c1"># 限位位置（必须）</span>
+<span class="na">position_endstop</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
+
+<span class="c1"># 最大位置（必须）</span>
+<span class="na">position_max</span><span class="o">:</span><span class="w"> </span><span class="s">220</span>
+
+<span class="c1"># 最小位置（可选）</span>
+<span class="na">position_min</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
+
+<span class="c1"># 归位速度（可选）</span>
+<span class="na">homing_speed</span><span class="o">:</span><span class="w"> </span><span class="s">5</span><span class="w">  </span><span class="c1"># mm/s</span>
+
+<span class="c1"># 第二次归位速度（可选）</span>
+<span class="na">second_homing_speed</span><span class="o">:</span><span class="w"> </span><span class="s">2.5</span>
+
+<span class="c1"># 归位后回退距离（可选）</span>
+<span class="na">homing_retract_dist</span><span class="o">:</span><span class="w"> </span><span class="s">5.0</span>
+</code></pre></div>
+
+<h3 id="rotation_distance">rotation_distance 计算<a class="headerlink" href="#rotation_distance" title="Permanent link">&para;</a></h3>
+<p><strong>皮带传动</strong>：</p>
+<div class="highlight"><pre><span></span><code>rotation_distance = 皮带齿距 × 驱动轮齿数
+</code></pre></div>
+
+<ul>
+<li>2GT 皮带：2mm × 20齿 = 40mm</li>
+<li>T2.5 皮带：2.5mm × 20齿 = 50mm</li>
+</ul>
+<p><strong>丝杆传动</strong>：</p>
+<div class="highlight"><pre><span></span><code>rotation_distance = 丝杆导程
+</code></pre></div>
+
+<ul>
+<li>8mm 丝杆：rotation_distance = 8</li>
+<li>2mm 丝杆：rotation_distance = 2</li>
+</ul>
+<p><strong>带齿轮箱</strong>：</p>
+<div class="highlight"><pre><span></span><code>rotation_distance = (输出齿数 / 输入齿数) × 基础距离
+</code></pre></div>
+
+<h3 id="_30">限位开关配置<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 机械限位开关（上拉）</span>
+<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PC3</span>
+
+<span class="c1"># 限位开关（下拉）</span>
+<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">~PC3</span>
+
+<span class="c1"># 无归位（不推荐）</span>
+<span class="c1"># endstop_pin: virtual_endstop</span>
+
+<span class="c1"># 传感器归位</span>
+<span class="c1"># endstop_pin: tmc2209_stepper_x:virtual_endstop</span>
+</code></pre></div>
+
+<h2 id="45">4.5 挤出机配置<a class="headerlink" href="#45" title="Permanent link">&para;</a></h2>
+<h3 id="extruder">[extruder] 配置<a class="headerlink" href="#extruder" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[extruder]</span>
+<span class="c1"># 步进引脚</span>
+<span class="na">step_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB1</span>
+<span class="na">dir_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB0</span>
+<span class="na">enable_pin</span><span class="o">:</span><span class="w"> </span><span class="s">!PA5</span>
+
+<span class="c1"># 旋转距离</span>
+<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">22.6789511</span><span class="w">  </span><span class="c1"># 根据实际齿轮比计算</span>
+
+<span class="c1"># 微步数</span>
+<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">16</span>
+
+<span class="c1"># 每圈全步数</span>
+<span class="na">full_steps_per_rotation</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
+
+<span class="c1"># 齿轮比（如有）</span>
+<span class="c1"># gear_ratio: 5:1</span>
+
+<span class="c1"># 喷嘴直径（必须）</span>
+<span class="na">nozzle_diameter</span><span class="o">:</span><span class="w"> </span><span class="s">0.4</span>
+
+<span class="c1"># 耗材直径（必须）</span>
+<span class="na">filament_diameter</span><span class="o">:</span><span class="w"> </span><span class="s">1.75</span>
+
+<span class="c1"># 最大挤出横截面积（可选）</span>
+<span class="c1"># max_extrude_cross_section: 4.0</span>
+
+<span class="c1"># 最大挤出距离（可选）</span>
+<span class="c1"># max_extrude_only_distance: 50.0</span>
+
+<span class="c1"># 压力提前（可选，需要校准）</span>
+<span class="c1"># pressure_advance: 0.0</span>
+<span class="c1"># pressure_advance_smooth_time: 0.040</span>
+
+<span class="c1"># 加热器引脚（必须）</span>
+<span class="na">heater_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC4</span>
+
+<span class="c1"># 温度传感器类型（必须）</span>
+<span class="na">sensor_type</span><span class="o">:</span><span class="w"> </span><span class="s">ATC Semitec 104NT-4-R025H42G</span>
+
+<span class="c1"># 温度传感器引脚（必须）</span>
+<span class="na">sensor_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PA0</span>
+
+<span class="c1"># 控制方式（必须）</span>
+<span class="na">control</span><span class="o">:</span><span class="w"> </span><span class="s">pid</span>
+
+<span class="c1"># PID 参数（必须，使用 PID_CALIBRATE 命令获取）</span>
+<span class="na">pid_Kp</span><span class="o">:</span><span class="w"> </span><span class="s">21.527</span>
+<span class="na">pid_Ki</span><span class="o">:</span><span class="w"> </span><span class="s">1.063</span>
+<span class="na">pid_Kd</span><span class="o">:</span><span class="w"> </span><span class="s">108.982</span>
+
+<span class="c1"># 或使用 MPC 控制（Kalico 特性）</span>
+<span class="c1"># control: mpc</span>
+<span class="c1"># heater_power: 40</span>
+<span class="c1"># cooling_fan: fan</span>
+
+<span class="c1"># 温度范围（必须）</span>
+<span class="na">min_temp</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
+<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">270</span>
+
+<span class="c1"># 最低挤出温度（可选）</span>
+<span class="na">min_extrude_temp</span><span class="o">:</span><span class="w"> </span><span class="s">170</span>
+</code></pre></div>
+
+<h3 id="pid">PID 校准<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h3>
+<p>在 Klipper 控制台中运行：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 加热喷嘴到目标温度并校准</span>
+PID_CALIBRATE<span class="w"> </span><span class="nv">HEATER</span><span class="o">=</span>extruder<span class="w"> </span><span class="nv">TARGET</span><span class="o">=</span><span class="m">200</span>
+
+<span class="c1"># 保存配置</span>
+SAVE_CONFIG
+</code></pre></div>
+
+<h3 id="mpc-kalico">MPC 控制（Kalico 特性）<a class="headerlink" href="#mpc-kalico" title="Permanent link">&para;</a></h3>
+<p>MPC（Model Predictive Control）是 Kalico 的增强功能：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[extruder]</span>
+<span class="na">control</span><span class="o">:</span><span class="w"> </span><span class="s">mpc</span>
+<span class="na">heater_power</span><span class="o">:</span><span class="w"> </span><span class="s">40</span><span class="w">  </span><span class="c1"># 加热器功率（瓦特）</span>
+<span class="na">cooling_fan</span><span class="o">:</span><span class="w"> </span><span class="s">fan</span><span class="w">  </span><span class="c1"># 关联的冷却风扇</span>
+<span class="na">ambient_temp_sensor</span><span class="o">:</span><span class="w"> </span><span class="s">temperature_sensor room</span><span class="w">  </span><span class="c1"># 环境温度传感器</span>
+
+<span class="c1"># 耗材参数（可选）</span>
+<span class="na">filament_diameter</span><span class="o">:</span><span class="w"> </span><span class="s">1.75</span>
+<span class="na">filament_density</span><span class="o">:</span><span class="w"> </span><span class="s">1.2</span>
+<span class="na">filament_heat_capacity</span><span class="o">:</span><span class="w"> </span><span class="s">1.8</span>
+</code></pre></div>
+
+<h2 id="46">4.6 热床配置<a class="headerlink" href="#46" title="Permanent link">&para;</a></h2>
+<h3 id="heater_bed">[heater_bed] 配置<a class="headerlink" href="#heater_bed" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[heater_bed]</span>
+<span class="c1"># 加热器引脚</span>
+<span class="na">heater_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PD3</span>
+
+<span class="c1"># 温度传感器</span>
+<span class="na">sensor_type</span><span class="o">:</span><span class="w"> </span><span class="s">EPCOS 100K B57560G104F</span>
+<span class="na">sensor_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PA1</span>
+
+<span class="c1"># 控制方式</span>
+<span class="na">control</span><span class="o">:</span><span class="w"> </span><span class="s">pid</span>
+
+<span class="c1"># PID 参数</span>
+<span class="na">pid_Kp</span><span class="o">:</span><span class="w"> </span><span class="s">58.437</span>
+<span class="na">pid_Ki</span><span class="o">:</span><span class="w"> </span><span class="s">2.347</span>
+<span class="na">pid_Kd</span><span class="o">:</span><span class="w"> </span><span class="s">363.769</span>
+
+<span class="c1"># 温度范围</span>
+<span class="na">min_temp</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
+<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">120</span>
+</code></pre></div>
+
+<h2 id="47">4.7 风扇配置<a class="headerlink" href="#47" title="Permanent link">&para;</a></h2>
+<h3 id="fan-">[fan] - 打印冷却风扇<a class="headerlink" href="#fan-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[fan]</span>
+<span class="c1"># 风扇引脚</span>
+<span class="na">pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB5</span>
+
+<span class="c1"># 最大功率（可选）</span>
+<span class="c1"># max_power: 1.0</span>
+
+<span class="c1"># 关机时转速（可选）</span>
+<span class="c1"># shutdown_speed: 0</span>
+
+<span class="c1"># 启动时间（可选）</span>
+<span class="c1"># kick_start_time: 0.100</span>
+
+<span class="c1"># 最小功率（可选）</span>
+<span class="c1"># min_power: 0.0</span>
+</code></pre></div>
+
+<h3 id="heater_fan-">[heater_fan] - 加热器冷却风扇<a class="headerlink" href="#heater_fan-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[heater_fan hotend_fan]</span>
+<span class="c1"># 风扇引脚</span>
+<span class="na">pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB6</span>
+
+<span class="c1"># 关联的加热器</span>
+<span class="na">heater</span><span class="o">:</span><span class="w"> </span><span class="s">extruder</span>
+
+<span class="c1"># 最低温度（低于此温度风扇关闭）</span>
+<span class="na">heater_temp</span><span class="o">:</span><span class="w"> </span><span class="s">50</span>
+
+<span class="c1"># 最大功率</span>
+<span class="c1"># max_power: 1.0</span>
+</code></pre></div>
+
+<h3 id="controller_fan-">[controller_fan] - 控制器风扇<a class="headerlink" href="#controller_fan-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[controller_fan controller_fan]</span>
+<span class="c1"># 风扇引脚</span>
+<span class="na">pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB7</span>
+
+<span class="c1"># 关联的加热器（可选）</span>
+<span class="na">heater</span><span class="o">:</span><span class="w"> </span><span class="s">heater_bed</span>
+
+<span class="c1"># 关联的电机驱动（可选）</span>
+<span class="c1"># fan_speed: 0.5</span>
+
+<span class="c1"># 超时时间（可选）</span>
+<span class="c1"># idle_timeout: 60</span>
+</code></pre></div>
+
+<h3 id="temperature_fan-">[temperature_fan] - 温控风扇<a class="headerlink" href="#temperature_fan-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[temperature_fan chamber_fan]</span>
+<span class="c1"># 风扇引脚</span>
+<span class="na">pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB8</span>
+
+<span class="c1"># 温度传感器</span>
+<span class="na">sensor</span><span class="o">:</span><span class="w"> </span><span class="s">temperature_sensor chamber</span>
+
+<span class="c1"># 目标温度</span>
+<span class="na">target_temp</span><span class="o">:</span><span class="w"> </span><span class="s">40</span>
+
+<span class="c1"># PID 控制（可选）</span>
+<span class="c1"># pid_kp: 0.2</span>
+<span class="c1"># pid_ki: 0.1</span>
+<span class="c1"># pid_kd: 0.5</span>
+
+<span class="c1"># 最小温度（可选）</span>
+<span class="na">min_temp</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
+<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">60</span>
+</code></pre></div>
+
+<h2 id="48-tmc">4.8 TMC 驱动配置<a class="headerlink" href="#48-tmc" title="Permanent link">&para;</a></h2>
+<h3 id="tmc2208-uart">TMC2208 (UART)<a class="headerlink" href="#tmc2208-uart" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[tmc2208 stepper_x]</span>
+<span class="na">uart_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC4</span><span class="w">  </span><span class="c1"># UART 引脚</span>
+
+<span class="c1"># 或使用 TX/RX 引脚</span>
+<span class="c1"># tx_pin: PC4</span>
+<span class="c1"># rx_pin: PC5</span>
+
+<span class="c1"># 串口地址（多驱动时需要）</span>
+<span class="c1"># uart_address: 0</span>
+
+<span class="c1"># 运行电流（必须）</span>
+<span class="na">run_current</span><span class="o">:</span><span class="w"> </span><span class="s">0.8</span>
+
+<span class="c1"># 保持电流（可选）</span>
+<span class="c1"># hold_current: 0.4</span>
+
+<span class="c1"># 微步插值（可选）</span>
+<span class="c1"># interpolate: True</span>
+
+<span class="c1"># 运行模式（可选）</span>
+<span class="c1"># driver_SGTHRS: 50  # 传感器归位阈值</span>
+</code></pre></div>
+
+<h3 id="tmc2209-uart">TMC2209 (UART)<a class="headerlink" href="#tmc2209-uart" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[tmc2209 stepper_x]</span>
+<span class="na">uart_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC4</span>
+
+<span class="c1"># 运行电流</span>
+<span class="na">run_current</span><span class="o">:</span><span class="w"> </span><span class="s">0.8</span>
+
+<span class="c1"># 传感器归位支持</span>
+<span class="c1"># driver_SGTHRS: 100</span>
+</code></pre></div>
+
+<h3 id="tmc5160-spi">TMC5160 (SPI)<a class="headerlink" href="#tmc5160-spi" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[tmc5160 stepper_x]</span>
+<span class="na">cs_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC4</span><span class="w">  </span><span class="c1"># 片选引脚</span>
+
+<span class="c1"># SPI 引脚（如需要）</span>
+<span class="c1"># spi_bus: spi1</span>
+<span class="c1"># spi_software_sclk_pin: PA5</span>
+<span class="c1"># spi_software_mosi_pin: PA7</span>
+<span class="c1"># spi_software_miso_pin: PA6</span>
+
+<span class="c1"># 运行电流</span>
+<span class="na">run_current</span><span class="o">:</span><span class="w"> </span><span class="s">1.0</span>
+
+<span class="c1"># 其他参数</span>
+<span class="c1"># driver_TPWMTHRS: 0</span>
+<span class="c1"># driver_VACTUAL: 0</span>
+<span class="c1"># driver_TPOWERDOWN: 128</span>
+<span class="c1"># driver_EN_PWM_MODE: True</span>
+</code></pre></div>
+
+<h3 id="tmc">TMC 驱动调试<a class="headerlink" href="#tmc" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 测试步进电机</span>
+STEPPER_BUZZ<span class="w"> </span><span class="nv">STEPPER</span><span class="o">=</span>stepper_x
+
+<span class="c1"># 设置驱动电流</span>
+SET_TMC_CURRENT<span class="w"> </span><span class="nv">STEPPER</span><span class="o">=</span>stepper_x<span class="w"> </span><span class="nv">CURRENT</span><span class="o">=</span><span class="m">0</span>.8
+
+<span class="c1"># 查看驱动状态</span>
+DUMP_TMC<span class="w"> </span><span class="nv">STEPPER</span><span class="o">=</span>stepper_x
+</code></pre></div>
+
+<h2 id="49">4.9 温度传感器配置<a class="headerlink" href="#49" title="Permanent link">&para;</a></h2>
+<h3 id="_31">常见热敏电阻类型<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EPCOS 100K B57560G104F</td>
+<td>常见 EPCOS 100K</td>
+</tr>
+<tr>
+<td>ATC Semitec 104GT-2</td>
+<td>常见 Semitec</td>
+</tr>
+<tr>
+<td>Generic 3950</td>
+<td>通用 3950 NTC</td>
+</tr>
+<tr>
+<td>NTC 100K MGB18-104F39050L32</td>
+<td>NTC 100K</td>
+</tr>
+</tbody>
+</table>
+<h3 id="temperature_sensor">[temperature_sensor] 配置<a class="headerlink" href="#temperature_sensor" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[temperature_sensor chamber]</span>
+<span class="c1"># 传感器类型</span>
+<span class="na">sensor_type</span><span class="o">:</span><span class="w"> </span><span class="s">Generic 3950</span>
+
+<span class="c1"># 传感器引脚</span>
+<span class="na">sensor_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PA2</span>
+
+<span class="c1"># 温度偏移（可选）</span>
+<span class="c1"># temperature_offset: 0</span>
+
+<span class="c1"># 最小/最大温度（可选）</span>
+<span class="na">min_temp</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
+<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">100</span>
+</code></pre></div>
+
+<h3 id="spi">SPI 温度传感器<a class="headerlink" href="#spi" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[temperature_sensor hotend_temp]</span>
+<span class="na">sensor_type</span><span class="o">:</span><span class="w"> </span><span class="s">MAX31865</span>
+<span class="c1"># 使用软件 SPI</span>
+<span class="na">spi_bus</span><span class="o">:</span><span class="w"> </span><span class="s">spi1</span>
+<span class="na">rtd_reference_r</span><span class="o">:</span><span class="w"> </span><span class="s">430</span>
+<span class="na">rtd_num_of_wires</span><span class="o">:</span><span class="w"> </span><span class="s">2</span>
+<span class="na">cs_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PC4</span>
+</code></pre></div>
+
+<h2 id="410">4.10 其他常用配置<a class="headerlink" href="#410" title="Permanent link">&para;</a></h2>
+<h3 id="bed_mesh-">[bed_mesh] - 热床网格<a class="headerlink" href="#bed_mesh-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[bed_mesh]</span>
+<span class="na">speed</span><span class="o">:</span><span class="w"> </span><span class="s">120</span>
+<span class="na">horizontal_move_z</span><span class="o">:</span><span class="w"> </span><span class="s">5</span>
+<span class="na">mesh_min</span><span class="o">:</span><span class="w"> </span><span class="s">30, 60</span>
+<span class="na">mesh_max</span><span class="o">:</span><span class="w"> </span><span class="s">200, 190</span>
+<span class="na">probe_count</span><span class="o">:</span><span class="w"> </span><span class="s">5, 5</span>
+<span class="na">algorithm</span><span class="o">:</span><span class="w"> </span><span class="s">bicubic</span>
+</code></pre></div>
+
+<h3 id="probe-">[probe] - 探针<a class="headerlink" href="#probe-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[probe]</span>
+<span class="na">pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PA3</span>
+<span class="na">x_offset</span><span class="o">:</span><span class="w"> </span><span class="s">-25</span>
+<span class="na">y_offset</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
+<span class="na">z_offset</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
+<span class="c1">#   点击 &quot;QUERY_PROBE&quot; 查看当前状态</span>
+<span class="na">speed</span><span class="o">:</span><span class="w"> </span><span class="s">5</span>
+<span class="na">samples</span><span class="o">:</span><span class="w"> </span><span class="s">3</span>
+<span class="na">samples_result</span><span class="o">:</span><span class="w"> </span><span class="s">average</span>
+<span class="na">samples_tolerance</span><span class="o">:</span><span class="w"> </span><span class="s">0.05</span>
+</code></pre></div>
+
+<h3 id="screws_tilt_adjust-">[screws_tilt_adjust] - 螺丝校准<a class="headerlink" href="#screws_tilt_adjust-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[screws_tilt_adjust]</span>
+<span class="na">screw1</span><span class="o">:</span><span class="w"> </span><span class="s">30, 30</span>
+<span class="na">screw1_name</span><span class="o">:</span><span class="w"> </span><span class="s">front left screw</span>
+<span class="na">screw2</span><span class="o">:</span><span class="w"> </span><span class="s">200, 30</span>
+<span class="na">screw2_name</span><span class="o">:</span><span class="w"> </span><span class="s">front right screw</span>
+<span class="na">screw3</span><span class="o">:</span><span class="w"> </span><span class="s">200, 190</span>
+<span class="na">screw3_name</span><span class="o">:</span><span class="w"> </span><span class="s">rear right screw</span>
+<span class="na">screw4</span><span class="o">:</span><span class="w"> </span><span class="s">30, 190</span>
+<span class="na">screw4_name</span><span class="o">:</span><span class="w"> </span><span class="s">rear left screw</span>
+<span class="na">horizontal_move_z</span><span class="o">:</span><span class="w"> </span><span class="s">5</span>
+<span class="na">speed</span><span class="o">:</span><span class="w"> </span><span class="s">50</span>
+<span class="na">screw_thread</span><span class="o">:</span><span class="w"> </span><span class="s">CW-M3</span>
+</code></pre></div>
+
+<h3 id="input_shaper-">[input_shaper] - 输入整形<a class="headerlink" href="#input_shaper-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[input_shaper]</span>
+<span class="na">shaper_freq_x</span><span class="o">:</span><span class="w"> </span><span class="s">50</span>
+<span class="na">shaper_freq_y</span><span class="o">:</span><span class="w"> </span><span class="s">50</span>
+<span class="na">shaper_type</span><span class="o">:</span><span class="w"> </span><span class="s">mzv</span>
+</code></pre></div>
+
+<hr />
+<h1 id="_32">第五部分：宏编写<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h1>
+<h2 id="51">5.1 基本宏结构<a class="headerlink" href="#51" title="Permanent link">&para;</a></h2>
+<h3 id="_33">定义一个简单的宏<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro GREETING]</span>
+<span class="na">description</span><span class="o">:</span><span class="w"> </span><span class="s">打印问候语</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">M117 Hello World!</span>
+</code></pre></div>
+
+<h3 id="_34">宏的命名规则<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<ul>
+<li>宏名称不区分大小写</li>
+<li>如果包含数字，数字必须在末尾</li>
+<li>示例：<code>MY_MACRO</code> 和 <code>my_macro</code> 等价</li>
+<li>有效：<code>TEST_MACRO25</code></li>
+<li>无效：<code>MACRO25_TEST3</code></li>
+</ul>
+<h3 id="_35">缩进规则<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<p><code>gcode:</code> 部分后的每一行都需要缩进（通常 2 个空格）：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro MY_MACRO]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">G28</span>
+<span class="w">  </span><span class="na">G1 Z10 F300</span>
+<span class="w">  </span><span class="na">M117 Done!</span>
+</code></pre></div>
+
+<h2 id="52-jinja2">5.2 Jinja2 模板<a class="headerlink" href="#52-jinja2" title="Permanent link">&para;</a></h2>
+<h3 id="_36">变量设置<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro SET_TEMP]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% set temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">params.TEMPERATURE|default(200)|float %}</span>
+<span class="w">  </span><span class="na">M104 S{temp}</span>
+</code></pre></div>
+
+<h3 id="_37">条件语句<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro CONDITIONAL]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% if params.VALUE|default(0)|int &gt; 10 %}</span>
+<span class="w">    </span><span class="na">M117 Value is greater than 10</span>
+<span class="w">  </span><span class="na">{% else %}</span>
+<span class="w">    </span><span class="na">M117 Value is 10 or less</span>
+<span class="w">  </span><span class="na">{% endif %}</span>
+</code></pre></div>
+
+<h3 id="_38">循环<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro MULTI_MOVE]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% for i in range(5) %}</span>
+<span class="w">    </span><span class="na">G1 X{10 + i * 20} F3000</span>
+<span class="w">  </span><span class="na">{% endfor %}</span>
+</code></pre></div>
+
+<h3 id="_39">访问打印机状态<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro SHOW_TEMP]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% set bed_temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">printer.heater_bed.temperature %}</span>
+<span class="w">  </span><span class="na">{% set extruder_temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">printer.extruder.temperature %}</span>
+<span class="w">  </span><span class="na">M117 Bed</span><span class="o">:</span><span class="w"> </span><span class="s">{bed_temp}C, Extruder: {extruder_temp}C</span>
+</code></pre></div>
+
+<h3 id="_40">访问参数<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro SET_BED_TEMP]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% set bed_temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">params.TEMPERATURE|default(40)|float %}</span>
+<span class="w">  </span><span class="na">M140 S{bed_temp}</span>
+</code></pre></div>
+
+<p>调用方式：<code>SET_BED_TEMP TEMPERATURE=60</code></p>
+<h2 id="53-python-kalico">5.3 Python 宏（Kalico 特性）<a class="headerlink" href="#53-python-kalico" title="Permanent link">&para;</a></h2>
+<p>Kalico 支持使用 Python 编写宏，使用 <code>!</code> 前缀：</p>
+<h3 id="python">基本 Python 宏<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro PYTHON_EXAMPLE]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">!temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">printer[&quot;extruder&quot;][&quot;temperature&quot;]</span>
+<span class="w">  </span><span class="na">!respond_info(f&quot;Current temperature</span><span class="o">:</span><span class="w"> </span><span class="s">{temp}C&quot;)</span>
+</code></pre></div>
+
+<h3 id="python_1">Python 循环<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro PYTHON_LOOP]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">!for i in range(5)</span><span class="o">:</span>
+<span class="w">  </span><span class="na">!  emit(f&quot;G1 X{i * 20} F3000&quot;)</span>
+</code></pre></div>
+
+<h3 id="python_2">从文件包含 Python 宏<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro MY_MACRO]</span>
+<span class="na">gcode</span><span class="o">:</span><span class="w"> </span><span class="s">!!include my_macros/my_macro.py</span>
+</code></pre></div>
+
+<p>文件 <code>my_macros/my_macro.py</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="n">wipe_count</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">emit</span><span class="p">(</span><span class="s2">&quot;G90&quot;</span><span class="p">)</span>
+<span class="n">emit</span><span class="p">(</span><span class="s2">&quot;G0 Z15 F300&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">wipe</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">wipe_count</span><span class="p">):</span>
+    <span class="n">emit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;G0 X</span><span class="si">{</span><span class="mi">275</span><span class="si">}</span><span class="s2"> Y</span><span class="si">{</span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wipe</span><span class="si">}</span><span class="s2"> Z9.7 F12000&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="helper">可用的 Helper 函数<a class="headerlink" href="#helper" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>emit(cmd)</code></td>
+<td>发送 G-Code 命令</td>
+</tr>
+<tr>
+<td><code>wait_while(cond)</code></td>
+<td>等待条件为假</td>
+</tr>
+<tr>
+<td><code>wait_until(cond)</code></td>
+<td>等待条件为真</td>
+</tr>
+<tr>
+<td><code>wait_moves()</code></td>
+<td>等待移动完成</td>
+</tr>
+<tr>
+<td><code>sleep(seconds)</code></td>
+<td>暂停</td>
+</tr>
+<tr>
+<td><code>respond_info(msg)</code></td>
+<td>发送信息</td>
+</tr>
+<tr>
+<td><code>raise_error(msg)</code></td>
+<td>抛出错误</td>
+</tr>
+<tr>
+<td><code>action_emergency_stop(msg)</code></td>
+<td>紧急停止</td>
+</tr>
+</tbody>
+</table>
+<h2 id="54">5.4 常用宏示例<a class="headerlink" href="#54" title="Permanent link">&para;</a></h2>
+<h3 id="_41">开始打印宏<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro START_PRINT]</span>
+<span class="na">description</span><span class="o">:</span><span class="w"> </span><span class="s">开始打印准备</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% set BED_TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">params.BED_TEMP|default(60)|float %}</span>
+<span class="w">  </span><span class="na">{% set EXTRUDER_TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">params.EXTRUDER_TEMP|default(200)|float %}</span>
+
+<span class="w">  </span><span class="c1"># 归位</span>
+<span class="w">  </span><span class="na">G28</span>
+
+<span class="w">  </span><span class="c1"># 加热热床</span>
+<span class="w">  </span><span class="na">M140 S{BED_TEMP}</span>
+<span class="w">  </span><span class="na">M190 S{BED_TEMP}</span>
+
+<span class="w">  </span><span class="c1"># 加热喷嘴</span>
+<span class="w">  </span><span class="na">M104 S{EXTRUDER_TEMP}</span>
+<span class="w">  </span><span class="na">M109 S{EXTRUDER_TEMP}</span>
+
+<span class="w">  </span><span class="c1"># 自动调平</span>
+<span class="w">  </span><span class="na">BED_MESH_CALIBRATE</span>
+
+<span class="w">  </span><span class="c1"># 挤出准备</span>
+<span class="w">  </span><span class="na">G92 E0</span>
+<span class="w">  </span><span class="na">G1 E5 F100</span>
+<span class="w">  </span><span class="na">G92 E0</span>
+
+<span class="w">  </span><span class="c1"># 开始打印</span>
+<span class="w">  </span><span class="na">G1 Z5 F3000</span>
+</code></pre></div>
+
+<h3 id="_42">结束打印宏<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro END_PRINT]</span>
+<span class="na">description</span><span class="o">:</span><span class="w"> </span><span class="s">打印结束</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="c1"># 关闭加热器</span>
+<span class="w">  </span><span class="na">M104 S0</span>
+<span class="w">  </span><span class="na">M140 S0</span>
+
+<span class="w">  </span><span class="c1"># 关闭风扇</span>
+<span class="w">  </span><span class="na">M106 S0</span>
+
+<span class="w">  </span><span class="c1"># 回到原点</span>
+<span class="w">  </span><span class="na">G91</span>
+<span class="w">  </span><span class="na">G1 Z10 F3000</span>
+<span class="w">  </span><span class="na">G90</span>
+<span class="w">  </span><span class="na">G28 X Y</span>
+
+<span class="w">  </span><span class="c1"># 关闭电机</span>
+<span class="w">  </span><span class="na">M84</span>
+</code></pre></div>
+
+<h3 id="_43">换料宏<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro CHANGE_FILAMENT]</span>
+<span class="na">description</span><span class="o">:</span><span class="w"> </span><span class="s">更换耗材</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% set OLD_TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">printer.extruder.target %}</span>
+<span class="w">  </span><span class="na">{% set NEW_TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">params.NEW_TEMP|default(200)|float %}</span>
+
+<span class="w">  </span><span class="c1"># 保存当前温度</span>
+<span class="w">  </span><span class="na">SET_GCODE_VARIABLE MACRO</span><span class="o">=</span><span class="s">CHANGE_FILAMENT VARIABLE=old_temp VALUE={OLD_TEMP}</span>
+
+<span class="w">  </span><span class="c1"># 加热到换料温度</span>
+<span class="w">  </span><span class="na">M109 S{NEW_TEMP}</span>
+
+<span class="w">  </span><span class="c1"># 退料</span>
+<span class="w">  </span><span class="na">G91</span>
+<span class="w">  </span><span class="na">G1 E-50 F300</span>
+<span class="w">  </span><span class="na">G90</span>
+
+<span class="w">  </span><span class="c1"># 提示用户</span>
+<span class="w">  </span><span class="na">M117 请更换耗材，完成后按继续</span>
+
+<span class="w">  </span><span class="c1"># 等待用户确认</span>
+<span class="w">  </span><span class="na">PAUSE</span>
+
+<span class="w">  </span><span class="c1"># 进料</span>
+<span class="w">  </span><span class="na">G91</span>
+<span class="w">  </span><span class="na">G1 E50 F300</span>
+<span class="w">  </span><span class="na">G90</span>
+
+<span class="w">  </span><span class="c1"># 恢复温度</span>
+<span class="w">  </span><span class="na">M109 S{OLD_TEMP}</span>
+</code></pre></div>
+
+<h3 id="_44">安全归位宏<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro SAFE_HOME]</span>
+<span class="na">description</span><span class="o">:</span><span class="w"> </span><span class="s">安全归位</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="c1"># 抬高喷嘴</span>
+<span class="w">  </span><span class="na">G91</span>
+<span class="w">  </span><span class="na">G1 Z10 F3000</span>
+<span class="w">  </span><span class="na">G90</span>
+
+<span class="w">  </span><span class="c1"># 归位</span>
+<span class="w">  </span><span class="na">G28</span>
+
+<span class="w">  </span><span class="c1"># 移动到中心</span>
+<span class="w">  </span><span class="na">G1 X{printer.toolhead.axis_maximum.x / 2} Y{printer.toolhead.axis_maximum.y / 2} F6000</span>
+</code></pre></div>
+
+<h2 id="55-delayed-gcodes">5.5 Delayed Gcodes<a class="headerlink" href="#55-delayed-gcodes" title="Permanent link">&para;</a></h2>
+<p>延迟 G-Code 可以在指定时间后执行：</p>
+<h3 id="_45">基本用法<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[delayed_gcode clear_display]</span>
+<span class="na">description</span><span class="o">:</span><span class="w"> </span><span class="s">清除显示消息</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">M117</span>
+
+<span class="k">[gcode_macro LOAD_FILAMENT]</span>
+<span class="na">description</span><span class="o">:</span><span class="w"> </span><span class="s">加载耗材</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">G91</span>
+<span class="w">  </span><span class="na">G1 E50 F100</span>
+<span class="w">  </span><span class="na">G90</span>
+<span class="w">  </span><span class="na">M400</span>
+<span class="w">  </span><span class="na">M117 加载完成!</span>
+<span class="w">  </span><span class="na">UPDATE_DELAYED_GCODE ID</span><span class="o">=</span><span class="s">clear_display DURATION=10</span>
+</code></pre></div>
+
+<h3 id="_46">启动时执行<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[delayed_gcode welcome]</span>
+<span class="na">initial_duration</span><span class="o">:</span><span class="w"> </span><span class="s">5.</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">M117 欢迎使用 Klipper!</span>
+</code></pre></div>
+
+<h3 id="_47">循环执行<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[delayed_gcode report_temp]</span>
+<span class="na">initial_duration</span><span class="o">:</span><span class="w"> </span><span class="s">2.</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{action_respond_info(&quot;喷嘴温度</span><span class="o">:</span><span class="w"> </span><span class="s">%.1f&quot; % (printer.extruder0.temperature))}</span>
+<span class="w">  </span><span class="na">UPDATE_DELAYED_GCODE ID</span><span class="o">=</span><span class="s">report_temp DURATION=2</span>
+</code></pre></div>
+
+<p>取消循环：</p>
+<div class="highlight"><pre><span></span><code>UPDATE_DELAYED_GCODE<span class="w"> </span><span class="nv">ID</span><span class="o">=</span>report_temp<span class="w"> </span><span class="nv">DURATION</span><span class="o">=</span><span class="m">0</span>
+</code></pre></div>
+
+<h2 id="56">5.6 变量保存<a class="headerlink" href="#56" title="Permanent link">&para;</a></h2>
+<h3 id="set_gcode_variable">使用 SET_GCODE_VARIABLE<a class="headerlink" href="#set_gcode_variable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[gcode_macro PRINT_STATUS]</span>
+<span class="na">variable_status</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;idle&quot;</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">M117 Status</span><span class="o">:</span><span class="w"> </span><span class="s">{printer[&quot;gcode_macro PRINT_STATUS&quot;].status}</span>
+
+<span class="k">[gcode_macro SET_STATUS]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% set status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">params.STATUS|default(&quot;unknown&quot;) %}</span>
+<span class="w">  </span><span class="na">SET_GCODE_VARIABLE MACRO=PRINT_STATUS VARIABLE=status VALUE</span><span class="o">=</span><span class="s">&#39;&quot;</span><span class="na">{status}&quot;&#39;</span>
+</code></pre></div>
+
+<p>使用：</p>
+<div class="highlight"><pre><span></span><code>SET_STATUS<span class="w"> </span><span class="nv">STATUS</span><span class="o">=</span><span class="s2">&quot;printing&quot;</span>
+PRINT_STATUS
+</code></pre></div>
+
+<h3 id="save_variable">使用 SAVE_VARIABLE 持久化<a class="headerlink" href="#save_variable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 首先启用 save_variables</span>
+<span class="k">[save_variables]</span>
+<span class="na">filename</span><span class="o">:</span><span class="w"> </span><span class="s">~/printer_data/config/saved_variables.cfg</span>
+
+<span class="c1"># 然后在宏中使用</span>
+<span class="k">[gcode_macro T1]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">ACTIVATE_EXTRUDER extruder</span><span class="o">=</span><span class="s">extruder1</span>
+<span class="w">  </span><span class="na">SAVE_VARIABLE VARIABLE=currentextruder VALUE</span><span class="o">=</span><span class="s">&#39;&quot;</span><span class="na">extruder1&quot;&#39;</span>
+
+<span class="k">[gcode_macro T0]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">ACTIVATE_EXTRUDER extruder</span><span class="o">=</span><span class="s">extruder</span>
+<span class="w">  </span><span class="na">SAVE_VARIABLE VARIABLE=currentextruder VALUE</span><span class="o">=</span><span class="s">&#39;&quot;</span><span class="na">extruder&quot;&#39;</span>
+
+<span class="k">[gcode_macro START_PRINT]</span>
+<span class="na">gcode</span><span class="o">:</span>
+<span class="w">  </span><span class="na">{% set svv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">printer.save_variables.variables %}</span>
+<span class="w">  </span><span class="na">ACTIVATE_EXTRUDER extruder</span><span class="o">=</span><span class="s">{svv.currentextruder}</span>
+</code></pre></div>
+
+<h2 id="57">5.7 宏调试<a class="headerlink" href="#57" title="Permanent link">&para;</a></h2>
+<h3 id="_48">查看变量<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看宏的变量</span>
+QUERY_GCODE_VARIABLE<span class="w"> </span><span class="nv">MACRO</span><span class="o">=</span>PRINT_STATUS<span class="w"> </span><span class="nv">VARIABLE</span><span class="o">=</span>status
+</code></pre></div>
+
+<h3 id="_49">测试宏<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 直接调用宏</span>
+START_PRINT<span class="w"> </span><span class="nv">BED_TEMP</span><span class="o">=</span><span class="m">60</span><span class="w"> </span><span class="nv">EXTRUDER_TEMP</span><span class="o">=</span><span class="m">200</span>
+
+<span class="c1"># 测试延迟 G-Code</span>
+UPDATE_DELAYED_GCODE<span class="w"> </span><span class="nv">ID</span><span class="o">=</span>clear_display<span class="w"> </span><span class="nv">DURATION</span><span class="o">=</span><span class="m">0</span>
+</code></pre></div>
+
+<h3 id="_50">查看打印机状态<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看工具头位置</span>
+STATUS
+
+<span class="c1"># 查看温度</span>
+M105
+</code></pre></div>
+
+<hr />
+<h1 id="_51">第六部分：基础架构<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h1>
+<h2 id="61">6.1 软件架构概览<a class="headerlink" href="#61" title="Permanent link">&para;</a></h2>
+<p>Klipper 采用分层架构：</p>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────┐
+│         上位机 (Klippy)                  │
+│  ┌─────────────────────────────────────┐ │
+│  │  Python 应用层                      │ │
+│  │  - G-Code 解析                      │ │
+│  │  - 运动学计算                       │ │
+│  │  - 温度控制                         │ │
+│  │  - 宏系统                           │ │
+│  └─────────────────────────────────────┘ │
+│  ┌─────────────────────────────────────┐ │
+│  │  C 辅助层 (chelper)                 │ │
+│  │  - 步进压缩                         │ │
+│  │  - 运动学求解                       │ │
+│  │  - 串口通信                         │ │
+│  └─────────────────────────────────────┘ │
+└─────────────────────────────────────────┘
+                    │
+                    │ 串口/CAN/TCP/UDP
+                    ▼
+┌─────────────────────────────────────────┐
+│         下位机 (MCU)                     │
+│  ┌─────────────────────────────────────┐ │
+│  │  C 固件层                           │ │
+│  │  - 步进电机控制                     │ │
+│  │  - 温度读取                         │ │
+│  │  - 加热器控制                       │ │
+│  │  - 限位开关检测                     │ │
+│  └─────────────────────────────────────┘ │
+└─────────────────────────────────────────┘
+</code></pre></div>
+
+<h2 id="62">6.2 目录结构<a class="headerlink" href="#62" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>klipper/
+├── src/                    # MCU 源码
+│   ├── avr/               # AVR 架构
+│   ├── stm32/             # STM32 架构
+│   ├── rp2040/            # RP2040 架构
+│   ├── lpc176x/           # LPC 架构
+│   ├── linux/             # Linux MCU
+│   ├── generic/           # 通用代码
+│   ├── sched.c            # 调度器
+│   ├── command.c          # 命令处理
+│   ├── stepper.c          # 步进电机
+│   └── ...
+├── klippy/                 # 上位机软件
+│   ├── klippy.py          # 主入口
+│   ├── gcode.py           # G-Code 解析
+│   ├── mcu.py             # MCU 通信
+│   ├── toolhead.py        # 工具头控制
+│   ├── serialhdl.py       # 串口处理
+│   ├── chelper/           # C 辅助库
+│   │   ├── serialqueue.c  # 串口队列
+│   │   ├── stepcompress.c # 步进压缩
+│   │   ├── itersolve.c    # 迭代求解
+│   │   └── ...
+│   ├── kinematics/        # 运动学模块
+│   │   ├── cartesian.py
+│   │   ├── corexy.py
+│   │   ├── delta.py
+│   │   └── ...
+│   └── extras/            # 扩展模块
+│       ├── temperature_sensor.py
+│       ├── bed_mesh.py
+│       ├── tmc2208.py
+│       └── ...
+├── config/                 # 示例配置
+├── scripts/                # 构建脚本
+├── lib/                    # 第三方库
+└── test/                   # 测试
+</code></pre></div>
+
+<h2 id="63">6.3 主机代码流程<a class="headerlink" href="#63" title="Permanent link">&para;</a></h2>
+<h3 id="_52">启动流程<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>klippy.py</strong> - 主入口</p>
+<ul>
+<li>解析命令行参数</li>
+<li>打开配置文件</li>
+<li>实例化打印机对象</li>
+<li>启动串口连接</li>
+</ul>
+</li>
+<li>
+<p><strong>gcode.py</strong> - G-Code 处理</p>
+<ul>
+<li>接收 G-Code 命令</li>
+<li>翻译为内部调用</li>
+<li>执行相应操作</li>
+</ul>
+</li>
+<li>
+<p><strong>toolhead.py</strong> - 运动控制</p>
+<ul>
+<li>LookAheadQueue（前瞻队列）</li>
+<li>Move 对象创建</li>
+<li>梯形速度规划</li>
+</ul>
+</li>
+</ol>
+<h3 id="_53">移动命令流程<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>G1 X100 Y100 F3000
+        │
+        ▼
+    gcode.py
+        │
+        ▼
+    gcode_move.py → cmd_G1()
+        │
+        ▼
+    ToolHead.move()
+        │
+        ▼
+    LookAheadQueue.add_move()
+        │
+        ▼
+    LookAheadQueue.flush()
+        │
+        ▼
+    Move.set_junction()  # 梯形生成
+        │
+        ▼
+    ToolHead._process_moves()
+        │
+        ▼
+    trapq_append()  # 加入运动队列
+        │
+        ▼
+    itersolve_generate_steps()  # 迭代求解
+        │
+        ▼
+    stepcompress_append()  # 步进压缩
+        │
+        ▼
+    serialqueue  # 发送到 MCU
+</code></pre></div>
+
+<h2 id="64-mcu">6.4 MCU 代码流程<a class="headerlink" href="#64-mcu" title="Permanent link">&para;</a></h2>
+<h3 id="_54">启动流程<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>架构特定初始化</strong>（如 <code>src/avr/main.c</code>）</p>
+<ul>
+<li>初始化硬件</li>
+<li>调用 <code>sched_main()</code></li>
+</ul>
+</li>
+<li>
+<p><strong>sched.c</strong> - 调度器</p>
+<ul>
+<li>运行所有 <code>DECL_INIT()</code> 函数</li>
+<li>循环运行所有 <code>DECL_TASK()</code> 函数</li>
+</ul>
+</li>
+<li>
+<p><strong>command.c</strong> - 命令处理</p>
+<ul>
+<li>从串口接收命令</li>
+<li>调用对应的命令函数</li>
+</ul>
+</li>
+</ol>
+<h3 id="_55">步进电机控制<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// 伪代码</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">stepper_event</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">time</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 产生步进脉冲</span>
+<span class="w">    </span><span class="n">gpio_out_write</span><span class="p">(</span><span class="n">step_pin</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 短暂延迟</span>
+<span class="w">    </span><span class="n">udelay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">gpio_out_write</span><span class="p">(</span><span class="n">step_pin</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 计算下一步时间</span>
+<span class="w">    </span><span class="n">interval</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">add</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sched_add_timer</span><span class="p">(</span><span class="n">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">interval</span><span class="p">,</span><span class="w"> </span><span class="n">stepper_event</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="65">6.5 模块系统<a class="headerlink" href="#65" title="Permanent link">&para;</a></h2>
+<h3 id="_56">动态模块加载<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h3>
+<p>Klipp 会根据配置文件自动加载模块：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 如果配置中有 [bed_mesh] 部分</span>
+<span class="k">[bed_mesh]</span>
+<span class="na">...</span>
+
+<span class="c1"># Klippy 会自动加载 klippy/extras/bed_mesh.py</span>
+</code></pre></div>
+
+<h3 id="_57">模块结构<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># klippy/extras/my_module.py</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;加载配置并返回打印机对象&quot;&quot;&quot;</span>
+    <span class="c1"># 读取配置</span>
+    <span class="n">pin</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pin&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 创建对象</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">MyModule</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="c1"># 注册事件处理器</span>
+    <span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+    <span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s1">&#39;klippy:connect&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">_handle_connect</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">obj</span>
+</code></pre></div>
+
+<h3 id="_58">添加新模块<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h3>
+<ol>
+<li>在 <code>klippy/extras/</code> 目录创建 Python 文件</li>
+<li>实现 <code>load_config()</code> 或 <code>load_config_prefix()</code> 函数</li>
+<li>在配置文件中添加对应的部分</li>
+</ol>
+<h2 id="66">6.6 运动学系统<a class="headerlink" href="#66" title="Permanent link">&para;</a></h2>
+<h3 id="toolhead">ToolHead 类<a class="headerlink" href="#toolhead" title="Permanent link">&para;</a></h3>
+<p>核心运动控制类：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ToolHead</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newpos</span><span class="p">,</span> <span class="n">speed</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;处理移动命令&quot;&quot;&quot;</span>
+        <span class="c1"># 创建 Move 对象</span>
+        <span class="n">move</span> <span class="o">=</span> <span class="n">Move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newpos</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+
+        <span class="c1"># 运动学检查</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kin</span><span class="o">.</span><span class="n">check_move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+
+        <span class="c1"># 添加到前瞻队列</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lookahead</span><span class="o">.</span><span class="n">add_move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="lookaheadqueue">LookAheadQueue<a class="headerlink" href="#lookaheadqueue" title="Permanent link">&para;</a></h3>
+<p>前瞻队列用于优化运动：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LookAheadQueue</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">move</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;添加移动到队列&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">flush</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;刷新队列，计算速度&quot;&quot;&quot;</span>
+        <span class="c1"># 根据后续移动优化当前移动的速度</span>
+        <span class="c1"># 实现 &quot;look-ahead&quot; 算法</span>
+</code></pre></div>
+
+<h3 id="_59">迭代求解器<a class="headerlink" href="#_59" title="Permanent link">&para;</a></h3>
+<p>使用迭代算法计算精确的步进时间：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 伪代码</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">itersolve_gen_steps_range</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">stepper</span><span class="w"> </span><span class="o">*</span><span class="n">stepper</span><span class="p">,</span>
+<span class="w">                                </span><span class="kt">double</span><span class="w"> </span><span class="n">x_start</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x_end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">x_start</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x_end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 猜测时间</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">guess_time</span><span class="p">(</span><span class="n">stepper</span><span class="p">,</span><span class="w"> </span><span class="n">x_start</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 计算实际位置</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">actual_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calc_position</span><span class="p">(</span><span class="n">stepper</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 修正猜测</span>
+<span class="w">        </span><span class="n">x_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual_x</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// 记录步进时间</span>
+<span class="w">        </span><span class="n">stepcompress_append</span><span class="p">(</span><span class="n">stepper</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="67">6.7 关键组件<a class="headerlink" href="#67" title="Permanent link">&para;</a></h2>
+<h3 id="serialhdlpy">串口通信 (serialhdl.py)<a class="headerlink" href="#serialhdlpy" title="Permanent link">&para;</a></h3>
+<p>处理与 MCU 的通信：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SerialReader</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serialport</span><span class="p">,</span> <span class="n">baud</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;初始化串口&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialport</span> <span class="o">=</span> <span class="n">serialport</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baud</span> <span class="o">=</span> <span class="n">baud</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_readline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;读取一行数据&quot;&quot;&quot;</span>
+        <span class="c1"># 从 C 层接收数据</span>
+        <span class="c1"># 解析协议帧</span>
+        <span class="c1"># 处理响应</span>
+</code></pre></div>
+
+<h3 id="gcodepy">命令调度 (gcode.py)<a class="headerlink" href="#gcodepy" title="Permanent link">&para;</a></h3>
+<p>解析和执行 G-Code：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">GCodeParser</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;注册命令&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcode</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;执行 G-Code&quot;&quot;&quot;</span>
+        <span class="c1"># 解析命令名和参数</span>
+        <span class="c1"># 调用注册的函数</span>
+</code></pre></div>
+
+<h3 id="_60">温度控制<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h3>
+<p>PID/MPC 温度控制算法：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PrinterHeater</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;设置目标温度&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_temp</span> <span class="o">=</span> <span class="n">temp</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;检查温度并调整功率&quot;&quot;&quot;</span>
+        <span class="c1"># PID 或 MPC 算法</span>
+        <span class="c1"># 输出 PWM 控制加热器</span>
+</code></pre></div>
+
+<h2 id="68">6.8 通信协议<a class="headerlink" href="#68" title="Permanent link">&para;</a></h2>
+<h3 id="_61">协议帧格式<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>┌─────────┬─────────┬─────────┬─────────┐
+│ Sequence│ Command │ Payload │  CRC    │
+│ (16bit) │ (16bit) │ (变长)  │ (16bit) │
+└─────────┴─────────┴─────────┴─────────┘
+</code></pre></div>
+
+<h3 id="_62">命令类型<a class="headerlink" href="#_62" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>queue_step</td>
+<td>队列步进命令</td>
+</tr>
+<tr>
+<td>set_next_step_dir</td>
+<td>设置下一步方向</td>
+</tr>
+<tr>
+<td>reset_step_clock</td>
+<td>重置步进时钟</td>
+</tr>
+<tr>
+<td>stepper_get_position</td>
+<td>获取步进位置</td>
+</tr>
+<tr>
+<td>endstop_query</td>
+<td>查询限位开关</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_63">时钟同步<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h3>
+<p>Klipp 实现 MCU 时钟同步：</p>
+<ol>
+<li>主机记录本地时间</li>
+<li>发送时间戳到 MCU</li>
+<li>MCU 返回其时钟值</li>
+<li>主机计算时钟偏移</li>
+<li>后续命令使用同步后的时间</li>
+</ol>
+<h2 id="69">6.9 调试与故障排除<a class="headerlink" href="#69" title="Permanent link">&para;</a></h2>
+<h3 id="_64">日志文件<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h3>
+<p>日志位于 <code>~/printer_data/logs/klippy.log</code></p>
+<h3 id="_65">常用调试命令<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看状态</span>
+STATUS
+
+<span class="c1"># 查看温度</span>
+M105
+
+<span class="c1"># 查看 MCU 状态</span>
+DUMP_TMC<span class="w"> </span><span class="nv">STEPPER</span><span class="o">=</span>stepper_x
+
+<span class="c1"># 查询限位开关</span>
+QUERY_ENDSTOPS
+
+<span class="c1"># 查看步进位置</span>
+STEPPER_BUZZ<span class="w"> </span><span class="nv">STEPPER</span><span class="o">=</span>stepper_x
+</code></pre></div>
+
+<h3 id="_66">常见问题<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>串口找不到</strong></p>
+<ul>
+<li>检查 USB 连接</li>
+<li>运行 <code>ls /dev/serial/by-id/</code></li>
+</ul>
+</li>
+<li>
+<p><strong>固件编译失败</strong></p>
+<ul>
+<li>检查依赖安装</li>
+<li>确认 make menuconfig 配置正确</li>
+</ul>
+</li>
+<li>
+<p><strong>电机不转</strong></p>
+<ul>
+<li>检查引脚配置</li>
+<li>确认使能引脚极性</li>
+<li>测试 <code>STEPPER_BUZZ</code></li>
+</ul>
+</li>
+<li>
+<p><strong>温度传感器错误</strong></p>
+<ul>
+<li>检查传感器类型</li>
+<li>确认引脚连接</li>
+<li>查看日志错误信息</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h1 id="_67">附录<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h1>
+<h2 id="a-g-code">A. 常见 G-Code 命令<a class="headerlink" href="#a-g-code" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G28</td>
+<td>归位</td>
+</tr>
+<tr>
+<td>G1</td>
+<td>直线移动</td>
+</tr>
+<tr>
+<td>G28 X Y Z</td>
+<td>归位指定轴</td>
+</tr>
+<tr>
+<td>M104 S{temp}</td>
+<td>设置喷嘴温度</td>
+</tr>
+<tr>
+<td>M109 S{temp}</td>
+<td>等待喷嘴温度</td>
+</tr>
+<tr>
+<td>M140 S{temp}</td>
+<td>设置热床温度</td>
+</tr>
+<tr>
+<td>M190 S{temp}</td>
+<td>等待热床温度</td>
+</tr>
+<tr>
+<td>M106 S{speed}</td>
+<td>设置风扇速度</td>
+</tr>
+<tr>
+<td>M107</td>
+<td>关闭风扇</td>
+</tr>
+<tr>
+<td>M82</td>
+<td>相对挤出</td>
+</tr>
+<tr>
+<td>M83</td>
+<td>绝对挤出</td>
+</tr>
+<tr>
+<td msg="msg">M117</td>
+<td>显示消息</td>
+</tr>
+<tr>
+<td>M400</td>
+<td>等待移动完成</td>
+</tr>
+<tr>
+<td>M84</td>
+<td>关闭电机</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b">B. 常见错误信息<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>错误</th>
+<th>原因</th>
+<th>解决方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCU 'mcu' shutdown</td>
+<td>MCU 通信失败</td>
+<td>检查串口连接</td>
+</tr>
+<tr>
+<td>Timer too close</td>
+<td>MCU 负载过高</td>
+<td>降低速度/加速度</td>
+</tr>
+<tr>
+<td>ADC out of range</td>
+<td>温度传感器错误</td>
+<td>检查传感器连接</td>
+</tr>
+<tr>
+<td>Move out of range</td>
+<td>移动超出范围</td>
+<td>检查位置限制</td>
+</tr>
+<tr>
+<td>Unable to read tmc</td>
+<td>TMC 驱动通信失败</td>
+<td>检查 UART/SPI 连接</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c">C. 参考资源<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.klipper3d.org/">Klipper 官方文档</a></li>
+<li><a href="https://docs.kalico.gg/">Kalico 文档</a></li>
+<li><a href="Config_Reference.html">Klipper 配置参考</a></li>
+<li><a href="G-Codes.html">G-Code 命令参考</a></li>
+<li><a href="Command_Templates.html">宏编写指南</a></li>
+<li><a href="TMC_Drivers.html">TMC 驱动配置</a></li>
+<li><a href="Resonance_Compensation.html">输入整形</a></li>
+<li><a href="Pressure_Advance.html">压力提前</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://kalico.gg/discord" target="_blank" rel="noopener" title="Join our Discord server!" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>
