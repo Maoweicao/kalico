@@ -99,7 +99,9 @@ Kalico supports many standard 3d printer features:
 
 * Support for cartesian, delta, corexy, corexz, hybrid-corexy,
   hybrid-corexz, deltesian, rotary delta, polar, and cable winch style
-  printers.
+  printers. Additional kinematics include SCARA, TPARA, polargraph,
+  belt printer, robot arm, foam cutter, and CoreYX/CoreYZ/CoreZX/CoreZY
+  variants.
 
 * Automatic bed leveling support. Kalico can be configured for basic
   bed tilt detection or full mesh bed leveling. If the bed uses
@@ -122,7 +124,8 @@ Kalico supports many standard 3d printer features:
   thermistors and custom analog temperature sensors can also be
   configured. One can monitor the internal micro-controller
   temperature sensor and the internal temperature sensor of a
-  Raspberry Pi.
+  Raspberry Pi. A dummy thermistor sensor is available for testing
+  and cold extruders.
 
 * Basic thermal heater protection enabled by default.
 

@@ -204,3 +204,16 @@ Kalico使用"扩展"G代码命令进行一般配置和状态。这些扩展命�
 
 #### RESET_SERVO_ALARM
 `RESET_SERVO_ALARM STEPPER=<名称>`：复位指定步进电机的报警和故障状态。清除alarm_active标志，并尝试复位存在的驱动器故障。
+
+### [dummy_thermistor]
+
+启用[dummy_thermistor配置部分](Config_Reference.md#假热敏传感器)时，以下命令可用。
+
+#### SET_DUMMY_TEMPERATURE
+`SET_DUMMY_TEMPERATURE SENSOR=<名称> [TEMPERATURE=<值>]`：设置假热敏传感器报告的温度。如果未提供TEMPERATURE，则报告当前温度。SENSOR参数是必需的，指定假热敏传感器的名称。
+
+示例：
+```
+SET_DUMMY_TEMPERATURE SENSOR=chamber TEMPERATURE=40.0
+SET_DUMMY_TEMPERATURE SENSOR=mcu_temp
+```

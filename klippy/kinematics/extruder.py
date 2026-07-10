@@ -200,10 +200,17 @@ class PrinterExtruder:
         self.printer = config.get_printer()
         self.name = config.get_name()
         self.last_position = 0.0
-        # Setup hotend heater
+        # Setup hotend heater (or null heater for cold extruders)
+        self.no_heater = config.getboolean("no_heater", False)
         pheaters = self.printer.load_object(config, "heaters")
         gcode_id = "T%d" % (extruder_num,)
-        self.heater = pheaters.setup_heater(config, gcode_id)
+        if self.no_heater:
+            # Use null heater for clay/concrete extruders
+            from ..extras.heaters import NullHeater
+            self.heater = NullHeater(config)
+            logging.info("Extruder '%s' configured as cold extruder (no heater)", self.name)
+        else:
+            self.heater = pheaters.setup_heater(config, gcode_id)
         # Setup kinematic checks
         self.nozzle_diameter = config.getfloat("nozzle_diameter", above=0.0)
         filament_diameter = config.getfloat(

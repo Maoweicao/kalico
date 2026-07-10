@@ -1469,5 +1469,97 @@ class PrinterHeaters:
         self.printer.wait_while(check, error_on_cancel)
 
 
+######################################################################
+# Null Heater (for cold extruders)
+######################################################################
+
+class NullHeater:
+    """Virtual heater for extruders that don't need heating (e.g., clay, concrete).
+    
+    This heater always reports a fixed temperature and always allows extrusion.
+    Used when configuring extruders with 'no_heater: true'.
+    """
+    
+    def __init__(self, config=None):
+        self.printer = None
+        self.name = "null_heater"
+        self.short_name = "null"
+        self.can_extrude = True
+        self.cold_extrude = True
+        self.min_temp = 0.0
+        self.max_temp = 100.0
+        self.min_extrude_temp = 0.0
+        self.target_temp = 0.0
+        self.smoothed_temp = 25.0
+        self.last_temp = 25.0
+        self.last_temp_time = 0.0
+        self.max_power = 1.0
+        self._callback = None
+        
+        # Register G-code commands if config is provided
+        if config is not None:
+            self.printer = config.get_printer()
+            self.name = config.get_name()
+            self.short_name = self.name.split()[-1]
+            
+            # Register M104/M109 commands for compatibility
+            gcode = self.printer.lookup_object("gcode")
+            if self.name == "extruder":
+                gcode.register_command("M104", self.cmd_M104)
+                gcode.register_command("M109", self.cmd_M109)
+                gcode.register_command("M302", self.cmd_M302)
+    
+    def setup_minmax(self, min_temp, max_temp):
+        self.min_temp = min_temp
+        self.max_temp = max_temp
+    
+    def setup_callback(self, cb):
+        self._callback = cb
+    
+    def get_report_time_delta(self):
+        return 1.0
+    
+    def get_temp(self, eventtime=None):
+        return self.smoothed_temp, self.last_temp_time
+    
+    def set_temp(self, temp, wait=False):
+        """No-op for null heater."""
+        if self._callback is not None:
+            self._callback(self.last_temp_time, self.smoothed_temp)
+    
+    def set_cold_extrude(self, cold_extrude, min_extrude_temp=None):
+        """Always allow extrusion."""
+        self.can_extrude = True
+        self.cold_extrude = True
+    
+    def check_busy(self, eventtime):
+        return False
+    
+    def get_status(self, eventtime):
+        return {
+            "temperature": round(self.smoothed_temp, 2),
+            "target": self.target_temp,
+            "power": 0.0,
+            "can_extrude": True,
+        }
+    
+    def stats(self, eventtime):
+        return False, "%s: target=%.0f temp=%.1f" % (
+            self.name, self.target_temp, self.smoothed_temp
+        )
+    
+    def cmd_M104(self, gcmd, wait=False):
+        """Set Extruder Temperature - no-op for null heater."""
+        pass
+    
+    def cmd_M109(self, gcmd):
+        """Set Extruder Temperature and Wait - no-op for null heater."""
+        pass
+    
+    def cmd_M302(self, gcmd):
+        """Cold extrude - always enabled for null heater."""
+        gcmd.respond_info("Cold extrusion always enabled for %s" % self.name)
+
+
 def load_config(config):
     return PrinterHeaters(config)

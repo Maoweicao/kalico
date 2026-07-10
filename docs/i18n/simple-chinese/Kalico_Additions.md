@@ -11,6 +11,7 @@
 - [`[mcu] is_non_critical`](./Config_Reference.md#mcu) 启用将 mcu 标记为可选 - 可以随意断开连接和连接。（对于基于 MCU 的加速度计板、在热室中关闭的基于 mcu 的探针等有用...）
 - [`[danger_options]`](./Config_Reference.md#danger-options) - 新配置选项调整之前隐藏的 Kalico 值
 - 启用按轴加速度的其他运动学版本，请参阅 [limited_cartesian](./Config_Reference.md#cartesian-kinematics-with-limits-for-x-and-y-axes) 和 [limited_corexy](./Config_Reference.md#corexy-kinematics-with-limits-for-x-and-y-axes)
+- 其他运动学：[SCARA、TPARA、Polargraph、传送带打印机、机器人臂、热丝切割机](./Kinematics_Additions.md)以及 CoreYX/CoreYZ/CoreZX/CoreZY 变体
 - `--rotate-log-at-restart` 可以添加到 Kalico 启动脚本或服务以强制每次重启时进行日志轮换。
 - [`[virtual_sdcard] with_subdirs`](./Config_Reference.md#virtual_sdcard) 启用扫描子目录中的 .gcode 文件，用于菜单和 M20/M23 命令
 - [`[firmware_retraction] z_hop_height`](./Config_Reference.md#firmware_retraction) 在使用固件回抽时添加自动 z 跳跃
@@ -26,6 +27,8 @@
 ## 新 Kalico 模块
 
 - [gcode_shell_command](./G-Code_Shell_Command.md) - 从 Kalico 中执行 Linux 命令和脚本
+- [dummy_thermistor](./Dummy_Thermistor.md) - 用于测试和冷挤出机的虚拟温度传感器
+- [冷挤出机](./Cold_Extruder.md) - 用于陶泥、混凝土和其他冷材料的无加热器挤出机支持
 
 ## 无传感器归位
 

@@ -2240,3 +2240,20 @@ stepper when alm_pin is configured in the stepper section.
 `RESET_SERVO_ALARM STEPPER=<name>`: Reset alarm and fault state for a
 specific stepper. Clears the alarm_active flag and attempts to reset
 the drive fault if present.
+
+### [dummy_thermistor]
+
+The following commands are available when a
+[dummy_thermistor config section](Config_Reference.md#dummy-thermistor) is enabled.
+
+#### SET_DUMMY_TEMPERATURE
+`SET_DUMMY_TEMPERATURE SENSOR=<name> [TEMPERATURE=<value>]`: Set the
+temperature reported by a dummy thermistor sensor. If TEMPERATURE is
+not provided, reports the current temperature. The SENSOR parameter is
+required and specifies the name of the dummy thermistor sensor.
+
+Examples:
+```
+SET_DUMMY_TEMPERATURE SENSOR=chamber TEMPERATURE=40.0
+SET_DUMMY_TEMPERATURE SENSOR=mcu_temp
+```

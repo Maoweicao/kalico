@@ -1381,6 +1381,12 @@ nozzle_diameter:
 filament_diameter:
 #   The nominal diameter of the raw filament (in mm) as it enters the
 #   extruder. This parameter must be provided.
+#no_heater: false
+#   If set to true, the extruder will be configured as a cold extruder
+#   without a heater. This is useful for materials that don't require
+#   heating (clay, concrete, food paste, etc.). When enabled, no
+#   heater_pin is required and the extruder can extrude at any
+#   temperature. See [Cold Extruder](Cold_Extruder.md) for details.
 #max_extrude_cross_section:
 #   Maximum area (in mm^2) of an extrusion cross section (eg,
 #   extrusion width multiplied by layer height). This setting prevents
@@ -4014,6 +4020,25 @@ serial_no:
 #sensor_mcu:
 #   The micro-controller to read from. Must be the host_mcu
 ```
+
+### Dummy thermistor
+
+Dummy thermistor is a virtual temperature sensor that provides a fixed
+temperature reading without requiring a physical sensor. Useful for testing,
+development, and cold extruders (clay, concrete, etc.).
+
+```
+sensor_type: dummy_thermistor
+temperature: 25.0
+#   The fixed temperature in Celsius to report. The default is 25.0.
+#   This value can be changed at runtime using SET_DUMMY_TEMPERATURE command.
+#min_temp:
+#max_temp:
+#   See the "extruder" section for the definition of the above
+#   parameters.
+```
+
+See [Dummy Thermistor](Dummy_Thermistor.md) for detailed documentation.
 
 ### Combined temperature sensor
 

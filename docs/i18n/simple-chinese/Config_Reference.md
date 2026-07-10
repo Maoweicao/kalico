@@ -692,6 +692,11 @@ nozzle_diameter:
 #   喷嘴孔径（毫米）。必须提供此参数。
 filament_diameter:
 #   进入挤出机的原始灯丝的名义直径（毫米）。必须提供此参数。
+#no_heater: false
+#   如果设置为 true，挤出机将被配置为无加热器的冷挤出机。
+#   这对于不需要加热的材料（陶泥、混凝土、食品酱等）非常有用。
+#   启用后，不需要 heater_pin，挤出机可以在任何温度下挤出。
+#   详见 [冷挤出机](Cold_Extruder.md)。
 #max_extrude_cross_section:
 #   最大挤出截面面积（毫米²）（例如，挤出宽度乘以层高）。此设置可防止
 #   在相对较小的 XY 移动期间过度挤出。如果移动请求超过此值的挤出速率，
@@ -1074,6 +1079,22 @@ sensor_pin:
 #gcode_id:
 #   OctoPrint在报告温度时使用的gcode_id。
 \\\
+
+### 假热敏传感器
+
+假热敏传感器是一种虚拟温度传感器，无需物理传感器即可提供固定的温度读数。适用于测试、开发和冷挤出机（陶泥、混凝土等）。
+
+\\\
+sensor_type: dummy_thermistor
+temperature: 25.0
+#   报告的固定温度（摄氏度）。默认值为 25.0。
+#   此值可以在运行时使用 SET_DUMMY_TEMPERATURE 命令更改。
+#min_temp:
+#max_temp:
+#   上述参数的定义请参阅"extruder"部分。
+\\\
+
+详见 [假热敏传感器](Dummy_Thermistor.md) 了解详细文档。
 
 ### [heater_generic]
 
