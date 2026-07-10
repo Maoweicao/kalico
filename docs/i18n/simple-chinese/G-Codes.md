@@ -175,3 +175,32 @@ Kalico使用"扩展"G代码命令进行一般配置和状态。这些扩展命�
 
 ### SYNC_EXTRUDER_MOTION
 `SYNC_EXTRUDER_MOTION MOTION_QUEUE=<name> [EXTRUDER=<config_name>]`：将给定的挤出机同步到运动队列。给定的运动队列应为"extruder"或"heater_bed"。
+
+### [servo_alarm]
+
+启用[servo_alarm配置部分](Config_Reference.md#servo_alarm)时，以下命令可用。
+
+#### QUERY_ALARM_<名称>
+`QUERY_ALARM_<名称>`：查询指定伺服报警监视器的报警状态。`<名称>`是servo_alarm部分名称的最后一部分（例如，对于`[servo_alarm x_axis]`，使用`QUERY_ALARM_X_AXIS`）。
+
+#### CLEAR_ALARM_<名称>
+`CLEAR_ALARM_<名称>`：清除指定伺服报警监视器的报警状态。`<名称>`是servo_alarm部分名称的最后一部分。
+
+### [servo_status]
+
+启用[servo_status配置部分](Config_Reference.md#servo_status)时，以下命令可用。
+
+#### QUERY_SERVO
+`QUERY_SERVO [STEPPER=<名称>]`：查询伺服驱动器状态。不带STEPPER参数时，查询所有已配置的伺服步进电机。返回state、mode、error_code、is_fault和alarm_active字段。
+
+#### RESET_SERVO_FAULT
+`RESET_SERVO_FAULT STEPPER=<名称>`：通过CiA 402故障复位命令复位伺服驱动器故障。STEPPER参数是必需的，指定完整的步进电机名称（例如，`canopen_stepper stepper_x`）。
+
+#### QUERY_SERVO_ALARM
+`QUERY_SERVO_ALARM`：查询所有[servo_alarm](Config_Reference.md#servo_alarm)模块状态。返回每个已配置报警监视器的alarm_active、alarm_count和pin。
+
+#### QUERY_SERVO_ALARM STEPPER=<名称>
+`QUERY_SERVO_ALARM STEPPER=<名称>`：查询指定步进电机的报警状态（当在步进电机部分配置了alm_pin时）。
+
+#### RESET_SERVO_ALARM
+`RESET_SERVO_ALARM STEPPER=<名称>`：复位指定步进电机的报警和故障状态。清除alarm_active标志，并尝试复位存在的驱动器故障。

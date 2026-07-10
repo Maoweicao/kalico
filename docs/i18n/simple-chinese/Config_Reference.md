@@ -461,6 +461,17 @@ microsteps:
 #   回原加速度（编码器计数/秒²）。
 #canopen_homing_offset: 0
 #   零点偏移（编码器计数）。默认 0。
+#alm_pin:
+#   连接到伺服驱动器 ALM（报警）输出的 GPIO 引脚。配置后，
+#   监控此引脚的报警信号。可选。
+#alarm_action: shutdown
+#   ALM 引脚触发时的动作。可选：shutdown（紧急停止）、
+#   pause（暂停打印）、gcode（执行 alarm_gcode）、
+#   none（仅记录日志）。默认 shutdown。
+#alm_invert: false
+#   反转 ALM 引脚逻辑。高电平有效报警输出时设为 true。
+#   大多数伺服驱动器使用低电平有效（开集电极）报警输出。
+#   默认 false。
 \\\
 
 参见 [CANopen 指南](CANopen.md) 了解 SYNC 分组、回原方法和 EDS 文件格式。
@@ -495,6 +506,17 @@ microsteps:
 #   最小位置（毫米）。默认 0。
 #position_max:
 #   最大位置（毫米）。
+#alm_pin:
+#   连接到伺服驱动器 ALM（报警）输出的 GPIO 引脚。配置后，
+#   监控此引脚的报警信号。可选。
+#alarm_action: shutdown
+#   ALM 引脚触发时的动作。可选：shutdown（紧急停止）、
+#   pause（暂停打印）、gcode（执行 alarm_gcode）、
+#   none（仅记录日志）。默认 shutdown。
+#alm_invert: false
+#   反转 ALM 引脚逻辑。高电平有效报警输出时设为 true。
+#   大多数伺服驱动器使用低电平有效（开集电极）报警输出。
+#   默认 false。
 \\\
 
 参见 [EtherCAT 指南](EtherCAT.md) 了解 CL3B 寄存器映射、DC 同步和故障排除。
@@ -545,9 +567,56 @@ microsteps:
 #   最小位置（毫米）。默认 0。
 #position_max:
 #   最大位置（毫米）。
+#alm_pin:
+#   连接到伺服驱动器 ALM（报警）输出的 GPIO 引脚。配置后，
+#   监控此引脚的报警信号。可选。
+#alarm_action: shutdown
+#   ALM 引脚触发时的动作。可选：shutdown（紧急停止）、
+#   pause（暂停打印）、gcode（执行 alarm_gcode）、
+#   none（仅记录日志）。默认 shutdown。
+#alm_invert: false
+#   反转 ALM 引脚逻辑。高电平有效报警输出时设为 true。
+#   大多数伺服驱动器使用低电平有效（开集电极）报警输出。
+#   默认 false。
 \\\
 
 参见 [RS485 指南](RS485.md) 了解协议详情、自定义协议开发和故障排除。
+
+## 伺服安全监控
+
+### [servo_alarm]
+
+独立伺服报警引脚监视器。监控连接到伺服驱动器 ALM（报警）输出的 GPIO 引脚，并触发可配置的动作。
+
+\\\
+[servo_alarm my_servo]
+alm_pin:
+#   报警输入的 GPIO 引脚。必填。支持引脚修饰符：
+#   ^（上拉）、~（下拉）、!（反转）。
+#action: shutdown
+#   报警触发时的动作。可选：shutdown（紧急停止）、
+#   pause（暂停打印）、gcode（执行 alarm_gcode）、
+#   none（仅记录日志）。默认 shutdown。
+#invert: false
+#   反转引脚逻辑。高电平有效报警输出时设为 true。默认 false。
+#debounce: 0.01
+#   防抖时间（秒）。默认 0.01。
+#gcode:
+#   当 action 为 "gcode" 时执行的 G-code。Jinja2 模板。可选。
+\\\
+
+可以定义多个 [servo_alarm] 配置节用于多轴监控。每个配置节会创建 QUERY_ALARM_<名称> 和 CLEAR_ALARM_<名称> G-code 命令。
+
+### [servo_status]
+
+伺服状态 G-code 命令模块。提供用于查询和管理所有已配置伺服步进电机状态的命令。
+
+\\\
+[servo_status]
+#   无配置选项。当配置了伺服步进电机时，此模块会自动加载。
+\\\
+
+参见 [伺服安全监控指南](servo-safety_CN.md) 了解接线图、配置示例和故障排除。
 
 ## 外部脉冲发生器步进支持
 

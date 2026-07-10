@@ -705,3 +705,50 @@ The following information is available in the `z_tilt` object (this
 object is available if z_tilt is defined):
 - `applied`: True if the z-tilt leveling process has been run and completed
   successfully.
+
+## servo_alarm
+
+The following information is available in
+[servo_alarm some_name](Config_Reference.md#servo_alarm) objects:
+- `alarm_active`: Returns True if the alarm is currently active.
+- `alarm_count`: The number of alarm events since startup.
+- `last_alarm_time`: Timestamp of the last alarm event.
+- `pin`: The configured ALM pin.
+- `action`: The configured alarm action.
+
+## canopen_stepper
+
+The following information is available in
+[canopen_stepper some_name](Config_Reference.md#canopen_stepper) objects:
+- `state`: The CiA 402 state name (e.g., "OPERATION_ENABLED", "FAULT").
+- `actual_position`: The current encoder position.
+- `error_code`: The drive error code (from 0x603F register).
+- `mode`: The operating mode (CSP, CSV, PP, etc.).
+- `is_fault`: Returns True if the drive is in fault state.
+- `statusword`: The raw CiA 402 statusword (0x6041).
+- `alarm_active`: Returns True if the ALM pin is active (if configured).
+- `alarm_count`: The number of alarm events since startup (if configured).
+
+## ethercat_stepper
+
+The following information is available in
+[ethercat_stepper some_name](Config_Reference.md#ethercat_stepper) objects:
+- `state`: The CiA 402 state name (e.g., "OPERATION_ENABLED", "FAULT").
+- `actual_position`: The current encoder position.
+- `error_code`: The drive error code (from 0x603F register).
+- `mode`: The operating mode (CSP, CSV, PP, etc.).
+- `is_fault`: Returns True if the drive is in fault state.
+- `statusword`: The raw CiA 402 statusword (0x6041).
+- `alarm_active`: Returns True if the ALM pin is active (if configured).
+- `alarm_count`: The number of alarm events since startup (if configured).
+
+## rs485_stepper
+
+The following information is available in
+[rs485_stepper some_name](Config_Reference.md#rs485_stepper) objects:
+- `state`: The drive state name (e.g., "OPERATION_ENABLED", "FAULT").
+- `actual_position`: The current encoder position.
+- `error_code`: The drive error code.
+- `is_fault`: Returns True if the drive is in fault state.
+- `alarm_active`: Returns True if the ALM pin is active (if configured).
+- `alarm_count`: The number of alarm events since startup (if configured).

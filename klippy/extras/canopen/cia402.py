@@ -6,7 +6,6 @@
 import logging
 import time
 
-
 # CiA 402 states (derived from Statusword bits 0-6, 9-10)
 STATE_NOT_READY = 0x00
 STATE_SWITCH_ON_DISABLED = 0x40
@@ -230,6 +229,13 @@ class CiA402Device:
         """Get actual velocity (0x606C)."""
         return self._signed32(self.node.sdo_read(0x606C, 0))
 
+    def get_actual_torque(self):
+        """Get actual torque (0x6077). Returns percentage of rated torque."""
+        try:
+            return self._signed16(self.node.sdo_read(0x6077, 0))
+        except Exception:
+            return 0
+
     def get_status_word(self):
         """Get raw status word (0x6041)."""
         return self.node.sdo_read(0x6041, 0)
@@ -407,4 +413,11 @@ class CiA402Device:
         """Convert unsigned 32-bit to signed."""
         if val >= 0x80000000:
             val -= 0x100000000
+        return val
+
+    @staticmethod
+    def _signed16(val):
+        """Convert unsigned 16-bit to signed."""
+        if val >= 0x8000:
+            val -= 0x10000
         return val

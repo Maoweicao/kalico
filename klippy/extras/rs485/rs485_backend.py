@@ -141,11 +141,29 @@ class RS485Backend(stepper.StepperBackend):
         try:
             state = self._protocol.get_state_name()
             actual = self._position_tracker.get_actual_position()
+            commanded = self._position_tracker.get_commanded_position()
             error = self._protocol.get_error_code()
+            is_fault = "FAULT" in state.upper()
+            following_error = commanded - actual
+            # Try to get velocity (may not be available)
+            try:
+                actual_velocity = self._protocol.get_actual_velocity()
+            except Exception:
+                actual_velocity = 0
+            # Try to get torque (may not be available)
+            try:
+                actual_torque = self._protocol.get_actual_torque()
+            except Exception:
+                actual_torque = 0
             return {
                 "state": state,
                 "actual_position": actual,
+                "commanded_position": commanded,
+                "following_error": following_error,
+                "actual_velocity": actual_velocity,
+                "actual_torque": actual_torque,
                 "error_code": error,
+                "is_fault": is_fault,
             }
         except Exception:
             return {"state": "unknown"}

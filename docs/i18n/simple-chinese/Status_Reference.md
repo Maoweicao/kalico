@@ -96,3 +96,46 @@
 
 弃用的对象（仅用于UI兼容性）：
 - `speed`：风扇速度，介于0.0和`max_power`之间的浮点数。
+
+## servo_alarm
+
+以下信息在[servo_alarm some_name](Config_Reference.md#servo_alarm)对象中可用：
+- `alarm_active`：如果报警当前激活，则返回True。
+- `alarm_count`：自启动以来的报警事件次数。
+- `last_alarm_time`：上次报警事件的时间戳。
+- `pin`：配置的ALM引脚。
+- `action`：配置的报警动作。
+
+## canopen_stepper
+
+以下信息在[canopen_stepper some_name](Config_Reference.md#canopen_stepper)对象中可用：
+- `state`：CiA 402状态名称（如"OPERATION_ENABLED"、"FAULT"）。
+- `actual_position`：当前编码器位置。
+- `error_code`：驱动器错误码（来自0x603F寄存器）。
+- `mode`：运行模式（CSP、CSV、PP等）。
+- `is_fault`：如果驱动器处于故障状态，则返回True。
+- `statusword`：原始CiA 402状态字（0x6041）。
+- `alarm_active`：如果ALM引脚激活，则返回True（如果已配置）。
+- `alarm_count`：自启动以来的报警事件次数（如果已配置）。
+
+## ethercat_stepper
+
+以下信息在[ethercat_stepper some_name](Config_Reference.md#ethercat_stepper)对象中可用：
+- `state`：CiA 402状态名称（如"OPERATION_ENABLED"、"FAULT"）。
+- `actual_position`：当前编码器位置。
+- `error_code`：驱动器错误码（来自0x603F寄存器）。
+- `mode`：运行模式（CSP、CSV、PP等）。
+- `is_fault`：如果驱动器处于故障状态，则返回True。
+- `statusword`：原始CiA 402状态字（0x6041）。
+- `alarm_active`：如果ALM引脚激活，则返回True（如果已配置）。
+- `alarm_count`：自启动以来的报警事件次数（如果已配置）。
+
+## rs485_stepper
+
+以下信息在[rs485_stepper some_name](Config_Reference.md#rs485_stepper)对象中可用：
+- `state`：驱动器状态名称（如"OPERATION_ENABLED"、"FAULT"）。
+- `actual_position`：当前编码器位置。
+- `error_code`：驱动器错误码。
+- `is_fault`：如果驱动器处于故障状态，则返回True。
+- `alarm_active`：如果ALM引脚激活，则返回True（如果已配置）。
+- `alarm_count`：自启动以来的报警事件次数（如果已配置）。

@@ -182,13 +182,33 @@ class EtherCATBackend(stepper.StepperBackend):
         try:
             state = self._device.get_state_name()
             actual = self._position_tracker.get_actual_position()
+            commanded = self._position_tracker.get_commanded_position()
             error = self._device.get_error_code()
             mode = self._device.get_mode_name()
+            is_fault = self._device.is_fault()
+            statusword = self._device.get_status_word()
+            following_error = commanded - actual
+            # Try to get velocity (may not be available)
+            try:
+                actual_velocity = self._device.get_actual_velocity()
+            except Exception:
+                actual_velocity = 0
+            # Try to get torque (may not be available)
+            try:
+                actual_torque = self._device.get_actual_torque()
+            except Exception:
+                actual_torque = 0
             return {
                 "state": state,
                 "actual_position": actual,
+                "commanded_position": commanded,
+                "following_error": following_error,
+                "actual_velocity": actual_velocity,
+                "actual_torque": actual_torque,
                 "error_code": error,
                 "mode": mode,
+                "is_fault": is_fault,
+                "statusword": statusword,
             }
         except Exception:
             return {"state": "unknown"}

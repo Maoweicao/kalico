@@ -2197,3 +2197,46 @@ configured in the z_tilt_ng section:
   small misalgnments of the steppers. The amount of misalignment can be
   configured with the DELTA paramter. It iterates until the calculated
   positions cannot be improved any further. This is can be lengthy procedure.
+
+### [servo_alarm]
+
+The following commands are available when a
+[servo_alarm config section](Config_Reference.md#servo_alarm) is enabled.
+
+#### QUERY_ALARM_<name>
+`QUERY_ALARM_<name>`: Query the alarm state for a specific servo alarm
+monitor. The `<name>` is the last part of the servo_alarm section name
+(e.g., for `[servo_alarm x_axis]`, use `QUERY_ALARM_X_AXIS`).
+
+#### CLEAR_ALARM_<name>
+`CLEAR_ALARM_<name>`: Clear the alarm state for a specific servo alarm
+monitor. The `<name>` is the last part of the servo_alarm section name.
+
+### [servo_status]
+
+The following commands are available when the
+[servo_status config section](Config_Reference.md#servo_status) is enabled.
+
+#### QUERY_SERVO
+`QUERY_SERVO [STEPPER=<name>]`: Query servo drive status. Without the
+STEPPER parameter, queries all configured servo steppers. Returns
+state, mode, error_code, is_fault, and alarm_active fields.
+
+#### RESET_SERVO_FAULT
+`RESET_SERVO_FAULT STEPPER=<name>`: Reset servo drive fault via CiA 402
+fault reset command. The STEPPER parameter is required and specifies
+the full stepper name (e.g., `canopen_stepper stepper_x`).
+
+#### QUERY_SERVO_ALARM
+`QUERY_SERVO_ALARM`: Query all [servo_alarm](Config_Reference.md#servo_alarm)
+module states. Returns alarm_active, alarm_count, and pin for each
+configured alarm monitor.
+
+#### QUERY_SERVO_ALARM STEPPER=<name>
+`QUERY_SERVO_ALARM STEPPER=<name>`: Query alarm state for a specific
+stepper when alm_pin is configured in the stepper section.
+
+#### RESET_SERVO_ALARM
+`RESET_SERVO_ALARM STEPPER=<name>`: Reset alarm and fault state for a
+specific stepper. Clears the alarm_active flag and attempts to reset
+the drive fault if present.

@@ -172,6 +172,37 @@ class CANopenStepper:
             endstop_name = " ".join(self.name.split()[1:])
             query_endstops.register_endstop(mcu_endstop, endstop_name)
 
+        # ALM alarm pin support
+        self._alm_pin = config.get("alm_pin", None)
+        self._alm_action = config.get("alarm_action", "shutdown")
+        self._alm_invert = config.getboolean("alm_invert", False)
+        self._alarm_active = False
+        self._alarm_count = 0
+
+        if self._alm_pin:
+            valid_actions = ("shutdown", "pause", "gcode", "none")
+            if self._alm_action not in valid_actions:
+                raise config.error(
+                    "Invalid alarm_action '%s' in [%s]. Options: %s"
+                    % (self._alm_action, self.name, ", ".join(valid_actions))
+                )
+            buttons = self.printer.load_object(config, "buttons")
+            buttons.register_debounce_button(
+                self._alm_pin, self._handle_alarm, config
+            )
+            # Register alarm query command
+            gcode = self.printer.lookup_object("gcode")
+            gcode.register_mux_command(
+                "QUERY_SERVO_ALARM", "STEPPER", self.name,
+                self.cmd_QUERY_SERVO_ALARM,
+                desc="Query servo alarm state for %s" % self.name,
+            )
+            gcode.register_mux_command(
+                "RESET_SERVO_ALARM", "STEPPER", self.name,
+                self.cmd_RESET_SERVO_ALARM,
+                desc="Reset servo alarm for %s" % self.name,
+            )
+
         # Register connect handler
         self.printer.register_event_handler(
             "klippy:connect", self._handle_connect
@@ -274,11 +305,81 @@ class CANopenStepper:
         except Exception:
             pass
 
+    def _handle_alarm(self, eventtime, state):
+        """Called when ALM pin state changes."""
+        alarmed = bool(state) != self._alm_invert
+        if alarmed == self._alarm_active:
+            return
+        self._alarm_active = alarmed
+        if alarmed:
+            self._alarm_count += 1
+            logging.error(
+                "CANopen stepper '%s': ALARM TRIGGERED (count=%d)",
+                self.name, self._alarm_count,
+            )
+            self._execute_alarm_action(eventtime)
+        else:
+            logging.info(
+                "CANopen stepper '%s': alarm cleared", self.name
+            )
+
+    def _execute_alarm_action(self, eventtime):
+        """Execute the configured alarm action."""
+        if self._alm_action == "shutdown":
+            self.printer.invoke_shutdown(
+                "Servo ALM alarm on %s" % self.name
+            )
+        elif self._alm_action == "pause":
+            try:
+                print_stats = self.printer.lookup_object("print_stats")
+                if print_stats.get_status()["state"] == "printing":
+                    gcode = self.printer.lookup_object("gcode")
+                    gcode.run_script_from_command("PAUSE")
+            except Exception as e:
+                logging.error(
+                    "CANopen stepper '%s': pause failed: %s",
+                    self.name, e,
+                )
+                self.printer.invoke_shutdown(
+                    "Servo ALM alarm on %s (pause failed)" % self.name
+                )
+
+    def cmd_QUERY_SERVO_ALARM(self, gcmd):
+        """Query alarm state."""
+        if self._alarm_active:
+            msg = "Servo %s: ALARM ACTIVE (count=%d)" % (
+                self.name, self._alarm_count
+            )
+        else:
+            msg = "Servo %s: OK" % self.name
+        gcmd.respond_info(msg)
+
+    def cmd_RESET_SERVO_ALARM(self, gcmd):
+        """Reset alarm state and try to reset drive fault."""
+        self._alarm_active = False
+        try:
+            if self.device.is_fault():
+                self.device.fault_reset()
+                gcmd.respond_info(
+                    "Servo %s: fault reset OK" % self.name
+                )
+            else:
+                gcmd.respond_info(
+                    "Servo %s: alarm cleared (no drive fault)" % self.name
+                )
+        except Exception as e:
+            gcmd.respond_info(
+                "Servo %s: fault reset failed: %s" % (self.name, e)
+            )
+
     def get_stepper(self):
         return self.stepper
 
     def get_status(self, eventtime=None):
-        return self.backend.get_status()
+        status = self.backend.get_status()
+        status["alarm_active"] = self._alarm_active
+        status["alarm_count"] = self._alarm_count
+        return status
 
 
 class CANopenBus:

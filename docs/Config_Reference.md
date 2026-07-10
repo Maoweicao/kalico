@@ -1102,6 +1102,17 @@ microsteps:
 #   uses the drive's default.
 #canopen_homing_offset: 0
 #   Home offset in encoder counts. Default is 0.
+#alm_pin:
+#   GPIO pin connected to servo drive ALM (alarm) output. When
+#   configured, monitors this pin for alarm signals. Optional.
+#alarm_action: shutdown
+#   Action to take when ALM pin is triggered. Options: shutdown
+#   (emergency stop), pause (pause print), gcode (execute alarm_gcode),
+#   none (log only). Default is shutdown.
+#alm_invert: false
+#   Invert the ALM pin logic. Set to true for active-high alarm
+#   outputs. Most servo drives use active-low (open-collector) alarm
+#   outputs. Default is false.
 ```
 
 See the [CANopen guide](CANopen.md) for more information on SYNC
@@ -1144,6 +1155,17 @@ microsteps:
 #   Minimum position in mm. Default is 0.
 #position_max:
 #   Maximum position in mm. Required if endstop_pin is set.
+#alm_pin:
+#   GPIO pin connected to servo drive ALM (alarm) output. When
+#   configured, monitors this pin for alarm signals. Optional.
+#alarm_action: shutdown
+#   Action to take when ALM pin is triggered. Options: shutdown
+#   (emergency stop), pause (pause print), gcode (execute alarm_gcode),
+#   none (log only). Default is shutdown.
+#alm_invert: false
+#   Invert the ALM pin logic. Set to true for active-high alarm
+#   outputs. Most servo drives use active-low (open-collector) alarm
+#   outputs. Default is false.
 ```
 
 See the [EtherCAT guide](EtherCAT.md) for CL3B register maps, DC
@@ -1208,10 +1230,65 @@ microsteps:
 #   Minimum position in mm. Default is 0.
 #position_max:
 #   Maximum position in mm. Required if endstop_pin is set.
+#alm_pin:
+#   GPIO pin connected to servo drive ALM (alarm) output. When
+#   configured, monitors this pin for alarm signals. Optional.
+#alarm_action: shutdown
+#   Action to take when ALM pin is triggered. Options: shutdown
+#   (emergency stop), pause (pause print), gcode (execute alarm_gcode),
+#   none (log only). Default is shutdown.
+#alm_invert: false
+#   Invert the ALM pin logic. Set to true for active-high alarm
+#   outputs. Most servo drives use active-low (open-collector) alarm
+#   outputs. Default is false.
 ```
 
 See the [RS485 guide](RS485.md) for more information on protocols,
 custom protocol development, and troubleshooting.
+
+## Servo safety monitoring
+
+### [servo_alarm]
+
+Independent servo alarm pin monitor. Monitors a GPIO pin connected to
+a servo drive's ALM (alarm) output and triggers configurable actions.
+
+```
+[servo_alarm my_servo]
+alm_pin:
+#   GPIO pin for alarm input. Required. Supports pin modifiers:
+#   ^ (pull-up), ~ (pull-down), ! (invert).
+#action: shutdown
+#   Action to take when alarm is triggered. Options: shutdown
+#   (emergency stop), pause (pause print), gcode (execute
+#   alarm_gcode), none (log only). Default is shutdown.
+#invert: false
+#   Invert pin logic. Set to true for active-high alarm outputs.
+#   Default is false.
+#debounce: 0.01
+#   Debounce time in seconds. Default is 0.01.
+#gcode:
+#   G-code to execute when action is "gcode". This is a Jinja2
+#   template. Optional.
+```
+
+Multiple [servo_alarm] sections can be defined for multi-axis
+monitoring. Each section creates QUERY_ALARM_<name> and
+CLEAR_ALARM_<name> G-code commands.
+
+### [servo_status]
+
+Servo status G-code commands module. Provides commands for querying
+and managing servo drive status across all configured servo steppers.
+
+```
+[servo_status]
+#   No configuration options. This module is automatically loaded
+#   when servo steppers are configured.
+```
+
+See the [Servo Safety guide](servo-safety.md) for wiring diagrams,
+configuration examples, and troubleshooting.
 
 ## External pulse generator stepper support
 
