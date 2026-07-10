@@ -23,6 +23,200 @@ MIN_BOTH_EDGE_DURATION = 0.000000500
 MIN_OPTIMIZED_BOTH_EDGE_DURATION = 0.000000150
 
 
+######################################################################
+# Stepper backends
+######################################################################
+
+
+class StepperBackend:
+    def setup(self, mcu, oid, step_pulse_duration, step_both_edge):
+        pass
+
+    def set_kinematics(self, stepper_kinematics, step_dist):
+        pass
+
+    def set_trapq(self, trapq):
+        pass
+
+    def generate_steps(self, flush_time):
+        pass
+
+    def set_dir_inverted(self, invert_dir):
+        pass
+
+    def note_homing_end(self):
+        pass
+
+    def set_last_position(self, clock, position):
+        pass
+
+    def get_past_position(self, clock):
+        return 0
+
+    def dump_steps(self, count, start_clock, end_clock):
+        return None, 0
+
+    def query_position(self, oid, invert_dir, mcu, get_position_cmd):
+        pass
+
+
+class StepDirBackend(StepperBackend):
+    def __init__(self, step_pin_params, dir_pin_params):
+        self._step_pin = step_pin_params["pin"]
+        self._invert_step = step_pin_params["invert"]
+        self._dir_pin = dir_pin_params["pin"]
+        self._invert_dir = dir_pin_params["invert"]
+        self._req_step_both_edge = False
+        self._step_both_edge = False
+        self._stepqueue = None
+        self._stepper_kinematics = None
+        self._mcu = None
+        self._oid = None
+        self._reset_cmd_tag = None
+        self._get_position_cmd = None
+
+    def setup(self, mcu, oid, step_pulse_duration, step_both_edge):
+        self._mcu = mcu
+        self._oid = oid
+        self._req_step_both_edge = step_both_edge
+        ffi_main, ffi_lib = chelper.get_ffi()
+        self._stepqueue = ffi_main.gc(
+            ffi_lib.stepcompress_alloc(oid), ffi_lib.stepcompress_free
+        )
+        ffi_lib.stepcompress_set_invert_sdir(self._stepqueue, self._invert_dir)
+        self._mcu.register_stepqueue(self._stepqueue)
+
+    def get_stepqueue(self):
+        return self._stepqueue
+
+    def build_config(self, mcu, oid, step_pulse_duration):
+        invert_step = self._invert_step
+        constants = mcu.get_constants()
+        ssbe = int(constants.get("STEPPER_STEP_BOTH_EDGE", "0"))
+        sbe = int(constants.get("STEPPER_BOTH_EDGE", "0"))
+        sou = int(constants.get("STEPPER_OPTIMIZED_UNSTEP", "0"))
+        want_both_edges = self._req_step_both_edge
+        if step_pulse_duration > MIN_BOTH_EDGE_DURATION:
+            want_both_edges = False
+        elif (
+            sbe and step_pulse_duration > MIN_OPTIMIZED_BOTH_EDGE_DURATION
+        ):
+            want_both_edges = False
+        elif not sbe and not ssbe:
+            want_both_edges = False
+        elif sou:
+            want_both_edges = False
+        if want_both_edges:
+            self._step_both_edge = True
+            invert_step = -1
+            if sbe:
+                step_pulse_duration = 0.0
+        step_pulse_ticks = mcu.seconds_to_clock(step_pulse_duration)
+        mcu.add_config_cmd(
+            "config_stepper oid=%d step_pin=%s dir_pin=%s invert_step=%d"
+            " step_pulse_ticks=%u"
+            % (
+                oid,
+                self._step_pin,
+                self._dir_pin,
+                invert_step,
+                step_pulse_ticks,
+            )
+        )
+        mcu.add_config_cmd(
+            "reset_step_clock oid=%d clock=0" % (oid,), on_restart=True
+        )
+        step_cmd_tag = mcu.lookup_command(
+            "queue_step oid=%c interval=%u count=%hu add=%hi"
+        ).get_command_tag()
+        dir_cmd_tag = mcu.lookup_command(
+            "set_next_step_dir oid=%c dir=%c"
+        ).get_command_tag()
+        self._reset_cmd_tag = mcu.lookup_command(
+            "reset_step_clock oid=%c clock=%u"
+        ).get_command_tag()
+        self._get_position_cmd = mcu.lookup_query_command(
+            "stepper_get_position oid=%c",
+            "stepper_position oid=%c pos=%i",
+            oid=oid,
+        )
+        max_error = mcu.get_max_stepper_error()
+        max_error_ticks = mcu.seconds_to_clock(max_error)
+        ffi_main, ffi_lib = chelper.get_ffi()
+        ffi_lib.stepcompress_fill(
+            self._stepqueue, max_error_ticks, step_cmd_tag, dir_cmd_tag
+        )
+
+    def get_pulse_state(self):
+        return self._step_both_edge
+
+    def set_kinematics(self, stepper_kinematics, step_dist):
+        self._stepper_kinematics = stepper_kinematics
+        ffi_main, ffi_lib = chelper.get_ffi()
+        ffi_lib.itersolve_set_stepcompress(
+            stepper_kinematics, self._stepqueue, step_dist
+        )
+
+    def set_trapq(self, trapq):
+        ffi_main, ffi_lib = chelper.get_ffi()
+        if self._stepper_kinematics is not None:
+            ffi_lib.itersolve_set_trapq(self._stepper_kinematics, trapq)
+
+    def generate_steps(self, flush_time):
+        ffi_main, ffi_lib = chelper.get_ffi()
+        ret = ffi_lib.itersolve_generate_steps(
+            self._stepper_kinematics, flush_time
+        )
+        if ret:
+            raise error("Internal error in stepcompress")
+
+    def set_dir_inverted(self, invert_dir):
+        ffi_main, ffi_lib = chelper.get_ffi()
+        ffi_lib.stepcompress_set_invert_sdir(self._stepqueue, invert_dir)
+
+    def note_homing_end(self):
+        ffi_main, ffi_lib = chelper.get_ffi()
+        ret = ffi_lib.stepcompress_reset(self._stepqueue, 0)
+        if ret:
+            raise error("Internal error in stepcompress")
+        data = (self._reset_cmd_tag, self._oid, 0)
+        ret = ffi_lib.stepcompress_queue_msg(self._stepqueue, data, len(data))
+        if ret:
+            raise error("Internal error in stepcompress")
+
+    def set_last_position(self, clock, position):
+        ffi_main, ffi_lib = chelper.get_ffi()
+        ret = ffi_lib.stepcompress_set_last_position(
+            self._stepqueue, clock, position
+        )
+        if ret:
+            raise error("Internal error in stepcompress")
+
+    def get_past_position(self, clock):
+        ffi_main, ffi_lib = chelper.get_ffi()
+        return ffi_lib.stepcompress_find_past_position(self._stepqueue, clock)
+
+    def dump_steps(self, count, start_clock, end_clock):
+        ffi_main, ffi_lib = chelper.get_ffi()
+        data = ffi_main.new("struct pull_history_steps[]", count)
+        count = ffi_lib.stepcompress_extract_old(
+            self._stepqueue, data, count, start_clock, end_clock
+        )
+        return (data, count)
+
+    def query_position(self, oid, invert_dir, mcu, get_position_cmd):
+        if mcu.is_fileoutput() or mcu.non_critical_disconnected:
+            return
+        params = get_position_cmd.send([oid])
+        last_pos = params["pos"]
+        if invert_dir:
+            last_pos = -last_pos
+        print_time = mcu.estimated_print_time(params["#receive_time"])
+        clock = mcu.print_time_to_clock(print_time)
+        self.set_last_position(clock, last_pos)
+        return last_pos
+
+
 # Interface to low-level mcu and chelper code
 class MCU_stepper:
     def __init__(
@@ -34,6 +228,7 @@ class MCU_stepper:
         steps_per_rotation,
         step_pulse_duration=None,
         units_in_radians=False,
+        backend=None,
     ):
         self._name = name
         self._rotation_dist = rotation_dist
@@ -44,32 +239,30 @@ class MCU_stepper:
         self._mcu = step_pin_params["chip"]
         self._oid = oid = self._mcu.create_oid()
         self._mcu.register_config_callback(self._build_config)
-        self._step_pin = step_pin_params["pin"]
-        self._invert_step = step_pin_params["invert"]
         if dir_pin_params["chip"] is not self._mcu:
             raise self._mcu.get_printer().config_error(
                 "Stepper dir pin must be on same mcu as step pin"
             )
-        self._dir_pin = dir_pin_params["pin"]
         self._invert_dir = self._orig_invert_dir = dir_pin_params["invert"]
-        self._step_both_edge = self._req_step_both_edge = False
+        self._step_both_edge = False
+        self._req_step_both_edge = False
         self._mcu_position_offset = 0.0
-        self._reset_cmd_tag = self._get_position_cmd = None
         self._active_callbacks = []
-        ffi_main, ffi_lib = chelper.get_ffi()
-        self._stepqueue = ffi_main.gc(
-            ffi_lib.stepcompress_alloc(oid), ffi_lib.stepcompress_free
-        )
-        ffi_lib.stepcompress_set_invert_sdir(self._stepqueue, self._invert_dir)
-        self._mcu.register_stepqueue(self._stepqueue)
+        # Backend setup
+        if backend is None:
+            backend = StepDirBackend(step_pin_params, dir_pin_params)
+        self._backend = backend
+        self._backend.setup(self._mcu, oid, step_pulse_duration, False)
         self._stepper_kinematics = None
-        self._itersolve_generate_steps = ffi_lib.itersolve_generate_steps
+        ffi_main, ffi_lib = chelper.get_ffi()
         self._itersolve_check_active = ffi_lib.itersolve_check_active
         self._trapq = ffi_main.NULL
         self._mcu.get_printer().register_event_handler(
             "klippy:connect", self._query_mcu_position
         )
         self._tmc_current_helper = None
+        # Expose stepqueue for motion_report compatibility
+        self._stepqueue = getattr(backend, "get_stepqueue", lambda: None)()
 
     def get_tmc_current_helper(self):
         return self._tmc_current_helper
@@ -90,6 +283,8 @@ class MCU_stepper:
         return self._units_in_radians
 
     def get_pulse_duration(self):
+        if isinstance(self._backend, StepDirBackend):
+            self._step_both_edge = self._backend.get_pulse_state()
         return self._step_pulse_duration, self._step_both_edge
 
     def setup_default_pulse_duration(self, pulse_duration, step_both_edge):
@@ -105,71 +300,12 @@ class MCU_stepper:
     def _build_config(self):
         if self._step_pulse_duration is None:
             self._step_pulse_duration = 0.000002
-        invert_step = self._invert_step
-        # Check if can enable "step on both edges"
-        constants = self._mcu.get_constants()
-        ssbe = int(constants.get("STEPPER_STEP_BOTH_EDGE", "0"))
-        sbe = int(constants.get("STEPPER_BOTH_EDGE", "0"))
-        sou = int(constants.get("STEPPER_OPTIMIZED_UNSTEP", "0"))
-        want_both_edges = self._req_step_both_edge
-        if self._step_pulse_duration > MIN_BOTH_EDGE_DURATION:
-            # If user has requested a very large step pulse duration
-            # then disable step on both edges (rise and fall times may
-            # not be symetric)
-            want_both_edges = False
-        elif (
-            sbe and self._step_pulse_duration > MIN_OPTIMIZED_BOTH_EDGE_DURATION
-        ):
-            # Older MCU and user has requested large pulse duration
-            want_both_edges = False
-        elif not sbe and not ssbe:
-            # Older MCU that doesn't support step on both edges
-            want_both_edges = False
-        elif sou:
-            # MCU has optimized step/unstep - better to use that
-            want_both_edges = False
-        if want_both_edges:
-            self._step_both_edge = True
-            invert_step = -1
-            if sbe:
-                # Older MCU requires setting step_pulse_ticks=0 to enable
-                self._step_pulse_duration = 0.0
-        # Configure stepper object
-        step_pulse_ticks = self._mcu.seconds_to_clock(self._step_pulse_duration)
-        self._mcu.add_config_cmd(
-            "config_stepper oid=%d step_pin=%s dir_pin=%s invert_step=%d"
-            " step_pulse_ticks=%u"
-            % (
-                self._oid,
-                self._step_pin,
-                self._dir_pin,
-                invert_step,
-                step_pulse_ticks,
+        if isinstance(self._backend, StepDirBackend):
+            self._backend._req_step_both_edge = self._req_step_both_edge
+            self._backend.build_config(
+                self._mcu, self._oid, self._step_pulse_duration
             )
-        )
-        self._mcu.add_config_cmd(
-            "reset_step_clock oid=%d clock=0" % (self._oid,), on_restart=True
-        )
-        step_cmd_tag = self._mcu.lookup_command(
-            "queue_step oid=%c interval=%u count=%hu add=%hi"
-        ).get_command_tag()
-        dir_cmd_tag = self._mcu.lookup_command(
-            "set_next_step_dir oid=%c dir=%c"
-        ).get_command_tag()
-        self._reset_cmd_tag = self._mcu.lookup_command(
-            "reset_step_clock oid=%c clock=%u"
-        ).get_command_tag()
-        self._get_position_cmd = self._mcu.lookup_query_command(
-            "stepper_get_position oid=%c",
-            "stepper_position oid=%c pos=%i",
-            oid=self._oid,
-        )
-        max_error = self._mcu.get_max_stepper_error()
-        max_error_ticks = self._mcu.seconds_to_clock(max_error)
-        ffi_main, ffi_lib = chelper.get_ffi()
-        ffi_lib.stepcompress_fill(
-            self._stepqueue, max_error_ticks, step_cmd_tag, dir_cmd_tag
-        )
+            self._step_both_edge = self._backend.get_pulse_state()
 
     def get_oid(self):
         return self._oid
@@ -195,8 +331,7 @@ class MCU_stepper:
         if invert_dir == self._invert_dir:
             return
         self._invert_dir = invert_dir
-        ffi_main, ffi_lib = chelper.get_ffi()
-        ffi_lib.stepcompress_set_invert_sdir(self._stepqueue, invert_dir)
+        self._backend.set_dir_inverted(invert_dir)
         self._mcu.get_printer().send_event("stepper:set_dir_inverted", self)
         if queuelogger.should_log_component_interactions():
             logging.debug(
@@ -241,20 +376,14 @@ class MCU_stepper:
 
     def get_past_mcu_position(self, print_time):
         clock = self._mcu.print_time_to_clock(print_time)
-        ffi_main, ffi_lib = chelper.get_ffi()
-        pos = ffi_lib.stepcompress_find_past_position(self._stepqueue, clock)
+        pos = self._backend.get_past_position(clock)
         return int(pos)
 
     def mcu_to_commanded_position(self, mcu_pos):
         return mcu_pos * self._step_dist - self._mcu_position_offset
 
     def dump_steps(self, count, start_clock, end_clock):
-        ffi_main, ffi_lib = chelper.get_ffi()
-        data = ffi_main.new("struct pull_history_steps[]", count)
-        count = ffi_lib.stepcompress_extract_old(
-            self._stepqueue, data, count, start_clock, end_clock
-        )
-        return (data, count)
+        return self._backend.dump_steps(count, start_clock, end_clock)
 
     def get_stepper_kinematics(self):
         return self._stepper_kinematics
@@ -265,38 +394,22 @@ class MCU_stepper:
         if old_sk is not None:
             mcu_pos = self.get_mcu_position()
         self._stepper_kinematics = sk
-        ffi_main, ffi_lib = chelper.get_ffi()
-        ffi_lib.itersolve_set_stepcompress(sk, self._stepqueue, self._step_dist)
+        self._backend.set_kinematics(sk, self._step_dist)
         self.set_trapq(self._trapq)
         self._set_mcu_position(mcu_pos)
         return old_sk
 
     def note_homing_end(self):
-        ffi_main, ffi_lib = chelper.get_ffi()
-        ret = ffi_lib.stepcompress_reset(self._stepqueue, 0)
-        if ret:
-            raise error("Internal error in stepcompress")
-        data = (self._reset_cmd_tag, self._oid, 0)
-        ret = ffi_lib.stepcompress_queue_msg(self._stepqueue, data, len(data))
-        if ret:
-            raise error("Internal error in stepcompress")
+        self._backend.note_homing_end()
         self._query_mcu_position()
 
     def _query_mcu_position(self):
-        if self._mcu.is_fileoutput() or self._mcu.non_critical_disconnected:
-            return
-        params = self._get_position_cmd.send([self._oid])
-        last_pos = params["pos"]
-        if self._invert_dir:
-            last_pos = -last_pos
-        print_time = self._mcu.estimated_print_time(params["#receive_time"])
-        clock = self._mcu.print_time_to_clock(print_time)
-        ffi_main, ffi_lib = chelper.get_ffi()
-        ret = ffi_lib.stepcompress_set_last_position(
-            self._stepqueue, clock, last_pos
+        last_pos = self._backend.query_position(
+            self._oid, self._invert_dir, self._mcu,
+            getattr(self._backend, "_get_position_cmd", None)
         )
-        if ret:
-            raise error("Internal error in stepcompress")
+        if last_pos is None:
+            return
         self._set_mcu_position(last_pos)
         self._mcu.get_printer().send_event("stepper:sync_mcu_position", self)
 
@@ -307,7 +420,8 @@ class MCU_stepper:
         ffi_main, ffi_lib = chelper.get_ffi()
         if tq is None:
             tq = ffi_main.NULL
-        ffi_lib.itersolve_set_trapq(self._stepper_kinematics, tq)
+        if self._stepper_kinematics is not None:
+            ffi_lib.itersolve_set_trapq(self._stepper_kinematics, tq)
         old_tq = self._trapq
         self._trapq = tq
         return old_tq
@@ -330,20 +444,20 @@ class MCU_stepper:
                     )
                 for cb in cbs:
                     cb(ret)
-        # Generate steps
-        sk = self._stepper_kinematics
-        ret = self._itersolve_generate_steps(sk, flush_time)
-        if ret:
-            raise error("Internal error in stepcompress")
+        # Generate steps via backend
+        self._backend.generate_steps(flush_time)
 
     def is_active_axis(self, axis):
         ffi_main, ffi_lib = chelper.get_ffi()
         a = axis.encode()
         return ffi_lib.itersolve_is_active_axis(self._stepper_kinematics, a)
 
+    def get_backend(self):
+        return self._backend
+
 
 # Helper code to build a stepper object from a config section
-def PrinterStepper(config, units_in_radians=False):
+def PrinterStepper(config, units_in_radians=False, backend=None):
     printer = config.get_printer()
     name = config.get_name()
     # Stepper definition
@@ -366,6 +480,7 @@ def PrinterStepper(config, units_in_radians=False):
         steps_per_rotation,
         step_pulse_duration,
         units_in_radians,
+        backend=backend,
     )
     # Register with helper modules
     for mname in ["stepper_enable", "force_move", "motion_report"]:

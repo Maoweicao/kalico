@@ -1021,6 +1021,259 @@ max_accel: 1
 #   values are not used for "none" kinematics.
 ```
 
+## CANopen servo stepper support
+
+### [canopen_bus]
+
+Shared CAN bus parameters for multiple CANopen steppers. See the
+[CANopen guide](CANopen.md) for hardware requirements and setup.
+
+```
+[canopen_bus my_bus]
+interface: socketcan
+#   CAN interface type. Required. Typical values: "socketcan" (Linux),
+#   "slcan" (serial-line CAN), "pcan" (PEAK).
+channel: can0
+#   CAN channel name. Required. For socketcan this is the network
+#   interface name. For slcan this is the serial port.
+#bitrate: 1000000
+#   CAN bus bitrate in bps. Default is 1000000 (1 Mbit/s).
+```
+
+### [canopen_stepper]
+
+CANopen CiA 402 servo stepper motor configuration. This allows using
+industrial servo drives that support the CANopen protocol instead of
+traditional step/dir stepper drivers.
+
+```
+[canopen_stepper x]
+#canopen_bus:
+#   Reference to a [canopen_bus] section. If not specified, you must
+#   provide can_interface, can_channel, and can_bitrate directly.
+#can_interface:
+#can_channel:
+#can_bitrate: 1000000
+#   Direct bus configuration (alternative to canopen_bus).
+node_id:
+#   CANopen node ID (1-127). Required.
+eds_file:
+#   Path to the EDS/DCF file for this device (CiA 306 INI format).
+#   Required. Supports ~/ for home directory. Relative paths are
+#   resolved from the config file directory.
+#canopen_mode: CSP
+#   Operating mode. Options: CSP (Cyclic Synchronous Position),
+#   CSV (Cyclic Synchronous Velocity), PP (Profile Position),
+#   PV (Profile Velocity), CST (Cyclic Synchronous Torque).
+#   Default is CSP.
+#sync_group: default
+#   SYNC group name. Steppers with the same sync_group share the same
+#   CANopen SYNC signal and are synchronized in their PDO exchange.
+#   Default is "default".
+#sync_period: 0.001
+#   SYNC period in seconds (0.000250 to 0.010). This controls how
+#   often position setpoints are sent to the drive. Default is 0.001
+#   (1ms, 1kHz).
+rotation_distance:
+#   Distance (in mm) that the axis travels with one full rotation of
+#   the servo motor. This parameter must be provided.
+microsteps:
+#   Set to 1 for CANopen servos (not used, but required by framework).
+#full_steps_per_rotation: 200
+#   Encoder counts per rotation or motor pole count. Default is 200.
+#endstop_pin:
+#   Endstop pin. Set to "canopen" to use CiA 402 internal homing, or
+#   specify a GPIO pin for traditional endstop. Required for homing.
+#canopen_homing_method: negative_limit
+#   CiA 402 homing method (only used when endstop_pin is "canopen").
+#   Options: current_position, positive_limit, negative_limit,
+#   positive_home, negative_home, positive_home_index,
+#   negative_home_index, negative_limit_index, positive_limit_index,
+#   index_positive, index_negative. Can also be a number (1-35).
+#   Default is "negative_limit".
+#canopen_homing_speed_switch:
+#   Speed for switch search in encoder counts/s. If not specified,
+#   uses the drive's default.
+#canopen_homing_speed_zero:
+#   Speed for zero search in encoder counts/s. If not specified,
+#   uses the drive's default.
+#canopen_homing_accel:
+#   Homing acceleration in encoder counts/s^2. If not specified,
+#   uses the drive's default.
+#canopen_homing_offset: 0
+#   Home offset in encoder counts. Default is 0.
+```
+
+See the [CANopen guide](CANopen.md) for more information on SYNC
+groups, homing methods, and EDS file format.
+
+## EtherCAT servo stepper support
+
+### [ethercat_stepper]
+
+EtherCAT servo stepper motor configuration using CoE (CANopen over
+EtherCAT) with CiA 402 drive profile. Requires pysoem to be installed
+(`pip install pysoem`). See the [EtherCAT guide](EtherCAT.md) for
+hardware setup and details.
+
+```
+[ethercat_stepper x]
+ethercat_interface:
+#   Network interface name. Linux: eth0, enp3s0, etc.
+#   Windows: Npcap device name. Required.
+ethercat_slave: 0
+#   Slave position index (0 = first slave). Default is 0.
+#canopen_mode: CSP
+#   Operating mode. Options: CSP (Cyclic Synchronous Position),
+#   PP (Profile Position), CSV (Cyclic Synchronous Velocity),
+#   HOMING. Default is CSP.
+#ethercat_cycle_time: 0.001
+#   DC sync cycle time in seconds. Range: 0.000250 to 0.020.
+#   Default is 0.001 (1ms).
+rotation_distance:
+#   Distance (mm) per full rotation. Required.
+microsteps:
+#   Set to 1 for EtherCAT servos (required by framework).
+#full_steps_per_rotation: 200
+#   Encoder counts per rotation. Default is 200.
+#endstop_pin:
+#   Endstop pin for traditional homing. Required for homing.
+#homing_speed: 5.0
+#   Homing speed in mm/s. Default is 5.0.
+#position_min: 0
+#   Minimum position in mm. Default is 0.
+#position_max:
+#   Maximum position in mm. Required if endstop_pin is set.
+```
+
+See the [EtherCAT guide](EtherCAT.md) for CL3B register maps, DC
+synchronization, and troubleshooting.
+
+## RS485 servo stepper support
+
+### [rs485_stepper]
+
+RS485 servo stepper motor configuration. Supports Modbus RTU protocol
+and custom protocols for industrial servo drives connected via RS485.
+See the [RS485 guide](RS485.md) for hardware setup and protocol details.
+
+```
+[rs485_stepper x]
+#rs485_transport: host
+#   Transport type. "host" uses USB-to-RS485 adapter via pyserial.
+#   Default is "host".
+serial_port:
+#   Serial port path. Required. Examples: /dev/ttyUSB0, COM3.
+#baud_rate: 9600
+#   Baud rate. Range: 1200 to 115200. Default is 9600.
+#rs485_protocol: modbus_rtu
+#   Protocol type. Options: modbus_rtu, uart_passthrough, custom.
+#   Default is modbus_rtu.
+#rs485_slave_id: 1
+#   Modbus slave address (1-247). Default is 1.
+#rs485_parity: N
+#   Parity. Options: N (none), E (even), O (odd). Default is N.
+#rs485_stopbits: 1
+#   Stop bits. Options: 1, 1.5, 2. Default is 1.
+#rs485_bytesize: 8
+#   Data bits. Options: 5, 6, 7, 8. Default is 8.
+#rs485_direction_pin: rts
+#   DE/RE control method. "rts" uses RTS signal. "none" for
+#   adapters with hardware auto-direction. Default is "rts".
+#rs485_response_delay:
+#   Delay after write before reading response (seconds).
+#rs485_inter_frame_delay:
+#   Minimum delay between frames (seconds).
+#register_control_word:
+#register_status_word:
+#register_target_position:
+#register_actual_position:
+#register_error_code:
+#   Custom register addresses for CiA 402 objects (modbus_rtu only).
+#   If not specified, uses standard CiA 402 addresses.
+#protocol_class:
+#   Python class path for custom protocol. Required when
+#   rs485_protocol is "custom". Format: module.ClassName
+rotation_distance:
+#   Distance (mm) per full rotation. Required.
+microsteps:
+#   Set to 1 for RS485 servos (required by framework).
+#full_steps_per_rotation: 200
+#   Encoder counts per rotation. Default is 200.
+#endstop_pin:
+#   Endstop pin for homing. Required for homing.
+#homing_speed: 5.0
+#   Homing speed in mm/s. Default is 5.0.
+#position_min: 0
+#   Minimum position in mm. Default is 0.
+#position_max:
+#   Maximum position in mm. Required if endstop_pin is set.
+```
+
+See the [RS485 guide](RS485.md) for more information on protocols,
+custom protocol development, and troubleshooting.
+
+## External pulse generator stepper support
+
+### [pulse_gen_stepper]
+
+External pulse generator module configuration. Sends position or
+velocity commands to an external module that generates high-speed
+differential step/dir pulses internally. See the
+[PulseGen guide](PulseGen.md) for details.
+
+```
+[pulse_gen_stepper x]
+serial_port:
+#   Serial port path. Required.
+#baud_rate: 9600
+#   Baud rate. Default is 9600.
+#pulse_gen_protocol: modbus_rtu
+#   Protocol type. Options: modbus_rtu, uart_passthrough, custom.
+#   Default is modbus_rtu.
+#pulse_gen_slave_id: 1
+#   Slave address (1-247). Default is 1.
+#pulse_gen_mode: absolute
+#   Command mode. Options: absolute (absolute position),
+#   relative (relative displacement), velocity. Default is absolute.
+#register_target_position: 0x607A
+#   Register for target position (absolute mode). Default 0x607A.
+#register_actual_position: 0x6064
+#   Register for actual position feedback. Set to 0 for open-loop.
+#   Default 0x6064.
+#register_relative_position: 0x0020
+#   Register for relative displacement (relative mode). Default 0x0020.
+#register_velocity: 0x0030
+#   Register for velocity command (velocity mode). Default 0x0030.
+#rs485_parity: N
+#   Parity. Options: N, E, O. Default is N.
+#rs485_stopbits: 1
+#   Stop bits. Default is 1.
+#rs485_bytesize: 8
+#   Data bits. Default is 8.
+#rs485_direction_pin: rts
+#   DE/RE control. Default is "rts".
+#protocol_class:
+#   Custom protocol class path (when pulse_gen_protocol is "custom").
+rotation_distance:
+#   Distance (mm) per full rotation. Required.
+microsteps:
+#   Set to 1 for pulse generators (required by framework).
+#full_steps_per_rotation: 200
+#   Encoder counts per rotation. Default is 200.
+#endstop_pin:
+#   Endstop pin for homing. Required for homing.
+#homing_speed: 5.0
+#   Homing speed in mm/s. Default is 5.0.
+#position_min: 0
+#   Minimum position in mm. Default is 0.
+#position_max:
+#   Maximum position in mm. Required if endstop_pin is set.
+```
+
+See the [PulseGen guide](PulseGen.md) for more information on command
+modes, open-loop vs closed-loop operation, and custom protocols.
+
 ## Common extruder and heated bed support
 
 ### [extruder]

@@ -1,0 +1,621 @@
+[DeviceInfo]
+VendorName=TestServo
+VendorNumber=0x12345678
+ProductName=ServoX
+ProductCode=0x00010001
+RevisionNumber=0x00010000
+BaudRate_1000=1
+BaudRate_500=1
+BaudRate_250=0
+BaudRate_125=0
+SimpleBootUpMaster=0
+SimpleBootUpSlave=1
+Granularity=8
+DynamicChannelsSupported=0
+GroupMessaging=0
+NrOfRxPDO=2
+NrOfTxPDO=2
+LSS_Supported=0
+
+[DeviceComissioning]
+NodeID=1
+NodeName=ServoX
+Baudrate=1000
+NetworkNumber=0
+
+[Objects]
+1000=1
+1001=1
+1018=4
+1400=5
+1401=5
+1600=2
+1601=2
+1800=5
+1801=5
+1A00=2
+1A01=2
+6040=1
+6041=1
+6060=1
+6061=1
+607A=1
+6064=1
+60FF=1
+606C=1
+6098=1
+6099=2
+607F=1
+6083=1
+6084=1
+60FE=2
+60FD=2
+6502=4
+
+[1000]
+ParameterName=Device Type
+ObjectType=7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0x00020192
+PDOMapping=0
+
+[1001]
+ParameterName=Error Register
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=0x00
+PDOMapping=0
+
+[1018]
+ParameterName=Identity Object
+ObjectType=9
+SubNumber=4
+
+[1018sub0]
+ParameterName=Number of entries
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=4
+
+[1018sub1]
+ParameterName=Vendor ID
+ObjectType=7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0x12345678
+PDOMapping=0
+
+[1018sub2]
+ParameterName=Product Code
+ObjectType=7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0x00010001
+PDOMapping=0
+
+[1018sub3]
+ParameterName=Revision Number
+ObjectType=7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0x00010000
+PDOMapping=0
+
+[1018sub4]
+ParameterName=Serial Number
+ObjectType=7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0x00000001
+PDOMapping=0
+
+[1400]
+ParameterName=RPDO 1 Communication Parameter
+ObjectType=9
+SubNumber=5
+
+[1400sub0]
+ParameterName=Number of entries
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+
+[1400sub1]
+ParameterName=COB-ID RPDO
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000201
+PDOMapping=0
+
+[1400sub2]
+ParameterName=Transmission Type
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0x01
+PDOMapping=0
+
+[1400sub3]
+ParameterName=Inhibit Time
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1400sub4]
+ParameterName=Event Timer
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1400sub5]
+ParameterName=SYNC start value
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0x00
+PDOMapping=0
+
+[1401]
+ParameterName=RPDO 2 Communication Parameter
+ObjectType=9
+SubNumber=5
+
+[1401sub0]
+ParameterName=Number of entries
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+
+[1401sub1]
+ParameterName=COB-ID RPDO
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000301
+PDOMapping=0
+
+[1401sub2]
+ParameterName=Transmission Type
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0x01
+PDOMapping=0
+
+[1401sub3]
+ParameterName=Inhibit Time
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1401sub4]
+ParameterName=Event Timer
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1401sub5]
+ParameterName=SYNC start value
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0x00
+PDOMapping=0
+
+[1600]
+ParameterName=RPDO 1 Mapping Parameter
+ObjectType=9
+SubNumber=2
+
+[1600sub0]
+ParameterName=Number of mapped objects
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=2
+
+[1600sub1]
+ParameterName=Mapped object 1
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x607A0020
+PDOMapping=0
+
+[1600sub2]
+ParameterName=Mapped object 2
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x60400010
+PDOMapping=0
+
+[1601]
+ParameterName=RPDO 2 Mapping Parameter
+ObjectType=9
+SubNumber=2
+
+[1601sub0]
+ParameterName=Number of mapped objects
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=2
+
+[1601sub1]
+ParameterName=Mapped object 1
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x60FF0020
+PDOMapping=0
+
+[1601sub2]
+ParameterName=Mapped object 2
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x60400010
+PDOMapping=0
+
+[1800]
+ParameterName=TPDO 1 Communication Parameter
+ObjectType=9
+SubNumber=5
+
+[1800sub0]
+ParameterName=Number of entries
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+
+[1800sub1]
+ParameterName=COB-ID TPDO
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000181
+PDOMapping=0
+
+[1800sub2]
+ParameterName=Transmission Type
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0x01
+PDOMapping=0
+
+[1800sub3]
+ParameterName=Inhibit Time
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1800sub4]
+ParameterName=Event Timer
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1800sub5]
+ParameterName=SYNC start value
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0x00
+PDOMapping=0
+
+[1801]
+ParameterName=TPDO 2 Communication Parameter
+ObjectType=9
+SubNumber=5
+
+[1801sub0]
+ParameterName=Number of entries
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+
+[1801sub1]
+ParameterName=COB-ID TPDO
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000281
+PDOMapping=0
+
+[1801sub2]
+ParameterName=Transmission Type
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0x01
+PDOMapping=0
+
+[1801sub3]
+ParameterName=Inhibit Time
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1801sub4]
+ParameterName=Event Timer
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1801sub5]
+ParameterName=SYNC start value
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0x00
+PDOMapping=0
+
+[1A00]
+ParameterName=TPDO 1 Mapping Parameter
+ObjectType=9
+SubNumber=2
+
+[1A00sub0]
+ParameterName=Number of mapped objects
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=2
+
+[1A00sub1]
+ParameterName=Mapped object 1
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x60640020
+PDOMapping=0
+
+[1A00sub2]
+ParameterName=Mapped object 2
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x60410010
+PDOMapping=0
+
+[1A01]
+ParameterName=TPDO 2 Mapping Parameter
+ObjectType=9
+SubNumber=2
+
+[1A01sub0]
+ParameterName=Number of mapped objects
+ObjectType=7
+DataType=0x0005
+AccessType=rw
+DefaultValue=2
+
+[1A01sub1]
+ParameterName=Mapped object 1
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x606C0020
+PDOMapping=0
+
+[1A01sub2]
+ParameterName=Mapped object 2
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x60410010
+PDOMapping=0
+
+[6040]
+ParameterName=Controlword
+ObjectType=7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=1
+
+[6041]
+ParameterName=Statusword
+ObjectType=7
+DataType=0x0006
+AccessType=ro
+DefaultValue=0x0000
+PDOMapping=1
+
+[6060]
+ParameterName=Modes of Operation
+ObjectType=7
+DataType=0x0002
+AccessType=rw
+DefaultValue=0x00
+PDOMapping=0
+
+[6061]
+ParameterName=Modes of Operation Display
+ObjectType=7
+DataType=0x0002
+AccessType=ro
+DefaultValue=0x00
+PDOMapping=0
+
+[607A]
+ParameterName=Target Position
+ObjectType=7
+DataType=0x0004
+AccessType=rw
+DefaultValue=0
+PDOMapping=1
+
+[6064]
+ParameterName=Position Actual Value
+ObjectType=7
+DataType=0x0004
+AccessType=ro
+DefaultValue=0
+PDOMapping=1
+
+[60FF]
+ParameterName=Target Velocity
+ObjectType=7
+DataType=0x0004
+AccessType=rw
+DefaultValue=0
+PDOMapping=1
+
+[606C]
+ParameterName=Velocity Actual Value
+ObjectType=7
+DataType=0x0004
+AccessType=ro
+DefaultValue=0
+PDOMapping=1
+
+[6098]
+ParameterName=Homing Method
+ObjectType=7
+DataType=0x0002
+AccessType=rw
+DefaultValue=0x00
+PDOMapping=0
+
+[6099]
+ParameterName=Homing Speeds
+ObjectType=9
+SubNumber=2
+
+[6099sub0]
+ParameterName=Number of entries
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=2
+
+[6099sub1]
+ParameterName=Speed for switch search
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=1000
+PDOMapping=0
+
+[6099sub2]
+ParameterName=Speed for zero search
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=500
+PDOMapping=0
+
+[607F]
+ParameterName=Max Profile Velocity
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=10000
+PDOMapping=0
+
+[6083]
+ParameterName=Profile Acceleration
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=10000
+PDOMapping=0
+
+[6084]
+ParameterName=Profile Deceleration
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=10000
+PDOMapping=0
+
+[60FE]
+ParameterName=Digital Outputs
+ObjectType=9
+SubNumber=2
+
+[60FEsub0]
+ParameterName=Number of entries
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=2
+
+[60FEsub1]
+ParameterName=Physical outputs
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0x00000000
+PDOMapping=1
+
+[60FEsub2]
+ParameterName=Bit mask
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0xFFFFFFFF
+PDOMapping=0
+
+[60FD]
+ParameterName=Digital Inputs
+ObjectType=9
+SubNumber=2
+
+[60FDsub0]
+ParameterName=Number of entries
+ObjectType=7
+DataType=0x0005
+AccessType=ro
+DefaultValue=2
+
+[60FDsub1]
+ParameterName=Physical inputs
+ObjectType=7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0x00000000
+PDOMapping=1
+
+[60FDsub2]
+ParameterName=Bit mask
+ObjectType=7
+DataType=0x0007
+AccessType=rw
+DefaultValue=0xFFFFFFFF
+PDOMapping=0
+
+[6502]
+ParameterName=Supported Drive Modes
+ObjectType=7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0x000003A2
+PDOMapping=0

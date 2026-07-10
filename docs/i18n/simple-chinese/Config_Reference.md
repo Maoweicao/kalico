@@ -403,6 +403,207 @@ radius:
 #   如果为 True，将 \[probe]\ XY 偏移应用于探针位置。默认值为 False。
 \\\
 
+## CANopen 伺服步进支持
+
+### [canopen_bus]
+
+多个 CANopen 步进电机共享的 CAN 总线参数。参见 [CANopen 指南](CANopen.md) 了解硬件要求和设置。
+
+\\\
+[canopen_bus my_bus]
+interface: socketcan
+#   CAN 接口类型。必填。常用值："socketcan"（Linux）、
+#   "slcan"（串行线路 CAN）、"pcan"（PEAK）。
+channel: can0
+#   CAN 通道名称。必填。对于 socketcan，这是网络接口名称。
+#bitrate: 1000000
+#   CAN 总线波特率（bps）。默认 1000000（1 Mbit/s）。
+\\\
+
+### [canopen_stepper]
+
+CANopen CiA 402 伺服步进电机配置。
+
+\\\
+[canopen_stepper x]
+#canopen_bus:
+#   引用 [canopen_bus] 段。如果未指定，需要直接提供
+#   can_interface、can_channel 和 can_bitrate。
+#can_interface:
+#can_channel:
+#can_bitrate: 1000000
+#   直接总线配置（替代 canopen_bus）。
+node_id:
+#   CANopen 节点 ID（1-127）。必填。
+eds_file:
+#   设备的 EDS/DCF 文件路径（CiA 306 INI 格式）。必填。
+#canopen_mode: CSP
+#   运行模式。可选：CSP、CSV、PP、PV、CST、HOMING。默认 CSP。
+#sync_group: default
+#   SYNC 分组名称。默认 "default"。
+#sync_period: 0.001
+#   SYNC 周期（秒），范围 0.000250 到 0.010。默认 0.001。
+rotation_distance:
+#   伺服电机旋转一圈的距离（毫米）。必填。
+microsteps:
+#   CANopen 伺服设为 1。
+#full_steps_per_rotation: 200
+#   编码器每圈计数。默认 200。
+#endstop_pin:
+#   限位引脚。设为 "canopen" 使用 CiA 402 内部回原。
+#canopen_homing_method: negative_limit
+#   CiA 402 回原方法。默认 "negative_limit"。
+#canopen_homing_speed_switch:
+#   搜索开关速度（编码器计数/秒）。
+#canopen_homing_speed_zero:
+#   搜索零点速度（编码器计数/秒）。
+#canopen_homing_accel:
+#   回原加速度（编码器计数/秒²）。
+#canopen_homing_offset: 0
+#   零点偏移（编码器计数）。默认 0。
+\\\
+
+参见 [CANopen 指南](CANopen.md) 了解 SYNC 分组、回原方法和 EDS 文件格式。
+
+## EtherCAT 伺服步进支持
+
+### [ethercat_stepper]
+
+EtherCAT 伺服步进电机配置，使用 CoE（CANopen over EtherCAT）协议。需要安装 pysoem（`pip install pysoem`）。参见 [EtherCAT 指南](EtherCAT.md) 了解详情。
+
+\\\
+[ethercat_stepper x]
+ethercat_interface:
+#   网络接口名称。Linux: eth0, enp3s0 等。必填。
+ethercat_slave: 0
+#   从站位置索引（0 = 第一个从站）。默认 0。
+#canopen_mode: CSP
+#   运行模式。可选：CSP、PP、CSV、HOMING。默认 CSP。
+#ethercat_cycle_time: 0.001
+#   DC 同步周期时间（秒）。范围 0.000250 到 0.020。默认 0.001。
+rotation_distance:
+#   伺服电机旋转一圈的距离（毫米）。必填。
+microsteps:
+#   EtherCAT 伺服设为 1。
+#full_steps_per_rotation: 200
+#   编码器每圈计数。默认 200。
+#endstop_pin:
+#   限位引脚。回原必填。
+#homing_speed: 5.0
+#   回原速度（毫米/秒）。默认 5.0。
+#position_min: 0
+#   最小位置（毫米）。默认 0。
+#position_max:
+#   最大位置（毫米）。
+\\\
+
+参见 [EtherCAT 指南](EtherCAT.md) 了解 CL3B 寄存器映射、DC 同步和故障排除。
+
+## RS485 伺服步进支持
+
+### [rs485_stepper]
+
+RS485 伺服步进电机配置。支持 Modbus RTU 和自定义协议。参见 [RS485 指南](RS485.md) 了解详情。
+
+\\\
+[rs485_stepper x]
+serial_port:
+#   串口路径。必填。
+#baud_rate: 9600
+#   波特率。默认 9600。
+#rs485_protocol: modbus_rtu
+#   协议类型。可选：modbus_rtu、uart_passthrough、custom。默认 modbus_rtu。
+#rs485_slave_id: 1
+#   从站地址（1-247）。默认 1。
+#rs485_parity: N
+#   校验位。可选：N、E、O。默认 N。
+#rs485_stopbits: 1
+#   停止位。默认 1。
+#rs485_bytesize: 8
+#   数据位。默认 8。
+#rs485_direction_pin: rts
+#   DE/RE 控制方式。默认 "rts"。
+#register_control_word:
+#register_status_word:
+#register_target_position:
+#register_actual_position:
+#register_error_code:
+#   自定义 CiA 402 寄存器地址。仅用于 modbus_rtu。
+#protocol_class:
+#   自定义协议的 Python 类路径。
+rotation_distance:
+#   伺服电机旋转一圈的距离（毫米）。必填。
+microsteps:
+#   RS485 伺服设为 1。
+#full_steps_per_rotation: 200
+#   编码器每圈计数。默认 200。
+#endstop_pin:
+#   限位引脚。回原必填。
+#homing_speed: 5.0
+#   回原速度（毫米/秒）。默认 5.0。
+#position_min: 0
+#   最小位置（毫米）。默认 0。
+#position_max:
+#   最大位置（毫米）。
+\\\
+
+参见 [RS485 指南](RS485.md) 了解协议详情、自定义协议开发和故障排除。
+
+## 外部脉冲发生器步进支持
+
+### [pulse_gen_stepper]
+
+外部脉冲发生器模块配置。通过 RS485/SPI/UART 发送位置或速度指令，模块内部生成高速差分脉冲。参见 [PulseGen 指南](PulseGen.md) 了解详情。
+
+\\\
+[pulse_gen_stepper x]
+serial_port:
+#   串口路径。必填。
+#baud_rate: 9600
+#   波特率。默认 9600。
+#pulse_gen_protocol: modbus_rtu
+#   协议类型。可选：modbus_rtu、uart_passthrough、custom。默认 modbus_rtu。
+#pulse_gen_slave_id: 1
+#   从站地址（1-247）。默认 1。
+#pulse_gen_mode: absolute
+#   指令模式。可选：absolute（绝对位置）、relative（相对位移）、
+#   velocity（速度）。默认 absolute。
+#register_target_position: 0x607A
+#   目标位置寄存器地址。默认 0x607A。
+#register_actual_position: 0x6064
+#   实际位置反馈寄存器地址。设为 0 表示开环。默认 0x6064。
+#register_relative_position: 0x0020
+#   相对位移寄存器地址。默认 0x0020。
+#register_velocity: 0x0030
+#   速度指令寄存器地址。默认 0x0030。
+#rs485_parity: N
+#   校验位。默认 N。
+#rs485_stopbits: 1
+#   停止位。默认 1。
+#rs485_bytesize: 8
+#   数据位。默认 8。
+#rs485_direction_pin: rts
+#   DE/RE 控制方式。默认 "rts"。
+#protocol_class:
+#   自定义协议的 Python 类路径。
+rotation_distance:
+#   伺服电机旋转一圈的距离（毫米）。必填。
+microsteps:
+#   脉冲发生器设为 1。
+#full_steps_per_rotation: 200
+#   编码器每圈计数。默认 200。
+#endstop_pin:
+#   限位引脚。回原必填。
+#homing_speed: 5.0
+#   回原速度（毫米/秒）。默认 5.0。
+#position_min: 0
+#   最小位置（毫米）。默认 0。
+#position_max:
+#   最大位置（毫米）。
+\\\
+
+参见 [PulseGen 指南](PulseGen.md) 了解指令模式、开环/闭环运行和自定义协议。
+
 ### [extruder]
 
 挤出机部分用于描述喷嘴热端的加热器参数以及控制挤出机的步进器。有关其他信息，请参见[命令参考](G-Codes.md#extruder)。有关调整压力提前的信息，请参见[压力提前指南](Pressure_Advance.md)。有关控制方法的更多详细信息，请参见 [PID](PID.md) 或 [MPC](MPC.md)。
