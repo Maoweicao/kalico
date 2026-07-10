@@ -2147,6 +2147,7 @@
 <li><a href="Config_Reference.html#mcu"><code>[mcu] is_non_critical</code></a> 启用将 mcu 标记为可选 - 可以随意断开连接和连接。（对于基于 MCU 的加速度计板、在热室中关闭的基于 mcu 的探针等有用...）</li>
 <li><a href="Config_Reference.html#danger-options"><code>[danger_options]</code></a> - 新配置选项调整之前隐藏的 Kalico 值</li>
 <li>启用按轴加速度的其他运动学版本，请参阅 <a href="Config_Reference.html#cartesian-kinematics-with-limits-for-x-and-y-axes">limited_cartesian</a> 和 <a href="Config_Reference.html#corexy-kinematics-with-limits-for-x-and-y-axes">limited_corexy</a></li>
+<li>其他运动学：<a href="Kinematics_Additions.html">SCARA、TPARA、Polargraph、传送带打印机、机器人臂、热丝切割机</a>以及 CoreYX/CoreYZ/CoreZX/CoreZY 变体</li>
 <li><code>--rotate-log-at-restart</code> 可以添加到 Kalico 启动脚本或服务以强制每次重启时进行日志轮换。</li>
 <li><a href="Config_Reference.html#virtual_sdcard"><code>[virtual_sdcard] with_subdirs</code></a> 启用扫描子目录中的 .gcode 文件，用于菜单和 M20/M23 命令</li>
 <li><a href="Config_Reference.html#firmware_retraction"><code>[firmware_retraction] z_hop_height</code></a> 在使用固件回抽时添加自动 z 跳跃</li>
@@ -2162,6 +2163,8 @@
 <h2 id="kalico_1">新 Kalico 模块<a class="headerlink" href="#kalico_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="G-Code_Shell_Command.html">gcode_shell_command</a> - 从 Kalico 中执行 Linux 命令和脚本</li>
+<li><a href="Dummy_Thermistor.html">dummy_thermistor</a> - 用于测试和冷挤出机的虚拟温度传感器</li>
+<li><a href="Cold_Extruder.html">冷挤出机</a> - 用于陶泥、混凝土和其他冷材料的无加热器挤出机支持</li>
 </ul>
 <h2 id="_3">无传感器归位<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>

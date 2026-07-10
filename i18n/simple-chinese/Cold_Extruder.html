@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/G-Codes.html">
+        <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/Cold_Extruder.html">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>G代码 - Kalico Documentation</title>
+        <title>冷挤出机（无加热器） - Kalico Documentation</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#g" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              G代码
+              冷挤出机（无加热器）
             
           </span>
         </div>
@@ -2023,337 +2023,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#g_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      G代码命令
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      其他命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="其他命令">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#adxl345" class="md-nav__link">
-    <span class="md-ellipsis">
-      [adxl345]
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[adxl345]">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#accelerometer_measure" class="md-nav__link">
-    <span class="md-ellipsis">
-      ACCELEROMETER_MEASURE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#accelerometer_query" class="md-nav__link">
-    <span class="md-ellipsis">
-      ACCELEROMETER_QUERY
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#accelerometer_debug_read" class="md-nav__link">
-    <span class="md-ellipsis">
-      ACCELEROMETER_DEBUG_READ
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#accelerometer_debug_write" class="md-nav__link">
-    <span class="md-ellipsis">
-      ACCELEROMETER_DEBUG_WRITE
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#angle" class="md-nav__link">
-    <span class="md-ellipsis">
-      [angle]
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[angle]">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#angle_calibrate" class="md-nav__link">
-    <span class="md-ellipsis">
-      ANGLE_CALIBRATE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#angle_chip_calibrate" class="md-nav__link">
-    <span class="md-ellipsis">
-      ANGLE_CHIP_CALIBRATE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#angle_debug_read" class="md-nav__link">
-    <span class="md-ellipsis">
-      ANGLE_DEBUG_READ
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#angle_debug_write" class="md-nav__link">
-    <span class="md-ellipsis">
-      ANGLE_DEBUG_WRITE
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#axis_twist_compensation" class="md-nav__link">
-    <span class="md-ellipsis">
-      [axis_twist_compensation]
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[axis_twist_compensation]">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#axis_twist_compensation_calibrate" class="md-nav__link">
-    <span class="md-ellipsis">
-      AXIS_TWIST_COMPENSATION_CALIBRATE
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bed_mesh" class="md-nav__link">
-    <span class="md-ellipsis">
-      [bed_mesh]
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[bed_mesh]">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bed_mesh_calibrate" class="md-nav__link">
-    <span class="md-ellipsis">
-      BED_MESH_CALIBRATE
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hc595" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚠️ [hc595]
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="⚠️ [hc595]">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#set_hc595" class="md-nav__link">
-    <span class="md-ellipsis">
-      SET_HC595
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      传感器命令
+      配置
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="传感器命令">
+    <nav class="md-nav" aria-label="配置">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#query_adc" class="md-nav__link">
-    <span class="md-ellipsis">
-      QUERY_ADC
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      温度命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="温度命令">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#set_heater_temperature" class="md-nav__link">
-    <span class="md-ellipsis">
-      SET_HEATER_TEMPERATURE
+      基本用法
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#set_temperature_fan_target" class="md-nav__link">
-    <span class="md-ellipsis">
-      SET_TEMPERATURE_FAN_TARGET
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#temperature_wait" class="md-nav__link">
-    <span class="md-ellipsis">
-      TEMPERATURE_WAIT
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      运动命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="运动命令">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get_position" class="md-nav__link">
-    <span class="md-ellipsis">
-      GET_POSITION
+      完整示例：陶泥打印机
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#set_velocity_limit" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      SET_VELOCITY_LIMIT
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set_kinematics_limit" class="md-nav__link">
-    <span class="md-ellipsis">
-      SET_KINEMATICS_LIMIT
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manual_probe" class="md-nav__link">
-    <span class="md-ellipsis">
-      MANUAL_PROBE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#force_move" class="md-nav__link">
-    <span class="md-ellipsis">
-      FORCE_MOVE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set_kinematics_position" class="md-nav__link">
-    <span class="md-ellipsis">
-      SET_KINEMATICS_POSITION
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#move_avoiding_dock" class="md-nav__link">
-    <span class="md-ellipsis">
-      MOVE_AVOIDING_DOCK
+      多个冷挤出机
     </span>
   </a>
   
@@ -2365,83 +2065,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      挤出机命令
+      配置选项
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="挤出机命令">
+    <nav class="md-nav" aria-label="配置选项">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#activate_extruder" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      ACTIVATE_EXTRUDER
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set_extruder_rotation_distance" class="md-nav__link">
-    <span class="md-ellipsis">
-      SET_EXTRUDER_ROTATION_DISTANCE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set_pressure_advance" class="md-nav__link">
-    <span class="md-ellipsis">
-      SET_PRESSURE_ADVANCE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set_extruder_trfifo" class="md-nav__link">
-    <span class="md-ellipsis">
-      SET_EXTRUDER_TRFIFO
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sync_extruder_motion" class="md-nav__link">
-    <span class="md-ellipsis">
-      SYNC_EXTRUDER_MOTION
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#servo_alarm" class="md-nav__link">
-    <span class="md-ellipsis">
-      [servo_alarm]
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[servo_alarm]">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#query_alarm_" class="md-nav__link">
-    <span class="md-ellipsis">
-      QUERY_ALARM_&lt;名称&gt;
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#clear_alarm_" class="md-nav__link">
-    <span class="md-ellipsis">
-      CLEAR_ALARM_&lt;名称&gt;
+      冷材料的推荐设置
     </span>
   </a>
   
@@ -2451,57 +2087,48 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#servo_status" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#g-code" class="md-nav__link">
     <span class="md-ellipsis">
-      [servo_status]
+      G-code 兼容性
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="[servo_status]">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用场景
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用场景">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#query_servo" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
-      QUERY_SERVO
+      1. 陶泥打印
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#reset_servo_fault" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      RESET_SERVO_FAULT
+      2. 食品打印
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#query_servo_alarm" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      QUERY_SERVO_ALARM
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#query_servo_alarm-stepper" class="md-nav__link">
-    <span class="md-ellipsis">
-      QUERY_SERVO_ALARM STEPPER=&lt;名称&gt;
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reset_servo_alarm" class="md-nav__link">
-    <span class="md-ellipsis">
-      RESET_SERVO_ALARM
+      3. 混凝土/建筑打印
     </span>
   </a>
   
@@ -2511,21 +2138,39 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#dummy_thermistor" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      [dummy_thermistor]
+      故障排除
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="[dummy_thermistor]">
+    <nav class="md-nav" aria-label="故障排除">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#set_dummy_temperature" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      SET_DUMMY_TEMPERATURE
+      "挤出温度过低"错误
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      切片软件温度命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      流量控制
     </span>
   </a>
   
@@ -2535,9 +2180,13 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      另请参阅
+    </span>
+  </a>
   
 </li>
       
@@ -2556,7 +2205,7 @@
                   
 
   
-    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/G-Codes.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/Cold_Extruder.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2564,165 +2213,215 @@
   
 
 
-<h1 id="g">G代码<a class="headerlink" href="#g" title="Permanent link">&para;</a></h1>
-<p>本文档描述Kalico支持的命令。这些是可以在OctoPrint终端选项卡中输入的命令。</p>
-<p>带有⚠️标记的部分和命令表示与Klipper不同或新增的命令。</p>
-<h2 id="g_1">G代码命令<a class="headerlink" href="#g_1" title="Permanent link">&para;</a></h2>
-<p>Kalico支持以下标准G代码命令：</p>
+<h1 id="_1">冷挤出机（无加热器）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>冷挤出机配置允许使用没有加热器的挤出机，用于不需要加热的材料，例如：</p>
 <ul>
-<li>移动(G0或G1)：<code>G1 [X&lt;pos&gt;] [Y&lt;pos&gt;] [Z&lt;pos&gt;] [E&lt;pos&gt;] [F&lt;speed&gt;]</code></li>
-<li>停留：<code>G4 P&lt;milliseconds&gt;</code></li>
-<li>移到原点：<code>G28 [X] [Y] [Z]</code></li>
-<li>关闭电机：<code>M18</code>或<code>M84</code></li>
-<li>等待当前移动完成：<code>M400</code></li>
-<li>对挤出使用绝对/相对距离：<code>M82</code>、<code>M83</code></li>
-<li>使用绝对/相对坐标：<code>G90</code>、<code>G91</code></li>
-<li>设置位置：<code>G92 [X&lt;pos&gt;] [Y&lt;pos&gt;] [Z&lt;pos&gt;] [E&lt;pos&gt;]</code></li>
-<li>设置速度因子覆盖百分比：<code>M220 S&lt;percent&gt;</code></li>
-<li>设置挤出因子覆盖百分比：<code>M221 S&lt;percent&gt;</code></li>
-<li>设置加速度：<code>M204 S&lt;value&gt;</code>或<code>M204 P&lt;value&gt; T&lt;value&gt;</code><ul>
-<li>注意：如果未指定S，但指定了P和T，则加速度设置为P和T的最小值。如果仅指定P或T之一，则命令无效。</li>
+<li>陶泥</li>
+<li>混凝土</li>
+<li>食品酱</li>
+<li>硅胶</li>
+<li>其他冷挤出材料</li>
 </ul>
-</li>
-<li>获取挤出机温度：<code>M105</code></li>
-<li>设置挤出机温度：<code>M104 [T&lt;index&gt;] [S&lt;temperature&gt;]</code></li>
-<li>设置挤出机温度并等待：<code>M109 [T&lt;index&gt;] S&lt;temperature&gt;</code><ul>
-<li>注意：M109始终等待温度稳定到请求的值</li>
-</ul>
-</li>
-<li>启用冷挤出：<code>M302 [T&lt;index&gt;] [P&lt;enable&gt;] [S&lt;min_extrude_temp&gt;]</code></li>
-<li>设置床温度：<code>M140 [S&lt;temperature&gt;]</code></li>
-<li>设置床温度并等待：<code>M190 S&lt;temperature&gt;</code><ul>
-<li>注意：M190始终等待温度稳定到请求的值</li>
-</ul>
-</li>
-<li>设置风扇速度：<code>M106 S&lt;value&gt;</code></li>
-<li>关闭风扇：<code>M107</code></li>
-<li>紧急停止：<code>M112</code></li>
-<li>获取当前位置：<code>M114</code></li>
-<li>获取固件版本：<code>M115</code></li>
-</ul>
-<p>有关上述命令的更多详细信息，请参见<a href="http://reprap.org/wiki/G-code">RepRap G代码文档</a>。</p>
-<p>Kalico的目标是支持常见第三方软件（例如OctoPrint、Printrun、Slic3r、Cura等）在其标准配置中生成的G代码命令。不是目标支持所有可能的G代码命令。相反，Kalico更倾向于使用人类可读的<a href="#其他命令">"扩展G代码命令"</a>。同样，G代码终端输出仅供人类阅读——如果从外部软件控制Kalico，请参见<a href="API_Server.html">API服务器文档</a>。</p>
-<p>如果需要较不常见的G代码命令，则可能可以使用自定义<a href="Config_Reference.html#gcode_macro">gcode_macro配置部分</a>来实现。例如，可以使用它来实现：<code>G12</code>、<code>G29</code>、<code>G30</code>、<code>G31</code>、<code>M42</code>、<code>M80</code>、<code>M81</code>、<code>T1</code>等。</p>
-<h2 id="_1">其他命令<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Kalico使用"扩展"G代码命令进行一般配置和状态。这些扩展命令都遵循类似的格式——它们以命令名称开头，可能后跟一个或多个参数。例如：<code>SET_SERVO SERVO=myservo ANGLE=5.3</code>。在本文档中，命令和参数以大写显示，但它们不区分大小写。(因此，"SET_SERVO"和"set_servo"都运行相同的命令。)</p>
-<p>此部分按Kalico模块名称组织，通常遵循<a href="Config_Reference.html">打印机配置文件</a>中指定的部分名称。请注意，某些模块是自动加载的。</p>
-<h3 id="adxl345">[adxl345]<a class="headerlink" href="#adxl345" title="Permanent link">&para;</a></h3>
-<p>启用<a href="Config_Reference.html#adxl345">adxl345配置部分</a>时，以下命令可用。</p>
-<h4 id="accelerometer_measure">ACCELEROMETER_MEASURE<a class="headerlink" href="#accelerometer_measure" title="Permanent link">&para;</a></h4>
-<p><code>ACCELEROMETER_MEASURE [CHIP=&lt;config_name&gt;] [NAME=&lt;value&gt;]</code>：以请求的每秒样本数启动加速度计测量。如果未指定CHIP，则默认为"adxl345"。该命令以开始-停止模式工作：首次执行时，它启动测量；下一次执行停止测量。测量结果写入名为<code>/tmp/adxl345-&lt;chip&gt;-&lt;name&gt;.csv</code>的文件，其中<code>&lt;chip&gt;</code>是加速度计芯片的名称(来自<code>[adxl345 my_chip_name]</code>的<code>my_chip_name</code>)，<code>&lt;name&gt;</code>是可选的NAME参数。如果未指定NAME，则默认为"YYYYMMDD_HHMMSS"格式的当前时间。如果加速度计在其配置部分中没有名称(只是<code>[adxl345]</code>)，则不生成名称的<code>&lt;chip&gt;</code>部分。</p>
-<h4 id="accelerometer_query">ACCELEROMETER_QUERY<a class="headerlink" href="#accelerometer_query" title="Permanent link">&para;</a></h4>
-<p><code>ACCELEROMETER_QUERY [CHIP=&lt;config_name&gt;] [RATE=&lt;value&gt;] [SAMPLES=&lt;value&gt;] [RETURN=&lt;value&gt;]</code>：查询加速度计的当前值。如果未指定CHIP，则默认为"adxl345"。如果未指定RATE，则使用默认值。此命令对于测试与ADXL345加速度计的连接很有用：返回的值之一应该是自由落体加速度(±芯片的一些噪声)。<code>SAMPLES</code>参数可以设置为从传感器采样多个读数。读数将被平均在一起。默认值是收集单个样本。<code>RETURN</code>参数可以取<code>vector</code>(默认值)或<code>tilt</code>的值。在<code>vector</code>模式下，返回原始自由落体加速度矢量。在<code>tilt</code>模式下，计算并显示垂直于自由落体矢量的平面的X和Y角度。</p>
-<h4 id="accelerometer_debug_read">ACCELEROMETER_DEBUG_READ<a class="headerlink" href="#accelerometer_debug_read" title="Permanent link">&para;</a></h4>
-<p><code>ACCELEROMETER_DEBUG_READ [CHIP=&lt;config_name&gt;] REG=&lt;register&gt;</code>：查询ADXL345寄存器"register"(例如44或0x2C)。对调试可能有用。</p>
-<h4 id="accelerometer_debug_write">ACCELEROMETER_DEBUG_WRITE<a class="headerlink" href="#accelerometer_debug_write" title="Permanent link">&para;</a></h4>
-<p><code>ACCELEROMETER_DEBUG_WRITE [CHIP=&lt;config_name&gt;] REG=&lt;register&gt; VAL=&lt;value&gt;</code>：将原始"value"写入寄存器"register"。"value"和"register"都可以是十进制或十六进制整数。请谨慎使用，并参考ADXL345数据表以获取参考。</p>
-<h3 id="angle">[angle]<a class="headerlink" href="#angle" title="Permanent link">&para;</a></h3>
-<p>启用<a href="Config_Reference.html#angle">angle配置部分</a>时，以下命令可用。</p>
-<h4 id="angle_calibrate">ANGLE_CALIBRATE<a class="headerlink" href="#angle_calibrate" title="Permanent link">&para;</a></h4>
-<p><code>ANGLE_CALIBRATE CHIP=&lt;chip_name&gt;</code>：对给定的传感器执行角度标定(必须存在指定了<code>stepper</code>参数的<code>[angle chip_name]</code>配置部分)。重要——此工具将命令步进电机移动，而不检查普通运动学边界限制。理想情况下，电机应在执行标定之前从任何打印机托架断开连接。如果步进器无法从打印机断开连接，请确保托架在开始标定之前位于其导轨的中心附近。(步进电机在此测试期间可能向前或向后移动两次完整旋转。)完成此测试后，使用<code>SAVE_CONFIG</code>命令将标定数据保存到配置文件。为了使用此工具，必须安装Python"numpy"包(有关详细信息，请参见<a href="Measuring_Resonances.html#software-installation">测量共振文档</a>)。</p>
-<h4 id="angle_chip_calibrate">ANGLE_CHIP_CALIBRATE<a class="headerlink" href="#angle_chip_calibrate" title="Permanent link">&para;</a></h4>
-<p><code>ANGLE_CHIP_CALIBRATE CHIP=&lt;chip_name&gt;</code>：执行内部传感器标定(如果实现)(MT6826S/MT6835)。</p>
-<ul>
-<li><strong>MT68XX</strong>：电机应在执行标定之前从任何打印机托架断开连接。标定后，应通过断开电源来重置传感器。</li>
-</ul>
-<h4 id="angle_debug_read">ANGLE_DEBUG_READ<a class="headerlink" href="#angle_debug_read" title="Permanent link">&para;</a></h4>
-<p><code>ANGLE_DEBUG_READ CHIP=&lt;config_name&gt; REG=&lt;register&gt;</code>：查询传感器寄存器"register"(例如44或0x2C)。对调试可能有用。这仅适用于tle5012b芯片。</p>
-<h4 id="angle_debug_write">ANGLE_DEBUG_WRITE<a class="headerlink" href="#angle_debug_write" title="Permanent link">&para;</a></h4>
-<p><code>ANGLE_DEBUG_WRITE CHIP=&lt;config_name&gt; REG=&lt;register&gt; VAL=&lt;value&gt;</code>：将原始"value"写入寄存器"register"。"value"和"register"都可以是十进制或十六进制整数。请谨慎使用，并参考传感器数据表以获取参考。这仅适用于tle5012b芯片。</p>
-<h3 id="axis_twist_compensation">[axis_twist_compensation]<a class="headerlink" href="#axis_twist_compensation" title="Permanent link">&para;</a></h3>
-<p>启用<a href="Config_Reference.html#axis_twist_compensation">axis_twist_compensation配置部分</a>时，以下命令可用。</p>
-<h4 id="axis_twist_compensation_calibrate">AXIS_TWIST_COMPENSATION_CALIBRATE<a class="headerlink" href="#axis_twist_compensation_calibrate" title="Permanent link">&para;</a></h4>
-<p><code>AXIS_TWIST_COMPENSATION_CALIBRATE [AXIS=&lt;X|Y&gt;] [SAMPLE_COUNT=&lt;value&gt;] [&lt;probe_parameter&gt;=&lt;value&gt;]</code>：</p>
-<p>通过指定目标轴或启用自动标定来标定轴扭曲补偿。</p>
-<ul>
-<li><strong>SAMPLE_COUNT</strong>：标定期间测试的点数。如果未指定，则默认为3。</li>
-</ul>
-<ul>
-<li><strong>AXIS</strong>：定义将标定扭曲补偿的轴(<code>X</code>或<code>Y</code>)。如果未指定，则轴默认为<code>'X'</code>。</li>
-</ul>
-<h3 id="bed_mesh">[bed_mesh]<a class="headerlink" href="#bed_mesh" title="Permanent link">&para;</a></h3>
-<p>启用<a href="Config_Reference.html#bed_mesh">bed_mesh配置部分</a>时，以下命令可用(另请参见<a href="Bed_Mesh.html">床网格指南</a>)。</p>
-<h4 id="bed_mesh_calibrate">BED_MESH_CALIBRATE<a class="headerlink" href="#bed_mesh_calibrate" title="Permanent link">&para;</a></h4>
-<p><code>BED_MESH_CALIBRATE [PROFILE=&lt;name&gt;] [METHOD=manual] [HORIZONTAL_MOVE_Z=&lt;value&gt;] [&lt;probe_parameter&gt;=&lt;value&gt;] [&lt;mesh_parameter&gt;=&lt;value&gt;] [ADAPTIVE=1] [ADAPTIVE_MARGIN=&lt;value&gt;]</code>：此命令使用配置中的参数指定的生成点来探测床。探测后，生成网格，并根据网格调整z运动。网格将被保存到<code>PROFILE</code>参数指定的配置文件中，或者如果未指定则保存到<code>default</code>。有关可选探针参数的详细信息，请参见PROBE命令。如果指定METHOD=manual，则激活手动探针工具——有关此工具处于活动状态时可用的其他命令的详细信息，请参见上面的MANUAL_PROBE命令。可选的<code>HORIZONTAL_MOVE_Z</code>值覆盖配置文件中指定的<code>horizontal_move_z</code>选项。如果指定ADAPTIVE=1，则将使用由正在打印的G代码文件定义的对象来定义探针区域。可选的<code>ADAPTIVE_MARGIN</code>值覆盖配置文件中指定的<code>adaptive_margin</code>选项。</p>
-<h3 id="hc595">⚠️ [hc595]<a class="headerlink" href="#hc595" title="Permanent link">&para;</a></h3>
-<p>启用<a href="Config_Reference.html#hc595">hc595配置部分</a>时，以下命令可用。</p>
-<h4 id="set_hc595">SET_HC595<a class="headerlink" href="#set_hc595" title="Permanent link">&para;</a></h4>
-<p><code>SET_HC595 CHIP=&lt;config_name&gt; [BITS=&lt;value&gt;]</code>：设置或查询HC595的所有输出引脚。不带BITS，报告当前引脚状态。使用BITS，将给定的整数值应用于所有输出(位0=输出0等)。</p>
-<h2 id="_2">传感器命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>传感器命令涉及查询和检索来自打印机上各种传感器的信息。</p>
-<h3 id="query_adc">QUERY_ADC<a class="headerlink" href="#query_adc" title="Permanent link">&para;</a></h3>
-<p><code>QUERY_ADC [NAME=&lt;config_name&gt;] [SAMPLE_COUNT=&lt;value&gt;] [SAMPLE_TIME=&lt;value&gt;] [SAMPLES_RESULT=average|median]</code>：查询配置的模数转换器通道。如果NAME未指定，则返回所有已配置ADC的列表。如果指定NAME，则返回单个命名ADC通道的当前值。<code>SAMPLE_COUNT</code>参数设置要收集的样本数(默认值：1)。<code>SAMPLE_TIME</code>参数定义MCU在每个样本之间应该等待多少秒(默认值：0)。<code>SAMPLES_RESULT</code>参数定义了多个样本应如何处理(默认值：average)。</p>
-<h2 id="_3">温度命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>温度命令涉及查询和检索与加热器、冷却风扇和温度传感器相关的信息。</p>
-<h3 id="set_heater_temperature">SET_HEATER_TEMPERATURE<a class="headerlink" href="#set_heater_temperature" title="Permanent link">&para;</a></h3>
-<p><code>SET_HEATER_TEMPERATURE HEATER=&lt;config_name&gt; [TARGET=&lt;temperature&gt;]</code>：设置给定加热器的目标温度。如果未提供目标温度，则目标设置为0。</p>
-<h3 id="set_temperature_fan_target">SET_TEMPERATURE_FAN_TARGET<a class="headerlink" href="#set_temperature_fan_target" title="Permanent link">&para;</a></h3>
-<p><code>SET_TEMPERATURE_FAN_TARGET TEMPERATURE_FAN=&lt;config_name&gt; [TARGET=&lt;temperature&gt;]</code>：设置温度风扇的目标温度。如果未提供目标温度，则目标设置为0。</p>
-<h3 id="temperature_wait">TEMPERATURE_WAIT<a class="headerlink" href="#temperature_wait" title="Permanent link">&para;</a></h3>
-<p><code>TEMPERATURE_WAIT SENSOR=&lt;config_name&gt; MINIMUM=&lt;value&gt; [MAXIMUM=&lt;value&gt;]</code>：等待直到给定温度传感器读数大于或等于给定最小值且小于或等于给定最大值。如果未指定MAXIMUM，则默认为给定的MINIMUM。</p>
-<h2 id="_4">运动命令<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>运动命令涉及移动工具头和修改移动配置。</p>
-<h3 id="get_position">GET_POSITION<a class="headerlink" href="#get_position" title="Permanent link">&para;</a></h3>
-<p><code>GET_POSITION</code>：返回工具头的当前位置。提供的值为：</p>
-<ul>
-<li><code>mcu</code>: MCU微控制器报告的工具头位置</li>
-<li><code>stepper</code>: 步进器电机报告的工具头位置</li>
-<li><code>kinematic</code>: 运动学系统计算的工具头位置</li>
-<li><code>toolhead</code>: 工具头报告的当前位置</li>
-</ul>
-<h3 id="set_velocity_limit">SET_VELOCITY_LIMIT<a class="headerlink" href="#set_velocity_limit" title="Permanent link">&para;</a></h3>
-<p><code>SET_VELOCITY_LIMIT [VELOCITY=&lt;value&gt;] [ACCEL=&lt;value&gt;] [ACCEL_TO_DECEL=&lt;value&gt;] [SQUARE_CORNER_VELOCITY=&lt;value&gt;] [MINIMUM_CRUISE_RATIO=&lt;value&gt;]</code>：修改打印机速度限制。可以在运行时查询任何参数而不设置新值。有关这些参数的详细信息，请参见<a href="Config_Reference.html#运动学">运动学配置</a>部分。</p>
-<h3 id="set_kinematics_limit">SET_KINEMATICS_LIMIT<a class="headerlink" href="#set_kinematics_limit" title="Permanent link">&para;</a></h3>
-<p><code>SET_KINEMATICS_LIMIT [VELOCITY=&lt;value&gt;] [ACCEL=&lt;value&gt;]</code>：根据运动学对象设置或查询速度和加速度限制(对于具有独立轴限制的运动学类型如corexy、corexz、hybrid_corexy、hybrid_corexz)。</p>
-<h3 id="manual_probe">MANUAL_PROBE<a class="headerlink" href="#manual_probe" title="Permanent link">&para;</a></h3>
-<p><code>MANUAL_PROBE [SPEED=&lt;speed&gt;]</code>：运行手动探针工具。有关此工具的详细信息，请参见上面的PROBE命令。此工具允许用户手动探针打印机床并记录Z位置。有关使用手动探针工具的更多信息，请参见<a href="#bed_mesh">BED_MESH_CALIBRATE</a>。</p>
-<h3 id="force_move">FORCE_MOVE<a class="headerlink" href="#force_move" title="Permanent link">&para;</a></h3>
-<p><code>FORCE_MOVE STEPPER=&lt;config_name&gt; DIRECTION=[1|-1] DISTANCE=&lt;value&gt; VELOCITY=&lt;value&gt; [ACCEL=&lt;value&gt;]</code>：强制给定的步进器在给定方向上移动给定距离，距离以毫米为单位，速度为毫米/秒。如果提供，加速度为毫米/秒²。</p>
-<p>注意：此命令仅在⚠️[force_move]配置部分启用时可用。该模块在Kalico中默认启用。</p>
-<h3 id="set_kinematics_position">SET_KINEMATICS_POSITION<a class="headerlink" href="#set_kinematics_position" title="Permanent link">&para;</a></h3>
-<p><code>SET_KINEMATICS_POSITION [X=&lt;value&gt;] [Y=&lt;value&gt;] [Z=&lt;value&gt;]</code>：强制更新给定轴的运动学位置。这对于诊断和调试很有用。</p>
-<h3 id="move_avoiding_dock">MOVE_AVOIDING_DOCK<a class="headerlink" href="#move_avoiding_dock" title="Permanent link">&para;</a></h3>
-<p><code>MOVE_AVOIDING_DOCK LOCATION=[safe|dock]</code>：为支持停靠探针的打印机移动工具头以避免停靠。LOCATION=safe将工具头移到安全位置，LOCATION=dock将其移到停靠位置。</p>
-<h2 id="_5">挤出机命令<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>挤出机命令涉及设置多挤出机打印机中的活动挤出机。</p>
-<h3 id="activate_extruder">ACTIVATE_EXTRUDER<a class="headerlink" href="#activate_extruder" title="Permanent link">&para;</a></h3>
-<p><code>ACTIVATE_EXTRUDER EXTRUDER=&lt;config_name&gt;</code>：激活给定的挤出机。此命令在多挤出机打印机中的挤出机之间切换。</p>
-<h3 id="set_extruder_rotation_distance">SET_EXTRUDER_ROTATION_DISTANCE<a class="headerlink" href="#set_extruder_rotation_distance" title="Permanent link">&para;</a></h3>
-<p><code>SET_EXTRUDER_ROTATION_DISTANCE EXTRUDER=&lt;config_name&gt; [DISTANCE=&lt;value&gt;]</code>：设置给定挤出机的旋转距离。如果未指定值，则返回当前旋转距离。</p>
-<h3 id="set_pressure_advance">SET_PRESSURE_ADVANCE<a class="headerlink" href="#set_pressure_advance" title="Permanent link">&para;</a></h3>
-<p><code>SET_PRESSURE_ADVANCE [EXTRUDER=&lt;config_name&gt;] [ADVANCE=&lt;value&gt;] [SMOOTH_TIME=&lt;value&gt;]</code>：设置给定挤出机的压力提前参数。如果未指定挤出机，则使用当前活动挤出机。有关压力提前的更多信息，请参见<a href="Pressure_Advance.html">压力提前指南</a>。</p>
-<h3 id="set_extruder_trfifo">SET_EXTRUDER_TRFIFO<a class="headerlink" href="#set_extruder_trfifo" title="Permanent link">&para;</a></h3>
-<p><code>SET_EXTRUDER_TRFIFO [EXTRUDER=&lt;config_name&gt;] [COUNT=&lt;value&gt;]</code>：设置对挤出机TRfifo进行操作的启用状态。</p>
-<h3 id="sync_extruder_motion">SYNC_EXTRUDER_MOTION<a class="headerlink" href="#sync_extruder_motion" title="Permanent link">&para;</a></h3>
-<p><code>SYNC_EXTRUDER_MOTION MOTION_QUEUE=&lt;name&gt; [EXTRUDER=&lt;config_name&gt;]</code>：将给定的挤出机同步到运动队列。给定的运动队列应为"extruder"或"heater_bed"。</p>
-<h3 id="servo_alarm">[servo_alarm]<a class="headerlink" href="#servo_alarm" title="Permanent link">&para;</a></h3>
-<p>启用<a href="Config_Reference.html#servo_alarm">servo_alarm配置部分</a>时，以下命令可用。</p>
-<h4 id="query_alarm_">QUERY_ALARM_&lt;名称&gt;<a class="headerlink" href="#query_alarm_" title="Permanent link">&para;</a></h4>
-<p><code>QUERY_ALARM_&lt;名称&gt;</code>：查询指定伺服报警监视器的报警状态。<code>&lt;名称&gt;</code>是servo_alarm部分名称的最后一部分（例如，对于<code>[servo_alarm x_axis]</code>，使用<code>QUERY_ALARM_X_AXIS</code>）。</p>
-<h4 id="clear_alarm_">CLEAR_ALARM_&lt;名称&gt;<a class="headerlink" href="#clear_alarm_" title="Permanent link">&para;</a></h4>
-<p><code>CLEAR_ALARM_&lt;名称&gt;</code>：清除指定伺服报警监视器的报警状态。<code>&lt;名称&gt;</code>是servo_alarm部分名称的最后一部分。</p>
-<h3 id="servo_status">[servo_status]<a class="headerlink" href="#servo_status" title="Permanent link">&para;</a></h3>
-<p>启用<a href="Config_Reference.html#servo_status">servo_status配置部分</a>时，以下命令可用。</p>
-<h4 id="query_servo">QUERY_SERVO<a class="headerlink" href="#query_servo" title="Permanent link">&para;</a></h4>
-<p><code>QUERY_SERVO [STEPPER=&lt;名称&gt;]</code>：查询伺服驱动器状态。不带STEPPER参数时，查询所有已配置的伺服步进电机。返回state、mode、error_code、is_fault和alarm_active字段。</p>
-<h4 id="reset_servo_fault">RESET_SERVO_FAULT<a class="headerlink" href="#reset_servo_fault" title="Permanent link">&para;</a></h4>
-<p><code>RESET_SERVO_FAULT STEPPER=&lt;名称&gt;</code>：通过CiA 402故障复位命令复位伺服驱动器故障。STEPPER参数是必需的，指定完整的步进电机名称（例如，<code>canopen_stepper stepper_x</code>）。</p>
-<h4 id="query_servo_alarm">QUERY_SERVO_ALARM<a class="headerlink" href="#query_servo_alarm" title="Permanent link">&para;</a></h4>
-<p><code>QUERY_SERVO_ALARM</code>：查询所有<a href="Config_Reference.html#servo_alarm">servo_alarm</a>模块状态。返回每个已配置报警监视器的alarm_active、alarm_count和pin。</p>
-<h4 id="query_servo_alarm-stepper">QUERY_SERVO_ALARM STEPPER=&lt;名称&gt;<a class="headerlink" href="#query_servo_alarm-stepper" title="Permanent link">&para;</a></h4>
-<p><code>QUERY_SERVO_ALARM STEPPER=&lt;名称&gt;</code>：查询指定步进电机的报警状态（当在步进电机部分配置了alm_pin时）。</p>
-<h4 id="reset_servo_alarm">RESET_SERVO_ALARM<a class="headerlink" href="#reset_servo_alarm" title="Permanent link">&para;</a></h4>
-<p><code>RESET_SERVO_ALARM STEPPER=&lt;名称&gt;</code>：复位指定步进电机的报警和故障状态。清除alarm_active标志，并尝试复位存在的驱动器故障。</p>
-<h3 id="dummy_thermistor">[dummy_thermistor]<a class="headerlink" href="#dummy_thermistor" title="Permanent link">&para;</a></h3>
-<p>启用<a href="Config_Reference.html#假热敏传感器">dummy_thermistor配置部分</a>时，以下命令可用。</p>
-<h4 id="set_dummy_temperature">SET_DUMMY_TEMPERATURE<a class="headerlink" href="#set_dummy_temperature" title="Permanent link">&para;</a></h4>
-<p><code>SET_DUMMY_TEMPERATURE SENSOR=&lt;名称&gt; [TEMPERATURE=&lt;值&gt;]</code>：设置假热敏传感器报告的温度。如果未提供TEMPERATURE，则报告当前温度。SENSOR参数是必需的，指定假热敏传感器的名称。</p>
-<p>示例：</p>
-<div class="highlight"><pre><span></span><code>SET_DUMMY_TEMPERATURE SENSOR=chamber TEMPERATURE=40.0
-SET_DUMMY_TEMPERATURE SENSOR=mcu_temp
+<h2 id="_2">配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">基本用法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>[extruder]
+nozzle_diameter: 1.5
+filament_diameter: 10.0
+no_heater: true
+#   设置为 true 以将此配置为无加热器的冷挤出机。
+#   默认值为 false。
+sensor_type: dummy_thermistor
+#   使用假热敏传感器，因为不需要真实的传感器。
+temperature: 25.0
+#   室温或任何固定值。
 </code></pre></div>
+
+<h3 id="_4">完整示例：陶泥打印机<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>[printer]
+kinematics: cartesian
+max_velocity: 100
+max_accel: 500
+
+[extruder]
+nozzle_diameter: 1.5
+filament_diameter: 10.0
+no_heater: true
+sensor_type: dummy_thermistor
+temperature: 25.0
+max_extrude_cross_section: 50.0
+max_extrude_only_distance: 100.0
+max_extrude_only_velocity: 10
+max_extrude_only_accel: 50
+step_pin: PC1
+dir_pin: PC0
+rotation_distance: 28.0
+
+[stepper_x]
+step_pin: PA0
+dir_pin: PA1
+endstop_pin: PA2
+position_endstop: 0
+position_max: 200
+
+[stepper_y]
+step_pin: PB0
+dir_pin: PB1
+endstop_pin: PB2
+position_endstop: 0
+position_max: 200
+
+[stepper_z]
+step_pin: PC0
+dir_pin: PC1
+endstop_pin: PC2
+position_endstop: 0
+position_max: 200
+</code></pre></div>
+
+<h3 id="_5">多个冷挤出机<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>[extruder]
+nozzle_diameter: 1.5
+filament_diameter: 10.0
+no_heater: true
+sensor_type: dummy_thermistor
+temperature: 25.0
+step_pin: PC1
+dir_pin: PC0
+rotation_distance: 28.0
+
+[extruder1]
+nozzle_diameter: 3.0
+filament_diameter: 15.0
+no_heater: true
+sensor_type: dummy_thermistor
+temperature: 25.0
+step_pin: PD1
+dir_pin: PD0
+rotation_distance: 35.0
+</code></pre></div>
+
+<h2 id="_6">配置选项<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>当设置 <code>no_heater: true</code> 时：</p>
+<ul>
+<li>不需要 <code>heater_pin</code></li>
+<li>不配置温度控制（PID、bang-bang 等）</li>
+<li><code>min_extrude_temp</code> 自动设置为 0</li>
+<li>挤出机可以在任何温度下挤出</li>
+<li>仍然建议使用温度传感器以保持兼容性</li>
+</ul>
+<h3 id="_7">冷材料的推荐设置<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>陶泥</th>
+<th>混凝土</th>
+<th>食品酱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nozzle_diameter</td>
+<td>1.0-2.0mm</td>
+<td>3.0-5.0mm</td>
+<td>0.8-1.5mm</td>
+</tr>
+<tr>
+<td>filament_diameter</td>
+<td>5-15mm</td>
+<td>10-20mm</td>
+<td>3-5mm</td>
+</tr>
+<tr>
+<td>max_extrude_only_velocity</td>
+<td>5-15 mm/s</td>
+<td>2-5 mm/s</td>
+<td>10-20 mm/s</td>
+</tr>
+<tr>
+<td>max_extrude_only_accel</td>
+<td>25-100 mm/s²</td>
+<td>10-50 mm/s²</td>
+<td>50-200 mm/s²</td>
+</tr>
+</tbody>
+</table>
+<h2 id="g-code">G-code 兼容性<a class="headerlink" href="#g-code" title="Permanent link">&para;</a></h2>
+<p>冷挤出机保持完整的 G-code 兼容性：</p>
+<ul>
+<li><code>M104 S0</code> - 成功执行而不采取行动</li>
+<li><code>M109 S0</code> - 成功执行而不等待</li>
+<li><code>M302</code> - 报告冷挤出已启用</li>
+<li><code>G1 E10</code> - 挤出材料</li>
+</ul>
+<h2 id="_8">使用场景<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 陶泥打印<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>陶泥打印机使用大喷嘴（1-3mm）并以慢速挤出。材料通常装入注射器或墨盒中。</p>
+<div class="highlight"><pre><span></span><code>[extruder]
+nozzle_diameter: 2.0
+filament_diameter: 20.0
+no_heater: true
+sensor_type: dummy_thermistor
+temperature: 25.0
+max_extrude_cross_section: 100.0
+max_extrude_only_distance: 200.0
+max_extrude_only_velocity: 5
+max_extrude_only_accel: 25
+</code></pre></div>
+
+<h3 id="2">2. 食品打印<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>食品打印机挤出巧克力、面团或其他食品材料。温度控制可能需要单独处理（例如巧克力调温）。</p>
+<div class="highlight"><pre><span></span><code>[extruder]
+nozzle_diameter: 0.8
+filament_diameter: 5.0
+no_heater: true
+sensor_type: dummy_thermistor
+temperature: 22.0
+max_extrude_cross_section: 20.0
+max_extrude_only_velocity: 15
+max_extrude_only_accel: 100
+</code></pre></div>
+
+<h3 id="3">3. 混凝土/建筑打印<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>大型建筑打印机挤出混凝土混合物。流量控制至关重要。</p>
+<div class="highlight"><pre><span></span><code>[extruder]
+nozzle_diameter: 10.0
+filament_diameter: 50.0
+no_heater: true
+sensor_type: dummy_thermistor
+temperature: 25.0
+max_extrude_cross_section: 500.0
+max_extrude_only_distance: 500.0
+max_extrude_only_velocity: 2
+max_extrude_only_accel: 10
+</code></pre></div>
+
+<h2 id="_9">故障排除<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_10">"挤出温度过低"错误<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>如果看到此错误，请确保：</p>
+<ol>
+<li>在挤出机部分设置了 <code>no_heater: true</code></li>
+<li>配置了假热敏传感器（或任何 sensor_type）</li>
+</ol>
+<h3 id="_11">切片软件温度命令<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>大多数切片软件会发送 <code>M104</code> 和 <code>M109</code> 命令。使用冷挤出机时：</p>
+<ul>
+<li><code>M104 S200</code> 将成功执行而不加热</li>
+<li><code>M109 S200</code> 将成功执行而不等待</li>
+</ul>
+<h3 id="_12">流量控制<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>对于粘性材料，考虑：</p>
+<ul>
+<li>增加 <code>max_extrude_only_distance</code></li>
+<li>减少 <code>max_extrude_only_velocity</code></li>
+<li>使用更大的 <code>nozzle_diameter</code></li>
+</ul>
+<h2 id="_13">另请参阅<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="Config_Reference.html#挤出机">挤出机配置</a></li>
+<li><a href="Dummy_Thermistor.html">假热敏传感器</a></li>
+<li><a href="G-Codes.html">G-code 命令</a></li>
+</ul>
 
 
 

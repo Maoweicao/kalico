@@ -69,6 +69,10 @@
          <lastmod>2026-07-10</lastmod>
     </url>
     <url>
+         <loc>https://docs.kalico.gg/Cold_Extruder.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
          <loc>https://docs.kalico.gg/Command_Templates.html</loc>
          <lastmod>2026-07-10</lastmod>
     </url>
@@ -110,6 +114,10 @@
     </url>
     <url>
          <loc>https://docs.kalico.gg/Dockable_Probe.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/Dummy_Thermistor.html</loc>
          <lastmod>2026-07-10</lastmod>
     </url>
     <url>
@@ -158,6 +166,10 @@
     </url>
     <url>
          <loc>https://docs.kalico.gg/Kinematics.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/Kinematics_Additions.html</loc>
          <lastmod>2026-07-10</lastmod>
     </url>
     <url>
@@ -397,6 +409,10 @@
          <lastmod>2026-07-10</lastmod>
     </url>
     <url>
+         <loc>https://docs.kalico.gg/i18n/simple-chinese/Cold_Extruder.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
          <loc>https://docs.kalico.gg/i18n/simple-chinese/Command_Templates.html</loc>
          <lastmod>2026-07-10</lastmod>
     </url>
@@ -438,6 +454,10 @@
     </url>
     <url>
          <loc>https://docs.kalico.gg/i18n/simple-chinese/Dockable_Probe.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/i18n/simple-chinese/Dummy_Thermistor.html</loc>
          <lastmod>2026-07-10</lastmod>
     </url>
     <url>
@@ -486,6 +506,10 @@
     </url>
     <url>
          <loc>https://docs.kalico.gg/i18n/simple-chinese/Kinematics.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/i18n/simple-chinese/Kinematics_Additions.html</loc>
          <lastmod>2026-07-10</lastmod>
     </url>
     <url>

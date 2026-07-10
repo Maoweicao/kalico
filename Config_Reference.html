@@ -1617,6 +1617,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dummy-thermistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dummy thermistor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#combined-temperature-sensor" class="md-nav__link">
     <span class="md-ellipsis">
       Combined temperature sensor
@@ -5175,6 +5184,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dummy-thermistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dummy thermistor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#combined-temperature-sensor" class="md-nav__link">
     <span class="md-ellipsis">
       Combined temperature sensor
@@ -7260,6 +7278,12 @@ nozzle_diameter:
 filament_diameter:
 #   The nominal diameter of the raw filament (in mm) as it enters the
 #   extruder. This parameter must be provided.
+#no_heater: false
+#   If set to true, the extruder will be configured as a cold extruder
+#   without a heater. This is useful for materials that don&#39;t require
+#   heating (clay, concrete, food paste, etc.). When enabled, no
+#   heater_pin is required and the extruder can extrude at any
+#   temperature. See [Cold Extruder](Cold_Extruder.md) for details.
 #max_extrude_cross_section:
 #   Maximum area (in mm^2) of an extrusion cross section (eg,
 #   extrusion width multiplied by layer height). This setting prevents
@@ -9659,6 +9683,21 @@ serial_no:
 #   The micro-controller to read from. Must be the host_mcu
 </code></pre></div>
 
+<h3 id="dummy-thermistor">Dummy thermistor<a class="headerlink" href="#dummy-thermistor" title="Permanent link">&para;</a></h3>
+<p>Dummy thermistor is a virtual temperature sensor that provides a fixed
+temperature reading without requiring a physical sensor. Useful for testing,
+development, and cold extruders (clay, concrete, etc.).</p>
+<div class="highlight"><pre><span></span><code>sensor_type: dummy_thermistor
+temperature: 25.0
+#   The fixed temperature in Celsius to report. The default is 25.0.
+#   This value can be changed at runtime using SET_DUMMY_TEMPERATURE command.
+#min_temp:
+#max_temp:
+#   See the &quot;extruder&quot; section for the definition of the above
+#   parameters.
+</code></pre></div>
+
+<p>See <a href="Dummy_Thermistor.html">Dummy Thermistor</a> for detailed documentation.</p>
 <h3 id="combined-temperature-sensor">Combined temperature sensor<a class="headerlink" href="#combined-temperature-sensor" title="Permanent link">&para;</a></h3>
 <p>Combined temperature sensor is a virtual temperature sensor based on several other
 sensors. This sensor can be used with extruders, heater_generic and heater beds.</p>

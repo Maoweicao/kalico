@@ -3552,6 +3552,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dummy_thermistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      [dummy_thermistor]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[dummy_thermistor]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_dummy_temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      SET_DUMMY_TEMPERATURE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7727,6 +7751,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dummy_thermistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      [dummy_thermistor]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[dummy_thermistor]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_dummy_temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      SET_DUMMY_TEMPERATURE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9667,6 +9715,18 @@ stepper when alm_pin is configured in the stepper section.</p>
 <p><code>RESET_SERVO_ALARM STEPPER=&lt;name&gt;</code>: Reset alarm and fault state for a
 specific stepper. Clears the alarm_active flag and attempts to reset
 the drive fault if present.</p>
+<h3 id="dummy_thermistor">[dummy_thermistor]<a class="headerlink" href="#dummy_thermistor" title="Permanent link">&para;</a></h3>
+<p>The following commands are available when a
+<a href="Config_Reference.html#dummy-thermistor">dummy_thermistor config section</a> is enabled.</p>
+<h4 id="set_dummy_temperature">SET_DUMMY_TEMPERATURE<a class="headerlink" href="#set_dummy_temperature" title="Permanent link">&para;</a></h4>
+<p><code>SET_DUMMY_TEMPERATURE SENSOR=&lt;name&gt; [TEMPERATURE=&lt;value&gt;]</code>: Set the
+temperature reported by a dummy thermistor sensor. If TEMPERATURE is
+not provided, reports the current temperature. The SENSOR parameter is
+required and specifies the name of the dummy thermistor sensor.</p>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><code>SET_DUMMY_TEMPERATURE SENSOR=chamber TEMPERATURE=40.0
+SET_DUMMY_TEMPERATURE SENSOR=mcu_temp
+</code></pre></div>
 
 
 

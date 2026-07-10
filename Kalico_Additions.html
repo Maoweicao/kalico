@@ -2283,6 +2283,7 @@
 <li><a href="Config_Reference.html#mcu"><code>[mcu] is_non_critical</code></a> enables marking of an mcu as optional - it can be freely disconnected and connected at will. (useful for MCU-based accelerometer boards, mcu-based probes that shut down in hot chambers, etc...)</li>
 <li><a href="Config_Reference.html#danger-options"><code>[danger_options]</code></a> - New configuration options to adjust Kalico values that were previously hidden</li>
 <li>Additional kinematics versions enabled per-axis acceleration, see <a href="Config_Reference.html#cartesian-kinematics-with-limits-for-x-and-y-axes">limited_cartesian</a> and <a href="Config_Reference.html#corexy-kinematics-with-limits-for-x-and-y-axes">limited_corexy</a></li>
+<li>Additional kinematics: <a href="Kinematics_Additions.html">SCARA, TPARA, Polargraph, Belt Printer, Robot Arm, Foam Cutter</a>, and CoreYX/CoreYZ/CoreZX/CoreZY variants</li>
 <li><code>--rotate-log-at-restart</code> can be added to your Kalico start script or service to force log rotation every restart.</li>
 <li><a href="Config_Reference.html#virtual_sdcard"><code>[virtual_sdcard] with_subdirs</code></a> enables scanning of subdirectories for .gcode files, for the menu and M20/M23 commands</li>
 <li><a href="Config_Reference.html#firmware_retraction"><code>[firmware_retraction] z_hop_height</code></a> adds an automatic z hop when using firmware retraction</li>
@@ -2298,6 +2299,8 @@
 <h2 id="new-kalico-modules">New Kalico Modules<a class="headerlink" href="#new-kalico-modules" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="G-Code_Shell_Command.html">gcode_shell_command</a> - Execute linux commands and scripts from within Kalico</li>
+<li><a href="Dummy_Thermistor.html">dummy_thermistor</a> - Virtual temperature sensor for testing and cold extruders</li>
+<li><a href="Cold_Extruder.html">Cold Extruder</a> - No-heater extruder support for clay, concrete, and other cold materials</li>
 </ul>
 <h2 id="sensorless-homing">Sensorless Homing<a class="headerlink" href="#sensorless-homing" title="Permanent link">&para;</a></h2>
 <ul>
