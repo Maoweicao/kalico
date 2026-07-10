@@ -3459,6 +3459,99 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      [servo_alarm]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[servo_alarm]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_alarm_" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_ALARM_
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear_alarm_" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLEAR_ALARM_
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servo_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      [servo_status]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[servo_status]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_servo" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_SERVO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset_servo_fault" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESET_SERVO_FAULT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query_servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_SERVO_ALARM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query_servo_alarm-stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_SERVO_ALARM STEPPER=
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset_servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESET_SERVO_ALARM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7541,6 +7634,99 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      [servo_alarm]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[servo_alarm]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_alarm_" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_ALARM_
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear_alarm_" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLEAR_ALARM_
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servo_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      [servo_status]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[servo_status]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_servo" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_SERVO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset_servo_fault" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESET_SERVO_FAULT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query_servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_SERVO_ALARM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query_servo_alarm-stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_SERVO_ALARM STEPPER=
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset_servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESET_SERVO_ALARM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9449,6 +9635,38 @@ configured in the z_tilt_ng section:</p>
   configured with the DELTA paramter. It iterates until the calculated
   positions cannot be improved any further. This is can be lengthy procedure.</li>
 </ul>
+<h3 id="servo_alarm">[servo_alarm]<a class="headerlink" href="#servo_alarm" title="Permanent link">&para;</a></h3>
+<p>The following commands are available when a
+<a href="Config_Reference.html#servo_alarm">servo_alarm config section</a> is enabled.</p>
+<h4 id="query_alarm_">QUERY_ALARM_<name><a class="headerlink" href="#query_alarm_" title="Permanent link">&para;</a></h4>
+<p><code>QUERY_ALARM_&lt;name&gt;</code>: Query the alarm state for a specific servo alarm
+monitor. The <code>&lt;name&gt;</code> is the last part of the servo_alarm section name
+(e.g., for <code>[servo_alarm x_axis]</code>, use <code>QUERY_ALARM_X_AXIS</code>).</p>
+<h4 id="clear_alarm_">CLEAR_ALARM_<name><a class="headerlink" href="#clear_alarm_" title="Permanent link">&para;</a></h4>
+<p><code>CLEAR_ALARM_&lt;name&gt;</code>: Clear the alarm state for a specific servo alarm
+monitor. The <code>&lt;name&gt;</code> is the last part of the servo_alarm section name.</p>
+<h3 id="servo_status">[servo_status]<a class="headerlink" href="#servo_status" title="Permanent link">&para;</a></h3>
+<p>The following commands are available when the
+<a href="Config_Reference.html#servo_status">servo_status config section</a> is enabled.</p>
+<h4 id="query_servo">QUERY_SERVO<a class="headerlink" href="#query_servo" title="Permanent link">&para;</a></h4>
+<p><code>QUERY_SERVO [STEPPER=&lt;name&gt;]</code>: Query servo drive status. Without the
+STEPPER parameter, queries all configured servo steppers. Returns
+state, mode, error_code, is_fault, and alarm_active fields.</p>
+<h4 id="reset_servo_fault">RESET_SERVO_FAULT<a class="headerlink" href="#reset_servo_fault" title="Permanent link">&para;</a></h4>
+<p><code>RESET_SERVO_FAULT STEPPER=&lt;name&gt;</code>: Reset servo drive fault via CiA 402
+fault reset command. The STEPPER parameter is required and specifies
+the full stepper name (e.g., <code>canopen_stepper stepper_x</code>).</p>
+<h4 id="query_servo_alarm">QUERY_SERVO_ALARM<a class="headerlink" href="#query_servo_alarm" title="Permanent link">&para;</a></h4>
+<p><code>QUERY_SERVO_ALARM</code>: Query all <a href="Config_Reference.html#servo_alarm">servo_alarm</a>
+module states. Returns alarm_active, alarm_count, and pin for each
+configured alarm monitor.</p>
+<h4 id="query_servo_alarm-stepper">QUERY_SERVO_ALARM STEPPER=<name><a class="headerlink" href="#query_servo_alarm-stepper" title="Permanent link">&para;</a></h4>
+<p><code>QUERY_SERVO_ALARM STEPPER=&lt;name&gt;</code>: Query alarm state for a specific
+stepper when alm_pin is configured in the stepper section.</p>
+<h4 id="reset_servo_alarm">RESET_SERVO_ALARM<a class="headerlink" href="#reset_servo_alarm" title="Permanent link">&para;</a></h4>
+<p><code>RESET_SERVO_ALARM STEPPER=&lt;name&gt;</code>: Reset alarm and fault state for a
+specific stepper. Clears the alarm_active flag and attempts to reset
+the drive fault if present.</p>
 
 
 

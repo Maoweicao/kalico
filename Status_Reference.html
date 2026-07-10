@@ -1301,6 +1301,42 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      servo_alarm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#canopen_stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      canopen_stepper
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ethercat_stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      ethercat_stepper
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rs485_stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      rs485_stepper
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3094,6 +3130,42 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      servo_alarm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#canopen_stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      canopen_stepper
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ethercat_stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      ethercat_stepper
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rs485_stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      rs485_stepper
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3822,6 +3894,53 @@ object is available if z_tilt is defined):</p>
 <ul>
 <li><code>applied</code>: True if the z-tilt leveling process has been run and completed
   successfully.</li>
+</ul>
+<h2 id="servo_alarm">servo_alarm<a class="headerlink" href="#servo_alarm" title="Permanent link">&para;</a></h2>
+<p>The following information is available in
+<a href="Config_Reference.html#servo_alarm">servo_alarm some_name</a> objects:</p>
+<ul>
+<li><code>alarm_active</code>: Returns True if the alarm is currently active.</li>
+<li><code>alarm_count</code>: The number of alarm events since startup.</li>
+<li><code>last_alarm_time</code>: Timestamp of the last alarm event.</li>
+<li><code>pin</code>: The configured ALM pin.</li>
+<li><code>action</code>: The configured alarm action.</li>
+</ul>
+<h2 id="canopen_stepper">canopen_stepper<a class="headerlink" href="#canopen_stepper" title="Permanent link">&para;</a></h2>
+<p>The following information is available in
+<a href="Config_Reference.html#canopen_stepper">canopen_stepper some_name</a> objects:</p>
+<ul>
+<li><code>state</code>: The CiA 402 state name (e.g., "OPERATION_ENABLED", "FAULT").</li>
+<li><code>actual_position</code>: The current encoder position.</li>
+<li><code>error_code</code>: The drive error code (from 0x603F register).</li>
+<li><code>mode</code>: The operating mode (CSP, CSV, PP, etc.).</li>
+<li><code>is_fault</code>: Returns True if the drive is in fault state.</li>
+<li><code>statusword</code>: The raw CiA 402 statusword (0x6041).</li>
+<li><code>alarm_active</code>: Returns True if the ALM pin is active (if configured).</li>
+<li><code>alarm_count</code>: The number of alarm events since startup (if configured).</li>
+</ul>
+<h2 id="ethercat_stepper">ethercat_stepper<a class="headerlink" href="#ethercat_stepper" title="Permanent link">&para;</a></h2>
+<p>The following information is available in
+<a href="Config_Reference.html#ethercat_stepper">ethercat_stepper some_name</a> objects:</p>
+<ul>
+<li><code>state</code>: The CiA 402 state name (e.g., "OPERATION_ENABLED", "FAULT").</li>
+<li><code>actual_position</code>: The current encoder position.</li>
+<li><code>error_code</code>: The drive error code (from 0x603F register).</li>
+<li><code>mode</code>: The operating mode (CSP, CSV, PP, etc.).</li>
+<li><code>is_fault</code>: Returns True if the drive is in fault state.</li>
+<li><code>statusword</code>: The raw CiA 402 statusword (0x6041).</li>
+<li><code>alarm_active</code>: Returns True if the ALM pin is active (if configured).</li>
+<li><code>alarm_count</code>: The number of alarm events since startup (if configured).</li>
+</ul>
+<h2 id="rs485_stepper">rs485_stepper<a class="headerlink" href="#rs485_stepper" title="Permanent link">&para;</a></h2>
+<p>The following information is available in
+<a href="Config_Reference.html#rs485_stepper">rs485_stepper some_name</a> objects:</p>
+<ul>
+<li><code>state</code>: The drive state name (e.g., "OPERATION_ENABLED", "FAULT").</li>
+<li><code>actual_position</code>: The current encoder position.</li>
+<li><code>error_code</code>: The drive error code.</li>
+<li><code>is_fault</code>: Returns True if the drive is in fault state.</li>
+<li><code>alarm_active</code>: Returns True if the ALM pin is active (if configured).</li>
+<li><code>alarm_count</code>: The number of alarm events since startup (if configured).</li>
 </ul>
 
 

@@ -301,6 +301,22 @@
          <lastmod>2026-07-10</lastmod>
     </url>
     <url>
+         <loc>https://docs.kalico.gg/safety-monitoring.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/safety-monitoring_CN.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/servo-safety.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/servo-safety_CN.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
          <loc>https://docs.kalico.gg/ai/index.html</loc>
          <lastmod>2026-07-10</lastmod>
     </url>
@@ -594,6 +610,14 @@
     </url>
     <url>
          <loc>https://docs.kalico.gg/i18n/simple-chinese/Z_Calibration.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/i18n/simple-chinese/safety-monitoring_CN.html</loc>
+         <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.kalico.gg/i18n/simple-chinese/servo-safety_CN.html</loc>
          <lastmod>2026-07-10</lastmod>
     </url>
 </urlset>

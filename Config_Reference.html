@@ -773,6 +773,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#servo-safety-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Servo safety monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Servo safety monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      [servo_alarm]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servo_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      [servo_status]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#external-pulse-generator-stepper-support" class="md-nav__link">
     <span class="md-ellipsis">
       External pulse generator stepper support
@@ -4298,6 +4331,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#servo-safety-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Servo safety monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Servo safety monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#servo_alarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      [servo_alarm]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servo_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      [servo_status]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#external-pulse-generator-stepper-support" class="md-nav__link">
     <span class="md-ellipsis">
       External pulse generator stepper support
@@ -6944,6 +7010,17 @@ microsteps:
 #   uses the drive&#39;s default.
 #canopen_homing_offset: 0
 #   Home offset in encoder counts. Default is 0.
+#alm_pin:
+#   GPIO pin connected to servo drive ALM (alarm) output. When
+#   configured, monitors this pin for alarm signals. Optional.
+#alarm_action: shutdown
+#   Action to take when ALM pin is triggered. Options: shutdown
+#   (emergency stop), pause (pause print), gcode (execute alarm_gcode),
+#   none (log only). Default is shutdown.
+#alm_invert: false
+#   Invert the ALM pin logic. Set to true for active-high alarm
+#   outputs. Most servo drives use active-low (open-collector) alarm
+#   outputs. Default is false.
 </code></pre></div>
 
 <p>See the <a href="CANopen.html">CANopen guide</a> for more information on SYNC
@@ -6981,6 +7058,17 @@ microsteps:
 #   Minimum position in mm. Default is 0.
 #position_max:
 #   Maximum position in mm. Required if endstop_pin is set.
+#alm_pin:
+#   GPIO pin connected to servo drive ALM (alarm) output. When
+#   configured, monitors this pin for alarm signals. Optional.
+#alarm_action: shutdown
+#   Action to take when ALM pin is triggered. Options: shutdown
+#   (emergency stop), pause (pause print), gcode (execute alarm_gcode),
+#   none (log only). Default is shutdown.
+#alm_invert: false
+#   Invert the ALM pin logic. Set to true for active-high alarm
+#   outputs. Most servo drives use active-low (open-collector) alarm
+#   outputs. Default is false.
 </code></pre></div>
 
 <p>See the <a href="EtherCAT.html">EtherCAT guide</a> for CL3B register maps, DC
@@ -7040,10 +7128,56 @@ microsteps:
 #   Minimum position in mm. Default is 0.
 #position_max:
 #   Maximum position in mm. Required if endstop_pin is set.
+#alm_pin:
+#   GPIO pin connected to servo drive ALM (alarm) output. When
+#   configured, monitors this pin for alarm signals. Optional.
+#alarm_action: shutdown
+#   Action to take when ALM pin is triggered. Options: shutdown
+#   (emergency stop), pause (pause print), gcode (execute alarm_gcode),
+#   none (log only). Default is shutdown.
+#alm_invert: false
+#   Invert the ALM pin logic. Set to true for active-high alarm
+#   outputs. Most servo drives use active-low (open-collector) alarm
+#   outputs. Default is false.
 </code></pre></div>
 
 <p>See the <a href="RS485.html">RS485 guide</a> for more information on protocols,
 custom protocol development, and troubleshooting.</p>
+<h2 id="servo-safety-monitoring">Servo safety monitoring<a class="headerlink" href="#servo-safety-monitoring" title="Permanent link">&para;</a></h2>
+<h3 id="servo_alarm">[servo_alarm]<a class="headerlink" href="#servo_alarm" title="Permanent link">&para;</a></h3>
+<p>Independent servo alarm pin monitor. Monitors a GPIO pin connected to
+a servo drive's ALM (alarm) output and triggers configurable actions.</p>
+<div class="highlight"><pre><span></span><code>[servo_alarm my_servo]
+alm_pin:
+#   GPIO pin for alarm input. Required. Supports pin modifiers:
+#   ^ (pull-up), ~ (pull-down), ! (invert).
+#action: shutdown
+#   Action to take when alarm is triggered. Options: shutdown
+#   (emergency stop), pause (pause print), gcode (execute
+#   alarm_gcode), none (log only). Default is shutdown.
+#invert: false
+#   Invert pin logic. Set to true for active-high alarm outputs.
+#   Default is false.
+#debounce: 0.01
+#   Debounce time in seconds. Default is 0.01.
+#gcode:
+#   G-code to execute when action is &quot;gcode&quot;. This is a Jinja2
+#   template. Optional.
+</code></pre></div>
+
+<p>Multiple [servo_alarm] sections can be defined for multi-axis
+monitoring. Each section creates QUERY_ALARM_<name> and
+CLEAR_ALARM_<name> G-code commands.</p>
+<h3 id="servo_status">[servo_status]<a class="headerlink" href="#servo_status" title="Permanent link">&para;</a></h3>
+<p>Servo status G-code commands module. Provides commands for querying
+and managing servo drive status across all configured servo steppers.</p>
+<div class="highlight"><pre><span></span><code>[servo_status]
+#   No configuration options. This module is automatically loaded
+#   when servo steppers are configured.
+</code></pre></div>
+
+<p>See the <a href="servo-safety.html">Servo Safety guide</a> for wiring diagrams,
+configuration examples, and troubleshooting.</p>
 <h2 id="external-pulse-generator-stepper-support">External pulse generator stepper support<a class="headerlink" href="#external-pulse-generator-stepper-support" title="Permanent link">&para;</a></h2>
 <h3 id="pulse_gen_stepper">[pulse_gen_stepper]<a class="headerlink" href="#pulse_gen_stepper" title="Permanent link">&para;</a></h3>
 <p>External pulse generator module configuration. Sends position or

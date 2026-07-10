@@ -2571,6 +2571,17 @@ interface: socketcan</p>
 <h1 id="2">回原加速度（编码器计数/秒²）。<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <h1 id="canopen_homing_offset-0">canopen_homing_offset: 0<a class="headerlink" href="#canopen_homing_offset-0" title="Permanent link">&para;</a></h1>
 <h1 id="0">零点偏移（编码器计数）。默认 0。<a class="headerlink" href="#0" title="Permanent link">&para;</a></h1>
+<h1 id="alm_pin">alm_pin:<a class="headerlink" href="#alm_pin" title="Permanent link">&para;</a></h1>
+<h1 id="alm-gpio">连接到伺服驱动器 ALM（报警）输出的 GPIO 引脚。配置后，<a class="headerlink" href="#alm-gpio" title="Permanent link">&para;</a></h1>
+<h1 id="_17">监控此引脚的报警信号。可选。<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h1>
+<h1 id="alarm_action-shutdown">alarm_action: shutdown<a class="headerlink" href="#alarm_action-shutdown" title="Permanent link">&para;</a></h1>
+<h1 id="alm-shutdown">ALM 引脚触发时的动作。可选：shutdown（紧急停止）、<a class="headerlink" href="#alm-shutdown" title="Permanent link">&para;</a></h1>
+<h1 id="pausegcode-alarm_gcode">pause（暂停打印）、gcode（执行 alarm_gcode）、<a class="headerlink" href="#pausegcode-alarm_gcode" title="Permanent link">&para;</a></h1>
+<h1 id="none-shutdown">none（仅记录日志）。默认 shutdown。<a class="headerlink" href="#none-shutdown" title="Permanent link">&para;</a></h1>
+<h1 id="alm_invert-false">alm_invert: false<a class="headerlink" href="#alm_invert-false" title="Permanent link">&para;</a></h1>
+<h1 id="alm-true">反转 ALM 引脚逻辑。高电平有效报警输出时设为 true。<a class="headerlink" href="#alm-true" title="Permanent link">&para;</a></h1>
+<h1 id="_18">大多数伺服驱动器使用低电平有效（开集电极）报警输出。<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h1>
+<h1 id="false">默认 false。<a class="headerlink" href="#false" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <p>参见 <a href="CANopen.html">CANopen 指南</a> 了解 SYNC 分组、回原方法和 EDS 文件格式。</p>
 <h2 id="ethercat">EtherCAT 伺服步进支持<a class="headerlink" href="#ethercat" title="Permanent link">&para;</a></h2>
@@ -2587,19 +2598,30 @@ ethercat_interface:</p>
 <h1 id="ethercat_cycle_time-0001">ethercat_cycle_time: 0.001<a class="headerlink" href="#ethercat_cycle_time-0001" title="Permanent link">&para;</a></h1>
 <h1 id="dc-0000250-0020-0001">DC 同步周期时间（秒）。范围 0.000250 到 0.020。默认 0.001。<a class="headerlink" href="#dc-0000250-0020-0001" title="Permanent link">&para;</a></h1>
 <p>rotation_distance:</p>
-<h1 id="_17">伺服电机旋转一圈的距离（毫米）。必填。<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h1>
+<h1 id="_19">伺服电机旋转一圈的距离（毫米）。必填。<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h1>
 <p>microsteps:</p>
 <h1 id="ethercat-1">EtherCAT 伺服设为 1。<a class="headerlink" href="#ethercat-1" title="Permanent link">&para;</a></h1>
 <h1 id="full_steps_per_rotation-200_1">full_steps_per_rotation: 200<a class="headerlink" href="#full_steps_per_rotation-200_1" title="Permanent link">&para;</a></h1>
 <h1 id="200_1">编码器每圈计数。默认 200。<a class="headerlink" href="#200_1" title="Permanent link">&para;</a></h1>
 <h1 id="endstop_pin_1">endstop_pin:<a class="headerlink" href="#endstop_pin_1" title="Permanent link">&para;</a></h1>
-<h1 id="_18">限位引脚。回原必填。<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h1>
+<h1 id="_20">限位引脚。回原必填。<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h1>
 <h1 id="homing_speed-50">homing_speed: 5.0<a class="headerlink" href="#homing_speed-50" title="Permanent link">&para;</a></h1>
 <h1 id="50_1">回原速度（毫米/秒）。默认 5.0。<a class="headerlink" href="#50_1" title="Permanent link">&para;</a></h1>
 <h1 id="position_min-0">position_min: 0<a class="headerlink" href="#position_min-0" title="Permanent link">&para;</a></h1>
 <h1 id="0_1">最小位置（毫米）。默认 0。<a class="headerlink" href="#0_1" title="Permanent link">&para;</a></h1>
 <h1 id="position_max">position_max:<a class="headerlink" href="#position_max" title="Permanent link">&para;</a></h1>
-<h1 id="_19">最大位置（毫米）。<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h1>
+<h1 id="_21">最大位置（毫米）。<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h1>
+<h1 id="alm_pin_1">alm_pin:<a class="headerlink" href="#alm_pin_1" title="Permanent link">&para;</a></h1>
+<h1 id="alm-gpio_1">连接到伺服驱动器 ALM（报警）输出的 GPIO 引脚。配置后，<a class="headerlink" href="#alm-gpio_1" title="Permanent link">&para;</a></h1>
+<h1 id="_22">监控此引脚的报警信号。可选。<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h1>
+<h1 id="alarm_action-shutdown_1">alarm_action: shutdown<a class="headerlink" href="#alarm_action-shutdown_1" title="Permanent link">&para;</a></h1>
+<h1 id="alm-shutdown_1">ALM 引脚触发时的动作。可选：shutdown（紧急停止）、<a class="headerlink" href="#alm-shutdown_1" title="Permanent link">&para;</a></h1>
+<h1 id="pausegcode-alarm_gcode_1">pause（暂停打印）、gcode（执行 alarm_gcode）、<a class="headerlink" href="#pausegcode-alarm_gcode_1" title="Permanent link">&para;</a></h1>
+<h1 id="none-shutdown_1">none（仅记录日志）。默认 shutdown。<a class="headerlink" href="#none-shutdown_1" title="Permanent link">&para;</a></h1>
+<h1 id="alm_invert-false_1">alm_invert: false<a class="headerlink" href="#alm_invert-false_1" title="Permanent link">&para;</a></h1>
+<h1 id="alm-true_1">反转 ALM 引脚逻辑。高电平有效报警输出时设为 true。<a class="headerlink" href="#alm-true_1" title="Permanent link">&para;</a></h1>
+<h1 id="_23">大多数伺服驱动器使用低电平有效（开集电极）报警输出。<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h1>
+<h1 id="false_1">默认 false。<a class="headerlink" href="#false_1" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <p>参见 <a href="EtherCAT.html">EtherCAT 指南</a> 了解 CL3B 寄存器映射、DC 同步和故障排除。</p>
 <h2 id="rs485">RS485 伺服步进支持<a class="headerlink" href="#rs485" title="Permanent link">&para;</a></h2>
@@ -2608,7 +2630,7 @@ ethercat_interface:</p>
 <p>\<br>
 [rs485_stepper x]
 serial_port:</p>
-<h1 id="_20">串口路径。必填。<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h1>
+<h1 id="_24">串口路径。必填。<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h1>
 <h1 id="baud_rate-9600">baud_rate: 9600<a class="headerlink" href="#baud_rate-9600" title="Permanent link">&para;</a></h1>
 <h1 id="9600">波特率。默认 9600。<a class="headerlink" href="#9600" title="Permanent link">&para;</a></h1>
 <h1 id="rs485_protocol-modbus_rtu">rs485_protocol: modbus_rtu<a class="headerlink" href="#rs485_protocol-modbus_rtu" title="Permanent link">&para;</a></h1>
@@ -2632,28 +2654,66 @@ serial_port:</p>
 <h1 id="protocol_class">protocol_class:<a class="headerlink" href="#protocol_class" title="Permanent link">&para;</a></h1>
 <h1 id="python">自定义协议的 Python 类路径。<a class="headerlink" href="#python" title="Permanent link">&para;</a></h1>
 <p>rotation_distance:</p>
-<h1 id="_21">伺服电机旋转一圈的距离（毫米）。必填。<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h1>
+<h1 id="_25">伺服电机旋转一圈的距离（毫米）。必填。<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h1>
 <p>microsteps:</p>
 <h1 id="rs485-1">RS485 伺服设为 1。<a class="headerlink" href="#rs485-1" title="Permanent link">&para;</a></h1>
 <h1 id="full_steps_per_rotation-200_2">full_steps_per_rotation: 200<a class="headerlink" href="#full_steps_per_rotation-200_2" title="Permanent link">&para;</a></h1>
 <h1 id="200_2">编码器每圈计数。默认 200。<a class="headerlink" href="#200_2" title="Permanent link">&para;</a></h1>
 <h1 id="endstop_pin_2">endstop_pin:<a class="headerlink" href="#endstop_pin_2" title="Permanent link">&para;</a></h1>
-<h1 id="_22">限位引脚。回原必填。<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h1>
+<h1 id="_26">限位引脚。回原必填。<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h1>
 <h1 id="homing_speed-50_1">homing_speed: 5.0<a class="headerlink" href="#homing_speed-50_1" title="Permanent link">&para;</a></h1>
 <h1 id="50_2">回原速度（毫米/秒）。默认 5.0。<a class="headerlink" href="#50_2" title="Permanent link">&para;</a></h1>
 <h1 id="position_min-0_1">position_min: 0<a class="headerlink" href="#position_min-0_1" title="Permanent link">&para;</a></h1>
 <h1 id="0_2">最小位置（毫米）。默认 0。<a class="headerlink" href="#0_2" title="Permanent link">&para;</a></h1>
 <h1 id="position_max_1">position_max:<a class="headerlink" href="#position_max_1" title="Permanent link">&para;</a></h1>
-<h1 id="_23">最大位置（毫米）。<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h1>
+<h1 id="_27">最大位置（毫米）。<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h1>
+<h1 id="alm_pin_2">alm_pin:<a class="headerlink" href="#alm_pin_2" title="Permanent link">&para;</a></h1>
+<h1 id="alm-gpio_2">连接到伺服驱动器 ALM（报警）输出的 GPIO 引脚。配置后，<a class="headerlink" href="#alm-gpio_2" title="Permanent link">&para;</a></h1>
+<h1 id="_28">监控此引脚的报警信号。可选。<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h1>
+<h1 id="alarm_action-shutdown_2">alarm_action: shutdown<a class="headerlink" href="#alarm_action-shutdown_2" title="Permanent link">&para;</a></h1>
+<h1 id="alm-shutdown_2">ALM 引脚触发时的动作。可选：shutdown（紧急停止）、<a class="headerlink" href="#alm-shutdown_2" title="Permanent link">&para;</a></h1>
+<h1 id="pausegcode-alarm_gcode_2">pause（暂停打印）、gcode（执行 alarm_gcode）、<a class="headerlink" href="#pausegcode-alarm_gcode_2" title="Permanent link">&para;</a></h1>
+<h1 id="none-shutdown_2">none（仅记录日志）。默认 shutdown。<a class="headerlink" href="#none-shutdown_2" title="Permanent link">&para;</a></h1>
+<h1 id="alm_invert-false_2">alm_invert: false<a class="headerlink" href="#alm_invert-false_2" title="Permanent link">&para;</a></h1>
+<h1 id="alm-true_2">反转 ALM 引脚逻辑。高电平有效报警输出时设为 true。<a class="headerlink" href="#alm-true_2" title="Permanent link">&para;</a></h1>
+<h1 id="_29">大多数伺服驱动器使用低电平有效（开集电极）报警输出。<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h1>
+<h1 id="false_2">默认 false。<a class="headerlink" href="#false_2" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <p>参见 <a href="RS485.html">RS485 指南</a> 了解协议详情、自定义协议开发和故障排除。</p>
-<h2 id="_24">外部脉冲发生器步进支持<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<h2 id="_30">伺服安全监控<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
+<h3 id="servo_alarm">[servo_alarm]<a class="headerlink" href="#servo_alarm" title="Permanent link">&para;</a></h3>
+<p>独立伺服报警引脚监视器。监控连接到伺服驱动器 ALM（报警）输出的 GPIO 引脚，并触发可配置的动作。</p>
+<p>\<br>
+[servo_alarm my_servo]
+alm_pin:</p>
+<h1 id="gpio">报警输入的 GPIO 引脚。必填。支持引脚修饰符：<a class="headerlink" href="#gpio" title="Permanent link">&para;</a></h1>
+<h1 id="_31">^（上拉）、~（下拉）、!（反转）。<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h1>
+<h1 id="action-shutdown">action: shutdown<a class="headerlink" href="#action-shutdown" title="Permanent link">&para;</a></h1>
+<h1 id="shutdown">报警触发时的动作。可选：shutdown（紧急停止）、<a class="headerlink" href="#shutdown" title="Permanent link">&para;</a></h1>
+<h1 id="pausegcode-alarm_gcode_3">pause（暂停打印）、gcode（执行 alarm_gcode）、<a class="headerlink" href="#pausegcode-alarm_gcode_3" title="Permanent link">&para;</a></h1>
+<h1 id="none-shutdown_3">none（仅记录日志）。默认 shutdown。<a class="headerlink" href="#none-shutdown_3" title="Permanent link">&para;</a></h1>
+<h1 id="invert-false">invert: false<a class="headerlink" href="#invert-false" title="Permanent link">&para;</a></h1>
+<h1 id="true-false">反转引脚逻辑。高电平有效报警输出时设为 true。默认 false。<a class="headerlink" href="#true-false" title="Permanent link">&para;</a></h1>
+<h1 id="debounce-001">debounce: 0.01<a class="headerlink" href="#debounce-001" title="Permanent link">&para;</a></h1>
+<h1 id="001">防抖时间（秒）。默认 0.01。<a class="headerlink" href="#001" title="Permanent link">&para;</a></h1>
+<h1 id="gcode">gcode:<a class="headerlink" href="#gcode" title="Permanent link">&para;</a></h1>
+<h1 id="action-gcode-g-codejinja2">当 action 为 "gcode" 时执行的 G-code。Jinja2 模板。可选。<a class="headerlink" href="#action-gcode-g-codejinja2" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<p>可以定义多个 [servo_alarm] 配置节用于多轴监控。每个配置节会创建 QUERY_ALARM_&lt;名称&gt; 和 CLEAR_ALARM_&lt;名称&gt; G-code 命令。</p>
+<h3 id="servo_status">[servo_status]<a class="headerlink" href="#servo_status" title="Permanent link">&para;</a></h3>
+<p>伺服状态 G-code 命令模块。提供用于查询和管理所有已配置伺服步进电机状态的命令。</p>
+<p>\<br>
+[servo_status]</p>
+<h1 id="_32">无配置选项。当配置了伺服步进电机时，此模块会自动加载。<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h1>
+<p>\<br></p>
+<p>参见 <a href="servo-safety_CN.html">伺服安全监控指南</a> 了解接线图、配置示例和故障排除。</p>
+<h2 id="_33">外部脉冲发生器步进支持<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h2>
 <h3 id="pulse_gen_stepper">[pulse_gen_stepper]<a class="headerlink" href="#pulse_gen_stepper" title="Permanent link">&para;</a></h3>
 <p>外部脉冲发生器模块配置。通过 RS485/SPI/UART 发送位置或速度指令，模块内部生成高速差分脉冲。参见 <a href="PulseGen.html">PulseGen 指南</a> 了解详情。</p>
 <p>\<br>
 [pulse_gen_stepper x]
 serial_port:</p>
-<h1 id="_25">串口路径。必填。<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h1>
+<h1 id="_34">串口路径。必填。<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h1>
 <h1 id="baud_rate-9600_1">baud_rate: 9600<a class="headerlink" href="#baud_rate-9600_1" title="Permanent link">&para;</a></h1>
 <h1 id="9600_1">波特率。默认 9600。<a class="headerlink" href="#9600_1" title="Permanent link">&para;</a></h1>
 <h1 id="pulse_gen_protocol-modbus_rtu">pulse_gen_protocol: modbus_rtu<a class="headerlink" href="#pulse_gen_protocol-modbus_rtu" title="Permanent link">&para;</a></h1>
@@ -2682,19 +2742,19 @@ serial_port:</p>
 <h1 id="protocol_class_1">protocol_class:<a class="headerlink" href="#protocol_class_1" title="Permanent link">&para;</a></h1>
 <h1 id="python_1">自定义协议的 Python 类路径。<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h1>
 <p>rotation_distance:</p>
-<h1 id="_26">伺服电机旋转一圈的距离（毫米）。必填。<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h1>
+<h1 id="_35">伺服电机旋转一圈的距离（毫米）。必填。<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h1>
 <p>microsteps:</p>
 <h1 id="1_2">脉冲发生器设为 1。<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h1>
 <h1 id="full_steps_per_rotation-200_3">full_steps_per_rotation: 200<a class="headerlink" href="#full_steps_per_rotation-200_3" title="Permanent link">&para;</a></h1>
 <h1 id="200_3">编码器每圈计数。默认 200。<a class="headerlink" href="#200_3" title="Permanent link">&para;</a></h1>
 <h1 id="endstop_pin_3">endstop_pin:<a class="headerlink" href="#endstop_pin_3" title="Permanent link">&para;</a></h1>
-<h1 id="_27">限位引脚。回原必填。<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h1>
+<h1 id="_36">限位引脚。回原必填。<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h1>
 <h1 id="homing_speed-50_2">homing_speed: 5.0<a class="headerlink" href="#homing_speed-50_2" title="Permanent link">&para;</a></h1>
 <h1 id="50_3">回原速度（毫米/秒）。默认 5.0。<a class="headerlink" href="#50_3" title="Permanent link">&para;</a></h1>
 <h1 id="position_min-0_2">position_min: 0<a class="headerlink" href="#position_min-0_2" title="Permanent link">&para;</a></h1>
 <h1 id="0_3">最小位置（毫米）。默认 0。<a class="headerlink" href="#0_3" title="Permanent link">&para;</a></h1>
 <h1 id="position_max_2">position_max:<a class="headerlink" href="#position_max_2" title="Permanent link">&para;</a></h1>
-<h1 id="_28">最大位置（毫米）。<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h1>
+<h1 id="_37">最大位置（毫米）。<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <p>参见 <a href="PulseGen.html">PulseGen 指南</a> 了解指令模式、开环/闭环运行和自定义协议。</p>
 <h3 id="extruder">[extruder]<a class="headerlink" href="#extruder" title="Permanent link">&para;</a></h3>
@@ -2711,9 +2771,9 @@ rotation_distance:</p>
 <h1 id="stepper_1">参见"stepper"部分以获取对上述参数的描述。如果未指定上述任何参数，<a class="headerlink" href="#stepper_1" title="Permanent link">&para;</a></h1>
 <h1 id="sync_extruder_motion">则不会将任何步进器与喷嘴热端关联（尽管 SYNC_EXTRUDER_MOTION 命令可能在运行时关联一个）。<a class="headerlink" href="#sync_extruder_motion" title="Permanent link">&para;</a></h1>
 <p>nozzle_diameter:</p>
-<h1 id="_29">喷嘴孔径（毫米）。必须提供此参数。<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h1>
+<h1 id="_38">喷嘴孔径（毫米）。必须提供此参数。<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h1>
 <p>filament_diameter:</p>
-<h1 id="_30">进入挤出机的原始灯丝的名义直径（毫米）。必须提供此参数。<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h1>
+<h1 id="_39">进入挤出机的原始灯丝的名义直径（毫米）。必须提供此参数。<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h1>
 <h1 id="max_extrude_cross_section">max_extrude_cross_section:<a class="headerlink" href="#max_extrude_cross_section" title="Permanent link">&para;</a></h1>
 <h1 id="2_1">最大挤出截面面积（毫米²）（例如，挤出宽度乘以层高）。此设置可防止<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h1>
 <h1 id="xy_2">在相对较小的 XY 移动期间过度挤出。如果移动请求超过此值的挤出速率，<a class="headerlink" href="#xy_2" title="Permanent link">&para;</a></h1>
@@ -2721,22 +2781,22 @@ rotation_distance:</p>
 <h1 id="instantaneous_corner_velocity-1000">instantaneous_corner_velocity: 1.000<a class="headerlink" href="#instantaneous_corner_velocity-1000" title="Permanent link">&para;</a></h1>
 <h1 id="1mms">两次移动交界处挤出机的最大瞬时速度变化（毫米/秒）。默认值为 1mm/s。<a class="headerlink" href="#1mms" title="Permanent link">&para;</a></h1>
 <h1 id="max_extrude_only_distance-500">max_extrude_only_distance: 50.0<a class="headerlink" href="#max_extrude_only_distance-500" title="Permanent link">&para;</a></h1>
-<h1 id="_31">回退或仅挤出移动可能具有的最大长度（毫米的原始灯丝）。如果回退或仅挤出<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h1>
+<h1 id="_40">回退或仅挤出移动可能具有的最大长度（毫米的原始灯丝）。如果回退或仅挤出<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h1>
 <h1 id="50mm">移动请求大于此值的距离，将返回错误。默认值为 50mm。<a class="headerlink" href="#50mm" title="Permanent link">&para;</a></h1>
 <h1 id="max_extrude_only_velocity">max_extrude_only_velocity:<a class="headerlink" href="#max_extrude_only_velocity" title="Permanent link">&para;</a></h1>
 <h1 id="max_extrude_only_accel">max_extrude_only_accel:<a class="headerlink" href="#max_extrude_only_accel" title="Permanent link">&para;</a></h1>
 <h1 id="2_2">挤出机电机对于回退和仅挤出移动的最大速度（毫米/秒）和加速度（毫米/秒²）。<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h1>
-<h1 id="_32">这些设置对正常打印移动没有任何影响。如果未指定，则计算为匹配具有<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h1>
+<h1 id="_41">这些设置对正常打印移动没有任何影响。如果未指定，则计算为匹配具有<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h1>
 <h1 id="40nozzle_diameter2-xy">4.0*nozzle_diameter^2 截面的 XY 打印移动所具有的限制。<a class="headerlink" href="#40nozzle_diameter2-xy" title="Permanent link">&para;</a></h1>
 <h1 id="pressure_advance-00">pressure_advance: 0.0<a class="headerlink" href="#pressure_advance-00" title="Permanent link">&para;</a></h1>
-<h1 id="_33">在挤出机加速期间推入挤出机的原始灯丝量。在减速期间回退等量的灯丝。<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h1>
+<h1 id="_42">在挤出机加速期间推入挤出机的原始灯丝量。在减速期间回退等量的灯丝。<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h1>
 <h1 id="0_4">以毫米/毫米/秒为单位。默认值为 0，禁用压力提前。<a class="headerlink" href="#0_4" title="Permanent link">&para;</a></h1>
 <h1 id="pressure_advance_smooth_time-0040">pressure_advance_smooth_time: 0.040<a class="headerlink" href="#pressure_advance_smooth_time-0040" title="Permanent link">&para;</a></h1>
-<h1 id="_34">用于计算挤出机平均速度以实现压力提前的时间范围（以秒为单位）。<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h1>
+<h1 id="_43">用于计算挤出机平均速度以实现压力提前的时间范围（以秒为单位）。<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h1>
 <h1 id="200ms">较大的值会导致更平滑的挤出机移动。此参数不能超过 200ms。<a class="headerlink" href="#200ms" title="Permanent link">&para;</a></h1>
 <h1 id="pressure_advance-004040">此设置仅在 pressure_advance 非零时适用。默认值为 0.040（40 毫秒）。<a class="headerlink" href="#pressure_advance-004040" title="Permanent link">&para;</a></h1>
-<h1 id="_35"><a class="headerlink" href="#_35" title="Permanent link">&para;</a></h1>
-<h1 id="_36">其余变量描述挤出机加热器。<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h1>
+<h1 id="_44"><a class="headerlink" href="#_44" title="Permanent link">&para;</a></h1>
+<h1 id="_45">其余变量描述挤出机加热器。<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h1>
 <p>heater_pin:</p>
 <h1 id="pwm">控制加热器的 PWM 输出引脚。必须提供此参数。<a class="headerlink" href="#pwm" title="Permanent link">&para;</a></h1>
 <h1 id="max_power-10">max_power: 1.0<a class="headerlink" href="#max_power-10" title="Permanent link">&para;</a></h1>
@@ -2748,19 +2808,19 @@ rotation_distance:</p>
 <h1 id="atc-semitec-104gt-2atc-semitec-104nt-4-r025h42ggeneric-3950">"ATC Semitec 104GT-2"、"ATC Semitec 104NT-4-R025H42G"、"Generic 3950"、<a class="headerlink" href="#atc-semitec-104gt-2atc-semitec-104nt-4-r025h42ggeneric-3950" title="Permanent link">&para;</a></h1>
 <h1 id="honeywell-100k-135-104lag-j01ntc-100k-mgb18-104f39050l32">"Honeywell 100K 135-104LAG-J01"、"NTC 100K MGB18-104F39050L32"、<a class="headerlink" href="#honeywell-100k-135-104lag-j01ntc-100k-mgb18-104f39050l32" title="Permanent link">&para;</a></h1>
 <h1 id="sliceengineering-450tdk-ntcg104lh104jt1">"SliceEngineering 450"和"TDK NTCG104LH104JT1"。有关其他传感器，<a class="headerlink" href="#sliceengineering-450tdk-ntcg104lh104jt1" title="Permanent link">&para;</a></h1>
-<h1 id="_37">请参见"温度传感器"部分。必须提供此参数。<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h1>
+<h1 id="_46">请参见"温度传感器"部分。必须提供此参数。<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h1>
 <p>sensor_pin:</p>
-<h1 id="_38">连接到传感器的模拟输入引脚。必须提供此参数。<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h1>
+<h1 id="_47">连接到传感器的模拟输入引脚。必须提供此参数。<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h1>
 <h1 id="pullup_resistor-4700">pullup_resistor: 4700<a class="headerlink" href="#pullup_resistor-4700" title="Permanent link">&para;</a></h1>
-<h1 id="_39">连接到温度计的上拉电阻的电阻（欧姆）。只有在传感器是温度计时，<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h1>
+<h1 id="_48">连接到温度计的上拉电阻的电阻（欧姆）。只有在传感器是温度计时，<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h1>
 <h1 id="4700">此参数才有效。默认值为 4700 欧姆。<a class="headerlink" href="#4700" title="Permanent link">&para;</a></h1>
 <h1 id="smooth_time-10">smooth_time: 1.0<a class="headerlink" href="#smooth_time-10" title="Permanent link">&para;</a></h1>
-<h1 id="_40">对温度测量进行平滑处理的时间值（以秒为单位），以减少测量噪声的影响。<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h1>
+<h1 id="_49">对温度测量进行平滑处理的时间值（以秒为单位），以减少测量噪声的影响。<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h1>
 <h1 id="1_3">默认值为 1 秒。<a class="headerlink" href="#1_3" title="Permanent link">&para;</a></h1>
 <p>control:</p>
 <h1 id="pidpid_vdual_loop_pidwatermark-mpc">控制算法（pid、pid_v、dual_loop_pid、watermark 或 mpc）。<a class="headerlink" href="#pidpid_vdual_loop_pidwatermark-mpc" title="Permanent link">&para;</a></h1>
 <h1 id="pid_v">必须提供此参数。pid_v 仅应在具有低到中等噪声的良好标定加热器上使用。<a class="headerlink" href="#pid_v" title="Permanent link">&para;</a></h1>
-<h1 id="_41"><a class="headerlink" href="#_41" title="Permanent link">&para;</a></h1>
+<h1 id="_50"><a class="headerlink" href="#_50" title="Permanent link">&para;</a></h1>
 <h1 id="control-pidpid_v-dual_loop_pid">如果 control: pid、pid_v 或 dual_loop_pid<a class="headerlink" href="#control-pidpid_v-dual_loop_pid" title="Permanent link">&para;</a></h1>
 <h1 id="pid_kp">pid_Kp:<a class="headerlink" href="#pid_kp" title="Permanent link">&para;</a></h1>
 <h1 id="pid_ki">pid_Ki:<a class="headerlink" href="#pid_ki" title="Permanent link">&para;</a></h1>
@@ -2772,12 +2832,12 @@ rotation_distance:</p>
 <h1 id="heater_pwm00-10">"heater_pwm"是请求的加热速率，0.0 为完全关闭，1.0 为完全打开。<a class="headerlink" href="#heater_pwm00-10" title="Permanent link">&para;</a></h1>
 <h1 id="pid_calibrate-pid_kppid_ki-pid_kd">考虑使用 PID_CALIBRATE 命令来获取这些参数。pid_Kp、pid_Ki 和 pid_Kd<a class="headerlink" href="#pid_calibrate-pid_kppid_ki-pid_kd" title="Permanent link">&para;</a></h1>
 <h1 id="pid">参数必须为 PID 加热器提供。<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h1>
-<h1 id="_42"><a class="headerlink" href="#_42" title="Permanent link">&para;</a></h1>
+<h1 id="_51"><a class="headerlink" href="#_51" title="Permanent link">&para;</a></h1>
 <h1 id="control-watermark">如果 control: watermark<a class="headerlink" href="#control-watermark" title="Permanent link">&para;</a></h1>
 <h1 id="max_delta-20">max_delta: 2.0<a class="headerlink" href="#max_delta-20" title="Permanent link">&para;</a></h1>
 <h1 id="watermark">在"watermark"控制的加热器上，这是禁用加热器之前目标温度以上的摄氏度数，<a class="headerlink" href="#watermark" title="Permanent link">&para;</a></h1>
 <h1 id="2_3">以及重新启用加热器之前目标温度以下的摄氏度数。默认值为 2 摄氏度。<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h1>
-<h1 id="_43"><a class="headerlink" href="#_43" title="Permanent link">&para;</a></h1>
+<h1 id="_52"><a class="headerlink" href="#_52" title="Permanent link">&para;</a></h1>
 <h1 id="control-mpc">如果 control: mpc<a class="headerlink" href="#control-mpc" title="Permanent link">&para;</a></h1>
 <h1 id="mpcmd">有关这些参数的详细信息，请参见 MPC.md。<a class="headerlink" href="#mpcmd" title="Permanent link">&para;</a></h1>
 <h1 id="heater_power">heater_power:<a class="headerlink" href="#heater_power" title="Permanent link">&para;</a></h1>
@@ -2786,7 +2846,7 @@ rotation_distance:</p>
 <h1 id="filament_diameter-175">filament_diameter: 1.75<a class="headerlink" href="#filament_diameter-175" title="Permanent link">&para;</a></h1>
 <h1 id="filament_density-12">filament_density: 1.2<a class="headerlink" href="#filament_density-12" title="Permanent link">&para;</a></h1>
 <h1 id="filament_heat_capacity-18">filament_heat_capacity: 1.8<a class="headerlink" href="#filament_heat_capacity-18" title="Permanent link">&para;</a></h1>
-<h1 id="_44"><a class="headerlink" href="#_44" title="Permanent link">&para;</a></h1>
+<h1 id="_53"><a class="headerlink" href="#_53" title="Permanent link">&para;</a></h1>
 <h1 id="pwm_cycle_time-0100">pwm_cycle_time: 0.100<a class="headerlink" href="#pwm_cycle_time-0100" title="Permanent link">&para;</a></h1>
 <h1 id="pwm-10">每个加热器软件 PWM 周期的时间（秒）。除非有电气要求以每秒超过 10 次的速率<a class="headerlink" href="#pwm-10" title="Permanent link">&para;</a></h1>
 <h1 id="0100">切换加热器，否则不建议设置此值。默认值为 0.100 秒。<a class="headerlink" href="#0100" title="Permanent link">&para;</a></h1>
@@ -2794,24 +2854,24 @@ rotation_distance:</p>
 <h1 id="170">可能发出挤出机移动命令的最低温度（摄氏度）。默认值为 170 摄氏度。<a class="headerlink" href="#170" title="Permanent link">&para;</a></h1>
 <p>min_temp:
 max_temp:</p>
-<h1 id="_45">加热器必须保持在其中的有效温度范围（摄氏度）。这控制了在微控制器代码中<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h1>
-<h1 id="_46">实现的安全功能——如果测量的温度曾经超出此范围，微控制器将进入关闭状态。<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h1>
-<h1 id="_47">此检查可以帮助检测某些加热器和传感器硬件故障。设置此范围的宽度足以使得<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h1>
-<h1 id="_48">合理的温度不会导致错误。必须提供这些参数。<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h1>
+<h1 id="_54">加热器必须保持在其中的有效温度范围（摄氏度）。这控制了在微控制器代码中<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h1>
+<h1 id="_55">实现的安全功能——如果测量的温度曾经超出此范围，微控制器将进入关闭状态。<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h1>
+<h1 id="_56">此检查可以帮助检测某些加热器和传感器硬件故障。设置此范围的宽度足以使得<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h1>
+<h1 id="_57">合理的温度不会导致错误。必须提供这些参数。<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h1>
 <p>per_move_pressure_advance: False</p>
 <h1 id="trapq">如果为真，则在处理移动时使用 trapq 中的压力提前常数。<a class="headerlink" href="#trapq" title="Permanent link">&para;</a></h1>
-<h1 id="_49">这会导致压力提前的更改立即被考虑，对于当前队列中的所有移动，<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h1>
+<h1 id="_58">这会导致压力提前的更改立即被考虑，对于当前队列中的所有移动，<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h1>
 <h1 id="250ms">而不是在队列刷新后的约 250ms 后。<a class="headerlink" href="#250ms" title="Permanent link">&para;</a></h1>
-<h1 id="_50"><a class="headerlink" href="#_50" title="Permanent link">&para;</a></h1>
+<h1 id="_59"><a class="headerlink" href="#_59" title="Permanent link">&para;</a></h1>
 <h1 id="control-dual_loop_pid">如果：control: dual_loop_pid<a class="headerlink" href="#control-dual_loop_pid" title="Permanent link">&para;</a></h1>
 <h1 id="inner_sensor_name">inner_sensor_name:<a class="headerlink" href="#inner_sensor_name" title="Permanent link">&para;</a></h1>
 <h1 id="temperature_sensor-dual_loop_pid">第二个传感器的 temperature_sensor 名称，用于 dual_loop_pid 进行温度控制。<a class="headerlink" href="#temperature_sensor-dual_loop_pid" title="Permanent link">&para;</a></h1>
 <h1 id="inner_max_temp">此传感器将限制加热器功率，以不允许温度超过"inner_max_temp"值。<a class="headerlink" href="#inner_max_temp" title="Permanent link">&para;</a></h1>
-<h1 id="_51"><a class="headerlink" href="#_51" title="Permanent link">&para;</a></h1>
+<h1 id="_60"><a class="headerlink" href="#_60" title="Permanent link">&para;</a></h1>
 <h1 id="control-dual_loop_pid_1">如果：control: dual_loop_pid<a class="headerlink" href="#control-dual_loop_pid_1" title="Permanent link">&para;</a></h1>
 <h1 id="inner_max_temp_1">inner_max_temp:<a class="headerlink" href="#inner_max_temp_1" title="Permanent link">&para;</a></h1>
-<h1 id="_52">内传感器将允许的最大温度目标。<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h1>
-<h1 id="_53"><a class="headerlink" href="#_53" title="Permanent link">&para;</a></h1>
+<h1 id="_61">内传感器将允许的最大温度目标。<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h1>
+<h1 id="_62"><a class="headerlink" href="#_62" title="Permanent link">&para;</a></h1>
 <h1 id="control-dual_loop_pid_2">如果 control: dual_loop_pid<a class="headerlink" href="#control-dual_loop_pid_2" title="Permanent link">&para;</a></h1>
 <h1 id="inner_pid_kp">inner_pid_Kp:<a class="headerlink" href="#inner_pid_kp" title="Permanent link">&para;</a></h1>
 <h1 id="inner_pid_ki">inner_pid_Ki:<a class="headerlink" href="#inner_pid_ki" title="Permanent link">&para;</a></h1>
@@ -2820,8 +2880,8 @@ max_temp:</p>
 <h1 id="pid-pid-pid">直接控制温度。主 PID 循环控制次 PID 循环的功率。这允许主 PID 循环针对<a class="headerlink" href="#pid-pid-pid" title="Permanent link">&para;</a></h1>
 <h1 id="pid_1">温度控制进行调整，而次 PID 循环可以针对功率控制进行调整，不超过在<a class="headerlink" href="#pid_1" title="Permanent link">&para;</a></h1>
 <h1 id="inner_max_temp_2">"inner_max_temp"上设置的温度限制。<a class="headerlink" href="#inner_max_temp_2" title="Permanent link">&para;</a></h1>
-<h1 id="_54">主传感器位置靠近温度测量应更准确的地方（例如床面）。<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h1>
-<h1 id="_55">次传感器位置靠近温度测量不应超过限制的地方（例如硅加热器上）。<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h1>
+<h1 id="_63">主传感器位置靠近温度测量应更准确的地方（例如床面）。<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h1>
+<h1 id="_64">次传感器位置靠近温度测量不应超过限制的地方（例如硅加热器上）。<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <h3 id="heater_bed">[heater_bed]<a class="headerlink" href="#heater_bed" title="Permanent link">&para;</a></h3>
 <p>heater_bed 部分描述加热的床。它使用"extruder"部分中描述的相同加热器设置。</p>
@@ -2842,22 +2902,22 @@ max_temp:</p>
 pid_version: 1</p>
 <h1 id="1_4">这定义了保存时的版本，对兼容性检查很重要，保持在 1！<a class="headerlink" href="#1_4" title="Permanent link">&para;</a></h1>
 <p>pid_target:</p>
-<h1 id="_56">仅供参考，指定配置文件标定的温度。<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h1>
-<h1 id="_57">如果创建自定义配置文件，请输入配置文件的预期使用温度或将其留空。<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h1>
+<h1 id="_65">仅供参考，指定配置文件标定的温度。<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h1>
+<h1 id="_66">如果创建自定义配置文件，请输入配置文件的预期使用温度或将其留空。<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h1>
 <p>pid_tolerance:</p>
-<h1 id="_58">自动标定配置文件时使用的容差。如果定义自定义配置文件，请将其留空。<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h1>
+<h1 id="_67">自动标定配置文件时使用的容差。如果定义自定义配置文件，请将其留空。<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h1>
 <p>control: <pid|pid_v></p>
 <h1 id="pid-pid_v">必须是 pid 或 pid_v。<a class="headerlink" href="#pid-pid_v" title="Permanent link">&para;</a></h1>
-<h1 id="_59">必须提供此参数。<a class="headerlink" href="#_59" title="Permanent link">&para;</a></h1>
+<h1 id="_68">必须提供此参数。<a class="headerlink" href="#_68" title="Permanent link">&para;</a></h1>
 <p>pid_kp:</p>
 <h1 id="pid-p">PID 控制的 P 值。<a class="headerlink" href="#pid-p" title="Permanent link">&para;</a></h1>
-<h1 id="_60">必须提供此参数。<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h1>
+<h1 id="_69">必须提供此参数。<a class="headerlink" href="#_69" title="Permanent link">&para;</a></h1>
 <p>pid_ki:</p>
 <h1 id="pid-i">PID 控制的 I 值。<a class="headerlink" href="#pid-i" title="Permanent link">&para;</a></h1>
-<h1 id="_61">必须提供此参数。<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h1>
+<h1 id="_70">必须提供此参数。<a class="headerlink" href="#_70" title="Permanent link">&para;</a></h1>
 <p>pid_kd:</p>
 <h1 id="pid-d">PID 控制的 D 值。<a class="headerlink" href="#pid-d" title="Permanent link">&para;</a></h1>
-<h1 id="_62">必须提供此参数。<a class="headerlink" href="#_62" title="Permanent link">&para;</a></h1>
+<h1 id="_71">必须提供此参数。<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <p>有关详细信息，请阅读 docs/PID.md</p>
 <h3 id="hc595">⚠️ [hc595]<a class="headerlink" href="#hc595" title="Permanent link">&para;</a></h3>
@@ -2908,7 +2968,7 @@ pin: my_shift:0</p>
 <p>[heater_generic chamber_heater]
 heater_pin: my_shift:3
 max_power: 1.0</p>
-<h1 id="_63">... 其他加热器参数<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h1>
+<h1 id="_72">... 其他加热器参数<a class="headerlink" href="#_72" title="Permanent link">&para;</a></h1>
 <h1 id="hc595-7">使用 HC595 输出 7 作为通用输出引脚<a class="headerlink" href="#hc595-7" title="Permanent link">&para;</a></h1>
 <p>[output_pin my_output]
 pin: my_shift:7
@@ -2942,9 +3002,9 @@ axis:</p>
 <p>\<br>
 [extruder_stepper my_stepper]
 extruder:</p>
-<h1 id="_64">此步进器对应的挤出机的名称。如果未指定，则不进行自动<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h1>
-<h1 id="_65">挤出机同步。可以使用一个虚拟名称"分享"来同步所有定义<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h1>
-<h1 id="_66">的挤出机(注意：这个虚拟名称在工具头情况下不能使用)。<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h1>
+<h1 id="_73">此步进器对应的挤出机的名称。如果未指定，则不进行自动<a class="headerlink" href="#_73" title="Permanent link">&para;</a></h1>
+<h1 id="_74">挤出机同步。可以使用一个虚拟名称"分享"来同步所有定义<a class="headerlink" href="#_74" title="Permanent link">&para;</a></h1>
+<h1 id="_75">的挤出机(注意：这个虚拟名称在工具头情况下不能使用)。<a class="headerlink" href="#_75" title="Permanent link">&para;</a></h1>
 <p>step_pin:
 dir_pin:
 enable_pin:</p>
@@ -2979,15 +3039,15 @@ enable_pin:</p>
 <p>\<br>
 [verify_heater extruder]</p>
 <h1 id="max_error-120">max_error: 120<a class="headerlink" href="#max_error-120" title="Permanent link">&para;</a></h1>
-<h1 id="_67">如果加热器无法在指定的秒数内从当前温度内达到目标温度，<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h1>
+<h1 id="_76">如果加热器无法在指定的秒数内从当前温度内达到目标温度，<a class="headerlink" href="#_76" title="Permanent link">&para;</a></h1>
 <h1 id="120">如果回到温度增长小于此值，生成错误。默认值为120秒。<a class="headerlink" href="#120" title="Permanent link">&para;</a></h1>
 <h1 id="check_gain_time">check_gain_time:<a class="headerlink" href="#check_gain_time" title="Permanent link">&para;</a></h1>
 <h1 id="check_gain_time-max_error">如果加热器没有在指定秒数内增加（"check_gain_time" / "max_error"）<a class="headerlink" href="#check_gain_time-max_error" title="Permanent link">&para;</a></h1>
 <h1 id="20">摄氏度以上，生成一个错误。默认值为20秒。<a class="headerlink" href="#20" title="Permanent link">&para;</a></h1>
 <h1 id="hysteresis-5">hysteresis: 5<a class="headerlink" href="#hysteresis-5" title="Permanent link">&para;</a></h1>
-<h1 id="_68">在超温冷却启用时，冷却程度的范围（摄氏度）。当加热器在<a class="headerlink" href="#_68" title="Permanent link">&para;</a></h1>
+<h1 id="_77">在超温冷却启用时，冷却程度的范围（摄氏度）。当加热器在<a class="headerlink" href="#_77" title="Permanent link">&para;</a></h1>
 <h1 id="-hysteresis">超温冷却过程中达到目标温度时（目标温度 - hysteresis），<a class="headerlink" href="#-hysteresis" title="Permanent link">&para;</a></h1>
-<h1 id="_69">加热器被置于待命状态，直到达到新的目标温度。<a class="headerlink" href="#_69" title="Permanent link">&para;</a></h1>
+<h1 id="_78">加热器被置于待命状态，直到达到新的目标温度。<a class="headerlink" href="#_78" title="Permanent link">&para;</a></h1>
 <h1 id="5_2">默认值为5。<a class="headerlink" href="#5_2" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <h3 id="homing_heaters">[homing_heaters]<a class="headerlink" href="#homing_heaters" title="Permanent link">&para;</a></h3>
@@ -2995,10 +3055,10 @@ enable_pin:</p>
 <p>\<br>
 [homing_heaters]</p>
 <h1 id="steppers-extruder-stepper_z">steppers: extruder, stepper_z<a class="headerlink" href="#steppers-extruder-stepper_z" title="Permanent link">&para;</a></h1>
-<h1 id="_70">在归位运动时要禁用其加热器的步进器的逗号分隔列表。<a class="headerlink" href="#_70" title="Permanent link">&para;</a></h1>
+<h1 id="_79">在归位运动时要禁用其加热器的步进器的逗号分隔列表。<a class="headerlink" href="#_79" title="Permanent link">&para;</a></h1>
 <h1 id="z_1">默认行为是在所有Z轴归位运动期间禁用挤出机加热器。<a class="headerlink" href="#z_1" title="Permanent link">&para;</a></h1>
-<h1 id="_71">注意：如果启用了双托架、双升降或多个上升轴，则可能需要<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h1>
-<h1 id="_72">配置此选项。<a class="headerlink" href="#_72" title="Permanent link">&para;</a></h1>
+<h1 id="_80">注意：如果启用了双托架、双升降或多个上升轴，则可能需要<a class="headerlink" href="#_80" title="Permanent link">&para;</a></h1>
+<h1 id="_81">配置此选项。<a class="headerlink" href="#_81" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <h3 id="thermistor">[thermistor]<a class="headerlink" href="#thermistor" title="Permanent link">&para;</a></h3>
 <p>热敏电阻（此部分可使用任意标识符定义多次）。</p>
@@ -3010,10 +3070,10 @@ temperature2:
 resistance2:
 temperature3:
 resistance3:</p>
-<h1 id="_73">三个温度/电阻点。它们应该跨越所考虑的温度范围。如果<a class="headerlink" href="#_73" title="Permanent link">&para;</a></h1>
-<h1 id="_74">挤出机温度是通过这些点进行外推而计算的，则这三个参数<a class="headerlink" href="#_74" title="Permanent link">&para;</a></h1>
+<h1 id="_82">三个温度/电阻点。它们应该跨越所考虑的温度范围。如果<a class="headerlink" href="#_82" title="Permanent link">&para;</a></h1>
+<h1 id="_83">挤出机温度是通过这些点进行外推而计算的，则这三个参数<a class="headerlink" href="#_83" title="Permanent link">&para;</a></h1>
 <h1 id="steinhart-hart">都是必需的。注意：这些参数本身取代了任何"Steinhart-Hart<a class="headerlink" href="#steinhart-hart" title="Permanent link">&para;</a></h1>
-<h1 id="_75">系数"参数。<a class="headerlink" href="#_75" title="Permanent link">&para;</a></h1>
+<h1 id="_84">系数"参数。<a class="headerlink" href="#_84" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <h3 id="adc_temperature">[adc_temperature]<a class="headerlink" href="#adc_temperature" title="Permanent link">&para;</a></h3>
 <p>ADC温度传感器（此部分可使用任意标识符定义多次）。</p>
@@ -3022,7 +3082,7 @@ resistance3:</p>
 sensor_pin:</p>
 <h1 id="adc">连接到温度传感器的ADC引脚。此参数必须提供。<a class="headerlink" href="#adc" title="Permanent link">&para;</a></h1>
 <h1 id="pullup_resistor-4700_1">pullup_resistor: 4700<a class="headerlink" href="#pullup_resistor-4700_1" title="Permanent link">&para;</a></h1>
-<h1 id="_76">连接到温度计的上拉电阻的电阻(欧姆)。<a class="headerlink" href="#_76" title="Permanent link">&para;</a></h1>
+<h1 id="_85">连接到温度计的上拉电阻的电阻(欧姆)。<a class="headerlink" href="#_85" title="Permanent link">&para;</a></h1>
 <h1 id="4700_1">默认值为4700欧姆。<a class="headerlink" href="#4700_1" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <h3 id="temperature_sensor">[temperature_sensor]<a class="headerlink" href="#temperature_sensor" title="Permanent link">&para;</a></h3>
@@ -3032,16 +3092,16 @@ sensor_pin:</p>
 sensor_type:</p>
 <h1 id="epcos-100k-b57560g104f_1">温度传感器的类型。支持的类型有："EPCOS 100K B57560G104F"、<a class="headerlink" href="#epcos-100k-b57560g104f_1" title="Permanent link">&para;</a></h1>
 <h1 id="pt1000pt100ads1220ads131m02ads131m04">"PT1000"、"PT100"、"ADS1220"、"ADS131M02"、"ADS131M04"。<a class="headerlink" href="#pt1000pt100ads1220ads131m02ads131m04" title="Permanent link">&para;</a></h1>
-<h1 id="_77">必须提供此参数。<a class="headerlink" href="#_77" title="Permanent link">&para;</a></h1>
+<h1 id="_86">必须提供此参数。<a class="headerlink" href="#_86" title="Permanent link">&para;</a></h1>
 <p>sensor_pin:</p>
 <h1 id="adciicds18b20one-wire">连接到温度传感器的ADC引脚或IIC地址。如果温度传感器是DS18B20（one-wire）、<a class="headerlink" href="#adciicds18b20one-wire" title="Permanent link">&para;</a></h1>
 <h1 id="pt100-rtdpt1000-rtdmcuads">PT100 (RTD)、PT1000 (RTD)、则需要MCU引脚名称。对于ADS等外部传感器，<a class="headerlink" href="#pt100-rtdpt1000-rtdmcuads" title="Permanent link">&para;</a></h1>
 <h1 id="iic">则需要IIC地址。必须提供此参数。<a class="headerlink" href="#iic" title="Permanent link">&para;</a></h1>
 <h1 id="min_temp-40">min_temp: -40<a class="headerlink" href="#min_temp-40" title="Permanent link">&para;</a></h1>
-<h1 id="_78">最小温度。如果温度低于此值，将自动关闭打印机。<a class="headerlink" href="#_78" title="Permanent link">&para;</a></h1>
+<h1 id="_87">最小温度。如果温度低于此值，将自动关闭打印机。<a class="headerlink" href="#_87" title="Permanent link">&para;</a></h1>
 <h1 id="-40">默认值为-40摄氏度。<a class="headerlink" href="#-40" title="Permanent link">&para;</a></h1>
 <h1 id="max_temp-85">max_temp: 85<a class="headerlink" href="#max_temp-85" title="Permanent link">&para;</a></h1>
-<h1 id="_79">最大温度。如果温度超过此值，将自动关闭打印机。<a class="headerlink" href="#_79" title="Permanent link">&para;</a></h1>
+<h1 id="_88">最大温度。如果温度超过此值，将自动关闭打印机。<a class="headerlink" href="#_88" title="Permanent link">&para;</a></h1>
 <h1 id="85">默认值为85摄氏度。<a class="headerlink" href="#85" title="Permanent link">&para;</a></h1>
 <h1 id="gcode_id">gcode_id:<a class="headerlink" href="#gcode_id" title="Permanent link">&para;</a></h1>
 <h1 id="octoprintgcode_id">OctoPrint在报告温度时使用的gcode_id。<a class="headerlink" href="#octoprintgcode_id" title="Permanent link">&para;</a></h1>
@@ -3070,7 +3130,7 @@ pin:</p>
 <h1 id="max_power-10_1">max_power: 1.0<a class="headerlink" href="#max_power-10_1" title="Permanent link">&para;</a></h1>
 <h1 id="0010">可将引脚设置为的最大功率(表示为0.0到1.0的值)。<a class="headerlink" href="#0010" title="Permanent link">&para;</a></h1>
 <h1 id="1005">1.0的值允许在长时间内将引脚设置为完全启用，而0.5的值<a class="headerlink" href="#1005" title="Permanent link">&para;</a></h1>
-<h1 id="_80">最多允许在一半的时间内启用该引脚。此设置可用于限制总功率<a class="headerlink" href="#_80" title="Permanent link">&para;</a></h1>
+<h1 id="_89">最多允许在一半的时间内启用该引脚。此设置可用于限制总功率<a class="headerlink" href="#_89" title="Permanent link">&para;</a></h1>
 <h1 id="10_1">输出(在扩展时间内)到风扇。默认值为1.0。<a class="headerlink" href="#10_1" title="Permanent link">&para;</a></h1>
 <h1 id="shutdown_speed-0">shutdown_speed: 0<a class="headerlink" href="#shutdown_speed-0" title="Permanent link">&para;</a></h1>
 <h1 id="0010_1">风扇在微控制器关闭时应设置的所需速度(表示为0.0到1.0之间的值)。<a class="headerlink" href="#0010_1" title="Permanent link">&para;</a></h1>
@@ -3080,11 +3140,11 @@ pin:</p>
 <h1 id="0010_2">切换输出，否则不建议设置此值。默认值为0.010秒。<a class="headerlink" href="#0010_2" title="Permanent link">&para;</a></h1>
 <h1 id="hardware_pwm-false">hardware_pwm: False<a class="headerlink" href="#hardware_pwm-false" title="Permanent link">&para;</a></h1>
 <h1 id="pwmpwmpwm">使用硬件PWM而不是软件PWM。使用硬件PWM通常可以达到更高的脉冲<a class="headerlink" href="#pwmpwmpwm" title="Permanent link">&para;</a></h1>
-<h1 id="_81">宽度调制频率，但是会有一些限制——某些脚位置之间的引脚可能无法<a class="headerlink" href="#_81" title="Permanent link">&para;</a></h1>
+<h1 id="_90">宽度调制频率，但是会有一些限制——某些脚位置之间的引脚可能无法<a class="headerlink" href="#_90" title="Permanent link">&para;</a></h1>
 <h1 id="pwmfalse">实现独立的硬件PWM。默认值为False。<a class="headerlink" href="#pwmfalse" title="Permanent link">&para;</a></h1>
 <h1 id="kick_start_time-0100">kick_start_time: 0.100<a class="headerlink" href="#kick_start_time-0100" title="Permanent link">&para;</a></h1>
-<h1 id="_82">当启用风扇时，必须以最大功率打开的最短时间(以秒为单位)。<a class="headerlink" href="#_82" title="Permanent link">&para;</a></h1>
-<h1 id="_83">这仅适用于无法通过低功率设置检测到风扇旋转的情况。<a class="headerlink" href="#_83" title="Permanent link">&para;</a></h1>
+<h1 id="_91">当启用风扇时，必须以最大功率打开的最短时间(以秒为单位)。<a class="headerlink" href="#_91" title="Permanent link">&para;</a></h1>
+<h1 id="_92">这仅适用于无法通过低功率设置检测到风扇旋转的情况。<a class="headerlink" href="#_92" title="Permanent link">&para;</a></h1>
 <h1 id="0100_1">默认值为0.100秒。<a class="headerlink" href="#0100_1" title="Permanent link">&para;</a></h1>
 <h1 id="off_below-00">off_below: 0.0<a class="headerlink" href="#off_below-00" title="Permanent link">&para;</a></h1>
 <h1 id="pwm_2">最小输入速度，可使用PWM控制打开风扇。如果下面指定的速度<a class="headerlink" href="#pwm_2" title="Permanent link">&para;</a></h1>
@@ -3103,11 +3163,11 @@ kick_start_time:
 off_below:</p>
 <h1 id="fan_1">参见"fan"部分以获取对这些参数的描述。<a class="headerlink" href="#fan_1" title="Permanent link">&para;</a></h1>
 <p>heater: extruder</p>
-<h1 id="_84">关联此风扇的加热器的配置部分名称。<a class="headerlink" href="#_84" title="Permanent link">&para;</a></h1>
-<h1 id="_85">如果加热器被启用，则此风扇会被启用。<a class="headerlink" href="#_85" title="Permanent link">&para;</a></h1>
-<h1 id="_86">必须提供此参数。<a class="headerlink" href="#_86" title="Permanent link">&para;</a></h1>
+<h1 id="_93">关联此风扇的加热器的配置部分名称。<a class="headerlink" href="#_93" title="Permanent link">&para;</a></h1>
+<h1 id="_94">如果加热器被启用，则此风扇会被启用。<a class="headerlink" href="#_94" title="Permanent link">&para;</a></h1>
+<h1 id="_95">必须提供此参数。<a class="headerlink" href="#_95" title="Permanent link">&para;</a></h1>
 <h1 id="heater_temp-500">heater_temp: 50.0<a class="headerlink" href="#heater_temp-500" title="Permanent link">&para;</a></h1>
-<h1 id="_87">加热器必须超过的温度以启用此风扇。<a class="headerlink" href="#_87" title="Permanent link">&para;</a></h1>
+<h1 id="_96">加热器必须超过的温度以启用此风扇。<a class="headerlink" href="#_96" title="Permanent link">&para;</a></h1>
 <h1 id="50_4">默认值为50摄氏度。<a class="headerlink" href="#50_4" title="Permanent link">&para;</a></h1>
 <h1 id="fan_speed-10">fan_speed: 1.0<a class="headerlink" href="#fan_speed-10" title="Permanent link">&para;</a></h1>
 <h1 id="pwm0010">启用此风扇时的PWM速度(表示为0.0到1.0之间的值)。<a class="headerlink" href="#pwm0010" title="Permanent link">&para;</a></h1>
@@ -3129,7 +3189,7 @@ off_below:</p>
 <h1 id="pwm0010_1">启用此风扇时的PWM速度(表示为0.0到1.0之间的值)。<a class="headerlink" href="#pwm0010_1" title="Permanent link">&para;</a></h1>
 <h1 id="10_3">默认值为1.0。<a class="headerlink" href="#10_3" title="Permanent link">&para;</a></h1>
 <h1 id="idle_timeout-30">idle_timeout: 30<a class="headerlink" href="#idle_timeout-30" title="Permanent link">&para;</a></h1>
-<h1 id="_88">如果打印机没有进行任何运动或加热/冷却活动时间超过<a class="headerlink" href="#_88" title="Permanent link">&para;</a></h1>
+<h1 id="_97">如果打印机没有进行任何运动或加热/冷却活动时间超过<a class="headerlink" href="#_97" title="Permanent link">&para;</a></h1>
 <h1 id="idle_timeout">idle_timeout秒数，风扇将被禁用。<a class="headerlink" href="#idle_timeout" title="Permanent link">&para;</a></h1>
 <h1 id="30">默认值为30秒。<a class="headerlink" href="#30" title="Permanent link">&para;</a></h1>
 <h1 id="idle_speed-00">idle_speed: 0.0<a class="headerlink" href="#idle_speed-00" title="Permanent link">&para;</a></h1>
@@ -3155,7 +3215,7 @@ min_temp:
 max_temp:</p>
 <h1 id="extruder_3">参见"extruder"部分以获取对这些参数的描述。<a class="headerlink" href="#extruder_3" title="Permanent link">&para;</a></h1>
 <h1 id="target_temp-400">target_temp: 40.0<a class="headerlink" href="#target_temp-400" title="Permanent link">&para;</a></h1>
-<h1 id="_89">目标温度。此参数必须提供。<a class="headerlink" href="#_89" title="Permanent link">&para;</a></h1>
+<h1 id="_98">目标温度。此参数必须提供。<a class="headerlink" href="#_98" title="Permanent link">&para;</a></h1>
 <h1 id="max_speed-10">max_speed: 1.0<a class="headerlink" href="#max_speed-10" title="Permanent link">&para;</a></h1>
 <h1 id="0010_3">当传感器温度超过目标温度的最大风扇速度(表示为0.0到1.0之间的值)。<a class="headerlink" href="#0010_3" title="Permanent link">&para;</a></h1>
 <h1 id="10_4">默认值为1.0。<a class="headerlink" href="#10_4" title="Permanent link">&para;</a></h1>
@@ -3196,8 +3256,8 @@ pin:</p>
 <h1 id="pwm0010_2">每个PWM周期的时间(秒)。默认值为0.010秒。<a class="headerlink" href="#pwm0010_2" title="Permanent link">&para;</a></h1>
 <h1 id="hardware_pwm-false_1">hardware_pwm: False<a class="headerlink" href="#hardware_pwm-false_1" title="Permanent link">&para;</a></h1>
 <h1 id="pwmpwmpwm_1">使用硬件PWM而不是软件PWM。硬件PWM通常可以达到<a class="headerlink" href="#pwmpwmpwm_1" title="Permanent link">&para;</a></h1>
-<h1 id="_90">更高的脉冲宽度调制频率，因此可以获得更平滑的尺寸变化。<a class="headerlink" href="#_90" title="Permanent link">&para;</a></h1>
-<h1 id="false">默认值为False。<a class="headerlink" href="#false" title="Permanent link">&para;</a></h1>
+<h1 id="_99">更高的脉冲宽度调制频率，因此可以获得更平滑的尺寸变化。<a class="headerlink" href="#_99" title="Permanent link">&para;</a></h1>
+<h1 id="false_3">默认值为False。<a class="headerlink" href="#false_3" title="Permanent link">&para;</a></h1>
 <h1 id="initial_red-00">initial_RED: 0.0<a class="headerlink" href="#initial_red-00" title="Permanent link">&para;</a></h1>
 <h1 id="initial_green-00">initial_GREEN: 0.0<a class="headerlink" href="#initial_green-00" title="Permanent link">&para;</a></h1>
 <h1 id="initial_blue-00">initial_BLUE: 0.0<a class="headerlink" href="#initial_blue-00" title="Permanent link">&para;</a></h1>
@@ -3234,11 +3294,11 @@ pin:</p>
 <h1 id="pwmtrue00">引脚应该输出到的初始值。如果pwm为True，则应该在0.0<a class="headerlink" href="#pwmtrue00" title="Permanent link">&para;</a></h1>
 <h1 id="10010">到1.0之间，否则应该为0或1。默认值为0。<a class="headerlink" href="#10010" title="Permanent link">&para;</a></h1>
 <h1 id="shutdown_value-0">shutdown_value: 0<a class="headerlink" href="#shutdown_value-0" title="Permanent link">&para;</a></h1>
-<h1 id="_91">当微控制器关闭时，引脚应该设置到的值。<a class="headerlink" href="#_91" title="Permanent link">&para;</a></h1>
+<h1 id="_100">当微控制器关闭时，引脚应该设置到的值。<a class="headerlink" href="#_100" title="Permanent link">&para;</a></h1>
 <h1 id="pwmtrue001001">如果pwm为True，则应该在0.0到1.0之间，否则应该为0或1。<a class="headerlink" href="#pwmtrue001001" title="Permanent link">&para;</a></h1>
 <h1 id="0_7">默认值为0。<a class="headerlink" href="#0_7" title="Permanent link">&para;</a></h1>
 <h1 id="maximum_mcu_duration-0">maximum_mcu_duration: 0<a class="headerlink" href="#maximum_mcu_duration-0" title="Permanent link">&para;</a></h1>
-<h1 id="_92">最长时间长期驱动输出脉冲的最大时间长度。<a class="headerlink" href="#_92" title="Permanent link">&para;</a></h1>
+<h1 id="_101">最长时间长期驱动输出脉冲的最大时间长度。<a class="headerlink" href="#_101" title="Permanent link">&para;</a></h1>
 <h1 id="0mcu">如果不是0，MCU将周期性停止驱动该线并等待主机重新启用该输出。<a class="headerlink" href="#0mcu" title="Permanent link">&para;</a></h1>
 <h1 id="mcu_2">这对于驱动可能在意外MCU硬件故障后无限期致动的设备（如继电器）很有用。<a class="headerlink" href="#mcu_2" title="Permanent link">&para;</a></h1>
 <h1 id="0_8">默认值为0(禁用)。<a class="headerlink" href="#0_8" title="Permanent link">&para;</a></h1>
@@ -3248,7 +3308,7 @@ pin:</p>
 <h1 id="hardware_pwm-false_2">hardware_pwm: False<a class="headerlink" href="#hardware_pwm-false_2" title="Permanent link">&para;</a></h1>
 <h1 id="pwmpwmpwm_2">使用硬件PWM而不是软件PWM。使用硬件PWM通常可以达到更高的脉冲<a class="headerlink" href="#pwmpwmpwm_2" title="Permanent link">&para;</a></h1>
 <h1 id="mcu_3">宽度调制频率，但仍然受到MCU能力的限制。<a class="headerlink" href="#mcu_3" title="Permanent link">&para;</a></h1>
-<h1 id="false_1">默认值为False。<a class="headerlink" href="#false_1" title="Permanent link">&para;</a></h1>
+<h1 id="false_4">默认值为False。<a class="headerlink" href="#false_4" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <h3 id="servo">[servo]<a class="headerlink" href="#servo" title="Permanent link">&para;</a></h3>
 <p>伺服（此部分可使用任意标识符定义多次）。</p>
@@ -3257,10 +3317,10 @@ pin:</p>
 pin:</p>
 <h1 id="pwm_5">控制伺服的PWM输出引脚。必须提供此参数。<a class="headerlink" href="#pwm_5" title="Permanent link">&para;</a></h1>
 <h1 id="maximum_servo_angle-180">maximum_servo_angle: 180<a class="headerlink" href="#maximum_servo_angle-180" title="Permanent link">&para;</a></h1>
-<h1 id="_93">伺服可以命令到的最大角度。<a class="headerlink" href="#_93" title="Permanent link">&para;</a></h1>
+<h1 id="_102">伺服可以命令到的最大角度。<a class="headerlink" href="#_102" title="Permanent link">&para;</a></h1>
 <h1 id="180">默认值为180。<a class="headerlink" href="#180" title="Permanent link">&para;</a></h1>
 <h1 id="minimum_pulse_width-0001">minimum_pulse_width: 0.001<a class="headerlink" href="#minimum_pulse_width-0001" title="Permanent link">&para;</a></h1>
-<h1 id="_94">最小脉冲宽度时间(秒)。<a class="headerlink" href="#_94" title="Permanent link">&para;</a></h1>
+<h1 id="_103">最小脉冲宽度时间(秒)。<a class="headerlink" href="#_103" title="Permanent link">&para;</a></h1>
 <h1 id="00001">对应于0度角。默认值为0.001秒。<a class="headerlink" href="#00001" title="Permanent link">&para;</a></h1>
 <h1 id="maximum_pulse_width-0002">maximum_pulse_width: 0.002<a class="headerlink" href="#maximum_pulse_width-0002" title="Permanent link">&para;</a></h1>
 <h1 id="maximum_servo_angle">最大脉冲宽度时间(秒)。对应于maximum_servo_angle。<a class="headerlink" href="#maximum_servo_angle" title="Permanent link">&para;</a></h1>
@@ -3271,8 +3331,8 @@ pin:</p>
 <p>\<br>
 [static_digital_output my_output]
 pins:</p>
-<h1 id="_95">输出引脚列表(使用逗号分隔)。至少必须提供一个输出引脚。<a class="headerlink" href="#_95" title="Permanent link">&para;</a></h1>
-<h1 id="_96">此参数必须提供。<a class="headerlink" href="#_96" title="Permanent link">&para;</a></h1>
+<h1 id="_104">输出引脚列表(使用逗号分隔)。至少必须提供一个输出引脚。<a class="headerlink" href="#_104" title="Permanent link">&para;</a></h1>
+<h1 id="_105">此参数必须提供。<a class="headerlink" href="#_105" title="Permanent link">&para;</a></h1>
 <h1 id="value-0">value: 0<a class="headerlink" href="#value-0" title="Permanent link">&para;</a></h1>
 <h1 id="00v133v">要输出到引脚的初始值。0为低(0V)，1为高(+3.3V)。<a class="headerlink" href="#00v133v" title="Permanent link">&para;</a></h1>
 <h1 id="0_9">默认值为0。<a class="headerlink" href="#0_9" title="Permanent link">&para;</a></h1>
@@ -3282,8 +3342,8 @@ pins:</p>
 <p>\<br>
 [multi_pin my_multi_pin]
 pins:</p>
-<h1 id="_97">逗号分隔的引脚列表。至少必须提供两个引脚。<a class="headerlink" href="#_97" title="Permanent link">&para;</a></h1>
-<h1 id="_98">此参数必须提供。<a class="headerlink" href="#_98" title="Permanent link">&para;</a></h1>
+<h1 id="_106">逗号分隔的引脚列表。至少必须提供两个引脚。<a class="headerlink" href="#_106" title="Permanent link">&para;</a></h1>
+<h1 id="_107">此参数必须提供。<a class="headerlink" href="#_107" title="Permanent link">&para;</a></h1>
 <p>\<br></p>
 <p>完成日期：2024年</p>
 
