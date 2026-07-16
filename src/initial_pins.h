@@ -11,5 +11,7 @@ enum { IP_OUT_HIGH = 1 };
 // out/compile_time_request.c (auto generated file)
 extern const struct initial_pin_s initial_pins[];
 extern const int initial_pins_size;
+extern const int startup_state_pins[];
+extern const int startup_state_pins_size;
 
 #endif // initial_pins.h

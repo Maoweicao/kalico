@@ -1,1 +1,0 @@
-/home/mellow/klipper/docs/TSL1401CL_Filament_Width_Sensor.md

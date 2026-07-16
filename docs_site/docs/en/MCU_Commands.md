@@ -1,1 +1,0 @@
-/home/mellow/klipper/docs/MCU_Commands.md

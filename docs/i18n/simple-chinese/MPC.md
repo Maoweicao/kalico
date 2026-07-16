@@ -23,7 +23,99 @@ MPC相比PID控制提供多个优势：
 > [!CAUTION]
 > 此功能控制3D打印机的可变得非常热的部分。所有标准Kalico警告适用。
 > 请将所有问题和错误报告到[GitHub](https://github.com/KalicoCrew/kalico/issues)
-> 或[Discord](Contact.md#discord)。
+
+## MPC 材料和加热器计算器
+
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container{--calc-primary:#e67e22;--calc-primary-hover:#d35400;--calc-bg:#fff;--calc-border:#ddd;--calc-text:#333;--calc-text-light:#666;--calc-result-bg:#f8f9fa;--calc-tab-bg:#f1f1f1;--calc-success:#27ae60}[data-md-color-scheme="slate"] .rd-calc-container,[data-md-color-mode="dark"] .rd-calc-container{--calc-bg:#2d2d2d;--calc-border:#444;--calc-text:#e0e0e0;--calc-text-light:#aaa;--calc-result-bg:#383838;--calc-tab-bg:#363636}.rd-calc-container *{box-sizing:border-box}.rd-calc-container{background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:8px;padding:0;margin:1.5em 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}.rd-calc-header{background:var(--calc-primary);color:#fff;padding:12px 20px;font-size:1.1em;font-weight:600;display:flex;align-items:center;gap:8px}.rd-calc-header svg{width:20px;height:20px;fill:currentColor}.rd-calc-tabs{display:flex;flex-wrap:wrap;background:var(--calc-tab-bg);border-bottom:1px solid var(--calc-border);padding:0;margin:0}.rd-calc-tab{padding:10px 16px;cursor:pointer;border:none;background:transparent;color:var(--calc-text-light);font-size:.85em;font-weight:500;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap}.rd-calc-tab:hover{color:var(--calc-primary);background:rgba(230,126,34,.05)}.rd-calc-tab.active{color:var(--calc-primary);border-bottom-color:var(--calc-primary);background:var(--calc-bg)}.rd-calc-content{padding:20px}.rd-calc-panel{display:none}.rd-calc-panel.active{display:block}.rd-calc-panel h4{margin:0 0 8px;color:var(--calc-text);font-size:1em}.rd-calc-form{display:grid;gap:12px}.rd-calc-field{display:grid;gap:4px}.rd-calc-field label{font-size:.85em;color:var(--calc-text-light);font-weight:500}.rd-calc-field input,.rd-calc-field select{padding:8px 12px;border:1px solid var(--calc-border);border-radius:4px;font-size:.95em;background:var(--calc-bg);color:var(--calc-text);transition:border-color .2s}.rd-calc-field input:focus,.rd-calc-field select:focus{outline:none;border-color:var(--calc-primary);box-shadow:0 0 0 2px rgba(230,126,34,.2)}.rd-calc-field .hint{font-size:.75em;color:var(--calc-text-light);margin-top:2px}.rd-calc-btn{background:var(--calc-primary);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:.95em;font-weight:600;cursor:pointer;transition:background .2s;justify-self:start}.rd-calc-btn:hover{background:var(--calc-primary-hover)}.rd-calc-result{margin-top:16px;padding:12px 16px;background:var(--calc-result-bg);border-radius:4px;display:none}.rd-calc-result.show{display:block}.rd-calc-result .label{font-size:.8em;color:var(--calc-text-light);margin-bottom:4px}.rd-calc-result .value{font-size:1.4em;font-weight:700;color:var(--calc-success);font-family:monospace}.rd-calc-result .config{margin-top:8px;padding:8px 12px;background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:4px;font-family:monospace;font-size:.85em;color:var(--calc-text);user-select:all}.rd-calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.rd-calc-row{grid-template-columns:1fr}.rd-calc-tab{padding:8px 10px;font-size:.78em}.rd-calc-content{padding:16px}}</style>
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    MPC 材料和加热器计算器
+  </div>
+  <div class="rd-calc-tabs">
+    <button class="rd-calc-tab active" data-tab="material">材料参数</button>
+    <button class="rd-calc-tab" data-tab="ptc">PTC 加热器功率</button>
+  </div>
+  <div class="rd-calc-content">
+    <div class="rd-calc-panel active" data-panel="material">
+      <h4>灯丝材料参数</h4>
+      <div class="rd-calc-form">
+        <div class="rd-calc-field">
+          <label>选择材料</label>
+          <select id="mpc_material" onchange="lookupMaterial()">
+            <option value="">-- 选择材料 --</option>
+            <option value="PLA|1.25|2.00">PLA</option>
+            <option value="PETG|1.27|1.95">PETG</option>
+            <option value="ABS|1.06|1.83">ABS</option>
+            <option value="ASA|1.07|1.70">ASA</option>
+            <option value="PC|1.20|1.50">PC</option>
+            <option value="PC+ABS|1.15|1.85">PC+ABS</option>
+            <option value="PA|1.15|2.25">PA (尼龙)</option>
+            <option value="PA6|1.12|2.25">PA6</option>
+            <option value="TPU|1.21|1.75">TPU</option>
+            <option value="TPU-90A|1.15|1.75">TPU-90A</option>
+            <option value="TPU-95A|1.22|1.75">TPU-95A</option>
+          </select>
+        </div>
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>灯丝密度 (g/cm³)</label>
+            <input type="number" id="mpc_density" step="any" placeholder="例如: 1.20">
+            <span class="hint">filament_density 配置参数</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>比热容 (J/g/K)</label>
+            <input type="number" id="mpc_heat" step="any" placeholder="例如: 1.80">
+            <span class="hint">filament_heat_capacity 配置参数</span>
+          </div>
+        </div>
+        <button class="rd-calc-btn" onclick="generateMPCCommand()">生成 MPC_SET 命令</button>
+        <div class="rd-calc-result" id="material_result">
+          <div class="label">MPC_SET G-Code 命令</div>
+          <div class="value" id="material_value" style="font-size:1em;word-break:break-all"></div>
+          <div class="config" id="material_config"></div>
+        </div>
+      </div>
+    </div>
+    <div class="rd-calc-panel" data-panel="ptc">
+      <h4>PTC 加热器功率查询</h4>
+      <div class="rd-calc-form">
+        <div class="rd-calc-field">
+          <label>加热器型号</label>
+          <select id="mpc_heater">
+            <option value="rapido2">Rapido 2</option>
+            <option value="rapido1">Rapido 1</option>
+            <option value="dragonace_old">Dragon Ace (旧版)</option>
+            <option value="dragonace_new">Dragon Ace (新版)</option>
+            <option value="revo40">Revo 40W</option>
+            <option value="revo60">Revo 60W</option>
+          </select>
+        </div>
+        <div class="rd-calc-field">
+          <label>打印温度 (°C)</label>
+          <input type="number" id="mpc_temp" value="240" step="1">
+          <span class="hint">选择您的典型打印温度</span>
+        </div>
+        <button class="rd-calc-btn" onclick="lookupPTC()">查询功率</button>
+        <div class="rd-calc-result" id="ptc_result">
+          <div class="label">推荐 heater_power</div>
+          <div class="value" id="ptc_value"></div>
+          <div class="config" id="ptc_config"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      document.querySelectorAll('.rd-calc-tab').forEach(function(t){t.addEventListener('click',function(){var c=this.closest('.rd-calc-container');c.querySelectorAll('.rd-calc-tab').forEach(function(x){x.classList.remove('active')});c.querySelectorAll('.rd-calc-panel').forEach(function(x){x.classList.remove('active')});this.classList.add('active');c.querySelector('[data-panel="'+this.dataset.tab+'"]').classList.add('active')})});
+      var ptcData={rapido2:{180:72,200:70,220:67,240:65,260:64,280:62,300:60},rapido1:{180:52,200:51,220:50,240:49,260:48,280:47,300:46},dragonace_old:{180:51,200:48,220:46,240:44,260:43,280:41,300:39},dragonace_new:{180:66,200:63,220:60,240:58,260:55,280:53,300:51},revo40:{180:30,200:29,220:28,240:28,260:27,280:27,300:26},revo60:{180:45,200:44,220:43,240:42,260:40,280:39,300:38}};
+      window.lookupMaterial=function(){var sel=document.getElementById('mpc_material').value;if(!sel)return;var parts=sel.split('|');document.getElementById('mpc_density').value=parts[1];document.getElementById('mpc_heat').value=parts[2]};
+      window.generateMPCCommand=function(){var d=document.getElementById('mpc_density').value;var h=document.getElementById('mpc_heat').value;if(!d||!h)return;document.getElementById('material_value').textContent='MPC_SET HEATER=extruder FILAMENT_DENSITY='+d+' FILAMENT_HEAT_CAPACITY='+h;document.getElementById('material_config').textContent='filament_density: '+d+'\nfilament_heat_capacity: '+h;document.getElementById('material_result').classList.add('show')};
+      window.lookupPTC=function(){var heater=document.getElementById('mpc_heater').value;var temp=parseInt(document.getElementById('mpc_temp').value);var data=ptcData[heater];if(!data)return;var temps=Object.keys(data).map(Number).sort(function(a,b){return a-b});var best=temps[0];for(var i=0;i<temps.length;i++){if(Math.abs(temps[i]-temp)<Math.abs(best-temp))best=temps[i]}var power=data[best];document.getElementById('ptc_value').textContent=power+' W ('+best+'°C)';document.getElementById('ptc_config').textContent='heater_power: '+power;document.getElementById('ptc_result').classList.add('show')};
+    })();
+  </script>
+</div>
 
 # 基本配置
 

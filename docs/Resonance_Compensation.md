@@ -21,6 +21,122 @@ can be enabled. Besides ringing, Input Shaping typically reduces the vibrations
 and shaking of the printer in general, and may also improve the reliability
 of the stealthChop mode of Trinamic stepper drivers.
 
+## Input Shaper Calculator
+
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container{--calc-primary:#e67e22;--calc-primary-hover:#d35400;--calc-bg:#fff;--calc-border:#ddd;--calc-text:#333;--calc-text-light:#666;--calc-result-bg:#f8f9fa;--calc-tab-bg:#f1f1f1;--calc-success:#27ae60}[data-md-color-scheme="slate"] .rd-calc-container,[data-md-color-mode="dark"] .rd-calc-container{--calc-bg:#2d2d2d;--calc-border:#444;--calc-text:#e0e0e0;--calc-text-light:#aaa;--calc-result-bg:#383838;--calc-tab-bg:#363636}.rd-calc-container *{box-sizing:border-box}.rd-calc-container{background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:8px;padding:0;margin:1.5em 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}.rd-calc-header{background:var(--calc-primary);color:#fff;padding:12px 20px;font-size:1.1em;font-weight:600;display:flex;align-items:center;gap:8px}.rd-calc-header svg{width:20px;height:20px;fill:currentColor}.rd-calc-tabs{display:flex;flex-wrap:wrap;background:var(--calc-tab-bg);border-bottom:1px solid var(--calc-border);padding:0;margin:0}.rd-calc-tab{padding:10px 16px;cursor:pointer;border:none;background:transparent;color:var(--calc-text-light);font-size:.85em;font-weight:500;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap}.rd-calc-tab:hover{color:var(--calc-primary);background:rgba(230,126,34,.05)}.rd-calc-tab.active{color:var(--calc-primary);border-bottom-color:var(--calc-primary);background:var(--calc-bg)}.rd-calc-content{padding:20px}.rd-calc-panel{display:none}.rd-calc-panel.active{display:block}.rd-calc-panel h4{margin:0 0 8px;color:var(--calc-text);font-size:1em}.rd-calc-panel p.formula{background:var(--calc-result-bg);padding:8px 12px;border-radius:4px;font-family:monospace;font-size:.9em;color:var(--calc-text-light);margin:0 0 16px;border-left:3px solid var(--calc-primary)}.rd-calc-form{display:grid;gap:12px}.rd-calc-field{display:grid;gap:4px}.rd-calc-field label{font-size:.85em;color:var(--calc-text-light);font-weight:500}.rd-calc-field input,.rd-calc-field select{padding:8px 12px;border:1px solid var(--calc-border);border-radius:4px;font-size:.95em;background:var(--calc-bg);color:var(--calc-text);transition:border-color .2s}.rd-calc-field input:focus,.rd-calc-field select:focus{outline:none;border-color:var(--calc-primary);box-shadow:0 0 0 2px rgba(230,126,34,.2)}.rd-calc-field .hint{font-size:.75em;color:var(--calc-text-light);margin-top:2px}.rd-calc-btn{background:var(--calc-primary);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:.95em;font-weight:600;cursor:pointer;transition:background .2s;justify-self:start}.rd-calc-btn:hover{background:var(--calc-primary-hover)}.rd-calc-result{margin-top:16px;padding:12px 16px;background:var(--calc-result-bg);border-radius:4px;display:none}.rd-calc-result.show{display:block}.rd-calc-result .label{font-size:.8em;color:var(--calc-text-light);margin-bottom:4px}.rd-calc-result .value{font-size:1.4em;font-weight:700;color:var(--calc-success);font-family:monospace}.rd-calc-result .config{margin-top:8px;padding:8px 12px;background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:4px;font-family:monospace;font-size:.85em;color:var(--calc-text);user-select:all}.rd-calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.rd-calc-row{grid-template-columns:1fr}.rd-calc-tab{padding:8px 10px;font-size:.78em}.rd-calc-content{padding:16px}}</style>
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    Input Shaper Calculator
+  </div>
+  <div class="rd-calc-tabs">
+    <button class="rd-calc-tab active" data-tab="freq">Ringing Freq</button>
+    <button class="rd-calc-tab" data-tab="tune">Tuning Tower</button>
+    <button class="rd-calc-tab" data-tab="newfreq">New Frequency</button>
+    <button class="rd-calc-tab" data-tab="select">Shaper Select</button>
+  </div>
+  <div class="rd-calc-content">
+    <!-- Ringing Frequency Calculator -->
+    <div class="rd-calc-panel active" data-panel="freq">
+      <h4>Calculate Ringing Frequency</h4>
+      <p class="formula">frequency = velocity × oscillations / distance (Hz)</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>Outer Perimeter Velocity (mm/s)</label>
+            <input type="number" id="is_velocity" value="100" step="any">
+            <span class="hint">V - printing speed used in test</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>Number of Oscillations</label>
+            <input type="number" id="is_oscillations" placeholder="e.g. 6">
+            <span class="hint">N - count the oscillation marks</span>
+          </div>
+        </div>
+        <div class="rd-calc-field">
+          <label>Measured Distance (mm)</label>
+          <input type="number" id="is_distance" step="any" placeholder="e.g. 12.14">
+          <span class="hint">D - distance between oscillation marks</span>
+        </div>
+        <button class="rd-calc-btn" onclick="calcFreq()">Calculate</button>
+        <div class="rd-calc-result" id="freq_result">
+          <div class="label">Ringing Frequency</div>
+          <div class="value" id="freq_value"></div>
+          <div class="config" id="freq_config"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Tuning Tower Parameters -->
+    <div class="rd-calc-panel" data-panel="tune">
+      <h4>Calculate TUNING_TOWER Parameters</h4>
+      <p class="formula">start = shaper_freq × 83 / 132<br>factor = shaper_freq / 66</p>
+      <div class="rd-calc-field">
+        <label>Current Shaper Frequency (Hz)</label>
+        <input type="number" id="is_tune_freq" step="any" placeholder="e.g. 45">
+        <span class="hint">The measured ringing frequency</span>
+      </div>
+      <button class="rd-calc-btn" onclick="calcTune()">Calculate</button>
+      <div class="rd-calc-result" id="tune_result">
+        <div class="label">TUNING_TOWER Parameters</div>
+        <div class="value" id="tune_value"></div>
+        <div class="config" id="tune_config"></div>
+      </div>
+    </div>
+    <!-- New Frequency Calculator -->
+    <div class="rd-calc-panel" data-panel="newfreq">
+      <h4>Calculate New Shaper Frequency</h4>
+      <p class="formula">new_freq = old_freq × (39 + 5 × band_number) / 66</p>
+      <div class="rd-calc-row">
+        <div class="rd-calc-field">
+          <label>Old Shaper Frequency (Hz)</label>
+          <input type="number" id="is_old_freq" step="any" placeholder="e.g. 45">
+          <span class="hint">Original frequency from config</span>
+        </div>
+        <div class="rd-calc-field">
+          <label>Best Band Number</label>
+          <input type="number" id="is_band" placeholder="e.g. 4" min="1">
+          <span class="hint">Band with least ringing (from bottom)</span>
+        </div>
+      </div>
+      <button class="rd-calc-btn" onclick="calcNewFreq()">Calculate</button>
+      <div class="rd-calc-result" id="newfreq_result">
+        <div class="label">New Shaper Frequency</div>
+        <div class="value" id="newfreq_value"></div>
+        <div class="config" id="newfreq_config"></div>
+      </div>
+    </div>
+    <!-- Shaper Selector -->
+    <div class="rd-calc-panel" data-panel="select">
+      <h4>Input Shaper Selection Guide</h4>
+      <div class="rd-calc-field">
+        <label>Resonance Frequency X (Hz)</label>
+        <input type="number" id="is_sel_freq_x" step="any" placeholder="e.g. 49.4">
+      </div>
+      <div class="rd-calc-field">
+        <label>Resonance Frequency Y (Hz)</label>
+        <input type="number" id="is_sel_freq_y" step="any" placeholder="e.g. 42.1">
+      </div>
+      <button class="rd-calc-btn" onclick="calcShaperSelect()">Get Recommendation</button>
+      <div class="rd-calc-result" id="select_result">
+        <div class="label">Recommended Configuration</div>
+        <div class="value" id="select_value" style="font-size:1.1em"></div>
+        <div class="config" id="select_config"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      document.querySelectorAll('.rd-calc-tab').forEach(function(t){t.addEventListener('click',function(){var c=this.closest('.rd-calc-container');c.querySelectorAll('.rd-calc-tab').forEach(function(x){x.classList.remove('active')});c.querySelectorAll('.rd-calc-panel').forEach(function(x){x.classList.remove('active')});this.classList.add('active');c.querySelector('[data-panel="'+this.dataset.tab+'"]').classList.add('active')})});
+      window.calcFreq=function(){var v=parseFloat(document.getElementById('is_velocity').value);var n=parseFloat(document.getElementById('is_oscillations').value);var d=parseFloat(document.getElementById('is_distance').value);if(isNaN(v)||isNaN(n)||isNaN(d)||d===0)return;var f=v*n/d;document.getElementById('freq_value').textContent=f.toFixed(1)+' Hz';document.getElementById('freq_config').textContent='shaper_freq: '+f.toFixed(1);document.getElementById('freq_result').classList.add('show')};
+      window.calcTune=function(){var f=parseFloat(document.getElementById('is_tune_freq').value);if(isNaN(f))return;var s=f*83/132;var fc=f/66;document.getElementById('tune_value').textContent='start='+s.toFixed(2)+', factor='+fc.toFixed(4);document.getElementById('tune_config').textContent='TUNING_TOWER COMMAND=SET_INPUT_SHAPER PARAMETER=SHAPER_FREQ_X START='+s.toFixed(2)+' FACTOR='+fc.toFixed(4)+' BAND=5';document.getElementById('tune_result').classList.add('show')};
+      window.calcNewFreq=function(){var of=parseFloat(document.getElementById('is_old_freq').value);var b=parseInt(document.getElementById('is_band').value);if(isNaN(of)||isNaN(b))return;var nf=of*(39+5*b)/66;document.getElementById('newfreq_value').textContent=nf.toFixed(2)+' Hz';document.getElementById('newfreq_config').textContent='shaper_freq: '+nf.toFixed(2);document.getElementById('newfreq_result').classList.add('show')};
+      window.calcShaperSelect=function(){var fx=parseFloat(document.getElementById('is_sel_freq_x').value);var fy=parseFloat(document.getElementById('is_sel_freq_y').value);if(isNaN(fx)||isNaN(fy))return;var f=Math.min(fx,fy);var rec='';var cfg='';if(f>=50){rec='MZV or EI shaper recommended. Try MZV first.';cfg='shaper_type: mzv'}else if(f>=35){rec='MZV shaper recommended for good balance of smoothing and ringing reduction.';cfg='shaper_type: mzv'}else if(f>=25){rec='ZV or MZV shaper. ZV has less smoothing but more sensitive to freq errors.';cfg='shaper_type: zv'}else{rec='Low frequency detected. Consider stiffening printer or reducing moving mass. Use ZV shaper with caution.';cfg='shaper_type: zv'}cfg+='\nshaper_freq_x: '+fx.toFixed(1)+'\nshaper_freq_y: '+fy.toFixed(1);document.getElementById('select_value').textContent=rec;document.getElementById('select_config').textContent=cfg;document.getElementById('select_result').classList.add('show')};
+      document.querySelectorAll('.rd-calc-field input').forEach(function(i){i.addEventListener('keypress',function(e){if(e.key==='Enter'){var b=this.closest('.rd-calc-panel').querySelector('.rd-calc-btn');if(b)b.click()}})});
+    })();
+  </script>
+</div>
+
 ## Tuning
 
 Basic tuning requires measuring the ringing frequencies of the printer

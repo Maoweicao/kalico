@@ -523,6 +523,142 @@ class Printer:
             self.run_result = result
         self.reactor.end()
 
+    # Print state query methods / 打印状态查询方法
+    def _is_printing(self):
+        eventtime = self.reactor.monotonic()
+        virtual_sdcard = self.lookup_object('virtual_sdcard', None)
+        if virtual_sdcard is None:
+            return False
+        print_stats = virtual_sdcard.print_stats
+        if print_stats is None:
+            return False
+        idle_timeout = self.lookup_object("idle_timeout", None)
+        if idle_timeout is None:
+            return False
+        if (print_stats.get_status(eventtime)["state"] == "printing"
+                or print_stats.get_status(eventtime)["state"] == "paused"
+                or idle_timeout.get_status(eventtime)["state"] == "Printing"):
+            return True
+        return False
+
+    def _is_cancelled(self):
+        eventtime = self.reactor.monotonic()
+        virtual_sdcard = self.lookup_object('virtual_sdcard', None)
+        if virtual_sdcard is None:
+            return False
+        print_stats = virtual_sdcard.print_stats
+        if print_stats is None:
+            return False
+        if print_stats.get_status(eventtime)["state"] == "cancelled":
+            return True
+        return False
+
+    def _is_complete(self):
+        eventtime = self.reactor.monotonic()
+        virtual_sdcard = self.lookup_object('virtual_sdcard', None)
+        if virtual_sdcard is None:
+            return False
+        print_stats = virtual_sdcard.print_stats
+        if print_stats is None:
+            return False
+        if print_stats.get_status(eventtime)["state"] == "complete":
+            return True
+        return False
+
+    def _is_paused(self):
+        eventtime = self.reactor.monotonic()
+        virtual_sdcard = self.lookup_object('virtual_sdcard', None)
+        if virtual_sdcard is None:
+            return False
+        print_stats = virtual_sdcard.print_stats
+        if print_stats is None:
+            return False
+        if print_stats.get_status(eventtime)["state"] == "paused":
+            return True
+        return False
+
+    def _internal_error(self, msg, gcode, is_pause=False,
+                        is_off_heaters=False, heater=None):
+        # Handle internal errors with optional pause / 处理内部错误
+        gcode._respond_error("Internal error: %s" % msg)
+        if is_pause:
+            toolhead = self.lookup_object('toolhead')
+            if heater is not None:
+                heater.is_wait = False
+            toolhead.get_extruder().get_heater().can_extrude = True
+            if not self._is_paused():
+                gcode._respond_error("Print pause / 打印暂停")
+                gcode.run_script('PAUSE')
+            toolhead.register_lookahead_callback((lambda pt: None))
+        if is_off_heaters and heater is not None:
+            gcode._respond_error(
+                "The heater is malfunctioning and has stopped heating. "
+                "Please manually set the temperature before resuming "
+                "printing. / 加热器故障已停止加热，请手动设置温度后再恢复打印"
+            )
+            if heater.min_temp > 0:
+                heater.set_temp(heater.min_temp)
+            else:
+                heater.set_temp(0.)
+
+    def _internal_non_fatal_error(self, mcu_name, shutdown_clock, params):
+        # Handle non-fatal MCU errors (e.g. ADC out of range)
+        # 处理非致命MCU错误（如ADC超范围）
+        if self.in_shutdown_state:
+            return
+        if params is None:
+            return
+        if "data" not in params:
+            return
+        event_type = params["#name"]
+        data = params["data"]
+        if data is None or data == "":
+            return
+        data_str = data.decode("utf-8") if isinstance(data, bytes) else str(data)
+        if getattr(self, 'last_non_fatal_error', None) == (
+            mcu_name, shutdown_clock, data_str
+        ):
+            return
+        self.last_non_fatal_error = (mcu_name, shutdown_clock, data_str)
+        gcode = self.lookup_object("gcode")
+        if gcode is None:
+            return
+        if data_str.startswith("ADC out of range"):
+            pheater = self.lookup_object("heaters", None)
+            if pheater is not None:
+                all_heaters = pheater.get_all_heaters()
+                for heater_name in all_heaters:
+                    heater = pheater.lookup_heater(heater_name)
+                    if heater is not None:
+                        heater.is_wait = False
+                pheater.turn_off_all_heaters()
+            toolhead = self.lookup_object("toolhead")
+            if toolhead is not None:
+                toolhead.get_extruder().get_heater().can_extrude = True
+            if not self.in_shutdown_state and self._is_printing():
+                if not self._is_paused():
+                    gcode._respond_error(
+                        "Error from MCU '%s': %s" % (mcu_name, data_str)
+                    )
+                    gcode._respond_error(
+                        "A non-fatal error has occurred; printing has been "
+                        "paused. / 非致命错误发生，打印已暂停"
+                    )
+                    self.reactor.register_callback(
+                        lambda e: gcode.run_script("PAUSE")
+                    )
+            else:
+                self.invoke_async_shutdown(
+                    "MCU shutdown",
+                )
+                self.update_error_msg(
+                    data_str,
+                    "\nThis generally occurs when a heater temperature "
+                    "exceeds its configured min_temp or max_temp.\n",
+                )
+            if toolhead is not None:
+                toolhead.register_lookahead_callback((lambda pt: None))
+
     wait_interrupted = WaitInterruption
 
     def wait_while(self, condition_cb, error_on_cancel=True, interval=1.0):
@@ -548,6 +684,46 @@ class Printer:
 ######################################################################
 
 
+def get_module_file_suffixes():
+    try:
+        machinery = importlib.import_module("importlib.machinery")
+        suffixes = (
+            machinery.SOURCE_SUFFIXES
+            + machinery.BYTECODE_SUFFIXES
+            + machinery.EXTENSION_SUFFIXES
+        )
+    except (ImportError, AttributeError):
+        import imp
+        suffixes = [
+            s
+            for s, mode, ftype in imp.get_suffixes()
+            if ftype in (imp.PY_SOURCE, imp.PY_COMPILED, imp.C_EXTENSION)
+        ]
+    return tuple(sorted(set(suffixes), key=len, reverse=True))
+
+
+MODULE_FILE_SUFFIXES = get_module_file_suffixes()
+
+
+def get_module_file_suffix(fname):
+    if fname.startswith("__init__."):
+        return None
+    for suffix in MODULE_FILE_SUFFIXES:
+        if fname.endswith(suffix):
+            stem = fname[: -len(suffix)]
+            if suffix == ".so" and (".cpython-" in stem or ".pypy-" in stem):
+                return None
+            return suffix
+    return None
+
+
+def module_file_exists(dirname, module_name):
+    for suffix in MODULE_FILE_SUFFIXES:
+        if os.path.exists(os.path.join(dirname, module_name + suffix)):
+            return True
+    return False
+
+
 def import_test():
     # Import all optional modules (used as a build test)
     from unittest import mock
@@ -558,8 +734,9 @@ def import_test():
     dname = os.path.dirname(__file__)
     for mname in ["extras", "kinematics"]:
         for fname in os.listdir(os.path.join(dname, mname)):
-            if fname.endswith(".py") and fname != "__init__.py":
-                module_name = fname[:-3]
+            suffix = get_module_file_suffix(fname)
+            if suffix is not None:
+                module_name = fname[: -len(suffix)]
             else:
                 iname = os.path.join(dname, mname, fname, "__init__.py")
                 if not os.path.exists(iname):
@@ -617,6 +794,12 @@ def main():
         help="api server unix domain socket file mode",
     )
     opts.add_option(
+        "-p",
+        "--tcp-port",
+        dest="tcp_port",
+        help="api tcp server port",
+    )
+    opts.add_option(
         "-l",
         "--logfile",
         dest="logfile",
@@ -629,6 +812,10 @@ def main():
     )
     opts.add_option(
         "-v", action="store_true", dest="verbose", help="enable debug messages"
+    )
+    opts.add_option(
+        "-c", action="store_true", dest="color",
+        help="enable colored log output"
     )
     opts.add_option(
         "-o",
@@ -661,6 +848,7 @@ def main():
         "apiserver_user": options.apiserver_user,
         "apiserver_group": options.apiserver_group,
         "apiserver_file_mode": options.apiserver_file_mode,
+        "tcp_port": options.tcp_port,
         "start_reason": "startup",
     }
 
@@ -688,6 +876,16 @@ def main():
             bglogger.doRollover()
     else:
         logging.getLogger().setLevel(debuglevel)
+    # Setup colored console output if requested
+    if options.color:
+        log_format = "%(asctime)s %(levelname)s %(message)s"
+        date_format = "%Y-%m-%d %H:%M:%S"
+        formatter = queuelogger.SingleLetterLevelFormatter(
+            fmt=log_format, datefmt=date_format, use_color=True
+        )
+        console_handler = logging.StreamHandler(sys.stderr)
+        console_handler.setFormatter(formatter)
+        logging.getLogger().addHandler(console_handler)
     logging.info("=======================")
     logging.info("Starting Klippy...")
     git_info = util.get_git_version()

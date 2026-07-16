@@ -27,6 +27,16 @@ from . import probe, z_tilt
 class QuadGantryLevel:
     def __init__(self, config):
         self.printer = config.get_printer()
+        if config.has_section("z_tilt"):
+            raise config.error(
+                "quad_gantry_level and z_tilt cannot"
+                + " be used simultaneously"
+            )
+        if config.has_section("z_tilt_ng"):
+            raise config.error(
+                "quad_gantry_level and z_tilt_ng cannot"
+                + " be used simultaneously"
+            )
         self.retry_helper = z_tilt.RetryHelper(
             config, "Possibly Z motor numbering is wrong"
         )

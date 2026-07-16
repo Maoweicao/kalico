@@ -39,6 +39,7 @@ SOURCE_FILES = [
     "kin_extruder.c",
     "kin_shaper.c",
     "kin_idex.c",
+    "kin_generic.c",
 ]
 DEST_LIB = "c_helper.so"
 OTHER_FILES = [
@@ -176,6 +177,7 @@ defs_kin_shaper = """
         , int n, double a[], double t[]);
     int input_shaper_set_sk(struct stepper_kinematics *sk
         , struct stepper_kinematics *orig_sk);
+    void input_shaper_update_sk(struct stepper_kinematics *sk);
     struct stepper_kinematics * input_shaper_alloc(void);
 """
 
@@ -185,6 +187,13 @@ defs_kin_idex = """
     int dual_carriage_set_transform(struct stepper_kinematics *sk
         , char axis, double scale, double offs);
     struct stepper_kinematics * dual_carriage_alloc(void);
+"""
+
+defs_kin_generic_cartesian = """
+    struct stepper_kinematics *generic_cartesian_stepper_alloc(double a_x
+        , double a_y, double a_z);
+    void generic_cartesian_stepper_set_coeffs(struct stepper_kinematics *sk
+        , double a_x, double a_y, double a_z);
 """
 
 defs_serialqueue = """
@@ -259,6 +268,7 @@ defs_all = [
     defs_kin_extruder,
     defs_kin_shaper,
     defs_kin_idex,
+    defs_kin_generic_cartesian,
 ]
 
 

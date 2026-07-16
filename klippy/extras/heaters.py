@@ -103,6 +103,7 @@ class Heater:
         self.lock = threading.Lock()
         self.last_temp = self.smoothed_temp = self.target_temp = 0.0
         self.last_temp_time = 0.0
+        self.is_wait = False
         # pwm caching
         self.next_pwm_time = 0.0
         self.last_pwm_value = 0.0
@@ -1428,6 +1429,8 @@ class PrinterHeaters:
 
         def check(eventtime):
             self.gcode.respond_raw(self._get_temp(eventtime))
+            if not heater.is_wait:
+                return False
             return heater.check_busy(eventtime)
 
         self.printer.wait_while(check)
@@ -1437,6 +1440,7 @@ class PrinterHeaters:
         toolhead.register_lookahead_callback((lambda pt: None))
         heater.set_temp(temp)
         if wait and temp:
+            heater.is_wait = True
             self._wait_for_temperature(heater)
 
     cmd_TEMPERATURE_WAIT_help = "Wait for a temperature on a sensor"

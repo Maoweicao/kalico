@@ -8,6 +8,11 @@
 class BedScrews:
     def __init__(self, config):
         self.printer = config.get_printer()
+        if config.has_section("screws_tilt_adjust"):
+            raise config.error(
+                "bed_screws and screws_tilt_adjust cannot"
+                + " be used simultaneously"
+            )
         self.reset()
         self.number_of_screws = 0
         # Read config

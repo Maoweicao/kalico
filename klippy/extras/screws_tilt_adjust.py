@@ -13,6 +13,11 @@ class ScrewsTiltAdjust:
     def __init__(self, config):
         self.config = config
         self.printer = config.get_printer()
+        if config.has_section("bed_screws"):
+            raise config.error(
+                "screws_tilt_adjust and bed_screws cannot"
+                + " be used simultaneously"
+            )
         self.screws = []
         self.results = {}
         self.max_diff = None

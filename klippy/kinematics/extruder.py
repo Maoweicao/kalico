@@ -271,6 +271,20 @@ class PrinterExtruder:
             self.cmd_ACTIVATE_EXTRUDER,
             desc=self.cmd_ACTIVATE_EXTRUDER_help,
         )
+        gcode.register_mux_command(
+            "SET_NOZZLE_DIAMETER",
+            "EXTRUDER",
+            self.name,
+            self.cmd_SET_NOZZLE_DIAMETER,
+            desc=self.cmd_SET_NOZZLE_DIAMETER_help,
+        )
+        gcode.register_mux_command(
+            "SET_FILAMENT_DIAMETER",
+            "EXTRUDER",
+            self.name,
+            self.cmd_SET_FILAMENT_DIAMETER,
+            desc=self.cmd_SET_FILAMENT_DIAMETER_help,
+        )
 
     def update_move_time(self, flush_time, clear_history_time):
         self.trapq_finalize_moves(self.trapq, flush_time, clear_history_time)
@@ -425,6 +439,73 @@ class PrinterExtruder:
         toolhead.flush_step_generation()
         toolhead.set_extruder(self, self.last_position)
         self.printer.send_event("extruder:activate_extruder")
+
+    cmd_SET_NOZZLE_DIAMETER_help = (
+        "Set the nozzle diameter for this extruder"
+        " / 设置此挤出机的喷嘴直径"
+    )
+
+    def cmd_SET_NOZZLE_DIAMETER(self, gcmd):
+        nozzle_diameter = gcmd.get_float("DIAMETER")
+        if nozzle_diameter <= 0.0:
+            raise gcmd.error("Invalid nozzle diameter / 无效的喷嘴直径")
+        if nozzle_diameter == self.nozzle_diameter:
+            gcmd.respond_info("Nozzle diameter unchanged / 喷嘴直径未改变")
+            return
+        self.nozzle_diameter = nozzle_diameter
+        # Recalculate filament area and max extrude ratio
+        filament_diameter = math.sqrt(
+            self.filament_area * 4.0 / math.pi
+        )
+        self.filament_area = math.pi * (filament_diameter * 0.5) ** 2
+        def_max_cross_section = 4.0 * self.nozzle_diameter**2
+        self.max_extrude_ratio = def_max_cross_section / self.filament_area
+        gcmd.respond_info(
+            "Nozzle diameter of %s set to %.3f mm\n"
+            "The SAVE_CONFIG command will update the printer config file\n"
+            "with this parameter and restart the printer.\n"
+            "喷嘴直径已设置为 %.3f mm，SAVE_CONFIG 将更新配置文件"
+            % (self.name, nozzle_diameter, nozzle_diameter)
+        )
+        configfile = self.printer.lookup_object("configfile")
+        configfile.set(
+            self.name, "nozzle_diameter", "%.3f" % (nozzle_diameter,)
+        )
+
+    cmd_SET_FILAMENT_DIAMETER_help = (
+        "Set the filament diameter for this extruder"
+        " / 设置此挤出机的耗材直径"
+    )
+
+    def cmd_SET_FILAMENT_DIAMETER(self, gcmd):
+        filament_diameter = gcmd.get_float("DIAMETER")
+        if filament_diameter <= self.nozzle_diameter:
+            raise gcmd.error(
+                "Invalid filament diameter"
+                " / 无效的耗材直径（必须大于喷嘴直径）"
+            )
+        new_area = math.pi * (filament_diameter * 0.5) ** 2
+        if new_area == self.filament_area:
+            gcmd.respond_info(
+                "Filament diameter unchanged / 耗材直径未改变"
+            )
+            return
+        self.filament_area = new_area
+        def_max_cross_section = 4.0 * self.nozzle_diameter**2
+        self.max_extrude_ratio = def_max_cross_section / self.filament_area
+        gcmd.respond_info(
+            "Filament diameter of %s set to %.3f mm\n"
+            "The SAVE_CONFIG command will update the printer config file\n"
+            "with this parameter and restart the printer.\n"
+            "耗材直径已设置为 %.3f mm，SAVE_CONFIG 将更新配置文件"
+            % (self.name, filament_diameter, filament_diameter)
+        )
+        configfile = self.printer.lookup_object("configfile")
+        configfile.set(
+            self.name,
+            "filament_diameter",
+            "%.3f" % (filament_diameter,),
+        )
 
 
 # Dummy extruder class used when a printer has no extruder at all

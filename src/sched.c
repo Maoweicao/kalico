@@ -86,12 +86,23 @@ void
 sched_add_timer(struct timer *add)
 {
     uint32_t waketime = add->waketime;
+    static uint8_t timer_too_close_count = 0;
     irqstatus_t flag = irq_save();
     struct timer *tl = SchedStatus.timer_list;
     if (unlikely(timer_is_before(waketime, tl->waketime))) {
         // This timer is before all other scheduled timers
-        if (timer_is_before(waketime, timer_read_time()))
-            try_shutdown("Timer too close");
+        if (timer_is_before(waketime, timer_read_time())) {
+            timer_too_close_count++;
+            if (timer_too_close_count > 20) {
+                timer_too_close_count = 0;
+                irq_restore(flag);
+                try_shutdown("Timer too close");
+            }
+            waketime = timer_read_time() + timer_from_us(2);
+            add->waketime = waketime;
+        } else {
+            timer_too_close_count = 0;
+        }
         if (tl == &deleted_timer)
             add->next = deleted_timer.next;
         else

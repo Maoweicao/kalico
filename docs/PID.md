@@ -2,9 +2,85 @@
 # PID
 
 PID control is a widely used control method in the 3D printing world.
-It’s ubiquitous when it comes to temperature control, be it with heaters to
+It's ubiquitous when it comes to temperature control, be it with heaters to
 generate heat or fans to remove heat. This document aims to provide a
 high-level overview of what PID is and how to use it best in Kalico.
+
+## PID Parameter Calculator
+
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container{--calc-primary:#e67e22;--calc-primary-hover:#d35400;--calc-bg:#fff;--calc-border:#ddd;--calc-text:#333;--calc-text-light:#666;--calc-result-bg:#f8f9fa;--calc-tab-bg:#f1f1f1;--calc-success:#27ae60}[data-md-color-scheme="slate"] .rd-calc-container,[data-md-color-mode="dark"] .rd-calc-container{--calc-bg:#2d2d2d;--calc-border:#444;--calc-text:#e0e0e0;--calc-text-light:#aaa;--calc-result-bg:#383838;--calc-tab-bg:#363636}.rd-calc-container *{box-sizing:border-box}.rd-calc-container{background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:8px;padding:0;margin:1.5em 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}.rd-calc-header{background:var(--calc-primary);color:#fff;padding:12px 20px;font-size:1.1em;font-weight:600;display:flex;align-items:center;gap:8px}.rd-calc-header svg{width:20px;height:20px;fill:currentColor}.rd-calc-tabs{display:flex;flex-wrap:wrap;background:var(--calc-tab-bg);border-bottom:1px solid var(--calc-border);padding:0;margin:0}.rd-calc-tab{padding:10px 16px;cursor:pointer;border:none;background:transparent;color:var(--calc-text-light);font-size:.85em;font-weight:500;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap}.rd-calc-tab:hover{color:var(--calc-primary);background:rgba(230,126,34,.05)}.rd-calc-tab.active{color:var(--calc-primary);border-bottom-color:var(--calc-primary);background:var(--calc-bg)}.rd-calc-content{padding:20px}.rd-calc-panel{display:none}.rd-calc-panel.active{display:block}.rd-calc-panel h4{margin:0 0 8px;color:var(--calc-text);font-size:1em}.rd-calc-panel p.formula{background:var(--calc-result-bg);padding:8px 12px;border-radius:4px;font-family:monospace;font-size:.9em;color:var(--calc-text-light);margin:0 0 16px;border-left:3px solid var(--calc-primary)}.rd-calc-form{display:grid;gap:12px}.rd-calc-field{display:grid;gap:4px}.rd-calc-field label{font-size:.85em;color:var(--calc-text-light);font-weight:500}.rd-calc-field input,.rd-calc-field select{padding:8px 12px;border:1px solid var(--calc-border);border-radius:4px;font-size:.95em;background:var(--calc-bg);color:var(--calc-text);transition:border-color .2s}.rd-calc-field input:focus,.rd-calc-field select:focus{outline:none;border-color:var(--calc-primary);box-shadow:0 0 0 2px rgba(230,126,34,.2)}.rd-calc-field .hint{font-size:.75em;color:var(--calc-text-light);margin-top:2px}.rd-calc-btn{background:var(--calc-primary);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:.95em;font-weight:600;cursor:pointer;transition:background .2s;justify-self:start}.rd-calc-btn:hover{background:var(--calc-primary-hover)}.rd-calc-result{margin-top:16px;padding:12px 16px;background:var(--calc-result-bg);border-radius:4px;display:none}.rd-calc-result.show{display:block}.rd-calc-result .label{font-size:.8em;color:var(--calc-text-light);margin-bottom:4px}.rd-calc-result .value{font-size:1.4em;font-weight:700;color:var(--calc-success);font-family:monospace}.rd-calc-result .config{margin-top:8px;padding:8px 12px;background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:4px;font-family:monospace;font-size:.85em;color:var(--calc-text);user-select:all}.rd-calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.rd-calc-row{grid-template-columns:1fr}.rd-calc-tab{padding:8px 10px;font-size:.78em}.rd-calc-content{padding:16px}}</style>
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    PID Parameter Calculator
+  </div>
+  <div class="rd-calc-tabs">
+    <button class="rd-calc-tab active" data-tab="zn">Ziegler-Nichols</button>
+    <button class="rd-calc-tab" data-tab="cc">Cohen-Coon</button>
+  </div>
+  <div class="rd-calc-content">
+    <!-- Ziegler-Nichols Calculator -->
+    <div class="rd-calc-panel active" data-panel="zn">
+      <h4>Ziegler-Nichols PID Calculator</h4>
+      <p class="formula">Extract Ku and Tu from PID_CALIBRATE log</p>
+      <div class="rd-calc-row">
+        <div class="rd-calc-field">
+          <label>Ku (Ultimate Gain)</label>
+          <input type="number" id="pid_ku" step="any" placeholder="e.g. 0.103092">
+          <span class="hint">From "Ziegler-Nichols constants" in log</span>
+        </div>
+        <div class="rd-calc-field">
+          <label>Tu (Ultimate Period)</label>
+          <input type="number" id="pid_tu" step="any" placeholder="e.g. 41.8">
+          <span class="hint">From "Ziegler-Nichols constants" in log</span>
+        </div>
+      </div>
+      <button class="rd-calc-btn" onclick="calcZN()">Calculate</button>
+      <div class="rd-calc-result" id="zn_result">
+        <div class="label">PID Parameters (Ziegler-Nichols Variants)</div>
+        <div class="value" id="zn_value" style="font-size:1em;line-height:1.8"></div>
+        <div class="config" id="zn_config"></div>
+      </div>
+    </div>
+    <!-- Cohen-Coon Calculator -->
+    <div class="rd-calc-panel" data-panel="cc">
+      <h4>Cohen-Coon PID Calculator</h4>
+      <p class="formula">Extract Km, Theta, and Tau from PID_CALIBRATE log</p>
+      <div class="rd-calc-row">
+        <div class="rd-calc-field">
+          <label>Km (Process Gain)</label>
+          <input type="number" id="pid_km" step="any" placeholder="e.g. -17.734845">
+          <span class="hint">From "Cohen-Coon constants" in log</span>
+        </div>
+        <div class="rd-calc-field">
+          <label>Theta (Dead Time)</label>
+          <input type="number" id="pid_theta" step="any" placeholder="e.g. 6.6">
+          <span class="hint">From "Cohen-Coon constants" in log</span>
+        </div>
+      </div>
+      <div class="rd-calc-field">
+        <label>Tau (Time Constant)</label>
+        <input type="number" id="pid_tau" step="any" placeholder="e.g. -10.182680">
+        <span class="hint">From "Cohen-Coon constants" in log</span>
+      </div>
+      <button class="rd-calc-btn" onclick="calcCC()">Calculate</button>
+      <div class="rd-calc-result" id="cc_result">
+        <div class="label">PID Parameters (Cohen-Coon)</div>
+        <div class="value" id="cc_value" style="font-size:1em;line-height:1.8"></div>
+        <div class="config" id="cc_config"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      document.querySelectorAll('.rd-calc-tab').forEach(function(t){t.addEventListener('click',function(){var c=this.closest('.rd-calc-container');c.querySelectorAll('.rd-calc-tab').forEach(function(x){x.classList.remove('active')});c.querySelectorAll('.rd-calc-panel').forEach(function(x){x.classList.remove('active')});this.classList.add('active');c.querySelector('[data-panel="'+this.dataset.tab+'"]').classList.add('active')})});
+      window.calcZN=function(){var ku=parseFloat(document.getElementById('pid_ku').value);var tu=parseFloat(document.getElementById('pid_tu').value);if(isNaN(ku)||isNaN(tu))return;var classic={kp:0.6*ku,ki:1.2*ku/tu,kd:0.075*ku*tu};var p={kp:0.5*ku,ki:0,kd:0};var pi={kp:0.45*ku,ki:0.54*ku/tu,kd:0};var pid={kp:0.6*ku,ki:1.2*ku/tu,kd:0.075*ku*tu};var some={kp:0.33*ku,ki:0.66*ku/tu,kd:0.11*ku*tu};var html='<b>Classic:</b> Kp='+classic.kp.toFixed(3)+' Ki='+classic.ki.toFixed(3)+' Kd='+classic.kd.toFixed(3)+'<br><b>P only:</b> Kp='+p.kp.toFixed(3)+'<br><b>PI:</b> Kp='+pi.kp.toFixed(3)+' Ki='+pi.ki.toFixed(3)+'<br><b>PID:</b> Kp='+pid.kp.toFixed(3)+' Ki='+pid.ki.toFixed(3)+' Kd='+pid.kd.toFixed(3)+'<br><b>No Overshoot:</b> Kp='+some.kp.toFixed(3)+' Ki='+some.ki.toFixed(3)+' Kd='+some.kd.toFixed(3);document.getElementById('zn_value').innerHTML=html;document.getElementById('zn_config').textContent='pid_Kp='+pid.kp.toFixed(3)+' pid_Ki='+pid.ki.toFixed(3)+' pid_Kd='+pid.kd.toFixed(3);document.getElementById('zn_result').classList.add('show')};
+      window.calcCC=function(){var km=parseFloat(document.getElementById('pid_km').value);var theta=parseFloat(document.getElementById('pid_theta').value);var tau=parseFloat(document.getElementById('pid_tau').value);if(isNaN(km)||isNaN(theta)||isNaN(tau))return;var r=theta/tau;var kp=(1/(km*r))*(1+r/3);var ki=kp/(theta*(32+6*r)/(13+8*r));var kd=kp*theta*4/(11+2*r);document.getElementById('cc_value').innerHTML='<b>Cohen-Coon:</b><br>Kp='+kp.toFixed(3)+'<br>Ki='+ki.toFixed(3)+'<br>Kd='+kd.toFixed(3);document.getElementById('cc_config').textContent='pid_Kp='+kp.toFixed(3)+' pid_Ki='+ki.toFixed(3)+' pid_Kd='+kd.toFixed(3);document.getElementById('cc_result').classList.add('show')};
+      document.querySelectorAll('.rd-calc-field input').forEach(function(i){i.addEventListener('keypress',function(e){if(e.key==='Enter'){var b=this.closest('.rd-calc-panel').querySelector('.rd-calc-btn');if(b)b.click()}})});
+    })();
+  </script>
+</div>
 
 ## PID Calibration
 

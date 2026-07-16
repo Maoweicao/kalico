@@ -1504,6 +1504,35 @@ the PROBE command for details on the optional probe parameters. The
 optional `RETRIES`, `RETRY_TOLERANCE`, `HORIZONTAL_MOVE_Z` and
 `ENFORCE_LIFT_SPEED` values override those options specified in the config file.
 
+### [input_pin]
+
+The following command is available when an
+[input_pin config section](Config_Reference.md#input_pin) is enabled.
+
+#### QUERY_INPUT_PIN
+`QUERY_INPUT_PIN PIN=<config_name>`: Query the current state of a
+digital input pin. Reports the pin as "HIGH" or "LOW".
+
+### [adc_pin]
+
+The following command is available when an
+[adc_pin config section](Config_Reference.md#adc_pin) is enabled.
+
+#### QUERY_ADC_PIN
+`QUERY_ADC_PIN PIN=<config_name>`: Report the last analog value
+received for an ADC input pin. This command is equivalent to
+`QUERY_ADC NAME=<config_name>`.
+
+### [dac_pin]
+
+The following command is available when a
+[dac_pin config section](Config_Reference.md#dac_pin) is enabled.
+
+#### SET_DAC_PIN
+`SET_DAC_PIN PIN=<config_name> VALUE=<voltage>`: Set the DAC output
+pin to the specified voltage. VALUE should be between 0.0 and the
+configured scale (default 3.3).
+
 ### [query_adc]
 
 The query_adc module is automatically loaded.

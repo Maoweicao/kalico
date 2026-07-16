@@ -4,6 +4,7 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import logging
+import math
 
 from . import bulk_sensor, bus
 
@@ -103,10 +104,17 @@ class LDC1612:
         self.clock_freq = config.getint(
             "frequency", DEFAULT_LDC1612_FREQ, 2000000, 40000000
         )
-        # Coil frequency divider, assume 12MHz is BTT Eddy
-        # BTT Eddy's coil frequency is > 1/4 of reference clock
-        self.sensor_div = 1 if self.clock_freq != DEFAULT_LDC1612_FREQ else 2
+        # Determine sensor divider (want 4*max_hz < clock_ref)
+        max_hz = config.getfloat("max_sensor_hz", 5000000., 3000000., 20000000.)
+        self.sensor_div = int(math.ceil(4. * max_hz / self.clock_freq))
         self.freq_conv = float(self.clock_freq * self.sensor_div) / (1 << 28)
+        if self.calibration is not None:
+            cal_freqs, cal_zpos = self.calibration.get_calibration()
+            if cal_freqs and max(cal_freqs) > max_hz:
+                pconfig = self.printer.lookup_object("configfile")
+                pconfig.runtime_warning(
+                    "ldc1612 %s: Should set 'max_sensor_hz' to at least %d"
+                    % (self.name, math.ceil(max(cal_freqs))))
         if config.get("intb_pin", None) is not None:
             ppins = config.get_printer().lookup_object("pins")
             pin_params = ppins.lookup_pin(config.get("intb_pin"))

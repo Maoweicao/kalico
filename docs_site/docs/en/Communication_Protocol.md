@@ -1,1 +1,0 @@
-/home/mellow/klipper/docs/Communication_Protocol.md

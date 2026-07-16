@@ -6,6 +6,103 @@ Kalico也可以在"standalone mode"中使用Trinamic驱动程序。但是，当�
 
 除了本文档外，请确保查看[TMC驱动程序配置参考](Config_Reference.md#tmc-stepper-driver-configuration)。
 
+## TMC 驱动计算器
+
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container{--calc-primary:#e67e22;--calc-primary-hover:#d35400;--calc-bg:#fff;--calc-border:#ddd;--calc-text:#333;--calc-text-light:#666;--calc-result-bg:#f8f9fa;--calc-tab-bg:#f1f1f1;--calc-success:#27ae60}[data-md-color-scheme="slate"] .rd-calc-container,[data-md-color-mode="dark"] .rd-calc-container{--calc-bg:#2d2d2d;--calc-border:#444;--calc-text:#e0e0e0;--calc-text-light:#aaa;--calc-result-bg:#383838;--calc-tab-bg:#363636}.rd-calc-container *{box-sizing:border-box}.rd-calc-container{background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:8px;padding:0;margin:1.5em 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}.rd-calc-header{background:var(--calc-primary);color:#fff;padding:12px 20px;font-size:1.1em;font-weight:600;display:flex;align-items:center;gap:8px}.rd-calc-header svg{width:20px;height:20px;fill:currentColor}.rd-calc-tabs{display:flex;flex-wrap:wrap;background:var(--calc-tab-bg);border-bottom:1px solid var(--calc-border);padding:0;margin:0}.rd-calc-tab{padding:10px 16px;cursor:pointer;border:none;background:transparent;color:var(--calc-text-light);font-size:.85em;font-weight:500;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap}.rd-calc-tab:hover{color:var(--calc-primary);background:rgba(230,126,34,.05)}.rd-calc-tab.active{color:var(--calc-primary);border-bottom-color:var(--calc-primary);background:var(--calc-bg)}.rd-calc-content{padding:20px}.rd-calc-panel{display:none}.rd-calc-panel.active{display:block}.rd-calc-panel h4{margin:0 0 8px;color:var(--calc-text);font-size:1em}.rd-calc-panel p.formula{background:var(--calc-result-bg);padding:8px 12px;border-radius:4px;font-family:monospace;font-size:.9em;color:var(--calc-text-light);margin:0 0 16px;border-left:3px solid var(--calc-primary)}.rd-calc-form{display:grid;gap:12px}.rd-calc-field{display:grid;gap:4px}.rd-calc-field label{font-size:.85em;color:var(--calc-text-light);font-weight:500}.rd-calc-field input,.rd-calc-field select{padding:8px 12px;border:1px solid var(--calc-border);border-radius:4px;font-size:.95em;background:var(--calc-bg);color:var(--calc-text);transition:border-color .2s}.rd-calc-field input:focus,.rd-calc-field select:focus{outline:none;border-color:var(--calc-primary);box-shadow:0 0 0 2px rgba(230,126,34,.2)}.rd-calc-field .hint{font-size:.75em;color:var(--calc-text-light);margin-top:2px}.rd-calc-btn{background:var(--calc-primary);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:.95em;font-weight:600;cursor:pointer;transition:background .2s;justify-self:start}.rd-calc-btn:hover{background:var(--calc-primary-hover)}.rd-calc-result{margin-top:16px;padding:12px 16px;background:var(--calc-result-bg);border-radius:4px;display:none}.rd-calc-result.show{display:block}.rd-calc-result .label{font-size:.8em;color:var(--calc-text-light);margin-bottom:4px}.rd-calc-result .value{font-size:1.4em;font-weight:700;color:var(--calc-success);font-family:monospace}.rd-calc-result .config{margin-top:8px;padding:8px 12px;background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:4px;font-family:monospace;font-size:.85em;color:var(--calc-text);user-select:all}.rd-calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.rd-calc-row{grid-template-columns:1fr}.rd-calc-tab{padding:8px 10px;font-size:.78em}.rd-calc-content{padding:16px}}</style>
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    TMC 驱动计算器
+  </div>
+  <div class="rd-calc-tabs">
+    <button class="rd-calc-tab active" data-tab="sg">无传感器归位</button>
+    <button class="rd-calc-tab" data-tab="speed">归位速度</button>
+    <button class="rd-calc-tab" data-tab="interp">插值误差</button>
+  </div>
+  <div class="rd-calc-content">
+    <div class="rd-calc-panel active" data-panel="sg">
+      <h4>无传感器归位灵敏度</h4>
+      <p class="formula">推荐值 = 最小值 + (最大值 - 最小值) / 3</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-field">
+          <label>驱动类型</label>
+          <select id="tmc_driver">
+            <option value="2209">TMC2209 (SGTHRS: 0-255)</option>
+            <option value="2130">TMC2130/5160 (SGT: -64 到 63)</option>
+          </select>
+        </div>
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>最大灵敏度</label>
+            <input type="number" id="tmc_max" placeholder="例如: 100">
+            <span class="hint">能可靠归位的最高灵敏度</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>最小灵敏度</label>
+            <input type="number" id="tmc_min" placeholder="例如: 50">
+            <span class="hint">单次触碰能归位的最低灵敏度</span>
+          </div>
+        </div>
+        <button class="rd-calc-btn" onclick="calcSG()">计算</button>
+        <div class="rd-calc-result" id="sg_result">
+          <div class="label">推荐灵敏度</div>
+          <div class="value" id="sg_value"></div>
+          <div class="config" id="sg_config"></div>
+        </div>
+      </div>
+    </div>
+    <div class="rd-calc-panel" data-panel="speed">
+      <h4>推荐归位速度</h4>
+      <p class="formula">归位速度 = 旋转距离 / 2</p>
+      <div class="rd-calc-field">
+        <label>旋转距离 (mm)</label>
+        <input type="number" id="tmc_rd" step="any" placeholder="例如: 40">
+        <span class="hint">来自步进电机配置</span>
+      </div>
+      <button class="rd-calc-btn" onclick="calcSpeed()">计算</button>
+      <div class="rd-calc-result" id="speed_result">
+        <div class="label">推荐归位速度</div>
+        <div class="value" id="speed_value"></div>
+        <div class="config" id="speed_config"></div>
+      </div>
+    </div>
+    <div class="rd-calc-panel" data-panel="interp">
+      <h4>插值位置误差</h4>
+      <p class="formula">误差 ≈ 旋转距离 / (步数 × 微步数) / 2 - 旋转距离 / (步数 × 64)</p>
+      <div class="rd-calc-row">
+        <div class="rd-calc-field">
+          <label>旋转距离 (mm)</label>
+          <input type="number" id="tmc_interp_rd" step="any" placeholder="例如: 40">
+        </div>
+        <div class="rd-calc-field">
+          <label>每转全步数</label>
+          <input type="number" id="tmc_interp_steps" value="200">
+        </div>
+      </div>
+      <div class="rd-calc-field">
+        <label>微步数</label>
+        <input type="number" id="tmc_interp_micro" value="16">
+      </div>
+      <button class="rd-calc-btn" onclick="calcInterp()">计算</button>
+      <div class="rd-calc-result" id="interp_result">
+        <div class="label">近似位置误差</div>
+        <div class="value" id="interp_value"></div>
+        <div class="config" id="interp_config"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      document.querySelectorAll('.rd-calc-tab').forEach(function(t){t.addEventListener('click',function(){var c=this.closest('.rd-calc-container');c.querySelectorAll('.rd-calc-tab').forEach(function(x){x.classList.remove('active')});c.querySelectorAll('.rd-calc-panel').forEach(function(x){x.classList.remove('active')});this.classList.add('active');c.querySelector('[data-panel="'+this.dataset.tab+'"]').classList.add('active')})});
+      window.calcSG=function(){var dt=document.getElementById('tmc_driver').value;var mx=parseFloat(document.getElementById('tmc_max').value);var mn=parseFloat(document.getElementById('tmc_min').value);if(isNaN(mx)||isNaN(mn))return;var rec;if(dt==='2209'){rec=Math.round(mn+(mx-mn)/3);document.getElementById('sg_value').textContent='SGTHRS: '+rec;document.getElementById('sg_config').textContent='driver_SGTHRS: '+rec}else{rec=Math.round(mn+(mx-mn)/3);document.getElementById('sg_value').textContent='SGT: '+rec;document.getElementById('sg_config').textContent='driver_SGT: '+rec}document.getElementById('sg_result').classList.add('show')};
+      window.calcSpeed=function(){var rd=parseFloat(document.getElementById('tmc_rd').value);if(isNaN(rd))return;var s=rd/2;document.getElementById('speed_value').textContent=s.toFixed(1)+' mm/s';document.getElementById('speed_config').textContent='homing_speed: '+s.toFixed(1);document.getElementById('speed_result').classList.add('show')};
+      window.calcInterp=function(){var rd=parseFloat(document.getElementById('tmc_interp_rd').value);var st=parseFloat(document.getElementById('tmc_interp_steps').value);var mi=parseFloat(document.getElementById('tmc_interp_micro').value);if(isNaN(rd)||isNaN(st)||isNaN(mi))return;var err=rd/(st*mi)/2-rd/(st*64);document.getElementById('interp_value').textContent='~'+err.toFixed(4)+' mm';document.getElementById('interp_config').textContent='启用插值时的位置误差';document.getElementById('interp_result').classList.add('show')};
+      document.querySelectorAll('.rd-calc-field input').forEach(function(i){i.addEventListener('keypress',function(e){if(e.key==='Enter'){var b=this.closest('.rd-calc-panel').querySelector('.rd-calc-btn');if(b)b.click()}})});
+    })();
+  </script>
+</div>
+
 ## 调整电机电流
 
 更高的驱动程序电流会增加位置精度和扭矩。但是，更高的电流也会增加步进电机和步进电机驱动程序产生的热量。如果步进电机驱动程序过热，它会禁用自己，Kalico将报告错误。如果步进电机过热，它会失去扭矩和位置精度。（如果过热，它可能也会熔化附着在其上或附近的塑料部件。）

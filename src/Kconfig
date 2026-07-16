@@ -158,6 +158,10 @@ config WANT_LIS2DW
     bool
     depends on WANT_SPI || WANT_I2C
     default y
+config WANT_BMI160
+    bool
+    depends on WANT_SPI || WANT_I2C
+    default y
 config WANT_MPU9250
     bool
     depends on WANT_I2C
@@ -204,7 +208,7 @@ config WANT_GPIO_I2C
     default y
 config NEED_SENSOR_BULK
     bool
-    depends on WANT_ADXL345 || WANT_LIS2DW || WANT_MPU9250 || WANT_ICM20948 \
+    depends on WANT_ADXL345 || WANT_LIS2DW || WANT_BMI160 || WANT_MPU9250 || WANT_ICM20948 \
         || WANT_HX71X || WANT_ADS1220 || WANT_ADS131M0X \
         || WANT_LDC1612 || WANT_SENSOR_ANGLE
     default y
@@ -215,6 +219,10 @@ config NEED_LOAD_CELL_PROBE
 config NEED_SOS_FILTER
     bool
     depends on NEED_LOAD_CELL_PROBE
+    default y
+config WANT_TRIGGER_ANALOG
+    bool
+    depends on WANT_ADC || WANT_HX71X || WANT_ADS1220 || WANT_ADS131M0X || WANT_LDC1612
     default y
 config WANT_OPTIMIZE_SIZE
     bool
@@ -254,6 +262,9 @@ config WANT_NEOPIXEL
 config WANT_PULSE_COUNTER
     bool "Support measuring fan tachometer GPIO pins"
     depends on HAVE_GPIO
+config WANT_FILAMENT_BLOCKAGE
+    bool "Support filament blockage detection sensor"
+    depends on HAVE_GPIO
 
 comment "LCD chips"
 config WANT_ST7920
@@ -270,6 +281,9 @@ config WANT_ADXL345
     depends on WANT_SPI
 config WANT_LIS2DW
     bool "Support lis2dw and lis3dh 3-axis accelerometers"
+    depends on WANT_SPI || WANT_I2C
+config WANT_BMI160
+    bool "Support BMI160 accelerometer"
     depends on WANT_SPI || WANT_I2C
 config WANT_MPU9250
     bool "Support MPU accelerometers"
@@ -356,6 +370,37 @@ config INITIAL_PINS
         during the micro-controller startup sequence. By default the
         pins will be set to output high - preface a pin with a '!'
         character to set that pin to output low.
+
+choice
+    prompt "GPIO state at micro-controller startup"
+    depends on LOW_LEVEL_OPTIONS && HAVE_GPIO
+    default STARTUP_PIN_NOT_SET
+    help
+        Configure all physical GPIO pins during the micro-controller
+        startup sequence. Pins listed in INITIAL_PINS and pins reserved
+        by the firmware (such as active UART, USB, CAN, and USB-to-CAN
+        pins) are excluded from this setting.
+
+config STARTUP_PIN_NOT_SET
+    bool "Not set"
+config STARTUP_PIN_INPUT_PULLUP
+    bool "Input pull-up"
+config STARTUP_PIN_INPUT_PULLDOWN
+    bool "Input pull-down"
+config STARTUP_PIN_OUTPUT_HIGH
+    bool "Output high"
+config STARTUP_PIN_OUTPUT_LOW
+    bool "Output low"
+
+endchoice
+
+config STARTUP_PIN_STATE
+    int
+    default 1 if STARTUP_PIN_INPUT_PULLUP
+    default -1 if STARTUP_PIN_INPUT_PULLDOWN
+    default 2 if STARTUP_PIN_OUTPUT_HIGH
+    default -2 if STARTUP_PIN_OUTPUT_LOW
+    default 0
 
 # The HAVE_x options allow boards to disable support for some commands
 # if the hardware does not support the feature.

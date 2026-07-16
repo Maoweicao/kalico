@@ -65,6 +65,65 @@ Depending on the specific settings, nonlinear PA can request higher speeds and a
 Note that there are two different nonlinear functions: reciprocal and tanh.
 They both can have similar results, but reciprocal provides better independence between low and high speed PA so we recommend you use that for ease of tuning.
 
+## Nonlinear PA Tuning Calculator
+
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container{--calc-primary:#e67e22;--calc-primary-hover:#d35400;--calc-bg:#fff;--calc-border:#ddd;--calc-text:#333;--calc-text-light:#666;--calc-result-bg:#f8f9fa;--calc-tab-bg:#f1f1f1;--calc-success:#27ae60}[data-md-color-scheme="slate"] .rd-calc-container,[data-md-color-mode="dark"] .rd-calc-container{--calc-bg:#2d2d2d;--calc-border:#444;--calc-text:#e0e0e0;--calc-text-light:#aaa;--calc-result-bg:#383838;--calc-tab-bg:#363636}.rd-calc-container *{box-sizing:border-box}.rd-calc-container{background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:8px;padding:0;margin:1.5em 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}.rd-calc-header{background:var(--calc-primary);color:#fff;padding:12px 20px;font-size:1.1em;font-weight:600;display:flex;align-items:center;gap:8px}.rd-calc-header svg{width:20px;height:20px;fill:currentColor}.rd-calc-content{padding:20px}.rd-calc-panel h4{margin:0 0 8px;color:var(--calc-text);font-size:1em}.rd-calc-panel p.formula{background:var(--calc-result-bg);padding:8px 12px;border-radius:4px;font-family:monospace;font-size:.9em;color:var(--calc-text-light);margin:0 0 16px;border-left:3px solid var(--calc-primary)}.rd-calc-form{display:grid;gap:12px}.rd-calc-field{display:grid;gap:4px}.rd-calc-field label{font-size:.85em;color:var(--calc-text-light);font-weight:500}.rd-calc-field input,.rd-calc-field select{padding:8px 12px;border:1px solid var(--calc-border);border-radius:4px;font-size:.95em;background:var(--calc-bg);color:var(--calc-text);transition:border-color .2s}.rd-calc-field input:focus,.rd-calc-field select:focus{outline:none;border-color:var(--calc-primary);box-shadow:0 0 0 2px rgba(230,126,34,.2)}.rd-calc-field .hint{font-size:.75em;color:var(--calc-text-light);margin-top:2px}.rd-calc-btn{background:var(--calc-primary);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:.95em;font-weight:600;cursor:pointer;transition:background .2s;justify-self:start}.rd-calc-btn:hover{background:var(--calc-primary-hover)}.rd-calc-result{margin-top:16px;padding:12px 16px;background:var(--calc-result-bg);border-radius:4px;display:none}.rd-calc-result.show{display:block}.rd-calc-result .label{font-size:.8em;color:var(--calc-text-light);margin-bottom:4px}.rd-calc-result .value{font-size:1.4em;font-weight:700;color:var(--calc-success);font-family:monospace}.rd-calc-result .config{margin-top:8px;padding:8px 12px;background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:4px;font-family:monospace;font-size:.85em;color:var(--calc-text);user-select:all}.rd-calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.rd-calc-row{grid-template-columns:1fr}.rd-calc-content{padding:16px}}</style>
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    Nonlinear PA Tuning Calculator
+  </div>
+  <div class="rd-calc-content">
+    <h4>Calculate TUNING_TOWER Parameters</h4>
+    <p class="formula">If pa_value = 0: test full range starting from 0<br>If pa_value > 0: test ± pa_range around pa_value</p>
+    <div class="rd-calc-form">
+      <div class="rd-calc-field">
+        <label>Parameter to Test</label>
+        <select id="nlpa_param">
+          <option value="0">ADVANCE (linear_advance)</option>
+          <option value="1">OFFSET (nonlinear_offset)</option>
+          <option value="2">TIME_OFFSET (pressure_advance_time_offset)</option>
+        </select>
+      </div>
+      <div class="rd-calc-row">
+        <div class="rd-calc-field">
+          <label>Current PA Value (0 = full range)</label>
+          <input type="number" id="nlpa_value" value="0" step="any">
+          <span class="hint">Set to 0 for initial tuning</span>
+        </div>
+        <div class="rd-calc-field">
+          <label>PA Range (±)</label>
+          <input type="number" id="nlpa_range" value="0.03" step="any">
+          <span class="hint">Test range around pa_value</span>
+        </div>
+      </div>
+      <div class="rd-calc-field">
+        <label>Tower Height (mm)</label>
+        <input type="number" id="nlpa_height" value="50" step="any">
+        <span class="hint">Height of the test tower</span>
+      </div>
+      <div class="rd-calc-field">
+        <label>Printer Type</label>
+        <select id="nlpa_type">
+          <option value="dd">Direct Drive</option>
+          <option value="bowden">Bowden Tube</option>
+        </select>
+      </div>
+      <button class="rd-calc-btn" onclick="calcNLPA()">Calculate</button>
+      <div class="rd-calc-result" id="nlpa_result">
+        <div class="label">TUNING_TOWER Command</div>
+        <div class="value" id="nlpa_value_out" style="font-size:1em;word-break:break-all"></div>
+        <div class="config" id="nlpa_config"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function calcNLPA(){var p=parseInt(document.getElementById('nlpa_param').value);var pv=parseFloat(document.getElementById('nlpa_value').value);var pr=parseFloat(document.getElementById('nlpa_range').value);var h=parseFloat(document.getElementById('nlpa_height').value);var t=document.getElementById('nlpa_type').value;if(isNaN(pv)||isNaN(pr)||isNaN(h)||h===0)return;var start,factor,paramName;if(p===0)paramName='ADVANCE';else if(p===1)paramName='OFFSET';else paramName='TIME_OFFSET';if(pv===0){if(p===0){start=0;factor=t==='bowden'?0.020:0.001}else if(p===1){start=0;factor=t==='bowden'?0.02:0.01}else{start=0;factor=0.0001}}else{var delta=pv+pr-(pv-pr);start=Math.max(0,pv-pr);factor=delta/h}var cmd='TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER='+paramName+' START='+start.toFixed(4)+' FACTOR='+factor.toFixed(6);if(pv>0)cmd+=' BAND=5';document.getElementById('nlpa_value_out').textContent=cmd;document.getElementById('nlpa_config').textContent='Parameter: '+paramName+'\nStart: '+start.toFixed(4)+'\nFactor: '+factor.toFixed(6);document.getElementById('nlpa_result').classList.add('show')}
+    document.querySelectorAll('.rd-calc-field input,.rd-calc-field select').forEach(function(i){i.addEventListener('change',function(){})});
+  </script>
+</div>
+
 ## Setup
 
 The best way to tune nonlinear pressure advance is to use the tuning macro that is built into `bleeding-edge-v2` Kalico.

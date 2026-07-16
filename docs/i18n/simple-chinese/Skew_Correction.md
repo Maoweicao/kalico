@@ -2,6 +2,91 @@
 
 基于软件的歪斜纠正可以帮助解决由于打印机组装不完全成正方形而导致的尺寸不准确。注意，如果您的打印机明显歪斜，强烈建议在应用基于软件的纠正之前，先采取机械手段使打印机尽可能成正方形。
 
+## 歪斜纠正计算器
+
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container{--calc-primary:#e67e22;--calc-primary-hover:#d35400;--calc-bg:#fff;--calc-border:#ddd;--calc-text:#333;--calc-text-light:#666;--calc-result-bg:#f8f9fa;--calc-tab-bg:#f1f1f1;--calc-success:#27ae60}[data-md-color-scheme="slate"] .rd-calc-container,[data-md-color-mode="dark"] .rd-calc-container{--calc-bg:#2d2d2d;--calc-border:#444;--calc-text:#e0e0e0;--calc-text-light:#aaa;--calc-result-bg:#383838;--calc-tab-bg:#363636}.rd-calc-container *{box-sizing:border-box}.rd-calc-container{background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:8px;padding:0;margin:1.5em 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}.rd-calc-header{background:var(--calc-primary);color:#fff;padding:12px 20px;font-size:1.1em;font-weight:600;display:flex;align-items:center;gap:8px}.rd-calc-header svg{width:20px;height:20px;fill:currentColor}.rd-calc-tabs{display:flex;flex-wrap:wrap;background:var(--calc-tab-bg);border-bottom:1px solid var(--calc-border);padding:0;margin:0}.rd-calc-tab{padding:10px 16px;cursor:pointer;border:none;background:transparent;color:var(--calc-text-light);font-size:.85em;font-weight:500;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap}.rd-calc-tab:hover{color:var(--calc-primary);background:rgba(230,126,34,.05)}.rd-calc-tab.active{color:var(--calc-primary);border-bottom-color:var(--calc-primary);background:var(--calc-bg)}.rd-calc-content{padding:20px}.rd-calc-panel{display:none}.rd-calc-panel.active{display:block}.rd-calc-panel h4{margin:0 0 8px;color:var(--calc-text);font-size:1em}.rd-calc-form{display:grid;gap:12px}.rd-calc-field{display:grid;gap:4px}.rd-calc-field label{font-size:.85em;color:var(--calc-text-light);font-weight:500}.rd-calc-field input{padding:8px 12px;border:1px solid var(--calc-border);border-radius:4px;font-size:.95em;background:var(--calc-bg);color:var(--calc-text);transition:border-color .2s}.rd-calc-field input:focus{outline:none;border-color:var(--calc-primary);box-shadow:0 0 0 2px rgba(230,126,34,.2)}.rd-calc-field .hint{font-size:.75em;color:var(--calc-text-light);margin-top:2px}.rd-calc-btn{background:var(--calc-primary);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:.95em;font-weight:600;cursor:pointer;transition:background .2s;justify-self:start}.rd-calc-btn:hover{background:var(--calc-primary-hover)}.rd-calc-result{margin-top:16px;padding:12px 16px;background:var(--calc-result-bg);border-radius:4px;display:none}.rd-calc-result.show{display:block}.rd-calc-result .label{font-size:.8em;color:var(--calc-text-light);margin-bottom:4px}.rd-calc-result .value{font-size:1.4em;font-weight:700;color:var(--calc-success);font-family:monospace}.rd-calc-result .config{margin-top:8px;padding:8px 12px;background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:4px;font-family:monospace;font-size:.85em;color:var(--calc-text);user-select:all}.rd-calc-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}@media(max-width:480px){.rd-calc-row{grid-template-columns:1fr}.rd-calc-tab{padding:8px 10px;font-size:.78em}.rd-calc-content{padding:16px}}</style>
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    歪斜纠正计算器
+  </div>
+  <div class="rd-calc-tabs">
+    <button class="rd-calc-tab active" data-tab="set">SET_SKEW</button>
+    <button class="rd-calc-tab" data-tab="calc">CALC_MEASURED_SKEW</button>
+  </div>
+  <div class="rd-calc-content">
+    <div class="rd-calc-panel active" data-panel="set">
+      <h4>生成 SET_SKEW 命令</h4>
+      <p>输入校准对象的测量长度以生成 SET_SKEW 命令。</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-field">
+          <label>XY 平面测量</label>
+          <div class="rd-calc-row">
+            <input type="number" id="skew_xy_ac" step="any" placeholder="AC (mm)">
+            <input type="number" id="skew_xy_bd" step="any" placeholder="BD (mm)">
+            <input type="number" id="skew_xy_ad" step="any" placeholder="AD (mm)">
+          </div>
+        </div>
+        <div class="rd-calc-field">
+          <label>XZ 平面测量 (可选)</label>
+          <div class="rd-calc-row">
+            <input type="number" id="skew_xz_ac" step="any" placeholder="AC (mm)">
+            <input type="number" id="skew_xz_bd" step="any" placeholder="BD (mm)">
+            <input type="number" id="skew_xz_ad" step="any" placeholder="AD (mm)">
+          </div>
+        </div>
+        <div class="rd-calc-field">
+          <label>YZ 平面测量 (可选)</label>
+          <div class="rd-calc-row">
+            <input type="number" id="skew_yz_ac" step="any" placeholder="AC (mm)">
+            <input type="number" id="skew_yz_bd" step="any" placeholder="BD (mm)">
+            <input type="number" id="skew_yz_ad" step="any" placeholder="AD (mm)">
+          </div>
+        </div>
+        <button class="rd-calc-btn" onclick="calcSkew()">生成命令</button>
+        <div class="rd-calc-result" id="set_result">
+          <div class="label">SET_SKEW 命令</div>
+          <div class="value" id="set_value" style="font-size:1em;word-break:break-all"></div>
+        </div>
+      </div>
+    </div>
+    <div class="rd-calc-panel" data-panel="calc">
+      <h4>验证歪斜纠正</h4>
+      <p>输入启用歪斜纠正后重新打印校准对象的测量值。</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>AC (mm)</label>
+            <input type="number" id="skew_calc_ac" step="any" placeholder="例如: 140.2">
+          </div>
+          <div class="rd-calc-field">
+            <label>BD (mm)</label>
+            <input type="number" id="skew_calc_bd" step="any" placeholder="例如: 140.4">
+          </div>
+          <div class="rd-calc-field">
+            <label>AD (mm)</label>
+            <input type="number" id="skew_calc_ad" step="any" placeholder="例如: 100.0">
+          </div>
+        </div>
+        <button class="rd-calc-btn" onclick="calcMeasuredSkew()">计算</button>
+        <div class="rd-calc-result" id="calc_result">
+          <div class="label">CALC_MEASURED_SKEW 命令</div>
+          <div class="value" id="calc_value" style="font-size:1em;word-break:break-all"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      document.querySelectorAll('.rd-calc-tab').forEach(function(t){t.addEventListener('click',function(){var c=this.closest('.rd-calc-container');c.querySelectorAll('.rd-calc-tab').forEach(function(x){x.classList.remove('active')});c.querySelectorAll('.rd-calc-panel').forEach(function(x){x.classList.remove('active')});this.classList.add('active');c.querySelector('[data-panel="'+this.dataset.tab+'"]').classList.add('active')})});
+      window.calcSkew=function(){var cmd='SET_SKEW';var xy_ac=parseFloat(document.getElementById('skew_xy_ac').value);var xy_bd=parseFloat(document.getElementById('skew_xy_bd').value);var xy_ad=parseFloat(document.getElementById('skew_xy_ad').value);if(!isNaN(xy_ac)&&!isNaN(xy_bd)&&!isNaN(xy_ad))cmd+=' XY='+xy_ac+','+xy_bd+','+xy_ad;var xz_ac=parseFloat(document.getElementById('skew_xz_ac').value);var xz_bd=parseFloat(document.getElementById('skew_xz_bd').value);var xz_ad=parseFloat(document.getElementById('skew_xz_ad').value);if(!isNaN(xz_ac)&&!isNaN(xz_bd)&&!isNaN(xz_ad))cmd+=' XZ='+xz_ac+','+xz_bd+','+xz_ad;var yz_ac=parseFloat(document.getElementById('skew_yz_ac').value);var yz_bd=parseFloat(document.getElementById('skew_yz_bd').value);var yz_ad=parseFloat(document.getElementById('skew_yz_ad').value);if(!isNaN(yz_ac)&&!isNaN(yz_bd)&&!isNaN(yz_ad))cmd+=' YZ='+yz_ac+','+yz_bd+','+yz_ad;document.getElementById('set_value').textContent=cmd;document.getElementById('set_result').classList.add('show')};
+      window.calcMeasuredSkew=function(){var ac=parseFloat(document.getElementById('skew_calc_ac').value);var bd=parseFloat(document.getElementById('skew_calc_bd').value);var ad=parseFloat(document.getElementById('skew_calc_ad').value);if(isNaN(ac)||isNaN(bd)||isNaN(ad))return;document.getElementById('calc_value').textContent='CALC_MEASURED_SKEW AC='+ac+' BD='+bd+' AD='+ad;document.getElementById('calc_result').classList.add('show')};
+      document.querySelectorAll('.rd-calc-field input').forEach(function(i){i.addEventListener('keypress',function(e){if(e.key==='Enter'){var b=this.closest('.rd-calc-panel').querySelector('.rd-calc-btn');if(b)b.click()}})});
+    })();
+  </script>
+</div>
+
 ## 打印校准对象
 
 纠正歪斜的第一步是沿您要纠正的平面打印一个

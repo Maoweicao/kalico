@@ -7,6 +7,7 @@
 #include "basecmd.h" // oid_alloc
 #include "board/gpio.h" // struct gpio_adc
 #include "board/irq.h" // irq_disable
+#include "board/misc.h" // timer_read_time
 #include "command.h" // DECL_COMMAND
 #include "sched.h" // DECL_TASK
 
@@ -49,7 +50,12 @@ analog_in_event(struct timer *timer)
         } else {
             a->invalid_count++;
             if (a->invalid_count >= a->range_check_count) {
-                try_shutdown("ADC out of range");
+                // Send non-fatal error instead of shutting down
+                // 发送非致命错误而非停机
+                uint32_t cur = timer_read_time();
+                char *msg = "ADC out of range";
+                sendf("non_fatal_error clock=%u data=%*s",
+                      cur, (uint8_t)strlen(msg), msg);
                 a->invalid_count = 0;
             }
         }

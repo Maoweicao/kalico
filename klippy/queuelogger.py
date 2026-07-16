@@ -7,8 +7,43 @@ import logging
 import logging.handlers
 import os
 import queue
+import sys
 import threading
 import time
+
+
+class SingleLetterLevelFormatter(logging.Formatter):
+    """Formatter that uses single-letter level names with optional ANSI colors."""
+    level_map = {
+        'CRITICAL': 'C', 'ERROR': 'E', 'WARNING': 'W',
+        'INFO': 'I',    'DEBUG': 'D', 'NOTSET': 'N',
+    }
+    color_map = {
+        'C': '\033[95m',  # Magenta
+        'E': '\033[91m',  # Red
+        'W': '\033[93m',  # Yellow
+        'I': '\033[92m',  # Green
+        'D': '\033[94m',  # Blue
+        'N': '\033[90m',  # Grey
+    }
+    reset = '\033[0m'
+
+    def __init__(self, fmt=None, datefmt=None, use_color=False):
+        super().__init__(fmt=fmt, datefmt=datefmt)
+        self.use_color = use_color
+
+    def format(self, record):
+        original_levelname = record.levelname
+        short_level = self.level_map.get(original_levelname, original_levelname)
+        if self.use_color:
+            color = self.color_map.get(short_level, '')
+            record.levelname = f"{color}{short_level}{self.reset}"
+        else:
+            record.levelname = short_level
+        result = super().format(record)
+        record.levelname = original_levelname
+        return result
+
 
 # Tracked modules for per-module logging
 TRACKED_MODULES = {

@@ -966,6 +966,20 @@ class MCU:
                 "MCU '%s' spontaneous restart" % (self._name,)
             )
 
+    def _handle_non_fatal_error(self, params):
+        # Handle non-fatal MCU errors / 处理非致命MCU错误
+        if params is not None:
+            shutdown_clock = params.get("clock")
+            if shutdown_clock is not None:
+                shutdown_clock = self.clock32_to_clock64(shutdown_clock)
+            logging.info(
+                "Non-fatal error from MCU '%s' (%d): %s",
+                self._name, shutdown_clock, params.get('data', ''),
+            )
+            self._printer._internal_non_fatal_error(
+                self._name, shutdown_clock, params
+            )
+
     # Connection phase
     def _check_restart(self, reason):
         start_reason = self._printer.get_start_args().get("start_reason")
@@ -1309,6 +1323,7 @@ class MCU:
         self.register_response(self._handle_shutdown, "shutdown")
         self.register_response(self._handle_shutdown, "is_shutdown")
         self.register_response(self._handle_mcu_stats, "stats")
+        self.register_response(self._handle_non_fatal_error, "non_fatal_error")
         return True
 
     def _ready(self):

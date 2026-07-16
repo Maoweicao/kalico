@@ -1,1 +1,0 @@
-/home/mellow/klipper/docs/i18n/simple-chinese/TSL1401CL_Filament_Width_Sensor.md

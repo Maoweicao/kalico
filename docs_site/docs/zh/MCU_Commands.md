@@ -1,1 +1,0 @@
-/home/mellow/klipper/docs/i18n/simple-chinese/MCU_Commands.md

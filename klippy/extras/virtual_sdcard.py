@@ -4,11 +4,19 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import io
+import json
 import logging
 import os
+import re
+import subprocess
 import sys
+import threading
 
 VALID_GCODE_EXTS = ["gcode", "g", "gco"]
+LAYER_CHANGE_KEYWORDS = [
+    "; layer #", ";LAYER:", "; layer:", "; LAYER:",
+    ";AFTER_LAYER_CHANGE", ";LAYER_CHANGE",
+]
 
 
 DEFAULT_ERROR_GCODE = """
@@ -24,19 +32,37 @@ class VirtualSD:
         self.printer.register_event_handler(
             "klippy:shutdown", self.handle_shutdown
         )
+        self.printer.register_event_handler(
+            "klippy:ready", self._handle_ready
+        )
         # sdcard state
         sd = config.get("path")
         self.with_subdirs = config.getboolean("with_subdirs", False)
         self.sdcard_dirname = os.path.normpath(os.path.expanduser(sd))
         self.current_file = None
         self.file_position = self.file_size = 0
+        self._gcode_file_path = None
         # Print Stat Tracking
         self.print_stats = self.printer.load_object(config, "print_stats")
+        # Power Loss Resume state
+        self.power_loss_resume = None
+        self.is_pwr_loss_resume = False
+        self.layer_change_count = 0
+        self.is_resume_speed = False
         # Work timer
         self.reactor = self.printer.get_reactor()
         self.must_pause_work = self.cmd_from_sd = False
         self.next_file_position = 0
         self.work_timer = None
+        # From-Height Print state
+        self.is_from_height = False
+        self.from_height = None
+        self._parse_state = 0  # 0=idle, 1=parsing, 2=failed, 3=done
+        self._thread_parser = None
+        self.scripts = []
+        self.printer.register_event_handler(
+            "klippy:analyze_shutdown", self._handle_analyze_shutdown
+        )
         # Error handling
         gcode_macro = self.printer.load_object(config, "gcode_macro")
         self.on_error_gcode = gcode_macro.load_template(
@@ -58,6 +84,37 @@ class VirtualSD:
             self.cmd_SDCARD_PRINT_FILE,
             desc=self.cmd_SDCARD_PRINT_FILE_help,
         )
+        # From-Height Print webhook endpoint
+        webhooks = self.printer.lookup_object("webhooks")
+        webhooks.register_endpoint(
+            "virtual_sdcard/from_height_print",
+            self._handle_from_height_print,
+        )
+
+    def _handle_ready(self):
+        self.power_loss_resume = self.printer.lookup_object(
+            "power_loss_resume", None
+        )
+
+    def _handle_analyze_shutdown(self, msg, details):
+        if self.work_timer is not None:
+            self.must_pause_work = True
+            if self.current_file is not None:
+                try:
+                    readpos = max(self.file_position - 1024, 0)
+                    readcount = self.file_position - readpos
+                    self.current_file.seek(readpos)
+                    data = self.current_file.read(readcount + 128)
+                except Exception:
+                    logging.exception("virtual_sdcard shutdown read")
+                    return
+                logging.info(
+                    "Virtual sdcard (%d): %s\nUpcoming (%d): %s",
+                    readpos,
+                    repr(data[:readcount]),
+                    self.file_position,
+                    repr(data[readcount:]),
+                )
 
     def handle_shutdown(self):
         if self.work_timer is not None:
@@ -119,6 +176,7 @@ class VirtualSD:
             "is_active": self.is_active(),
             "file_position": self.file_position,
             "file_size": self.file_size,
+            "is_from_height": self.is_from_height,
         }
 
     def file_path(self):
@@ -138,6 +196,7 @@ class VirtualSD:
     def do_pause(self):
         if self.work_timer is not None:
             self.must_pause_work = True
+            self.is_from_height = False
             while self.work_timer is not None and not self.cmd_from_sd:
                 self.reactor.pause(self.reactor.monotonic() + 0.001)
 
@@ -145,6 +204,7 @@ class VirtualSD:
         if self.work_timer is not None:
             raise self.gcode.error("SD busy")
         self.must_pause_work = False
+        self.is_from_height = False
         self.work_timer = self.reactor.register_timer(
             self.work_handler, self.reactor.NOW
         )
@@ -156,19 +216,275 @@ class VirtualSD:
             self.current_file = None
             self.print_stats.note_cancel()
         self.file_position = self.file_size = 0
+        self.is_pwr_loss_resume = False
+        self.is_resume_speed = False
+        self.is_from_height = False
+        self.scripts = []
 
     # G-Code commands
     def cmd_error(self, gcmd):
         raise gcmd.error("SD write not supported")
 
     def _reset_file(self):
+        self.is_from_height = False
         if self.current_file is not None:
             self.do_pause()
             self.current_file.close()
             self.current_file = None
         self.file_position = self.file_size = 0
+        self.is_pwr_loss_resume = False
+        self.is_resume_speed = False
+        self.scripts = []
         self.print_stats.reset()
         self.printer.send_event("virtual_sdcard:reset_file")
+
+    # From-Height Print methods
+    def _handle_from_height_print(self, web_request):
+        filename = web_request.get_str("filename")
+        height = web_request.get_float("height")
+        self.from_height = height
+        if filename[0] == "/":
+            filename = filename[1:]
+        self._reset_file()
+        self._load_file(self.gcode, filename, check_subdirs=True)
+        self._parse_state = 1
+        self._thread_parser = threading.Thread(target=self._thread_parse_gcode)
+        self._thread_parser.start()
+        self.is_from_height = True
+        self.must_pause_work = False
+        self.work_timer = self.reactor.register_timer(
+            self.work_handler, self.reactor.NOW
+        )
+        web_request.send({"msg": "Start load file"})
+
+    def _thread_parse_gcode(self):
+        self._parse_state = 1
+        if not self._gcode_file_path or not self.from_height:
+            self._parse_state = 2
+            return
+        gcmd = self.gcode
+        gcmd.respond_raw("Start parsing gcode: %s" % self._gcode_file_path)
+        command = ["parse_gcode", self._gcode_file_path, str(self.from_height)]
+        try:
+            process = subprocess.Popen(
+                command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                shell=False,
+            )
+            output, _ = process.communicate()
+            logging.info(output)
+            if process.returncode != 0:
+                self._parse_state = 2
+                return
+            ret = output.decode().strip().replace("\n", "")
+            if not ret or len(ret) < 4:
+                gcmd._respond_error("Failed to parse gcode")
+                self._parse_state = 2
+                return
+        except Exception as e:
+            logging.exception("virtual_sdcard parse_gcode: %s", e)
+            gcmd._respond_error("Error parsing gcode")
+            self._parse_state = 2
+            return
+        try:
+            jd = json.loads(ret)
+            if not jd:
+                gcmd._respond_error("Parse gcode returned error")
+                self._parse_state = 2
+                return
+            if jd["code"] != 0 or not jd["data"]:
+                gcmd._respond_error("Parse gcode error: %s" % jd["msg"])
+                self._parse_state = 2
+                return
+            gcmd.respond_raw(
+                "Found position, Z: %s, line: %s"
+                % (jd["data"]["height"], jd["data"]["line"])
+            )
+            gcmd.respond_raw(
+                "Last bed temp: %s, fan speed: %s, extruder temp: %s"
+                % (
+                    jd["data"]["bed_temp"],
+                    jd["data"]["fan_speed"],
+                    jd["data"]["extruder_temp"],
+                )
+            )
+            self.scripts = []
+            if jd["data"]["extruder_temp"]:
+                self.scripts.append("M109 S%s" % jd["data"]["extruder_temp"])
+            if jd["data"]["bed_temp"]:
+                self.scripts.append("M190 S%s" % jd["data"]["bed_temp"])
+            if jd["data"]["fan_speed"]:
+                self.scripts.append("M106 S%s" % jd["data"]["fan_speed"])
+            if jd["data"]["absolute_extrusion"]:
+                self.scripts.append("M82")
+            else:
+                self.scripts.append("M83")
+            if jd["data"]["absolute_position"]:
+                self.scripts.append("G90")
+            else:
+                self.scripts.append("G91")
+            self.file_position = jd["data"]["seek"]
+            self._parse_state = 3
+            return
+        except Exception as e:
+            logging.exception("virtual_sdcard parse_gcode: %s", e)
+            gcmd._respond_error("Error processing parse gcode result")
+            self._parse_state = 2
+            return
+        self._parse_state = 2
+
+    def _parse_gcode(self):
+        self._parse_state = 1
+        gcmd = self.gcode
+        height = self.from_height
+        gcmd.respond_raw("Start parsing gcode (in-process)")
+        try:
+            generator = ""
+            self.current_file.seek(0)
+            line_num = 0
+            partial_input = ""
+            lines = []
+            z_value = None
+            old_info = {
+                "absolute_extrusion": False,
+                "absolute_position": False,
+                "x_value": 0.0,
+                "y_value": 0.0,
+                "e_value": 0.0,
+                "z_value": 0.0,
+                "f_value": 0.0,
+                "fan_speed": 0,
+                "extruder_temp": 0.0,
+                "bed_temp": 0.0,
+            }
+            gcmd.respond_raw("Identifying slicer")
+            while True:
+                data = self.current_file.read(1024 * 1024)
+                if not data:
+                    break
+                lines = data.split("\n")
+                lines[0] = partial_input + lines[0]
+                partial_input = lines.pop()
+                lines.reverse()
+                if len(lines) < 1:
+                    continue
+                line = lines.pop()
+                line = line.strip()
+                line_num += 1
+            if generator is None or generator == "":
+                gcmd.error("Unable to identify slicer")
+                self._parse_state = 2
+                return
+            gcmd.respond_raw("Slicer: %s" % generator)
+            self.current_file.seek(0)
+            line_num = 0
+            partial_input = ""
+            lines = []
+            gcmd.respond_raw("Identifying metadata")
+            while True:
+                line = self.current_file.readline()
+                line = line.strip()
+                line_num += 1
+                if not line:
+                    continue
+                if not line.startswith(";"):
+                    cmds = line.upper().split(" ")
+                    if len(cmds) > 0:
+                        if cmds[0] == "M82":
+                            old_info["absolute_extrusion"] = True
+                        elif cmds[0] == "M83":
+                            old_info["absolute_extrusion"] = False
+                        elif cmds[0] == "G90":
+                            old_info["absolute_position"] = True
+                        elif cmds[0] == "G91":
+                            old_info["absolute_position"] = False
+                        elif cmds[0] == "M106":
+                            match = re.search(
+                                r"S([+-]?\d*\.?\d+)", line.upper()
+                            )
+                            if match:
+                                old_info["fan_speed"] = int(match.group(1))
+                        elif cmds[0] in ("M109", "M104"):
+                            match = re.search(
+                                r"S([+-]?\d*\.?\d+)", line.upper()
+                            )
+                            if match:
+                                old_info["extruder_temp"] = float(
+                                    match.group(1)
+                                )
+                        elif cmds[0] in ("M190", "M140"):
+                            match = re.search(
+                                r"S([+-]?\d*\.?\d+)", line.upper()
+                            )
+                            if match:
+                                old_info["bed_temp"] = float(match.group(1))
+                if generator == "ORCA":
+                    if ";LAYER_CHANGE" in line:
+                        next_line = self.current_file.readline()
+                        if not next_line:
+                            continue
+                        z_value = float(next_line.split(":")[1])
+                elif generator == "CURA":
+                    if not line.startswith("G1") and not line.startswith(
+                        "G0"
+                    ):
+                        continue
+                    if "Z" not in line:
+                        continue
+                    cmds = line.upper().split(" ")
+                    for cmd in cmds:
+                        if cmd.startswith("Z"):
+                            z_value = float(cmd[1:])
+                            break
+                elif generator == "S3D":
+                    if not line.startswith("; layer"):
+                        continue
+                    zs = line.split("=")
+                    if len(zs) == 2:
+                        z_value = float(zs[1].strip())
+                else:
+                    gcmd.error("Unsupported slicer")
+                    self._parse_state = 2
+                    return
+                if not z_value:
+                    continue
+                if height == z_value or (
+                    height - z_value <= 0.1 and height - z_value > 0
+                ):
+                    gcmd.respond_raw(
+                        "Found position, Z: %s, line: %s" % (z_value, line_num)
+                    )
+                    self.scripts = []
+                    if old_info["extruder_temp"]:
+                        self.scripts.append(
+                            "M109 S%s" % old_info["extruder_temp"]
+                        )
+                    if old_info["bed_temp"]:
+                        self.scripts.append(
+                            "M190 S%s" % old_info["bed_temp"]
+                        )
+                    if old_info["fan_speed"]:
+                        self.scripts.append(
+                            "M106 S%s" % old_info["fan_speed"]
+                        )
+                    if old_info["absolute_extrusion"]:
+                        self.scripts.append("M82")
+                    else:
+                        self.scripts.append("M83")
+                    if old_info["absolute_position"]:
+                        self.scripts.append("G90")
+                    else:
+                        self.scripts.append("G91")
+                    self.file_position = self.current_file.tell()
+                    self._parse_state = 3
+                    return
+                elif z_value - height > 0.2:
+                    logging.info("Position not found")
+        except Exception as e:
+            logging.exception("virtual_sdcard parse_gcode: %s", e)
+            gcmd.error("Error parsing gcode")
+        self._parse_state = 2
 
     cmd_SDCARD_RESET_FILE_help = (
         "Clears a loaded SD File. Stops the print if necessary"
@@ -273,8 +589,37 @@ class VirtualSD:
     def is_cmd_from_sd(self):
         return self.cmd_from_sd
 
+    def is_layer_change(self, line):
+        if line.startswith(";"):
+            for layer_key in LAYER_CHANGE_KEYWORDS:
+                if line.startswith(layer_key):
+                    self.layer_change_count += 1
+                    self.reactor.pause(self.reactor.monotonic() + 0.001)
+                    return True
+        return False
+
     # Background work timer
     def work_handler(self, eventtime):
+        # From-Height Print: wait for parser to complete
+        if self.is_from_height:
+            idle_timeout = self.printer.lookup_object("idle_timeout")
+            if self.print_stats.get_status(eventtime)["state"] != "printing":
+                self.print_stats.note_start()
+            if self._parse_state == 1:
+                idle_timeout.state = "Printing"
+                return eventtime + 0.1
+            elif self._parse_state == 2:
+                logging.info("File parsing failed")
+                self.gcode._respond_error("File parsing failed")
+                self.is_from_height = False
+                idle_timeout.state = "Idle"
+                self.work_timer = None
+                self._reset_file()
+                return self.reactor.NEVER
+            elif self._parse_state == 3:
+                self.is_from_height = True
+                logging.info("File parsing complete")
+                self.gcode.respond_raw("File parsing complete")
         logging.info("Starting SD card print (position %d)", self.file_position)
         self.reactor.unregister_timer(self.work_timer)
         try:
@@ -283,7 +628,8 @@ class VirtualSD:
             logging.exception("virtual_sdcard seek")
             self.work_timer = None
             return self.reactor.NEVER
-        self.print_stats.note_start()
+        if self.print_stats.get_status(eventtime)["state"] != "printing":
+            self.print_stats.note_start()
         gcode_mutex = self.gcode.get_mutex()
         partial_input = ""
         lines = []
@@ -300,6 +646,8 @@ class VirtualSD:
                     # End of file
                     self.current_file.close()
                     self.current_file = None
+                    if self.power_loss_resume is not None:
+                        self.power_loss_resume._save_power_loss_info(False)
                     logging.info("Finished SD card print")
                     self.gcode.respond_raw("Done printing file")
                     break
@@ -315,16 +663,32 @@ class VirtualSD:
                 continue
             # Dispatch command
             self.cmd_from_sd = True
-            line = lines.pop()
-            if sys.version_info.major >= 3:
-                next_file_position = self.file_position + len(line.encode()) + 1
+            if self.scripts:
+                line = self.scripts.pop()
+                next_file_position = self.file_position
+                self.next_file_position = next_file_position
             else:
-                next_file_position = self.file_position + len(line) + 1
-            self.next_file_position = next_file_position
+                line = lines.pop()
+                if sys.version_info.major >= 3:
+                    next_file_position = self.file_position + len(line.encode()) + 1
+                else:
+                    next_file_position = self.file_position + len(line) + 1
+                self.next_file_position = next_file_position
+            if self.is_pwr_loss_resume and self.power_loss_resume is not None:
+                self.is_layer_change(line)
+                if (
+                    self.is_resume_speed
+                    and self.layer_change_count
+                    >= self.power_loss_resume.layer_count
+                ):
+                    self.is_resume_speed = False
+                    self.power_loss_resume.run_layer_change_gcode()
             try:
                 self.gcode.run_script(line)
             except self.gcode.error as e:
                 error_message = str(e)
+                if self.power_loss_resume is not None:
+                    self.power_loss_resume._save_power_loss_info()
                 try:
                     self.gcode.run_script(self.on_error_gcode.render())
                 except:
@@ -346,6 +710,8 @@ class VirtualSD:
                 lines = []
                 partial_input = ""
         logging.info("Exiting SD card print (position %d)", self.file_position)
+        if self.power_loss_resume is not None and not self.must_pause_work:
+            self.power_loss_resume._save_power_loss_info()
         self.work_timer = None
         self.cmd_from_sd = False
         if error_message is not None:
@@ -354,6 +720,8 @@ class VirtualSD:
             self.print_stats.note_pause()
         else:
             self.print_stats.note_complete()
+            if self.power_loss_resume is not None:
+                self.power_loss_resume._save_power_loss_info(False)
         return self.reactor.NEVER
 
 

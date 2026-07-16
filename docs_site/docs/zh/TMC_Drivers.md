@@ -1,1 +1,0 @@
-/home/mellow/klipper/docs/i18n/simple-chinese/TMC_Drivers.md

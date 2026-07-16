@@ -78,7 +78,7 @@ class HeaterCheck:
                 self.goal_systime = eventtime + self.check_gain_time
             elif self.error >= self.max_error:
                 # Failure due to inability to maintain target temperature
-                return self.heater_fault()
+                return self.heater_fault(eventtime)
         elif temp >= self.goal_temp:
             # Temperature approaching target - reset checks
             self.starting_approach = False
@@ -98,9 +98,18 @@ class HeaterCheck:
         self.last_target = target
         return eventtime + 1.0
 
-    def heater_fault(self):
+    def heater_fault(self, eventtime=None):
         msg = "Heater %s not heating at expected rate" % (self.heater_name,)
         logging.error(msg)
+        # If printing, pause instead of shutdown / 如果正在打印，暂停而非停机
+        if self.printer._is_printing():
+            self.printer._internal_error(
+                msg, gcode=self.gcode,
+                is_pause=True, is_off_heaters=True, heater=self.heater
+            )
+            if eventtime is not None:
+                return eventtime + 1.
+            return self.printer.get_reactor().monotonic() + 1.
         self.printer.invoke_shutdown(msg + HINT_THERMAL)
         return self.printer.get_reactor().NEVER
 

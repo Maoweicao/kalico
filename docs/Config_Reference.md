@@ -4703,6 +4703,96 @@ pin:
 #   See the "output_pin" section for information on these parameters.
 ```
 
+### [input_pin]
+
+Generic digital input pins (one may define any number of sections with
+an "input_pin" prefix). Pins configured here will be setup as GPIO
+input pins and may be queried at run-time using "QUERY_INPUT_PIN
+PIN=my_sensor" type extended
+[g-code commands](G-Codes.md#input_pin).
+
+```
+[input_pin my_sensor]
+pin:
+#   The pin to configure as an input. This parameter must be provided.
+#pull_up:
+#   Set if the internal pull-up resistor should be enabled. Use "^pin"
+#   syntax in the pin description as an alternative. The default is
+#   False.
+#invert: False
+#   Set if the pin logic should be inverted. Use "!pin" syntax in the
+#   pin description as an alternative. The default is False.
+#poll_interval: 0.5
+#   The amount of time (in seconds) between polling cycles. This
+#   controls how often the pin state is refreshed for status queries.
+#   The default is 0.5 seconds (range: 0.05 to 5.0).
+```
+
+### [adc_pin]
+
+Generic analog input (ADC) pins (one may define any number of sections
+with an "adc_pin" prefix). Pins configured here will be setup as ADC
+input pins and may be queried at run-time using "QUERY_ADC_PIN
+PIN=my_adc" type extended
+[g-code commands](G-Codes.md#adc_pin).
+
+```
+[adc_pin my_adc]
+pin:
+#   The pin to configure as an ADC input. This parameter must be
+#   provided.
+#sample_time: 0.001
+#   The amount of time (in seconds) per ADC sample. The default is
+#   0.001 seconds.
+#sample_count: 8
+#   The number of ADC samples to take and average. The default is 8.
+#report_time: 0.015
+#   The amount of time (in seconds) between reporting the ADC value.
+#   The default is 0.015 seconds.
+#min_value: 0.0
+#   The minimum expected ADC value. Values outside this range will
+#   trigger a shutdown if range_check_count is non-zero. The default
+#   is 0.0.
+#max_value: 1.0
+#   The maximum expected ADC value. Values outside this range will
+#   trigger a shutdown if range_check_count is non-zero. The default
+#   is 1.0.
+#range_check_count: 0
+#   The number of consecutive out-of-range readings before triggering
+#   a shutdown. The default is 0 (no range checking).
+```
+
+### [dac_pin]
+
+Generic analog output (DAC) pins using PWM (one may define any number
+of sections with a "dac_pin" prefix). Pins configured here will be
+setup as PWM output pins and may be controlled at run-time using
+"SET_DAC_PIN PIN=my_dac VALUE=1.65" type extended
+[g-code commands](G-Codes.md#dac_pin).
+
+```
+[dac_pin my_dac]
+pin:
+#   The pin to configure as a DAC output. This parameter must be
+#   provided.
+#scale: 3.3
+#   The voltage range of the DAC output. The VALUE parameter in
+#   SET_DAC_PIN commands will be interpreted as a voltage between 0
+#   and scale. The default is 3.3.
+#value: 0.0
+#   The initial voltage to set the pin to during MCU configuration.
+#   The default is 0.0.
+#shutdown_value: 0.0
+#   The voltage to set the pin to on an MCU shutdown event. The
+#   default is 0.0.
+#cycle_time: 0.100
+#   The amount of time (in seconds) per PWM cycle. The default is
+#   0.100 seconds.
+#hardware_pwm: False
+#   Enable this to use hardware PWM instead of software PWM. The
+#   default is False.
+```
+
 ### [static_digital_output]
 
 Statically configured digital output pins (one may define any number

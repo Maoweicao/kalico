@@ -427,6 +427,26 @@ is defined):
 - `live_extruder_velocity`: The requested extruder velocity (in mm/s)
   at the current time.
 
+## input_pin
+
+The following information is available in
+[input_pin some_name](Config_Reference.md#input_pin) objects:
+- `value`: The last read value of the pin (0 for LOW, 1 for HIGH).
+
+## adc_pin
+
+The following information is available in
+[adc_pin some_name](Config_Reference.md#adc_pin) objects:
+- `value`: The last read analog value (0.0 to 1.0).
+- `read_time`: The time of the last ADC read.
+
+## dac_pin
+
+The following information is available in
+[dac_pin some_name](Config_Reference.md#dac_pin) objects:
+- `value`: The current voltage value of the pin, as set by a
+  `SET_DAC_PIN` command.
+
 ## output_pin
 
 The following information is available in

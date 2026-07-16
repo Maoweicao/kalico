@@ -294,6 +294,15 @@ class MCU_TMC_uart:
             val = self.mcu_uart.reg_read(self.instance_id, self.addr, reg)
             if val["data"] is not None:
                 return val
+        if (
+            self.printer.is_printing()
+            or self.printer.is_complete()
+            or self.printer.is_cancelled()
+        ):
+            return {
+                "data": None,
+                "#receive_time": 0.0,
+            }
         raise self.printer.command_error(
             "Unable to read tmc uart '%s' register %s" % (self.name, reg_name)
         )
@@ -314,15 +323,32 @@ class MCU_TMC_uart:
                 ifcnt = self.ifcnt
                 if ifcnt is None:
                     self.ifcnt = ifcnt = self._do_get_register("IFCNT")["data"]
+                    if ifcnt is None:
+                        continue
                 self.mcu_uart.reg_write(
                     self.instance_id, self.addr, reg, val, print_time
                 )
                 self.ifcnt = self._do_get_register("IFCNT")["data"]
+                if self.ifcnt is None:
+                    continue
                 if self.ifcnt == (ifcnt + 1) & 0xFF:
                     return
-        raise self.printer.command_error(
-            "Unable to write tmc uart '%s' register %s" % (self.name, reg_name)
+        msg = "Unable to write tmc uart '%s' register %s" % (
+            self.name,
+            reg_name,
         )
+        if (
+            self.printer.is_printing()
+            or self.printer.is_complete()
+            or self.printer.is_cancelled()
+        ):
+            gcode = self.printer.lookup_object("gcode")
+            self.printer._internal_error(
+                msg, gcode=gcode, is_pause=False,
+                is_off_heaters=False, heater=None
+            )
+            return
+        raise self.printer.command_error(msg)
 
     def get_tmc_frequency(self):
         return self.tmc_frequency

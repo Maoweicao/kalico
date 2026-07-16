@@ -1,1 +1,0 @@
-/home/mellow/klipper/docs/Load_Cell.md

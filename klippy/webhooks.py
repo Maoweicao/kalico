@@ -133,35 +133,49 @@ class ServerSocket:
         self.webhooks = webhooks
         self.reactor = printer.get_reactor()
         self.sock = self.fd_handle = None
+        self.tcp_sock = self.tcp_fd_handle = None
         self.clients = {}
         start_args = printer.get_start_args()
         server_address = start_args.get("apiserver_file")
+        tcp_port = start_args.get("tcp_port")
         is_fileinput = start_args.get("debuginput") is not None
-        if not server_address or is_fileinput:
-            # Do not enable server
+        if server_address and not is_fileinput:
+            self._remove_socket_file(server_address)
+            self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+            self.sock.setblocking(0)
+            self.sock.bind(server_address)
+            self.__apply_permission_options_to_socket(server_address, start_args)
+            self.sock.listen(1)
+            self.fd_handle = self.reactor.register_fd(
+                self.sock.fileno(), self._handle_accept
+            )
+        if tcp_port is not None:
+            self.tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.tcp_sock.setblocking(0)
+            self.tcp_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            self.tcp_sock.bind(("0.0.0.0", int(tcp_port)))
+            self.tcp_sock.listen(5)
+            self.tcp_fd_handle = self.reactor.register_fd(
+                self.tcp_sock.fileno(), self._handle_accept
+            )
+        if self.sock is None and self.tcp_sock is None:
             return
-        self._remove_socket_file(server_address)
-        self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        self.sock.setblocking(0)
-        self.sock.bind(server_address)
-        self.__apply_permission_options_to_socket(server_address, start_args)
-        self.sock.listen(1)
-        self.fd_handle = self.reactor.register_fd(
-            self.sock.fileno(), self._handle_accept
-        )
         printer.register_event_handler(
             "klippy:disconnect", self._handle_disconnect
         )
         printer.register_event_handler("klippy:shutdown", self._handle_shutdown)
 
     def _handle_accept(self, eventtime):
-        try:
-            sock, addr = self.sock.accept()
-        except socket.error:
-            return
-        sock.setblocking(0)
-        client = ClientConnection(self, sock)
-        self.clients[client.uid] = client
+        for sock in (self.sock, self.tcp_sock):
+            if sock is None:
+                continue
+            try:
+                _sock, addr = sock.accept()
+            except socket.error:
+                continue
+            _sock.setblocking(0)
+            client = ClientConnection(self, _sock)
+            self.clients[client.uid] = client
 
     def _handle_disconnect(self):
         for client in list(self.clients.values()):
@@ -170,6 +184,12 @@ class ServerSocket:
             self.reactor.unregister_fd(self.fd_handle)
             try:
                 self.sock.close()
+            except socket.error:
+                pass
+        if self.tcp_sock is not None:
+            self.reactor.unregister_fd(self.tcp_fd_handle)
+            try:
+                self.tcp_sock.close()
             except socket.error:
                 pass
 

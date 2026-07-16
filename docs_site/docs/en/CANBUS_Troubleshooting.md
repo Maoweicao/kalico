@@ -1,1 +1,0 @@
-/home/mellow/klipper/docs/CANBUS_Troubleshooting.md

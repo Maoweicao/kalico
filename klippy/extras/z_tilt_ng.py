@@ -194,6 +194,16 @@ class RetryHelper:
 class ZTilt:
     def __init__(self, config):
         self.printer = config.get_printer()
+        if config.has_section("z_tilt"):
+            raise config.error(
+                "z_tilt_ng and z_tilt cannot"
+                + " be used simultaneously"
+            )
+        if config.has_section("quad_gantry_level"):
+            raise config.error(
+                "z_tilt_ng and quad_gantry_level cannot"
+                + " be used simultaneously"
+            )
         self.section = config.get_name()
 
         self.z_positions = config.getlists(

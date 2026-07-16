@@ -11,6 +11,106 @@ this document are not available.
 In addition to this document, be sure to review the
 [TMC driver config reference](Config_Reference.md#tmc-stepper-driver-configuration).
 
+## TMC Driver Calculator
+
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container{--calc-primary:#e67e22;--calc-primary-hover:#d35400;--calc-bg:#fff;--calc-border:#ddd;--calc-text:#333;--calc-text-light:#666;--calc-result-bg:#f8f9fa;--calc-tab-bg:#f1f1f1;--calc-success:#27ae60}[data-md-color-scheme="slate"] .rd-calc-container,[data-md-color-mode="dark"] .rd-calc-container{--calc-bg:#2d2d2d;--calc-border:#444;--calc-text:#e0e0e0;--calc-text-light:#aaa;--calc-result-bg:#383838;--calc-tab-bg:#363636}.rd-calc-container *{box-sizing:border-box}.rd-calc-container{background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:8px;padding:0;margin:1.5em 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}.rd-calc-header{background:var(--calc-primary);color:#fff;padding:12px 20px;font-size:1.1em;font-weight:600;display:flex;align-items:center;gap:8px}.rd-calc-header svg{width:20px;height:20px;fill:currentColor}.rd-calc-tabs{display:flex;flex-wrap:wrap;background:var(--calc-tab-bg);border-bottom:1px solid var(--calc-border);padding:0;margin:0}.rd-calc-tab{padding:10px 16px;cursor:pointer;border:none;background:transparent;color:var(--calc-text-light);font-size:.85em;font-weight:500;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap}.rd-calc-tab:hover{color:var(--calc-primary);background:rgba(230,126,34,.05)}.rd-calc-tab.active{color:var(--calc-primary);border-bottom-color:var(--calc-primary);background:var(--calc-bg)}.rd-calc-content{padding:20px}.rd-calc-panel{display:none}.rd-calc-panel.active{display:block}.rd-calc-panel h4{margin:0 0 8px;color:var(--calc-text);font-size:1em}.rd-calc-panel p.formula{background:var(--calc-result-bg);padding:8px 12px;border-radius:4px;font-family:monospace;font-size:.9em;color:var(--calc-text-light);margin:0 0 16px;border-left:3px solid var(--calc-primary)}.rd-calc-form{display:grid;gap:12px}.rd-calc-field{display:grid;gap:4px}.rd-calc-field label{font-size:.85em;color:var(--calc-text-light);font-weight:500}.rd-calc-field input,.rd-calc-field select{padding:8px 12px;border:1px solid var(--calc-border);border-radius:4px;font-size:.95em;background:var(--calc-bg);color:var(--calc-text);transition:border-color .2s}.rd-calc-field input:focus,.rd-calc-field select:focus{outline:none;border-color:var(--calc-primary);box-shadow:0 0 0 2px rgba(230,126,34,.2)}.rd-calc-field .hint{font-size:.75em;color:var(--calc-text-light);margin-top:2px}.rd-calc-btn{background:var(--calc-primary);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:.95em;font-weight:600;cursor:pointer;transition:background .2s;justify-self:start}.rd-calc-btn:hover{background:var(--calc-primary-hover)}.rd-calc-result{margin-top:16px;padding:12px 16px;background:var(--calc-result-bg);border-radius:4px;display:none}.rd-calc-result.show{display:block}.rd-calc-result .label{font-size:.8em;color:var(--calc-text-light);margin-bottom:4px}.rd-calc-result .value{font-size:1.4em;font-weight:700;color:var(--calc-success);font-family:monospace}.rd-calc-result .config{margin-top:8px;padding:8px 12px;background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:4px;font-family:monospace;font-size:.85em;color:var(--calc-text);user-select:all}.rd-calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.rd-calc-row{grid-template-columns:1fr}.rd-calc-tab{padding:8px 10px;font-size:.78em}.rd-calc-content{padding:16px}}</style>
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    TMC Driver Calculator
+  </div>
+  <div class="rd-calc-tabs">
+    <button class="rd-calc-tab active" data-tab="sg">Sensorless Homing</button>
+    <button class="rd-calc-tab" data-tab="speed">Homing Speed</button>
+    <button class="rd-calc-tab" data-tab="interp">Interpolation Error</button>
+  </div>
+  <div class="rd-calc-content">
+    <!-- Sensorless Homing Sensitivity -->
+    <div class="rd-calc-panel active" data-panel="sg">
+      <h4>Sensorless Homing Sensitivity</h4>
+      <p class="formula">recommended = minimum + (maximum - minimum) / 3</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-field">
+          <label>Driver Type</label>
+          <select id="tmc_driver">
+            <option value="2209">TMC2209 (SGTHRS: 0-255)</option>
+            <option value="2130">TMC2130/5160 (SGT: -64 to 63)</option>
+          </select>
+        </div>
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>Maximum Sensitivity</label>
+            <input type="number" id="tmc_max" placeholder="e.g. 100">
+            <span class="hint">Highest sensitivity that homes reliably</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>Minimum Sensitivity</label>
+            <input type="number" id="tmc_min" placeholder="e.g. 50">
+            <span class="hint">Lowest sensitivity that homes with one touch</span>
+          </div>
+        </div>
+        <button class="rd-calc-btn" onclick="calcSG()">Calculate</button>
+        <div class="rd-calc-result" id="sg_result">
+          <div class="label">Recommended Sensitivity</div>
+          <div class="value" id="sg_value"></div>
+          <div class="config" id="sg_config"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Homing Speed -->
+    <div class="rd-calc-panel" data-panel="speed">
+      <h4>Recommended Homing Speed</h4>
+      <p class="formula">homing_speed = rotation_distance / 2</p>
+      <div class="rd-calc-field">
+        <label>Rotation Distance (mm)</label>
+        <input type="number" id="tmc_rd" step="any" placeholder="e.g. 40">
+        <span class="hint">From your stepper config</span>
+      </div>
+      <button class="rd-calc-btn" onclick="calcSpeed()">Calculate</button>
+      <div class="rd-calc-result" id="speed_result">
+        <div class="label">Recommended Homing Speed</div>
+        <div class="value" id="speed_value"></div>
+        <div class="config" id="speed_config"></div>
+      </div>
+    </div>
+    <!-- Interpolation Error -->
+    <div class="rd-calc-panel" data-panel="interp">
+      <h4>Interpolation Position Error</h4>
+      <p class="formula">error ≈ rotation_distance / (steps × microsteps) / 2 - rotation_distance / (steps × 64)</p>
+      <div class="rd-calc-row">
+        <div class="rd-calc-field">
+          <label>Rotation Distance (mm)</label>
+          <input type="number" id="tmc_interp_rd" step="any" placeholder="e.g. 40">
+        </div>
+        <div class="rd-calc-field">
+          <label>Full Steps per Rotation</label>
+          <input type="number" id="tmc_interp_steps" value="200">
+        </div>
+      </div>
+      <div class="rd-calc-field">
+        <label>Microsteps</label>
+        <input type="number" id="tmc_interp_micro" value="16">
+      </div>
+      <button class="rd-calc-btn" onclick="calcInterp()">Calculate</button>
+      <div class="rd-calc-result" id="interp_result">
+        <div class="label">Approximate Positional Error</div>
+        <div class="value" id="interp_value"></div>
+        <div class="config" id="interp_config"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      document.querySelectorAll('.rd-calc-tab').forEach(function(t){t.addEventListener('click',function(){var c=this.closest('.rd-calc-container');c.querySelectorAll('.rd-calc-tab').forEach(function(x){x.classList.remove('active')});c.querySelectorAll('.rd-calc-panel').forEach(function(x){x.classList.remove('active')});this.classList.add('active');c.querySelector('[data-panel="'+this.dataset.tab+'"]').classList.add('active')})});
+      window.calcSG=function(){var dt=document.getElementById('tmc_driver').value;var mx=parseFloat(document.getElementById('tmc_max').value);var mn=parseFloat(document.getElementById('tmc_min').value);if(isNaN(mx)||isNaN(mn))return;var rec;if(dt==='2209'){rec=Math.round(mn+(mx-mn)/3);document.getElementById('sg_value').textContent='SGTHRS: '+rec;document.getElementById('sg_config').textContent='driver_SGTHRS: '+rec}else{rec=Math.round(mn+(mx-mn)/3);document.getElementById('sg_value').textContent='SGT: '+rec;document.getElementById('sg_config').textContent='driver_SGT: '+rec}document.getElementById('sg_result').classList.add('show')};
+      window.calcSpeed=function(){var rd=parseFloat(document.getElementById('tmc_rd').value);if(isNaN(rd))return;var s=rd/2;document.getElementById('speed_value').textContent=s.toFixed(1)+' mm/s';document.getElementById('speed_config').textContent='homing_speed: '+s.toFixed(1);document.getElementById('speed_result').classList.add('show')};
+      window.calcInterp=function(){var rd=parseFloat(document.getElementById('tmc_interp_rd').value);var st=parseFloat(document.getElementById('tmc_interp_steps').value);var mi=parseFloat(document.getElementById('tmc_interp_micro').value);if(isNaN(rd)||isNaN(st)||isNaN(mi))return;var err=rd/(st*mi)/2-rd/(st*64);document.getElementById('interp_value').textContent='~'+err.toFixed(4)+' mm';document.getElementById('interp_config').textContent='Position error with interpolation enabled';document.getElementById('interp_result').classList.add('show')};
+      document.querySelectorAll('.rd-calc-field input').forEach(function(i){i.addEventListener('keypress',function(e){if(e.key==='Enter'){var b=this.closest('.rd-calc-panel').querySelector('.rd-calc-btn');if(b)b.click()}})});
+    })();
+  </script>
+</div>
+
 ## Tuning motor current
 
 A higher driver current increases positional accuracy and torque.

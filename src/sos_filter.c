@@ -108,7 +108,7 @@ sos_filter_oid_lookup(uint8_t oid)
 static void
 validate_section_index(struct sos_filter *sf, uint8_t section_idx)
 {
-    if (section_idx > sf->max_sections)
+    if (section_idx >= sf->max_sections)
         shutdown("Filter section index larger than max_sections");
 }
 

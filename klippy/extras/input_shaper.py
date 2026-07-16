@@ -1,7 +1,7 @@
-# Kinematic input shaper to minimize motion vibrations in XY plane
+# Kinematic input shaper to minimize motion vibrations in XYZ plane
 #
 # Copyright (C) 2019-2020  Kevin O'Connor <kevin@koconnor.net>
-# Copyright (C) 2020  Dmitry Butyugin <dmbutyugin@google.com>
+# Copyright (C) 2020-2025  Dmitry Butyugin <dmbutyugin@google.com>
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import collections
@@ -14,10 +14,10 @@ from . import shaper_defs
 class InputShaperParams:
     def __init__(self, axis, config):
         self.axis = axis
-        self.shapers = {s.name: s.init_func for s in shaper_defs.INPUT_SHAPERS}
         shaper_type = config.get("shaper_type", "mzv")
         self.shaper_type = config.get("shaper_type_" + axis, shaper_type)
-        if self.shaper_type not in self.shapers:
+        sconfig = shaper_defs.get_shaper_cfg(self.shaper_type)
+        if sconfig is None:
             raise config.error(
                 "Unsupported shaper type: %s" % (self.shaper_type,)
             )
@@ -25,33 +25,52 @@ class InputShaperParams:
             "damping_ratio_" + axis,
             shaper_defs.DEFAULT_DAMPING_RATIO,
             minval=0.0,
-            maxval=1.0,
+            maxval=sconfig.max_damping_ratio,
         )
         self.shaper_freq = config.getfloat(
             "shaper_freq_" + axis, 0.0, minval=0.0
         )
+        self.get_shaper(error=config.error)
 
     def update(self, gcmd):
         axis = self.axis.upper()
-        self.damping_ratio = gcmd.get_float(
-            "DAMPING_RATIO_" + axis, self.damping_ratio, minval=0.0, maxval=1.0
-        )
-        self.shaper_freq = gcmd.get_float(
-            "SHAPER_FREQ_" + axis, self.shaper_freq, minval=0.0
-        )
         shaper_type = gcmd.get("SHAPER_TYPE", None)
         if shaper_type is None:
             shaper_type = gcmd.get("SHAPER_TYPE_" + axis, self.shaper_type)
-        if shaper_type.lower() not in self.shapers:
+        sconfig = shaper_defs.get_shaper_cfg(shaper_type.lower())
+        if sconfig is None:
             raise gcmd.error("Unsupported shaper type: %s" % (shaper_type,))
+        damping_ratio = gcmd.get_float(
+            "DAMPING_RATIO_" + axis,
+            self.damping_ratio,
+            minval=0.0,
+        )
+        if damping_ratio > sconfig.max_damping_ratio:
+            raise gcmd.error(
+                "Too high value of damping_ratio=%.3f for shaper %s"
+                " on axis %c" % (damping_ratio, shaper_type, axis)
+            )
+        shaper_freq = gcmd.get_float(
+            "SHAPER_FREQ_" + axis, self.shaper_freq, minval=0.0
+        )
+        # Validate input shaper
+        self.get_shaper(
+            shaper_type.lower(), shaper_freq, damping_ratio, gcmd.error
+        )
+        self.damping_ratio = damping_ratio
         self.shaper_type = shaper_type.lower()
+        self.shaper_freq = shaper_freq
 
-    def get_shaper(self):
+    def get_shaper(self, shaper_type=None, shaper_freq=None,
+                   damping_ratio=None, error=None):
         if not self.shaper_freq:
             A, T = shaper_defs.get_none_shaper()
         else:
-            A, T = self.shapers[self.shaper_type](
-                self.shaper_freq, self.damping_ratio
+            A, T = shaper_defs.init_shaper(
+                shaper_type or self.shaper_type,
+                shaper_freq or self.shaper_freq,
+                damping_ratio or self.damping_ratio,
+                error=error,
             )
         return len(A), A, T
 
@@ -97,6 +116,9 @@ class AxisInputShaper:
             )
         return success
 
+    def is_enabled(self):
+        return self.n > 0
+
     def disable_shaping(self):
         if self.saved is None and self.n:
             self.saved = (self.n, self.A, self.T)
@@ -124,10 +146,14 @@ class InputShaper:
     def __init__(self, config):
         self.printer = config.get_printer()
         self.printer.register_event_handler("klippy:connect", self.connect)
+        self.printer.register_event_handler(
+            "dual_carriage:update_kinematics", self._update_kinematics
+        )
         self.toolhead = None
         self.shapers = [
             AxisInputShaper("x", config),
             AxisInputShaper("y", config),
+            AxisInputShaper("z", config),
         ]
         self.input_shaper_stepper_kinematics = []
         self.orig_stepper_kinematics = []
@@ -144,18 +170,28 @@ class InputShaper:
 
     def connect(self):
         self.toolhead = self.printer.lookup_object("toolhead")
+        dual_carriage = self.printer.lookup_object("dual_carriage", None)
+        if dual_carriage is not None:
+            for shaper in self.shapers:
+                if shaper.is_enabled():
+                    raise self.printer.config_error(
+                        "Input shaper parameters cannot be configured via"
+                        " [input_shaper] section with dual_carriage(s) "
+                        " enabled. Refer to Klipper documentation on how "
+                        " to configure input shaper for dual_carriage(s)."
+                    )
+            return
         # Configure initial values
         self._update_input_shaping(error=self.printer.config_error)
 
     def _get_input_shaper_stepper_kinematics(self, stepper):
         # Lookup stepper kinematics
         sk = stepper.get_stepper_kinematics()
+        if sk in self.input_shaper_stepper_kinematics:
+            return sk
         if sk in self.orig_stepper_kinematics:
             # Already processed this stepper kinematics unsuccessfully
             return None
-        if sk in self.input_shaper_stepper_kinematics:
-            return sk
-        self.orig_stepper_kinematics.append(sk)
         ffi_main, ffi_lib = chelper.get_ffi()
         is_sk = ffi_main.gc(ffi_lib.input_shaper_alloc(), ffi_lib.free)
         stepper.set_stepper_kinematics(is_sk)
@@ -163,8 +199,40 @@ class InputShaper:
         if res < 0:
             stepper.set_stepper_kinematics(sk)
             return None
+        self.orig_stepper_kinematics.append(sk)
         self.input_shaper_stepper_kinematics.append(is_sk)
         return is_sk
+
+    def _update_kinematics(self):
+        if self.toolhead is None:
+            return
+        self.toolhead.flush_step_generation()
+        ffi_main, ffi_lib = chelper.get_ffi()
+        kin = self.toolhead.get_kinematics()
+        for s in kin.get_steppers():
+            if s.get_trapq() is None:
+                continue
+            is_sk = self._get_input_shaper_stepper_kinematics(s)
+            if is_sk is None:
+                continue
+            ffi_lib.input_shaper_update_sk(is_sk)
+        self.toolhead.note_step_generation_scan_time(
+            self._get_max_scan_time(), None
+        )
+
+    def _get_max_scan_time(self):
+        ffi_main, ffi_lib = chelper.get_ffi()
+        kin = self.toolhead.get_kinematics()
+        max_delay = 0.0
+        for s in kin.get_steppers():
+            if s.get_trapq() is None:
+                continue
+            sk = s.get_stepper_kinematics()
+            if sk in self.input_shaper_stepper_kinematics:
+                delay = ffi_lib.input_shaper_get_step_generation_window(sk)
+                if delay > max_delay:
+                    max_delay = delay
+        return max_delay
 
     def _update_input_shaping(self, error=None):
         self.toolhead.flush_step_generation()
@@ -212,8 +280,9 @@ class InputShaper:
             for shaper in self.shapers:
                 shaper.update(gcmd)
             self._update_input_shaping()
-        for shaper in self.shapers:
-            shaper.report(gcmd)
+        for ind, shaper in enumerate(self.shapers):
+            if ind < 2 or shaper.is_enabled():
+                shaper.report(gcmd)
 
 
 def load_config(config):

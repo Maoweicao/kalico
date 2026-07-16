@@ -26,6 +26,9 @@
 
 ## New Kalico Modules
 
+- [`[input_pin]`](./Config_Reference.md#input_pin) - Generic digital input pin with `QUERY_INPUT_PIN` command
+- [`[adc_pin]`](./Config_Reference.md#adc_pin) - Generic analog input pin with `QUERY_ADC_PIN` command
+- [`[dac_pin]`](./Config_Reference.md#dac_pin) - Analog output (PWM-based DAC) with `SET_DAC_PIN` command
 - [gcode_shell_command](./G-Code_Shell_Command.md) - Execute linux commands and scripts from within Kalico
 - [dummy_thermistor](./Dummy_Thermistor.md) - Virtual temperature sensor for testing and cold extruders
 - [Cold Extruder](./Cold_Extruder.md) - No-heater extruder support for clay, concrete, and other cold materials
