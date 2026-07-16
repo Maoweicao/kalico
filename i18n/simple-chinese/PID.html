@@ -2025,6 +2025,15 @@
         <li class="md-nav__item">
   <a href="#pid_1" class="md-nav__link">
     <span class="md-ellipsis">
+      PID 参数计算器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pid_2" class="md-nav__link">
+    <span class="md-ellipsis">
       PID 校准
     </span>
   </a>
@@ -2042,7 +2051,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pid_2" class="md-nav__link">
+  <a href="#pid_3" class="md-nav__link">
     <span class="md-ellipsis">
       选择正确的 PID 算法
     </span>
@@ -2051,7 +2060,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pid_3" class="md-nav__link">
+  <a href="#pid_4" class="md-nav__link">
     <span class="md-ellipsis">
       运行 PID 校准
     </span>
@@ -2102,7 +2111,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pid_4" class="md-nav__link">
+  <a href="#pid_5" class="md-nav__link">
     <span class="md-ellipsis">
       Pid 控制算法
     </span>
@@ -2140,7 +2149,80 @@
 
 <h1 id="pid">PID<a class="headerlink" href="#pid" title="Permanent link">&para;</a></h1>
 <p>PID 控制是 3D 打印世界中广泛使用的控制方法。当涉及温度控制时它无处不在，无论是使用加热器产生热量还是使用风扇移除热量。本文档旨在提供 PID 是什么以及如何在 Kalico 中最好地使用它的高级概述。</p>
-<h2 id="pid_1">PID 校准<a class="headerlink" href="#pid_1" title="Permanent link">&para;</a></h2>
+<h2 id="pid_1">PID 参数计算器<a class="headerlink" href="#pid_1" title="Permanent link">&para;</a></h2>
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container{--calc-primary:#e67e22;--calc-primary-hover:#d35400;--calc-bg:#fff;--calc-border:#ddd;--calc-text:#333;--calc-text-light:#666;--calc-result-bg:#f8f9fa;--calc-tab-bg:#f1f1f1;--calc-success:#27ae60}[data-md-color-scheme="slate"] .rd-calc-container,[data-md-color-mode="dark"] .rd-calc-container{--calc-bg:#2d2d2d;--calc-border:#444;--calc-text:#e0e0e0;--calc-text-light:#aaa;--calc-result-bg:#383838;--calc-tab-bg:#363636}.rd-calc-container *{box-sizing:border-box}.rd-calc-container{background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:8px;padding:0;margin:1.5em 0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}.rd-calc-header{background:var(--calc-primary);color:#fff;padding:12px 20px;font-size:1.1em;font-weight:600;display:flex;align-items:center;gap:8px}.rd-calc-header svg{width:20px;height:20px;fill:currentColor}.rd-calc-tabs{display:flex;flex-wrap:wrap;background:var(--calc-tab-bg);border-bottom:1px solid var(--calc-border);padding:0;margin:0}.rd-calc-tab{padding:10px 16px;cursor:pointer;border:none;background:transparent;color:var(--calc-text-light);font-size:.85em;font-weight:500;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap}.rd-calc-tab:hover{color:var(--calc-primary);background:rgba(230,126,34,.05)}.rd-calc-tab.active{color:var(--calc-primary);border-bottom-color:var(--calc-primary);background:var(--calc-bg)}.rd-calc-content{padding:20px}.rd-calc-panel{display:none}.rd-calc-panel.active{display:block}.rd-calc-panel h4{margin:0 0 8px;color:var(--calc-text);font-size:1em}.rd-calc-panel p.formula{background:var(--calc-result-bg);padding:8px 12px;border-radius:4px;font-family:monospace;font-size:.9em;color:var(--calc-text-light);margin:0 0 16px;border-left:3px solid var(--calc-primary)}.rd-calc-form{display:grid;gap:12px}.rd-calc-field{display:grid;gap:4px}.rd-calc-field label{font-size:.85em;color:var(--calc-text-light);font-weight:500}.rd-calc-field input,.rd-calc-field select{padding:8px 12px;border:1px solid var(--calc-border);border-radius:4px;font-size:.95em;background:var(--calc-bg);color:var(--calc-text);transition:border-color .2s}.rd-calc-field input:focus,.rd-calc-field select:focus{outline:none;border-color:var(--calc-primary);box-shadow:0 0 0 2px rgba(230,126,34,.2)}.rd-calc-field .hint{font-size:.75em;color:var(--calc-text-light);margin-top:2px}.rd-calc-btn{background:var(--calc-primary);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:.95em;font-weight:600;cursor:pointer;transition:background .2s;justify-self:start}.rd-calc-btn:hover{background:var(--calc-primary-hover)}.rd-calc-result{margin-top:16px;padding:12px 16px;background:var(--calc-result-bg);border-radius:4px;display:none}.rd-calc-result.show{display:block}.rd-calc-result .label{font-size:.8em;color:var(--calc-text-light);margin-bottom:4px}.rd-calc-result .value{font-size:1.4em;font-weight:700;color:var(--calc-success);font-family:monospace}.rd-calc-result .config{margin-top:8px;padding:8px 12px;background:var(--calc-bg);border:1px solid var(--calc-border);border-radius:4px;font-family:monospace;font-size:.85em;color:var(--calc-text);user-select:all}.rd-calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.rd-calc-row{grid-template-columns:1fr}.rd-calc-tab{padding:8px 10px;font-size:.78em}.rd-calc-content{padding:16px}}</style>
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    PID 参数计算器
+  </div>
+  <div class="rd-calc-tabs">
+    <button class="rd-calc-tab active" data-tab="zn">Ziegler-Nichols</button>
+    <button class="rd-calc-tab" data-tab="cc">Cohen-Coon</button>
+  </div>
+  <div class="rd-calc-content">
+    <div class="rd-calc-panel active" data-panel="zn">
+      <h4>Ziegler-Nichols PID 计算器</h4>
+      <p class="formula">从 PID_CALIBRATE 日志中提取 Ku 和 Tu</p>
+      <div class="rd-calc-row">
+        <div class="rd-calc-field">
+          <label>Ku (终极增益)</label>
+          <input type="number" id="pid_ku" step="any" placeholder="例如: 0.103092">
+          <span class="hint">来自日志中的"Ziegler-Nichols constants"</span>
+        </div>
+        <div class="rd-calc-field">
+          <label>Tu (终极周期)</label>
+          <input type="number" id="pid_tu" step="any" placeholder="例如: 41.8">
+          <span class="hint">来自日志中的"Ziegler-Nichols constants"</span>
+        </div>
+      </div>
+      <button class="rd-calc-btn" onclick="calcZN()">计算</button>
+      <div class="rd-calc-result" id="zn_result">
+        <div class="label">PID 参数 (Ziegler-Nichols 变体)</div>
+        <div class="value" id="zn_value" style="font-size:1em;line-height:1.8"></div>
+        <div class="config" id="zn_config"></div>
+      </div>
+    </div>
+    <div class="rd-calc-panel" data-panel="cc">
+      <h4>Cohen-Coon PID 计算器</h4>
+      <p class="formula">从 PID_CALIBRATE 日志中提取 Km、Theta 和 Tau</p>
+      <div class="rd-calc-row">
+        <div class="rd-calc-field">
+          <label>Km (过程增益)</label>
+          <input type="number" id="pid_km" step="any" placeholder="例如: -17.734845">
+          <span class="hint">来自日志中的"Cohen-Coon constants"</span>
+        </div>
+        <div class="rd-calc-field">
+          <label>Theta (死区时间)</label>
+          <input type="number" id="pid_theta" step="any" placeholder="例如: 6.6">
+          <span class="hint">来自日志中的"Cohen-Coon constants"</span>
+        </div>
+      </div>
+      <div class="rd-calc-field">
+        <label>Tau (时间常数)</label>
+        <input type="number" id="pid_tau" step="any" placeholder="例如: -10.182680">
+        <span class="hint">来自日志中的"Cohen-Coon constants"</span>
+      </div>
+      <button class="rd-calc-btn" onclick="calcCC()">计算</button>
+      <div class="rd-calc-result" id="cc_result">
+        <div class="label">PID 参数 (Cohen-Coon)</div>
+        <div class="value" id="cc_value" style="font-size:1em;line-height:1.8"></div>
+        <div class="config" id="cc_config"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      document.querySelectorAll('.rd-calc-tab').forEach(function(t){t.addEventListener('click',function(){var c=this.closest('.rd-calc-container');c.querySelectorAll('.rd-calc-tab').forEach(function(x){x.classList.remove('active')});c.querySelectorAll('.rd-calc-panel').forEach(function(x){x.classList.remove('active')});this.classList.add('active');c.querySelector('[data-panel="'+this.dataset.tab+'"]').classList.add('active')})});
+      window.calcZN=function(){var ku=parseFloat(document.getElementById('pid_ku').value);var tu=parseFloat(document.getElementById('pid_tu').value);if(isNaN(ku)||isNaN(tu))return;var classic={kp:0.6*ku,ki:1.2*ku/tu,kd:0.075*ku*tu};var p={kp:0.5*ku,ki:0,kd:0};var pi={kp:0.45*ku,ki:0.54*ku/tu,kd:0};var pid={kp:0.6*ku,ki:1.2*ku/tu,kd:0.075*ku*tu};var some={kp:0.33*ku,ki:0.66*ku/tu,kd:0.11*ku*tu};var html='<b>经典:</b> Kp='+classic.kp.toFixed(3)+' Ki='+classic.ki.toFixed(3)+' Kd='+classic.kd.toFixed(3)+'<br><b>仅P:</b> Kp='+p.kp.toFixed(3)+'<br><b>PI:</b> Kp='+pi.kp.toFixed(3)+' Ki='+pi.ki.toFixed(3)+'<br><b>PID:</b> Kp='+pid.kp.toFixed(3)+' Ki='+pid.ki.toFixed(3)+' Kd='+pid.kd.toFixed(3)+'<br><b>无超调:</b> Kp='+some.kp.toFixed(3)+' Ki='+some.ki.toFixed(3)+' Kd='+some.kd.toFixed(3);document.getElementById('zn_value').innerHTML=html;document.getElementById('zn_config').textContent='pid_Kp='+pid.kp.toFixed(3)+' pid_Ki='+pid.ki.toFixed(3)+' pid_Kd='+pid.kd.toFixed(3);document.getElementById('zn_result').classList.add('show')};
+      window.calcCC=function(){var km=parseFloat(document.getElementById('pid_km').value);var theta=parseFloat(document.getElementById('pid_theta').value);var tau=parseFloat(document.getElementById('pid_tau').value);if(isNaN(km)||isNaN(theta)||isNaN(tau))return;var r=theta/tau;var kp=(1/(km*r))*(1+r/3);var ki=kp/(theta*(32+6*r)/(13+8*r));var kd=kp*theta*4/(11+2*r);document.getElementById('cc_value').innerHTML='<b>Cohen-Coon:</b><br>Kp='+kp.toFixed(3)+'<br>Ki='+ki.toFixed(3)+'<br>Kd='+kd.toFixed(3);document.getElementById('cc_config').textContent='pid_Kp='+kp.toFixed(3)+' pid_Ki='+ki.toFixed(3)+' pid_Kd='+kd.toFixed(3);document.getElementById('cc_result').classList.add('show')};
+      document.querySelectorAll('.rd-calc-field input').forEach(function(i){i.addEventListener('keypress',function(e){if(e.key==='Enter'){var b=this.closest('.rd-calc-panel').querySelector('.rd-calc-btn');if(b)b.click()}})});
+    })();
+  </script>
+</div>
+
+<h2 id="pid_2">PID 校准<a class="headerlink" href="#pid_2" title="Permanent link">&para;</a></h2>
 <h3 id="_1">准备校准<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>执行校准测试时应最小化外部影响：</p>
 <ul>
@@ -2150,7 +2232,7 @@
 <li>避免外部干扰，如气流等。</li>
 </ul>
 <p>比上面列出的更重要的是，<strong>PID 如何打印</strong>。如果在打印时打开部分风扇，使用打开部分风扇的 PID 调整。</p>
-<h3 id="pid_2">选择正确的 PID 算法<a class="headerlink" href="#pid_2" title="Permanent link">&para;</a></h3>
+<h3 id="pid_3">选择正确的 PID 算法<a class="headerlink" href="#pid_3" title="Permanent link">&para;</a></h3>
 <p>Kalico 提供两种不同的 PID 算法：位置型和速度型</p>
 <ul>
 <li>位置型（<code>pid</code>）
@@ -2165,7 +2247,7 @@
     * 可能需要更大的平滑时间常数</li>
 </ul>
 <p>参考<a href="Config_Reference.html#extruder">配置参考</a>中的<a href="Config_Reference.html#extruder">控制语句</a>。</p>
-<h3 id="pid_3">运行 PID 校准<a class="headerlink" href="#pid_3" title="Permanent link">&para;</a></h3>
+<h3 id="pid_4">运行 PID 校准<a class="headerlink" href="#pid_4" title="Permanent link">&para;</a></h3>
 <p>PID 校准通过 <a href="G-Codes.html#pid_calibrate">PID_CALIBRATE</a> 命令调用。此命令将加热相应的加热器并让其在多个周期中围绕目标温度冷却，以确定所需的参数。</p>
 <p>这样的校准周期看起来像以下片段：</p>
 <div class="highlight"><pre><span></span><code>3:12 PM   PID_CALIBRATE HEATER=extruder TARGET=220 TOLERANCE=0.01 WRITE_FILE=1
@@ -2226,7 +2308,7 @@ Cohen-Coon constants: Km=-17.734845 Theta=6.600000 Tau=-10.182680
                with these parameters and restart the printer.
 </code></pre></div>
 
-<h3 id="pid_4">Pid 控制算法<a class="headerlink" href="#pid_4" title="Permanent link">&para;</a></h3>
+<h3 id="pid_5">Pid 控制算法<a class="headerlink" href="#pid_5" title="Permanent link">&para;</a></h3>
 <p>Kalico 目前支持两种控制算法：位置型和速度型。两种算法之间的根本区别在于位置型算法计算当前时间间隔的 PWM 值应该是什么，而速度型算法计算应该更改前一个 PWM 设置多少以获得当前时间间隔的 PWM 值。</p>
 <p>位置型是默认算法，因为它在每种场景中都可以工作。速度型算法可以为位置型算法提供更好的结果，但需要更低的噪声传感器读数或更大的平滑时间设置。</p>
 <p>两种算法之间最明显的区别是，对于相同的配置参数，速度控制将消除或大幅减少超调，如下图所示，因为它不容易发生积分饱和。</p>

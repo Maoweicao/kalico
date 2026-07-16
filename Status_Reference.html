@@ -1077,6 +1077,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#input_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      input_pin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adc_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      adc_pin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dac_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      dac_pin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#output_pin" class="md-nav__link">
     <span class="md-ellipsis">
       output_pin
@@ -2906,6 +2933,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#input_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      input_pin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adc_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      adc_pin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dac_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      dac_pin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#output_pin" class="md-nav__link">
     <span class="md-ellipsis">
       output_pin
@@ -3614,6 +3668,26 @@ is defined):</p>
   current time.</li>
 <li><code>live_extruder_velocity</code>: The requested extruder velocity (in mm/s)
   at the current time.</li>
+</ul>
+<h2 id="input_pin">input_pin<a class="headerlink" href="#input_pin" title="Permanent link">&para;</a></h2>
+<p>The following information is available in
+<a href="Config_Reference.html#input_pin">input_pin some_name</a> objects:</p>
+<ul>
+<li><code>value</code>: The last read value of the pin (0 for LOW, 1 for HIGH).</li>
+</ul>
+<h2 id="adc_pin">adc_pin<a class="headerlink" href="#adc_pin" title="Permanent link">&para;</a></h2>
+<p>The following information is available in
+<a href="Config_Reference.html#adc_pin">adc_pin some_name</a> objects:</p>
+<ul>
+<li><code>value</code>: The last read analog value (0.0 to 1.0).</li>
+<li><code>read_time</code>: The time of the last ADC read.</li>
+</ul>
+<h2 id="dac_pin">dac_pin<a class="headerlink" href="#dac_pin" title="Permanent link">&para;</a></h2>
+<p>The following information is available in
+<a href="Config_Reference.html#dac_pin">dac_pin some_name</a> objects:</p>
+<ul>
+<li><code>value</code>: The current voltage value of the pin, as set by a
+  <code>SET_DAC_PIN</code> command.</li>
 </ul>
 <h2 id="output_pin">output_pin<a class="headerlink" href="#output_pin" title="Permanent link">&para;</a></h2>
 <p>The following information is available in

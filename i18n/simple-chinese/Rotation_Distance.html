@@ -2023,6 +2023,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      旋转距离计算器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#steps_per_mmstep_distancerotation_distance" class="md-nav__link">
     <span class="md-ellipsis">
       从steps_per_mm（或step_distance）获取rotation_distance
@@ -2051,7 +2060,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       皮带驱动的轴
     </span>
@@ -2060,7 +2069,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       具有丝杆的轴
     </span>
@@ -2069,7 +2078,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       挤出机
     </span>
@@ -2118,6 +2127,502 @@
 <p>Kalico上的步进电机驱动器在每个
 <a href="Config_Reference.html#stepper">步进配置部分</a>中需要一个<code>rotation_distance</code>
 参数。<code>rotation_distance</code>是轴通过步进电机的一次完整旋转所移动的距离。本文档描述了如何配置此值。</p>
+<h2 id="_2">旋转距离计算器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="rd-calc-container">
+  <style>
+    .rd-calc-container {
+      --calc-primary: #e67e22;
+      --calc-primary-hover: #d35400;
+      --calc-bg: #fff;
+      --calc-border: #ddd;
+      --calc-text: #333;
+      --calc-text-light: #666;
+      --calc-result-bg: #f8f9fa;
+      --calc-tab-bg: #f1f1f1;
+      --calc-success: #27ae60;
+    }
+    [data-md-color-scheme="slate"] .rd-calc-container,
+    [data-md-color-mode="dark"] .rd-calc-container {
+      --calc-bg: #2d2d2d;
+      --calc-border: #444;
+      --calc-text: #e0e0e0;
+      --calc-text-light: #aaa;
+      --calc-result-bg: #383838;
+      --calc-tab-bg: #363636;
+    }
+    .rd-calc-container * {
+      box-sizing: border-box;
+    }
+    .rd-calc-container {
+      background: var(--calc-bg);
+      border: 1px solid var(--calc-border);
+      border-radius: 8px;
+      padding: 0;
+      margin: 1.5em 0;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .rd-calc-header {
+      background: var(--calc-primary);
+      color: white;
+      padding: 12px 20px;
+      font-size: 1.1em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rd-calc-header svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .rd-calc-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--calc-tab-bg);
+      border-bottom: 1px solid var(--calc-border);
+      padding: 0;
+      margin: 0;
+    }
+    .rd-calc-tab {
+      padding: 10px 16px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--calc-text-light);
+      font-size: 0.85em;
+      font-weight: 500;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .rd-calc-tab:hover {
+      color: var(--calc-primary);
+      background: rgba(230, 126, 34, 0.05);
+    }
+    .rd-calc-tab.active {
+      color: var(--calc-primary);
+      border-bottom-color: var(--calc-primary);
+      background: var(--calc-bg);
+    }
+    .rd-calc-content {
+      padding: 20px;
+    }
+    .rd-calc-panel {
+      display: none;
+    }
+    .rd-calc-panel.active {
+      display: block;
+    }
+    .rd-calc-panel h4 {
+      margin: 0 0 8px 0;
+      color: var(--calc-text);
+      font-size: 1em;
+    }
+    .rd-calc-panel p.formula {
+      background: var(--calc-result-bg);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9em;
+      color: var(--calc-text-light);
+      margin: 0 0 16px 0;
+      border-left: 3px solid var(--calc-primary);
+    }
+    .rd-calc-form {
+      display: grid;
+      gap: 12px;
+    }
+    .rd-calc-field {
+      display: grid;
+      gap: 4px;
+    }
+    .rd-calc-field label {
+      font-size: 0.85em;
+      color: var(--calc-text-light);
+      font-weight: 500;
+    }
+    .rd-calc-field input,
+    .rd-calc-field select {
+      padding: 8px 12px;
+      border: 1px solid var(--calc-border);
+      border-radius: 4px;
+      font-size: 0.95em;
+      background: var(--calc-bg);
+      color: var(--calc-text);
+      transition: border-color 0.2s;
+    }
+    .rd-calc-field input:focus,
+    .rd-calc-field select:focus {
+      outline: none;
+      border-color: var(--calc-primary);
+      box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+    }
+    .rd-calc-field .hint {
+      font-size: 0.75em;
+      color: var(--calc-text-light);
+      margin-top: 2px;
+    }
+    .rd-calc-btn {
+      background: var(--calc-primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 0.95em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      justify-self: start;
+    }
+    .rd-calc-btn:hover {
+      background: var(--calc-primary-hover);
+    }
+    .rd-calc-result {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: var(--calc-result-bg);
+      border-radius: 4px;
+      display: none;
+    }
+    .rd-calc-result.show {
+      display: block;
+    }
+    .rd-calc-result .label {
+      font-size: 0.8em;
+      color: var(--calc-text-light);
+      margin-bottom: 4px;
+    }
+    .rd-calc-result .value {
+      font-size: 1.4em;
+      font-weight: 700;
+      color: var(--calc-success);
+      font-family: monospace;
+    }
+    .rd-calc-result .config {
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: var(--calc-bg);
+      border: 1px solid var(--calc-border);
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85em;
+      color: var(--calc-text);
+      user-select: all;
+    }
+    .rd-calc-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 480px) {
+      .rd-calc-row {
+        grid-template-columns: 1fr;
+      }
+      .rd-calc-tab {
+        padding: 8px 10px;
+        font-size: 0.78em;
+      }
+      .rd-calc-content {
+        padding: 16px;
+      }
+    }
+  </style>
+
+  <div class="rd-calc-header">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+    旋转距离计算器
+  </div>
+
+  <div class="rd-calc-tabs">
+    <button class="rd-calc-tab active" data-tab="steps">步数/毫米</button>
+    <button class="rd-calc-tab" data-tab="stepdist">步进距离</button>
+    <button class="rd-calc-tab" data-tab="belt">皮带轮</button>
+    <button class="rd-calc-tab" data-tab="screw">丝杆</button>
+    <button class="rd-calc-tab" data-tab="extruder">挤出机直径</button>
+    <button class="rd-calc-tab" data-tab="calibrate">校准</button>
+  </div>
+
+  <div class="rd-calc-content">
+    <!-- 步数/毫米计算器 -->
+    <div class="rd-calc-panel active" data-panel="steps">
+      <h4>从步数/毫米计算</h4>
+      <p class="formula">rotation_distance = 全步数 × 微步数 / 步数每毫米</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>每转全步数</label>
+            <input type="number" id="steps_full" value="200" min="1">
+            <span class="hint">1.8°电机=200，0.9°电机=400</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>微步数</label>
+            <input type="number" id="steps_micro" value="16" min="1">
+            <span class="hint">大多数驱动器使用16</span>
+          </div>
+        </div>
+        <div class="rd-calc-field">
+          <label>步数/毫米</label>
+          <input type="number" id="steps_per_mm" step="any" placeholder="例如: 80">
+        </div>
+        <button class="rd-calc-btn" onclick="calcSteps()">计算</button>
+        <div class="rd-calc-result" id="steps_result">
+          <div class="label">旋转距离</div>
+          <div class="value" id="steps_value"></div>
+          <div class="config" id="steps_config"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 步进距离计算器 -->
+    <div class="rd-calc-panel" data-panel="stepdist">
+      <h4>从步进距离计算</h4>
+      <p class="formula">rotation_distance = 全步数 × 微步数 × 步进距离</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>每转全步数</label>
+            <input type="number" id="stepdist_full" value="200" min="1">
+            <span class="hint">1.8°电机=200，0.9°电机=400</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>微步数</label>
+            <input type="number" id="stepdist_micro" value="16" min="1">
+            <span class="hint">大多数驱动器使用16</span>
+          </div>
+        </div>
+        <div class="rd-calc-field">
+          <label>步进距离 (毫米)</label>
+          <input type="number" id="step_distance" step="any" placeholder="例如: 0.00625">
+          <span class="hint">每步移动的距离（毫米）</span>
+        </div>
+        <button class="rd-calc-btn" onclick="calcStepDist()">计算</button>
+        <div class="rd-calc-result" id="stepdist_result">
+          <div class="label">旋转距离</div>
+          <div class="value" id="stepdist_value"></div>
+          <div class="config" id="stepdist_config"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 皮带轮计算器 -->
+    <div class="rd-calc-panel" data-panel="belt">
+      <h4>皮带驱动轴</h4>
+      <p class="formula">rotation_distance = 皮带齿距 × 滑轮齿数</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>皮带齿距 (毫米)</label>
+            <input type="number" id="belt_pitch" value="2" step="any">
+            <span class="hint">GT2皮带通常为2mm</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>滑轮齿数</label>
+            <input type="number" id="belt_teeth" placeholder="例如: 20" min="1">
+            <span class="hint">数电机滑轮上的齿数</span>
+          </div>
+        </div>
+        <button class="rd-calc-btn" onclick="calcBelt()">计算</button>
+        <div class="rd-calc-result" id="belt_result">
+          <div class="label">旋转距离</div>
+          <div class="value" id="belt_value"></div>
+          <div class="config" id="belt_config"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 丝杆计算器 -->
+    <div class="rd-calc-panel" data-panel="screw">
+      <h4>丝杆轴</h4>
+      <p class="formula">rotation_distance = 螺距 × 线数</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>螺距 (毫米)</label>
+            <input type="number" id="screw_pitch" step="any" placeholder="例如: 2">
+            <span class="hint">相邻螺纹之间的距离</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>线数</label>
+            <input type="number" id="screw_threads" placeholder="例如: 4" min="1">
+            <span class="hint">T8=4，M6/M8=1</span>
+          </div>
+        </div>
+        <div class="rd-calc-field">
+          <label>常用预设</label>
+          <select id="screw_preset" onchange="applyScrewPreset()">
+            <option value="">-- 选择预设 --</option>
+            <option value="2,4">T8 导螺杆 (螺距=2, 线数=4)</option>
+            <option value="2,2">T4 导螺杆 (螺距=2, 线数=2)</option>
+            <option value="1.25,1">M8 螺杆 (螺距=1.25, 线数=1)</option>
+            <option value="1,1">M6 螺杆 (螺距=1, 线数=1)</option>
+          </select>
+        </div>
+        <button class="rd-calc-btn" onclick="calcScrew()">计算</button>
+        <div class="rd-calc-result" id="screw_result">
+          <div class="label">旋转距离</div>
+          <div class="value" id="screw_value"></div>
+          <div class="config" id="screw_config"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 挤出机直径计算器 -->
+    <div class="rd-calc-panel" data-panel="extruder">
+      <h4>挤出机（按齿轮直径）</h4>
+      <p class="formula">rotation_distance = 直径 × π (3.14159)</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-field">
+          <label>挤出齿轮直径 (毫米)</label>
+          <input type="number" id="extruder_dia" step="any" placeholder="例如: 7.3">
+          <span class="hint">测量驱动齿轮的有效直径</span>
+        </div>
+        <button class="rd-calc-btn" onclick="calcExtruder()">计算</button>
+        <div class="rd-calc-result" id="extruder_result">
+          <div class="label">旋转距离（未计算齿轮比）</div>
+          <div class="value" id="extruder_value"></div>
+          <div class="config" id="extruder_config"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 校准计算器 -->
+    <div class="rd-calc-panel" data-panel="calibrate">
+      <h4>挤出机校准（测量与修剪）</h4>
+      <p class="formula">新rotation_distance = 旧值 × 实际距离 / 请求距离</p>
+      <div class="rd-calc-form">
+        <div class="rd-calc-field">
+          <label>当前旋转距离</label>
+          <input type="number" id="cal_prev_rd" step="any" placeholder="例如: 22.678">
+          <span class="hint">您当前的rotation_distance设置</span>
+        </div>
+        <div class="rd-calc-row">
+          <div class="rd-calc-field">
+            <label>初始标记距离 (毫米)</label>
+            <input type="number" id="cal_initial" step="any" placeholder="例如: 70">
+            <span class="hint">挤出前挤出机到标记的距离</span>
+          </div>
+          <div class="rd-calc-field">
+            <label>后续标记距离 (毫米)</label>
+            <input type="number" id="cal_subsequent" step="any" placeholder="例如: 20">
+            <span class="hint">挤出后挤出机到标记的距离</span>
+          </div>
+        </div>
+        <div class="rd-calc-field">
+          <label>请求挤出距离 (毫米)</label>
+          <input type="number" id="cal_requested" value="50" step="any">
+          <span class="hint">通常为50mm（按校准流程）</span>
+        </div>
+        <button class="rd-calc-btn" onclick="calcCalibrate()">计算</button>
+        <div class="rd-calc-result" id="calibrate_result">
+          <div class="label">新旋转距离</div>
+          <div class="value" id="calibrate_value"></div>
+          <div class="config" id="calibrate_config"></div>
+          <div id="calibrate_warn" style="margin-top:8px;color:#e74c3c;font-size:0.85em;display:none;">
+            ⚠ 实际挤出距离与请求距离相差超过2mm，建议重新校准。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      document.querySelectorAll('.rd-calc-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var container = this.closest('.rd-calc-container');
+          container.querySelectorAll('.rd-calc-tab').forEach(function(t) { t.classList.remove('active'); });
+          container.querySelectorAll('.rd-calc-panel').forEach(function(p) { p.classList.remove('active'); });
+          this.classList.add('active');
+          container.querySelector('[data-panel="' + this.dataset.tab + '"]').classList.add('active');
+        });
+      });
+
+      function showResult(resultId, valueId, configId, value, configText) {
+        document.getElementById(valueId).textContent = value;
+        document.getElementById(configId).textContent = 'rotation_distance: ' + configText;
+        document.getElementById(resultId).classList.add('show');
+      }
+
+      window.calcSteps = function() {
+        var full = parseFloat(document.getElementById('steps_full').value);
+        var micro = parseFloat(document.getElementById('steps_micro').value);
+        var spm = parseFloat(document.getElementById('steps_per_mm').value);
+        if (isNaN(full) || isNaN(micro) || isNaN(spm) || spm === 0) return;
+        var rd = (full * micro) / spm;
+        var rounded = Math.round(rd * 1000) / 1000;
+        showResult('steps_result', 'steps_value', 'steps_config', rounded.toFixed(3), rounded.toFixed(3));
+      };
+
+      window.calcStepDist = function() {
+        var full = parseFloat(document.getElementById('stepdist_full').value);
+        var micro = parseFloat(document.getElementById('stepdist_micro').value);
+        var sd = parseFloat(document.getElementById('step_distance').value);
+        if (isNaN(full) || isNaN(micro) || isNaN(sd)) return;
+        var rd = full * micro * sd;
+        var rounded = Math.round(rd * 1000) / 1000;
+        showResult('stepdist_result', 'stepdist_value', 'stepdist_config', rounded.toFixed(3), rounded.toFixed(3));
+      };
+
+      window.calcBelt = function() {
+        var pitch = parseFloat(document.getElementById('belt_pitch').value);
+        var teeth = parseFloat(document.getElementById('belt_teeth').value);
+        if (isNaN(pitch) || isNaN(teeth)) return;
+        var rd = pitch * teeth;
+        showResult('belt_result', 'belt_value', 'belt_config', rd.toFixed(1), rd.toFixed(1));
+      };
+
+      window.calcScrew = function() {
+        var pitch = parseFloat(document.getElementById('screw_pitch').value);
+        var threads = parseFloat(document.getElementById('screw_threads').value);
+        if (isNaN(pitch) || isNaN(threads)) return;
+        var rd = pitch * threads;
+        showResult('screw_result', 'screw_value', 'screw_config', rd.toFixed(2), rd.toFixed(2));
+      };
+
+      window.applyScrewPreset = function() {
+        var val = document.getElementById('screw_preset').value;
+        if (!val) return;
+        var parts = val.split(',');
+        document.getElementById('screw_pitch').value = parts[0];
+        document.getElementById('screw_threads').value = parts[1];
+      };
+
+      window.calcExtruder = function() {
+        var dia = parseFloat(document.getElementById('extruder_dia').value);
+        if (isNaN(dia)) return;
+        var rd = dia * Math.PI;
+        var rounded = Math.round(rd * 1000) / 1000;
+        showResult('extruder_result', 'extruder_value', 'extruder_config', rounded.toFixed(3), rounded.toFixed(3));
+      };
+
+      window.calcCalibrate = function() {
+        var prevRd = parseFloat(document.getElementById('cal_prev_rd').value);
+        var initial = parseFloat(document.getElementById('cal_initial').value);
+        var subsequent = parseFloat(document.getElementById('cal_subsequent').value);
+        var requested = parseFloat(document.getElementById('cal_requested').value);
+        if (isNaN(prevRd) || isNaN(initial) || isNaN(subsequent) || isNaN(requested) || requested === 0) return;
+        var actual = initial - subsequent;
+        var newRd = prevRd * actual / requested;
+        var rounded = Math.round(newRd * 1000) / 1000;
+        showResult('calibrate_result', 'calibrate_value', 'calibrate_config', rounded.toFixed(3), rounded.toFixed(3));
+        var warn = document.getElementById('calibrate_warn');
+        warn.style.display = Math.abs(actual - requested) > 2 ? 'block' : 'none';
+      };
+
+      document.querySelectorAll('.rd-calc-field input').forEach(function(input) {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            var btn = this.closest('.rd-calc-panel').querySelector('.rd-calc-btn');
+            if (btn) btn.click();
+          }
+        });
+      });
+    })();
+  </script>
+</div>
+
 <h2 id="steps_per_mmstep_distancerotation_distance">从steps_per_mm（或step_distance）获取rotation_distance<a class="headerlink" href="#steps_per_mmstep_distancerotation_distance" title="Permanent link">&para;</a></h2>
 <p>您的3D打印机的设计人员最初从旋转距离计算了<code>steps_per_mm</code>。如果您知道steps_per_mm，则可以使用此通用公式获取原始旋转距离：</p>
 <div class="highlight"><pre><span></span><code>rotation_distance = &lt;full_steps_per_rotation&gt; * &lt;microsteps&gt; / &lt;steps_per_mm&gt;
@@ -2150,21 +2655,21 @@
 <p>注意：请<em>不要</em>使用"测量和修剪"类型的方法来校准x、y或z类型轴。"测量和修剪"方法对于这些轴的准确性不够，可能会导致更差的配置。相反，如果需要，那些轴可以通过<a href="#obtaining-rotation_distance-by-inspecting-the-hardware">测量皮带、滑轮和丝杆硬件</a>来确定。</p>
 <h2 id="rotation_distance_1">通过检查硬件获取rotation_distance<a class="headerlink" href="#rotation_distance_1" title="Permanent link">&para;</a></h2>
 <p>可以通过了解步进电机和打印机运动学来计算rotation_distance。如果不知道steps_per_mm或设计新打印机，这可能很有用。</p>
-<h3 id="_2">皮带驱动的轴<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_3">皮带驱动的轴<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>对于使用皮带和滑轮的线性轴，计算rotation_distance很容易。</p>
 <p>首先确定皮带的类型。大多数打印机使用2mm皮带间距（即皮带上的每个齿相距2mm）。然后计算步进电机滑轮上的齿数。然后计算rotation_distance为：</p>
 <div class="highlight"><pre><span></span><code>rotation_distance = &lt;belt_pitch&gt; * &lt;number_of_teeth_on_pulley&gt;
 </code></pre></div>
 
 <p>例如，如果打印机具有2mm皮带并使用具有20个齿的滑轮，则旋转距离为40。</p>
-<h3 id="_3">具有丝杆的轴<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_4">具有丝杆的轴<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>使用以下公式可以轻松计算常见丝杆的rotation_distance：</p>
 <div class="highlight"><pre><span></span><code>rotation_distance = &lt;screw_pitch&gt; * &lt;number_of_separate_threads&gt;
 </code></pre></div>
 
 <p>例如，常见的"T8导螺杆"的旋转距离为8（间距为2mm，有4个单独的螺纹）。</p>
 <p>较旧的打印机带有"螺纹杆"，导螺杆上只有一个"螺纹"，因此旋转距离是螺杆的间距。（螺杆间距是螺杆上每个凹槽之间的距离。）例如，M6公制棒的旋转距离为1，M8棒的旋转距离为1.25。</p>
-<h3 id="_4">挤出机<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_5">挤出机<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>通过测量推动灯丝的"爱好螺栓"的直径，可以获得挤出机的初始旋转距离，并使用以下公式：<code>rotation_distance = &lt;diameter&gt; * 3.14</code></p>
 <p>如果挤出机使用齿轮，则还需要<a href="#using-a-gear_ratio">为挤出机确定并设置gear_ratio</a>。</p>
 <p>挤出机上的实际旋转距离会因打印机而异，因为与灯丝啮合的"爱好螺栓"的抓握力可能会变化。它甚至可以在灯丝线轴之间变化。获得初始rotation_distance后，使用<a href="#calibrating-rotation_distance-on-extruders">测量和修剪程序</a>来获得更准确的设置。</p>

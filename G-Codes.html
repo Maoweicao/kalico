@@ -2581,6 +2581,78 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#input_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      [input_pin]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[input_pin]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_input_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_INPUT_PIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adc_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      [adc_pin]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[adc_pin]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_adc_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_ADC_PIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dac_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      [dac_pin]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[dac_pin]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_dac_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      SET_DAC_PIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#query_adc" class="md-nav__link">
     <span class="md-ellipsis">
       [query_adc]
@@ -6780,6 +6852,78 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#input_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      [input_pin]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[input_pin]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_input_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_INPUT_PIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adc_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      [adc_pin]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[adc_pin]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_adc_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUERY_ADC_PIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dac_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      [dac_pin]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[dac_pin]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_dac_pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      SET_DAC_PIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#query_adc" class="md-nav__link">
     <span class="md-ellipsis">
       [query_adc]
@@ -9085,6 +9229,26 @@ independent adjustments to each Z stepper to compensate for tilt. See
 the PROBE command for details on the optional probe parameters. The
 optional <code>RETRIES</code>, <code>RETRY_TOLERANCE</code>, <code>HORIZONTAL_MOVE_Z</code> and
 <code>ENFORCE_LIFT_SPEED</code> values override those options specified in the config file.</p>
+<h3 id="input_pin">[input_pin]<a class="headerlink" href="#input_pin" title="Permanent link">&para;</a></h3>
+<p>The following command is available when an
+<a href="Config_Reference.html#input_pin">input_pin config section</a> is enabled.</p>
+<h4 id="query_input_pin">QUERY_INPUT_PIN<a class="headerlink" href="#query_input_pin" title="Permanent link">&para;</a></h4>
+<p><code>QUERY_INPUT_PIN PIN=&lt;config_name&gt;</code>: Query the current state of a
+digital input pin. Reports the pin as "HIGH" or "LOW".</p>
+<h3 id="adc_pin">[adc_pin]<a class="headerlink" href="#adc_pin" title="Permanent link">&para;</a></h3>
+<p>The following command is available when an
+<a href="Config_Reference.html#adc_pin">adc_pin config section</a> is enabled.</p>
+<h4 id="query_adc_pin">QUERY_ADC_PIN<a class="headerlink" href="#query_adc_pin" title="Permanent link">&para;</a></h4>
+<p><code>QUERY_ADC_PIN PIN=&lt;config_name&gt;</code>: Report the last analog value
+received for an ADC input pin. This command is equivalent to
+<code>QUERY_ADC NAME=&lt;config_name&gt;</code>.</p>
+<h3 id="dac_pin">[dac_pin]<a class="headerlink" href="#dac_pin" title="Permanent link">&para;</a></h3>
+<p>The following command is available when a
+<a href="Config_Reference.html#dac_pin">dac_pin config section</a> is enabled.</p>
+<h4 id="set_dac_pin">SET_DAC_PIN<a class="headerlink" href="#set_dac_pin" title="Permanent link">&para;</a></h4>
+<p><code>SET_DAC_PIN PIN=&lt;config_name&gt; VALUE=&lt;voltage&gt;</code>: Set the DAC output
+pin to the specified voltage. VALUE should be between 0.0 and the
+configured scale (default 3.3).</p>
 <h3 id="query_adc">[query_adc]<a class="headerlink" href="#query_adc" title="Permanent link">&para;</a></h3>
 <p>The query_adc module is automatically loaded.</p>
 <h4 id="query_adc_1">QUERY_ADC<a class="headerlink" href="#query_adc_1" title="Permanent link">&para;</a></h4>
