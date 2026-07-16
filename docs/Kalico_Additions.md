@@ -32,6 +32,7 @@
 - [gcode_shell_command](./G-Code_Shell_Command.md) - Execute linux commands and scripts from within Kalico
 - [dummy_thermistor](./Dummy_Thermistor.md) - Virtual temperature sensor for testing and cold extruders
 - [Cold Extruder](./Cold_Extruder.md) - No-heater extruder support for clay, concrete, and other cold materials
+- [indx](./INDX.md) - Support for the Bondtech INDX toolboard and its inductive nozzle heater
 
 ## Sensorless Homing
 
