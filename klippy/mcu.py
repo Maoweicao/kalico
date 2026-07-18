@@ -830,6 +830,7 @@ class MCU:
         self._is_shutdown = self._is_timeout = False
         self._shutdown_clock = 0
         self._shutdown_msg = ""
+        self._last_shutdown_msg = ""
         # Config building
         printer.lookup_object("pins").register_chip(self._name, self)
         self._oid_count = 0
@@ -909,6 +910,7 @@ class MCU:
         if clock is not None:
             self._shutdown_clock = self.clock32_to_clock64(clock)
         self._shutdown_msg = msg = params["static_string_id"]
+        self._last_shutdown_msg = msg
         if get_danger_options().log_shutdown_info:
             logging.info(
                 "MCU '%s' %s: %s\n%s\n%s\n%s",
@@ -1130,11 +1132,18 @@ class MCU:
                     pass
             break  # Success or can't clear
         if self._is_shutdown:
+            self._last_shutdown_msg = self._shutdown_msg
             raise error(
                 "MCU '%s' error during config: %s"
                 % (self._name, self._shutdown_msg)
             )
         if config_params["is_shutdown"]:
+            if self._last_shutdown_msg:
+                raise error(
+                    "Can not update MCU '%s' config as it is shutdown"
+                    " (Previous shutdown: %s)"
+                    % (self._name, self._last_shutdown_msg)
+                )
             raise error(
                 "Can not update MCU '%s' config as it is shutdown"
                 % (self._name,)
@@ -1237,6 +1246,7 @@ class MCU:
             except Exception:
                 pass
         config_params = self._send_get_config()
+        self._last_shutdown_msg = ""
         if not config_params["is_config"]:
             if self._restart_method == "rpi_usb":
                 # Only configure mcu after usb power reset
@@ -1641,7 +1651,10 @@ class MCU:
         return self._shutdown_clock
 
     def get_status(self, eventtime=None):
-        return dict(self._get_status_info)
+        status = dict(self._get_status_info)
+        if self._last_shutdown_msg:
+            status["last_shutdown_reason"] = self._last_shutdown_msg
+        return status
 
     def dump_debug(self):
         out = []
