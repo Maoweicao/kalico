@@ -164,36 +164,84 @@ class HostRS485Transport(RS485Transport):
 
 
 class McuRS485Transport(RS485Transport):
-    """MCU-side RS485 transport via UART + DE/RE GPIO.
+    """MCU-side RS485 transport via the software bit-bang Modbus UART.
 
-    Placeholder for future implementation. Requires MCU firmware support
-    for RS485 direction control.
+    Uses the same firmware bit-bang driver (src/modbus_uart.c) as the LYX
+    stepper drivers. The bus is a half-duplex single-wire 8N1 UART driven
+    on a single GPIO pin, so no USB-to-RS485 adapter is required.
+
+    The transport buffers the full response of each transaction; the
+    Modbus RTU protocol performs its read() calls against that buffer.
+
+    Args:
+        config: config section providing uart_pin and optional baud_rate
+        slave_id: optional Modbus slave address to reserve on the bus
     """
 
-    def __init__(self, mcu, uart_bus, baudrate, de_pin=None):
-        self._mcu = mcu
-        self._uart_bus = uart_bus
-        self._baudrate = baudrate
-        self._de_pin = de_pin
-        raise RS485TransportError(
-            "MCU-side RS485 transport not yet implemented. "
-            "Use rs485_transport: host with a USB-to-RS485 adapter."
-        )
+    def __init__(self, config, slave_id=None):
+        from .mcu_modbus import lookup_mcu_bitbang
+        self._config = config
+        self._bus_pin, self._mcu_modbus = lookup_mcu_bitbang(config)
+        if slave_id is not None:
+            self._mcu_modbus.register_slave(
+                self._bus_pin, self._bus_pin, slave_id)
+        self._rx_buffer = b''
+        self._open = False
 
     def open(self):
-        pass
+        self._open = True
+        logging.info(
+            "RS485: opened MCU bit-bang Modbus on pin %s @ %d baud",
+            self._bus_pin['pin'], self._mcu_modbus.baud,
+        )
 
     def close(self):
-        pass
+        self._open = False
+        self._rx_buffer = b''
+
+    def _expected_response_len(self, data):
+        """Infer the Modbus response length for the outgoing frame.
+
+        Returns 0 (write-only) for frames that are not standard Modbus.
+        """
+        if len(data) < 2:
+            return 0
+        func_code = data[1]
+        if func_code == 0x03 and len(data) >= 6:
+            count = (data[4] << 8) | data[5]
+            return 5 + 2 * count
+        if func_code in (0x06, 0x10):
+            return 8
+        return 0
 
     def write(self, data):
-        pass
+        if not self._open:
+            raise RS485TransportError("Port not open")
+        with self._mcu_modbus.mutex:
+            read_len = self._expected_response_len(data)
+            self._rx_buffer = self._mcu_modbus.send_frame(data, read_len)
 
     def read(self, length, timeout=1.0):
-        return b''
+        if len(self._rx_buffer) >= length:
+            data, self._rx_buffer = self._rx_buffer[:length], self._rx_buffer[length:]
+            return data
+        data, self._rx_buffer = self._rx_buffer, b''
+        return data
 
     def read_until(self, terminator, timeout=1.0):
-        return b''
+        data = self._rx_buffer
+        self._rx_buffer = b''
+        if terminator:
+            idx = data.find(terminator)
+            if idx >= 0:
+                keep = data[idx + len(terminator):]
+                if keep:
+                    self._rx_buffer = keep
+                data = data[:idx + len(terminator)]
+        return data
 
     def flush(self):
-        pass
+        self._rx_buffer = b''
+
+    def get_baudrate(self):
+        return self._mcu_modbus.baud

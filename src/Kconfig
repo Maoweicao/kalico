@@ -151,6 +151,10 @@ config WANT_TMCUART
     bool
     depends on HAVE_GPIO
     default y
+config WANT_MODBUSUART
+    bool
+    depends on HAVE_GPIO
+    default y
 config WANT_NEOPIXEL
     bool
     depends on HAVE_GPIO
@@ -272,6 +276,9 @@ config WANT_GPIO_BUTTONS
 comment "----"
 config WANT_TMCUART
     bool "Support Trinamic stepper motor driver UART communication"
+    depends on HAVE_GPIO
+config WANT_MODBUSUART
+    bool "Support software Modbus RTU UART communication"
     depends on HAVE_GPIO
 config WANT_NEOPIXEL
     bool "Support 'neopixel' type LED control"

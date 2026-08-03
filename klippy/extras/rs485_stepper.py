@@ -30,8 +30,13 @@ class RS485Stepper:
         bytesize = config.getint("rs485_bytesize", 8)
         direction_pin = config.get("rs485_direction_pin", "rts")
         inter_byte_delay = config.getfloat("rs485_inter_byte_delay", 0)
+        slave_id = config.getint("rs485_slave_id", 1, minval=1, maxval=247)
 
         if transport_type == "host":
+            if serial_port is None:
+                raise config.error(
+                    "serial_port must be provided for rs485_transport: host"
+                )
             self._transport = HostRS485Transport(
                 port=serial_port,
                 baudrate=baud_rate,
@@ -42,10 +47,13 @@ class RS485Stepper:
                 inter_byte_delay=inter_byte_delay,
             )
         elif transport_type == "mcu":
-            raise config.error(
-                "MCU-side RS485 transport not yet implemented. "
-                "Use rs485_transport: host."
-            )
+            if config.get("uart_pin") is None:
+                raise config.error(
+                    "uart_pin must be provided for rs485_transport: mcu"
+                )
+            from .transport import McuRS485Transport
+            self._transport = McuRS485Transport(
+                config=config, slave_id=slave_id)
         else:
             raise config.error(
                 "Unknown rs485_transport '%s'. Options: host, mcu"
@@ -54,7 +62,6 @@ class RS485Stepper:
 
         # Protocol configuration
         protocol_type = config.get("rs485_protocol", "modbus_rtu")
-        slave_id = config.getint("rs485_slave_id", 1, minval=1, maxval=247)
 
         if protocol_type == "modbus_rtu":
             from .modbus_rtu import ModbusRtuProtocol

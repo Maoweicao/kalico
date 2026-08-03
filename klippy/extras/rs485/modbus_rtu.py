@@ -3,30 +3,17 @@
 # Copyright (C) 2025  Kalico Contributors
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
-import logging
 import struct
 import time
 
+from .modbus_frame import (
+    MODBUS_EXCEPTION_CODES,
+    build_read_request,
+    build_write_multiple_request,
+    build_write_single_request,
+    calc_crc16,
+)
 from .protocol import RS485Protocol, RS485ProtocolError
-
-
-# Modbus function codes
-FC_READ_HOLDING_REGISTERS = 0x03
-FC_WRITE_SINGLE_REGISTER = 0x06
-FC_WRITE_MULTIPLE_REGISTERS = 0x10
-
-# Modbus exception codes
-MODBUS_EXCEPTION_CODES = {
-    0x01: "Illegal Function",
-    0x02: "Illegal Data Address",
-    0x03: "Illegal Data Value",
-    0x04: "Slave Device Failure",
-    0x05: "Acknowledge",
-    0x06: "Slave Device Busy",
-    0x08: "Memory Parity Error",
-    0x0A: "Gateway Path Unavailable",
-    0x0B: "Gateway Target Device Failed to Respond",
-}
 
 # Default CiA 402-compatible register mapping
 # Many industrial servo drives use these register addresses
@@ -41,19 +28,6 @@ DEFAULT_REGISTER_MAP = {
     "actual_velocity": 0x606C,
     "error_code": 0x603F,
 }
-
-
-def _calc_crc16(data):
-    """Calculate Modbus CRC16."""
-    crc = 0xFFFF
-    for byte in data:
-        crc ^= byte
-        for _ in range(8):
-            if crc & 0x0001:
-                crc = (crc >> 1) ^ 0xA001
-            else:
-                crc >>= 1
-    return crc
 
 
 class ModbusRtuProtocol(RS485Protocol):
@@ -143,41 +117,22 @@ class ModbusRtuProtocol(RS485Protocol):
 
     def _build_read_request(self, start_addr, count):
         """Build FC03 Read Holding Registers request."""
-        request = struct.pack(">B B H H",
-                              self._slave_id,
-                              FC_READ_HOLDING_REGISTERS,
-                              start_addr,
-                              count)
-        crc = _calc_crc16(request)
-        request += struct.pack("<H", crc)
-        return request
+        return build_read_request(self._slave_id, start_addr, count)
 
     def _build_write_single_request(self, register, value):
         """Build FC06 Write Single Register request."""
-        request = struct.pack(">B B H H",
-                              self._slave_id,
-                              FC_WRITE_SINGLE_REGISTER,
-                              register,
-                              value & 0xFFFF)
-        crc = _calc_crc16(request)
-        request += struct.pack("<H", crc)
-        return request
+        return build_write_single_request(self._slave_id, register, value)
 
     def _build_write_multiple_request(self, start_addr, values):
         """Build FC16 Write Multiple Registers request."""
-        count = len(values)
-        byte_count = count * 2
-        request = struct.pack(">B B H H B",
-                              self._slave_id,
-                              FC_WRITE_MULTIPLE_REGISTERS,
-                              start_addr,
-                              count,
-                              byte_count)
-        for val in values:
-            request += struct.pack(">H", val & 0xFFFF)
-        crc = _calc_crc16(request)
-        request += struct.pack("<H", crc)
-        return request
+        return build_write_multiple_request(self._slave_id, start_addr, values)
+
+    def _check_crc(self, full_response, crc_bytes):
+        """Verify the CRC16 of a received response frame."""
+        expected_crc = calc_crc16(full_response)
+        actual_crc = int.from_bytes(crc_bytes, "little")
+        if expected_crc != actual_crc:
+            raise RS485ProtocolError("Modbus RTU: CRC error")
 
     def read_register(self, register):
         """Read a single holding register (FC03)."""
@@ -190,12 +145,8 @@ class ModbusRtuProtocol(RS485Protocol):
         if len(data) < byte_count + 2:
             raise RS485ProtocolError("Modbus RTU: incomplete response")
 
-        # Verify CRC
-        full_response = header + data[:-2]
-        expected_crc = _calc_crc16(full_response)
-        actual_crc = struct.unpack("<H", data[-2:])[0]
-        if expected_crc != actual_crc:
-            raise RS485ProtocolError("Modbus RTU: CRC error")
+        # Verify CRC (CRC covers header + data, not the trailing CRC bytes)
+        self._check_crc(header + data[:-2], data[-2:])
 
         value = struct.unpack(">H", data[:2])[0]
         return value
@@ -217,11 +168,7 @@ class ModbusRtuProtocol(RS485Protocol):
         if len(data) < byte_count + 2:
             raise RS485ProtocolError("Modbus RTU: incomplete response")
 
-        full_response = header + data[:-2]
-        expected_crc = _calc_crc16(full_response)
-        actual_crc = struct.unpack("<H", data[-2:])[0]
-        if expected_crc != actual_crc:
-            raise RS485ProtocolError("Modbus RTU: CRC error")
+        self._check_crc(header + data[:-2], data[-2:])
 
         values = []
         for i in range(count):
@@ -235,15 +182,12 @@ class ModbusRtuProtocol(RS485Protocol):
         header, func_code = self._send_request(request)
 
         # Response echoes the request: [slave_id] [FC=06] [addr(2)] [val(2)] [CRC(2)]
-        data = self._transport.read(4 + 2, timeout=1.0)
-        if len(data) < 6:
+        data = self._transport.read(5, timeout=1.0)
+        if len(data) < 5:
             raise RS485ProtocolError("Modbus RTU: incomplete write response")
 
-        full_response = header + data[:-2]
-        expected_crc = _calc_crc16(full_response)
-        actual_crc = struct.unpack("<H", data[-2:])[0]
-        if expected_crc != actual_crc:
-            raise RS485ProtocolError("Modbus RTU: CRC error on write")
+        # CRC covers the 8-byte echo frame minus its 2 CRC bytes
+        self._check_crc(header + data[:3], data[3:5])
 
     def write_registers(self, start, values):
         """Write multiple holding registers (FC16)."""
@@ -251,17 +195,13 @@ class ModbusRtuProtocol(RS485Protocol):
         header, func_code = self._send_request(request)
 
         # Response: [slave_id] [FC=10] [start_addr(2)] [count(2)] [CRC(2)]
-        data = self._transport.read(4 + 2, timeout=1.0)
-        if len(data) < 6:
+        data = self._transport.read(5, timeout=1.0)
+        if len(data) < 5:
             raise RS485ProtocolError(
                 "Modbus RTU: incomplete write-multiple response"
             )
 
-        full_response = header + data[:-2]
-        expected_crc = _calc_crc16(full_response)
-        actual_crc = struct.unpack("<H", data[-2:])[0]
-        if expected_crc != actual_crc:
-            raise RS485ProtocolError("Modbus RTU: CRC error on write-multiple")
+        self._check_crc(header + data[:3], data[3:5])
 
     # Servo control interface using CiA 402 register mapping
     def set_target_position(self, position):
