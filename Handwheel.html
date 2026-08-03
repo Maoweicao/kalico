@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://docs.kalico.gg/CANopen.html">
+        <link rel="canonical" href="https://docs.kalico.gg/Handwheel.html">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>CANopen Servo Support - Kalico Documentation</title>
+        <title>Handwheel (Jog Wheel) Support - Kalico Documentation</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#canopen-servo-support" class="md-skip">
+        <a href="#handwheel-jog-wheel-support" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CANopen Servo Support
+              Handwheel (Jog Wheel) Support
             
           </span>
         </div>
@@ -2688,56 +2688,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hardware-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hardware Requirements
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Hardware Requirements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#can-bus-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CAN Bus Interface
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#servo-drive" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Servo Drive
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#edsdcf-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        EDS/DCF File
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2746,14 +2696,36 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pin-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g-code-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G-code Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G-code Commands">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-single-axis-setup" class="md-nav__link">
+  <a href="#jog" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Single-Axis Setup
+        JOG
       
     </span>
   </a>
@@ -2761,21 +2733,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#multi-axis-with-shared-bus" class="md-nav__link">
+  <a href="#set_jog" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multi-Axis with Shared Bus
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cia-402-homing-servo-internal-homing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CiA 402 Homing (Servo Internal Homing)
+        SET_JOG
       
     </span>
   </a>
@@ -2788,22 +2749,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration-reference" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration Reference
+        Usage
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration Reference">
+    <nav class="md-nav" aria-label="Usage">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#canopen_bus" class="md-nav__link">
+  <a href="#method-1-g-code-commands" class="md-nav__link">
     <span class="md-ellipsis">
       
-        [canopen_bus]
+        Method 1: G-code Commands
       
     </span>
   </a>
@@ -2811,10 +2772,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#canopen_stepper" class="md-nav__link">
+  <a href="#method-2-lcd-menu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        [canopen_stepper]
+        Method 2: LCD Menu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-physical-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 3: Physical Button
       
     </span>
   </a>
@@ -2827,10 +2799,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sync-groups" class="md-nav__link">
+  <a href="#operating-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SYNC Groups
+        Operating Modes
       
     </span>
   </a>
@@ -2838,10 +2810,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cia-402-homing-methods" class="md-nav__link">
+  <a href="#safety-restrictions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CiA 402 Homing Methods
+        Safety Restrictions
       
     </span>
   </a>
@@ -2849,10 +2821,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#eds-file-format" class="md-nav__link">
+  <a href="#status-query" class="md-nav__link">
     <span class="md-ellipsis">
       
-        EDS File Format
+        Status Query
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring Example
       
     </span>
   </a>
@@ -2867,56 +2850,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#drive-not-enabling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Drive not enabling
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#homing-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Homing fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#position-drift" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Position drift
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#can-bus-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CAN bus errors
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2937,7 +2870,7 @@
 
 
   
-    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/CANopen.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/Handwheel.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2945,403 +2878,265 @@
   
 
 
-<h1 id="canopen-servo-support">CANopen Servo Support<a class="headerlink" href="#canopen-servo-support" title="Permanent link">&para;</a></h1>
-<p>This document describes Kalico's support for CANopen CiA 402 servo
-drives. CANopen allows using industrial servo motors with position
-feedback directly over a CAN bus, without step/dir pulse signaling.</p>
+<h1 id="handwheel-jog-wheel-support">Handwheel (Jog Wheel) Support<a class="headerlink" href="#handwheel-jog-wheel-support" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>CANopen is a higher-level protocol built on top of CAN bus (CiA 301).
-Unlike Kalico's native CAN protocol (which uses CAN as a transport for
-MCU step/dir commands), CANopen sends position setpoints directly to
-intelligent servo drives. The drives handle their own trajectory
-generation, current control, and encoder feedback.</p>
-<p>Key features:</p>
-<ul>
-<li><strong>Cyclic Synchronous Position (CSP)</strong> mode for real-time position control</li>
-<li><strong>Cyclic Synchronous Velocity (CSV)</strong> mode for speed control</li>
-<li><strong>Profile Position (PP)</strong> mode for point-to-point moves</li>
-<li><strong>CiA 402 homing</strong> with 11 homing methods (limit switch, home switch, index)</li>
-<li><strong>EDS/DCF device description</strong> file support (INI format per CiA 306)</li>
-<li><strong>SYNC groups</strong> for synchronized multi-axis motion</li>
-</ul>
-<h2 id="hardware-requirements">Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permanent link">&para;</a></h2>
-<h3 id="can-bus-interface">CAN Bus Interface<a class="headerlink" href="#can-bus-interface" title="Permanent link">&para;</a></h3>
-<p>You need a CAN bus adapter connected to your host computer. See the
-<a href="CANBUS.html">CANBUS</a> document for information on host-side CAN
-hardware and OS configuration.</p>
-<h3 id="servo-drive">Servo Drive<a class="headerlink" href="#servo-drive" title="Permanent link">&para;</a></h3>
-<p>Any CANopen CiA 402 compliant servo drive should work. Common drives:</p>
-<ul>
-<li><strong>EtherCAT/CANopen dual-mode drives</strong> (e.g., Leadshine, Estun, Delta)</li>
-<li><strong>CANopen servo drives</strong> from various manufacturers</li>
-<li><strong>BLDC/PMSM drives</strong> with CiA 402 support</li>
-</ul>
-<p>The drive must support at least one of these operating modes:</p>
-<ul>
-<li><strong>CSP (Cyclic Synchronous Position)</strong> — Recommended for CNC/3D printing</li>
-<li><strong>CSV (Cyclic Synchronous Velocity)</strong> — Alternative for speed control</li>
-<li><strong>PP (Profile Position)</strong> — Uses drive's internal trajectory generator</li>
-</ul>
-<h3 id="edsdcf-file">EDS/DCF File<a class="headerlink" href="#edsdcf-file" title="Permanent link">&para;</a></h3>
-<p>Each drive needs an EDS (Electronic Data Sheet) or DCF (Device
-Configuration File) in INI format. This file describes the drive's
-object dictionary, supported modes, and default parameters. The file
-is typically provided by the drive manufacturer.</p>
-<p>Supported file formats:</p>
-<ul>
-<li><code>.eds</code> — Standard Electronic Data Sheet (CiA 306 INI format)</li>
-<li><code>.dcf</code> — Device Configuration File (same format, with device-specific values)</li>
-</ul>
+<p>The handwheel module allows using a physical rotary encoder to directly control printer axis movement. By rotating the encoder, users can precisely move the X, Y, Z, or E axis manually, suitable for calibration, debugging, and manual operation scenarios.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<h3 id="basic-single-axis-setup">Basic Single-Axis Setup<a class="headerlink" href="#basic-single-axis-setup" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">[canopen_stepper x]</span>
-<span class="na">can_interface</span><span class="o">:</span><span class="w"> </span><span class="s">socketcan</span>
-<span class="na">can_channel</span><span class="o">:</span><span class="w"> </span><span class="s">can0</span>
-<span class="na">can_bitrate</span><span class="o">:</span><span class="w"> </span><span class="s">1000000</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/servo_configs/servo_x.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">sync_group</span><span class="o">:</span><span class="w"> </span><span class="s">default</span>
-<span class="na">sync_period</span><span class="o">:</span><span class="w"> </span><span class="s">0.001</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">40</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">full_steps_per_rotation</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
-<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PC1</span>
-<span class="na">homing_speed</span><span class="o">:</span><span class="w"> </span><span class="s">10.0</span>
-<span class="na">position_min</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
-<span class="na">position_max</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
+<p>Add a <code>[handwheel]</code> section to <code>printer.cfg</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[handwheel]</span>
+<span class="c1"># Rotary encoder A/B phase pins (required)</span>
+<span class="na">encoder_pins</span><span class="o">:</span><span class="w"> </span><span class="s">^PA0, ^PA1</span>
+
+<span class="c1"># Steps per detent: 2 (half-step) or 4 (full-step) (default: 4)</span>
+<span class="na">encoder_steps_per_detent</span><span class="o">:</span><span class="w"> </span><span class="s">4</span>
+
+<span class="c1"># Button pin for toggling handwheel mode on/off (optional)</span>
+<span class="na">click_pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PA2</span>
+
+<span class="c1"># Button debounce delay in seconds (default: 0, no debounce)</span>
+<span class="c1"># debounce_delay: 0.025</span>
+
+<span class="c1"># Default active axis: X, Y, Z, or E (default: X)</span>
+<span class="na">axis</span><span class="o">:</span><span class="w"> </span><span class="s">X</span>
+
+<span class="c1"># Distance per detent in mm (default: 1.0)</span>
+<span class="na">step_distance</span><span class="o">:</span><span class="w"> </span><span class="s">1.0</span>
+
+<span class="c1"># Normal move speed in mm/s (default: 100.0)</span>
+<span class="na">speed</span><span class="o">:</span><span class="w"> </span><span class="s">100.0</span>
+
+<span class="c1"># Fast rotation move speed in mm/s (default: 6000.0)</span>
+<span class="na">jog_speed</span><span class="o">:</span><span class="w"> </span><span class="s">6000.0</span>
+
+<span class="c1"># Fast rotation threshold in seconds (default: 0.030)</span>
+<span class="c1"># Uses jog_speed when interval between rotations is less than this</span>
+<span class="na">fast_rate</span><span class="o">:</span><span class="w"> </span><span class="s">0.030</span>
 </code></pre></div>
 
-<h3 id="multi-axis-with-shared-bus">Multi-Axis with Shared Bus<a class="headerlink" href="#multi-axis-with-shared-bus" title="Permanent link">&para;</a></h3>
-<p>When multiple servos share the same CAN bus, use a <code>[canopen_bus]</code>
-section to avoid repeating bus parameters:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[canopen_bus main]</span>
-<span class="na">interface</span><span class="o">:</span><span class="w"> </span><span class="s">socketcan</span>
-<span class="na">channel</span><span class="o">:</span><span class="w"> </span><span class="s">can0</span>
-<span class="na">bitrate</span><span class="o">:</span><span class="w"> </span><span class="s">1000000</span>
-
-<span class="k">[canopen_stepper x]</span>
-<span class="na">canopen_bus</span><span class="o">:</span><span class="w"> </span><span class="s">main</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/configs/servo_x.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">sync_group</span><span class="o">:</span><span class="w"> </span><span class="s">xy_group</span>
-<span class="na">sync_period</span><span class="o">:</span><span class="w"> </span><span class="s">0.001</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">40</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">full_steps_per_rotation</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
-<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PC1</span>
-<span class="na">homing_speed</span><span class="o">:</span><span class="w"> </span><span class="s">10.0</span>
-<span class="na">position_min</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
-<span class="na">position_max</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
-
-<span class="k">[canopen_stepper y]</span>
-<span class="na">canopen_bus</span><span class="o">:</span><span class="w"> </span><span class="s">main</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">2</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/configs/servo_y.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">sync_group</span><span class="o">:</span><span class="w"> </span><span class="s">xy_group</span>
-<span class="na">sync_period</span><span class="o">:</span><span class="w"> </span><span class="s">0.001</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">40</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">full_steps_per_rotation</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
-<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PD2</span>
-<span class="na">homing_speed</span><span class="o">:</span><span class="w"> </span><span class="s">10.0</span>
-<span class="na">position_min</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
-<span class="na">position_max</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
-
-<span class="k">[canopen_stepper z]</span>
-<span class="na">canopen_bus</span><span class="o">:</span><span class="w"> </span><span class="s">main</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">3</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/configs/servo_z.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">sync_group</span><span class="o">:</span><span class="w"> </span><span class="s">z_group</span>
-<span class="na">sync_period</span><span class="o">:</span><span class="w"> </span><span class="s">0.002</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">8</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">full_steps_per_rotation</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
-<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PE3</span>
-<span class="na">homing_speed</span><span class="o">:</span><span class="w"> </span><span class="s">5.0</span>
-<span class="na">position_min</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
-<span class="na">position_max</span><span class="o">:</span><span class="w"> </span><span class="s">300</span>
-</code></pre></div>
-
-<h3 id="cia-402-homing-servo-internal-homing">CiA 402 Homing (Servo Internal Homing)<a class="headerlink" href="#cia-402-homing-servo-internal-homing" title="Permanent link">&para;</a></h3>
-<p>Instead of using a physical endstop connected to an MCU GPIO pin, you
-can use the servo drive's built-in CiA 402 homing mode:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[canopen_stepper z]</span>
-<span class="na">canopen_bus</span><span class="o">:</span><span class="w"> </span><span class="s">main</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">3</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/configs/servo_z.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">sync_group</span><span class="o">:</span><span class="w"> </span><span class="s">z_group</span>
-<span class="na">sync_period</span><span class="o">:</span><span class="w"> </span><span class="s">0.001</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">8</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">full_steps_per_rotation</span><span class="o">:</span><span class="w"> </span><span class="s">200</span>
-<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">canopen</span>
-<span class="na">canopen_homing_method</span><span class="o">:</span><span class="w"> </span><span class="s">negative_limit</span>
-<span class="na">canopen_homing_speed_switch</span><span class="o">:</span><span class="w"> </span><span class="s">1000</span>
-<span class="na">canopen_homing_speed_zero</span><span class="o">:</span><span class="w"> </span><span class="s">500</span>
-<span class="na">canopen_homing_accel</span><span class="o">:</span><span class="w"> </span><span class="s">5000</span>
-<span class="na">canopen_homing_offset</span><span class="o">:</span><span class="w"> </span><span class="s">100</span>
-<span class="na">homing_speed</span><span class="o">:</span><span class="w"> </span><span class="s">5.0</span>
-<span class="na">position_min</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
-<span class="na">position_max</span><span class="o">:</span><span class="w"> </span><span class="s">300</span>
-</code></pre></div>
-
-<h2 id="configuration-reference">Configuration Reference<a class="headerlink" href="#configuration-reference" title="Permanent link">&para;</a></h2>
-<h3 id="canopen_bus">[canopen_bus]<a class="headerlink" href="#canopen_bus" title="Permanent link">&para;</a></h3>
-<p>Shared CAN bus parameters for multiple CANopen steppers.</p>
-<div class="highlight"><pre><span></span><code>[canopen_bus my_bus]
-interface: socketcan
-#   CAN interface type. Required. Typical values: &quot;socketcan&quot; (Linux),
-#   &quot;slcan&quot; (serial-line CAN), &quot;pcan&quot; (PEAK).
-channel: can0
-#   CAN channel name. Required. For socketcan this is the network
-#   interface name (e.g., &quot;can0&quot;). For slcan this is the serial port
-#   (e.g., &quot;/dev/ttyACM0&quot;).
-#bitrate: 1000000
-#   CAN bus bitrate in bps. Default is 1000000 (1 Mbit/s).
-</code></pre></div>
-
-<h3 id="canopen_stepper">[canopen_stepper]<a class="headerlink" href="#canopen_stepper" title="Permanent link">&para;</a></h3>
-<p>CANopen servo stepper motor configuration.</p>
-<div class="highlight"><pre><span></span><code>[canopen_stepper x]
-#canopen_bus:
-#   Reference to a [canopen_bus] section. If not specified, you must
-#   provide can_interface, can_channel, and can_bitrate directly.
-#can_interface:
-#can_channel:
-#can_bitrate: 1000000
-#   Direct bus configuration (alternative to canopen_bus).
-node_id:
-#   CANopen node ID (1-127). Required.
-eds_file:
-#   Path to the EDS/DCF file for this device. Required. Supports ~/
-#   for home directory. Relative paths are resolved from the config
-#   file directory.
-#canopen_mode: CSP
-#   Operating mode. Options: CSP (Cyclic Synchronous Position),
-#   CSV (Cyclic Synchronous Velocity), PP (Profile Position),
-#   PV (Profile Velocity), CST (Cyclic Synchronous Torque).
-#   Default is CSP.
-#sync_group: default
-#   SYNC group name. Steppers with the same sync_group share the same
-#   CANopen SYNC signal and are synchronized in their PDO exchange.
-#   Default is &quot;default&quot;.
-#sync_period: 0.001
-#   SYNC period in seconds (0.000250 to 0.010). This controls how
-#   often position setpoints are sent to the drive. Default is 0.001
-#   (1ms, 1kHz).
-rotation_distance:
-#   Distance (in mm) that the axis travels with one full rotation of
-#   the servo motor. This parameter must be provided.
-microsteps:
-#   Set to 1 for CANopen servos (not used, but required by framework).
-full_steps_per_rotation: 200
-#   Encoder counts per rotation or motor pole count. Default is 200.
-#endstop_pin:
-#   Endstop pin. Set to &quot;canopen&quot; to use CiA 402 internal homing, or
-#   specify a GPIO pin for traditional endstop. Required for homing.
-#canopen_homing_method: negative_limit
-#   CiA 402 homing method (only used when endstop_pin is &quot;canopen&quot;).
-#   Options: current_position, positive_limit, negative_limit,
-#   positive_home, negative_home, positive_home_index,
-#   negative_home_index, negative_limit_index, positive_limit_index,
-#   index_positive, index_negative. Can also be a number (1-35).
-#   Default is &quot;negative_limit&quot;.
-#canopen_homing_speed_switch:
-#   Speed for switch search in encoder counts/s. If not specified,
-#   uses the drive&#39;s default.
-#canopen_homing_speed_zero:
-#   Speed for zero search in encoder counts/s. If not specified,
-#   uses the drive&#39;s default.
-#canopen_homing_accel:
-#   Homing acceleration in encoder counts/s^2. If not specified,
-#   uses the drive&#39;s default.
-#canopen_homing_offset: 0
-#   Home offset in encoder counts. Default is 0.
-#max_velocity:
-#   Maximum velocity in mm/s. Optional, overrides drive limits.
-#max_accel:
-#   Maximum acceleration in mm/s^2. Optional, overrides drive limits.
-#homing_speed: 5.0
-#   Homing speed in mm/s. Default is 5.0.
-#position_min: 0
-#   Minimum valid position in mm. Default is 0.
-#position_max:
-#   Maximum valid position in mm. Required if position_endstop is set.
-</code></pre></div>
-
-<h2 id="sync-groups">SYNC Groups<a class="headerlink" href="#sync-groups" title="Permanent link">&para;</a></h2>
-<p>SYNC groups control how multiple CANopen nodes are synchronized. All
-nodes in the same SYNC group share the same SYNC frame timing, which
-means their position setpoints are updated at the same instant.</p>
-<div class="highlight"><pre><span></span><code>[canopen_stepper x]
-sync_group: xy_group    # Same group = synchronized
-sync_period: 0.001
-
-[canopen_stepper y]
-sync_group: xy_group    # Shares SYNC with x axis
-sync_period: 0.001      # Period must match within group
-
-[canopen_stepper z]
-sync_group: z_group     # Independent SYNC
-sync_period: 0.002      # Can have different period
-</code></pre></div>
-
-<p>The first stepper registered in a SYNC group becomes the SYNC
-producer. All other steppers in the group are consumers.</p>
-<h2 id="cia-402-homing-methods">CiA 402 Homing Methods<a class="headerlink" href="#cia-402-homing-methods" title="Permanent link">&para;</a></h2>
-<p>When using <code>endstop_pin: canopen</code>, the following homing methods are
-available:</p>
+<h2 id="pin-description">Pin Description<a class="headerlink" href="#pin-description" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Method</th>
-<th>Number</th>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>encoder_pins</code></td>
+<td>Rotary encoder A/B phase pins, comma-separated</td>
+<td><code>^PA0, ^PA1</code></td>
+</tr>
+<tr>
+<td><code>click_pin</code></td>
+<td>Encoder button pin (optional)</td>
+<td><code>^PA2</code></td>
+</tr>
+<tr>
+<td><code>encoder_steps_per_detent</code></td>
+<td>Steps per detent, 2 or 4</td>
+<td><code>4</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note</strong>: If the <code>[display]</code> configuration uses the same <code>encoder_pins</code>, both modules share the same physical encoder. When the handwheel is active, menu navigation is automatically disabled; when the handwheel is off, menu navigation resumes.</p>
+</blockquote>
+<h2 id="g-code-commands">G-code Commands<a class="headerlink" href="#g-code-commands" title="Permanent link">&para;</a></h2>
+<h3 id="jog">JOG<a class="headerlink" href="#jog" title="Permanent link">&para;</a></h3>
+<p>Start or stop handwheel jog mode.</p>
+<div class="highlight"><pre><span></span><code>JOG [AXIS=&lt;axis&gt;] [STEP=&lt;distance&gt;] [SPEED=&lt;speed&gt;] [STOP]
+</code></pre></div>
+
+<p><strong>Parameters</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AXIS</code></td>
+<td>Active axis (X/Y/Z/E)</td>
+<td>Config value</td>
+</tr>
+<tr>
+<td><code>STEP</code></td>
+<td>Distance per detent in mm</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td><code>SPEED</code></td>
+<td>Move speed in mm/s</td>
+<td>100.0</td>
+</tr>
+<tr>
+<td><code>STOP</code></td>
+<td>Stop handwheel mode</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong>:</p>
+<div class="highlight"><pre><span></span><code>JOG                        # Start with defaults
+JOG AXIS=Z STEP=0.1        # Control Z axis, 0.1mm per step
+JOG SPEED=200               # Set speed to 200mm/s
+JOG STOP                    # Stop handwheel mode
+</code></pre></div>
+
+<h3 id="set_jog">SET_JOG<a class="headerlink" href="#set_jog" title="Permanent link">&para;</a></h3>
+<p>Modify handwheel parameters without changing the active state.</p>
+<div class="highlight"><pre><span></span><code>SET_JOG [AXIS=&lt;axis&gt;] [STEP=&lt;distance&gt;] [SPEED=&lt;speed&gt;] [JOG_SPEED=&lt;speed&gt;]
+</code></pre></div>
+
+<p><strong>Parameters</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>current_position</code></td>
-<td>35</td>
-<td>Use current position as home</td>
+<td><code>AXIS</code></td>
+<td>Active axis (X/Y/Z/E)</td>
 </tr>
 <tr>
-<td><code>positive_limit</code></td>
-<td>17</td>
-<td>Positive limit switch</td>
+<td><code>STEP</code></td>
+<td>Distance per detent in mm</td>
 </tr>
 <tr>
-<td><code>negative_limit</code></td>
-<td>18</td>
-<td>Negative limit switch</td>
+<td><code>SPEED</code></td>
+<td>Normal move speed in mm/s</td>
 </tr>
 <tr>
-<td><code>positive_home</code></td>
-<td>1</td>
-<td>Positive home switch</td>
-</tr>
-<tr>
-<td><code>negative_home</code></td>
-<td>2</td>
-<td>Negative home switch</td>
-</tr>
-<tr>
-<td><code>positive_home_index</code></td>
-<td>11</td>
-<td>Positive home switch + index pulse</td>
-</tr>
-<tr>
-<td><code>negative_home_index</code></td>
-<td>12</td>
-<td>Negative home switch + index pulse</td>
-</tr>
-<tr>
-<td><code>negative_limit_index</code></td>
-<td>23</td>
-<td>Negative limit switch + index pulse</td>
-</tr>
-<tr>
-<td><code>positive_limit_index</code></td>
-<td>27</td>
-<td>Positive limit switch + index pulse</td>
-</tr>
-<tr>
-<td><code>index_positive</code></td>
-<td>33</td>
-<td>Index pulse, positive direction</td>
-</tr>
-<tr>
-<td><code>index_negative</code></td>
-<td>34</td>
-<td>Index pulse, negative direction</td>
+<td><code>JOG_SPEED</code></td>
+<td>Fast rotation move speed in mm/s</td>
 </tr>
 </tbody>
 </table>
-<p>The exact behavior depends on your servo drive's implementation of
-CiA 402 homing. Refer to your drive's manual for details on each
-method.</p>
-<h2 id="eds-file-format">EDS File Format<a class="headerlink" href="#eds-file-format" title="Permanent link">&para;</a></h2>
-<p>EDS (Electronic Data Sheet) files use INI format per CiA 306. A
-typical EDS file contains:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[DeviceInfo]</span>
-<span class="na">VendorName</span><span class="o">=</span><span class="s">MyServo</span>
-<span class="na">VendorNumber</span><span class="o">=</span><span class="s">0x12345678</span>
-<span class="na">ProductName</span><span class="o">=</span><span class="s">ServoX</span>
-<span class="na">ProductCode</span><span class="o">=</span><span class="s">0x00010001</span>
-
-<span class="k">[Objects]</span>
-<span class="na">1000</span><span class="o">=</span><span class="s">1</span>
-<span class="na">1018</span><span class="o">=</span><span class="s">4</span>
-<span class="na">6040</span><span class="o">=</span><span class="s">1</span>
-<span class="na">6041</span><span class="o">=</span><span class="s">1</span>
-<span class="na">6060</span><span class="o">=</span><span class="s">1</span>
-<span class="na">607A</span><span class="o">=</span><span class="s">1</span>
-<span class="na">6064</span><span class="o">=</span><span class="s">1</span>
-
-<span class="k">[1000]</span>
-<span class="na">ParameterName</span><span class="o">=</span><span class="s">Device Type</span>
-<span class="na">ObjectType</span><span class="o">=</span><span class="s">7</span>
-<span class="na">DataType</span><span class="o">=</span><span class="s">0x0007</span>
-<span class="na">AccessType</span><span class="o">=</span><span class="s">ro</span>
-<span class="na">DefaultValue</span><span class="o">=</span><span class="s">0x00020192</span>
-
-<span class="k">[6040]</span>
-<span class="na">ParameterName</span><span class="o">=</span><span class="s">Controlword</span>
-<span class="na">ObjectType</span><span class="o">=</span><span class="s">7</span>
-<span class="na">DataType</span><span class="o">=</span><span class="s">0x0006</span>
-<span class="na">AccessType</span><span class="o">=</span><span class="s">rw</span>
-<span class="na">DefaultValue</span><span class="o">=</span><span class="s">0x0000</span>
-<span class="na">PDOMapping</span><span class="o">=</span><span class="s">1</span>
+<p><strong>Examples</strong>:</p>
+<div class="highlight"><pre><span></span><code>SET_JOG AXIS=Y              # Switch to Y axis
+SET_JOG STEP=0.01           # Set 0.01mm per step
+SET_JOG SPEED=200 JOG_SPEED=12000  # Set speeds
 </code></pre></div>
 
-<p>Key objects that must be present:</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h3 id="method-1-g-code-commands">Method 1: G-code Commands<a class="headerlink" href="#method-1-g-code-commands" title="Permanent link">&para;</a></h3>
+<p>Activate the handwheel via terminal G-code commands:</p>
+<div class="highlight"><pre><span></span><code>JOG AXIS=X STEP=1.0
+</code></pre></div>
+
+<p>Once activated, the rotary encoder controls X axis movement, 1.0mm per detent.</p>
+<h3 id="method-2-lcd-menu">Method 2: LCD Menu<a class="headerlink" href="#method-2-lcd-menu" title="Permanent link">&para;</a></h3>
+<p>If an LCD display is configured, operate through the menu:</p>
+<ol>
+<li>Navigate to <strong>Control</strong> → <strong>Handwheel</strong></li>
+<li>Select <strong>Jog: OFF</strong> to toggle to <strong>Jog: ON</strong></li>
+<li>Use <strong>Axis</strong> to select the active axis</li>
+<li>Use <strong>Step</strong> to select the step distance</li>
+</ol>
+<h3 id="method-3-physical-button">Method 3: Physical Button<a class="headerlink" href="#method-3-physical-button" title="Permanent link">&para;</a></h3>
+<p>If <code>click_pin</code> is configured, short-press the encoder button to toggle handwheel mode on/off.</p>
+<h2 id="operating-modes">Operating Modes<a class="headerlink" href="#operating-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Encoder Rotation</th>
+<th>Button Press</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Menu Mode (default)</td>
+<td>Navigate menu up/down</td>
+<td>Confirm selection</td>
+</tr>
+<tr>
+<td>Handwheel Mode</td>
+<td>Control axis movement</td>
+<td>Switch back to menu mode</td>
+</tr>
+</tbody>
+</table>
+<h2 id="safety-restrictions">Safety Restrictions<a class="headerlink" href="#safety-restrictions" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>0x1000</code> — Device Type</li>
-<li><code>0x1018</code> — Identity Object (Vendor ID, Product Code)</li>
-<li><code>0x6040</code> — Controlword</li>
-<li><code>0x6041</code> — Statusword</li>
-<li><code>0x6060</code> — Modes of Operation</li>
-<li><code>0x607A</code> — Target Position (for CSP mode)</li>
-<li><code>0x6064</code> — Position Actual Value</li>
-<li><code>0x1600</code> — RPDO 1 Mapping</li>
-<li><code>0x1A00</code> — TPDO 1 Mapping</li>
+<li><strong>Homing Protection</strong>: X/Y/Z axes must be homed before handwheel movement</li>
+<li><strong>E Axis Restriction</strong>: E axis movement requires X axis to be homed</li>
+<li><strong>Error Handling</strong>: Move failures are logged automatically without interrupting the system</li>
 </ul>
+<h2 id="status-query">Status Query<a class="headerlink" href="#status-query" title="Permanent link">&para;</a></h2>
+<p>Handwheel status is accessible via <code>printer.handwheel</code>:</p>
+<div class="highlight"><pre><span></span><code>{printer.handwheel.is_active}      # Is active
+{printer.handwheel.active_axis}    # Current active axis
+{printer.handwheel.step_distance}  # Current step distance
+{printer.handwheel.speed}          # Current speed
+</code></pre></div>
+
+<h2 id="wiring-example">Wiring Example<a class="headerlink" href="#wiring-example" title="Permanent link">&para;</a></h2>
+<p>Typical rotary encoder module (e.g., KY-040) wiring:</p>
+<div class="highlight"><pre><span></span><code>Encoder Pin    MCU Pin
+──────────────────────
+CLK (A)    →   PA0 (pull-up)
+DT  (B)    →   PA1 (pull-up)
+SW         →   PA2 (pull-up)
+VCC        →   3.3V
+GND        →   GND
+</code></pre></div>
+
+<p>Configuration example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[handwheel]</span>
+<span class="na">encoder_pins</span><span class="o">:</span><span class="w"> </span><span class="s">^PA0, ^PA1</span>
+<span class="na">click_pin</span><span class="o">:</span><span class="w"> </span><span class="s">^PA2</span>
+<span class="na">encoder_steps_per_detent</span><span class="o">:</span><span class="w"> </span><span class="s">4</span>
+<span class="na">axis</span><span class="o">:</span><span class="w"> </span><span class="s">X</span>
+<span class="na">step_distance</span><span class="o">:</span><span class="w"> </span><span class="s">1.0</span>
+<span class="na">speed</span><span class="o">:</span><span class="w"> </span><span class="s">100.0</span>
+</code></pre></div>
+
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="drive-not-enabling">Drive not enabling<a class="headerlink" href="#drive-not-enabling" title="Permanent link">&para;</a></h3>
-<p>Check that:</p>
-<ol>
-<li>The EDS file matches your drive model</li>
-<li>The node_id matches the drive's configured ID</li>
-<li>The CAN bus bitrate matches the drive's configuration</li>
-<li>The drive is powered and not in fault state</li>
-</ol>
-<h3 id="homing-fails">Homing fails<a class="headerlink" href="#homing-fails" title="Permanent link">&para;</a></h3>
-<p>For CiA 402 homing:</p>
-<ol>
-<li>Verify <code>canopen_homing_method</code> matches your hardware setup</li>
-<li>Check that homing speeds are within the drive's limits</li>
-<li>Ensure the drive supports the selected homing method (check EDS)</li>
-</ol>
-<h3 id="position-drift">Position drift<a class="headerlink" href="#position-drift" title="Permanent link">&para;</a></h3>
-<p>If the actual position drifts from the commanded position:</p>
-<ol>
-<li>Check that the drive is in the correct operating mode (CSP)</li>
-<li>Verify the encoder is working correctly</li>
-<li>Check for CAN bus errors (retries, lost frames)</li>
-</ol>
-<h3 id="can-bus-errors">CAN bus errors<a class="headerlink" href="#can-bus-errors" title="Permanent link">&para;</a></h3>
-<p>If you see CAN bus errors:</p>
-<ol>
-<li>Check terminating resistors (two 120 ohm resistors at bus ends)</li>
-<li>Verify bus length is within specification</li>
-<li>Check for proper grounding</li>
-<li>Reduce bus speed if using long cables</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Possible Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No response to rotation</td>
+<td>Handwheel not activated</td>
+<td>Send <code>JOG</code> command or press button to activate</td>
+</tr>
+<tr>
+<td>Movement direction reversed</td>
+<td>A/B phase wires swapped</td>
+<td>Swap the two pins in <code>encoder_pins</code></td>
+</tr>
+<tr>
+<td>Multiple steps per detent</td>
+<td>Wrong <code>steps_per_detent</code> setting</td>
+<td>Try changing to <code>2</code> or <code>4</code></td>
+</tr>
+<tr>
+<td>Intermittent movement</td>
+<td>Encoder quality issue</td>
+<td>Increase <code>debounce_delay</code> value</td>
+</tr>
+<tr>
+<td>Menu navigation not working</td>
+<td>Handwheel is active</td>
+<td>Press button or send <code>JOG STOP</code> to deactivate</td>
+</tr>
+</tbody>
+</table>
 
 
 

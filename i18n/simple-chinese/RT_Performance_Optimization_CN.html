@@ -8,27 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://docs.kalico.gg/servo-safety_CN.html">
+        <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/RT_Performance_Optimization_CN.html">
       
       
       
       
         
+          <link rel="alternate" href="/" hreflang="en">
+        
+          <link rel="alternate" href="/i18n/simple-chinese/" hreflang="zh-Hans">
+        
       
       
-      <link rel="icon" href="logo/kalico-32x32.png">
+      <link rel="icon" href="../../logo/kalico-32x32.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>伺服安全监控 - Kalico Documentation</title>
+        <title>实时性能优化 - Kalico Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -47,9 +51,9 @@
       
     
     
-      <link rel="stylesheet" href="_kalico/css/extra.css">
+      <link rel="stylesheet" href="../../_kalico/css/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -100,9 +104,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+    <a href="../../index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
       
-  <img src="logo/kalico-96x96.png" alt="logo">
+  <img src="../../logo/kalico-96x96.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -119,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              伺服安全监控
+              实时性能优化
             
           </span>
         </div>
@@ -155,6 +159,32 @@
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/i18n/simple-chinese/" hreflang="zh-Hans" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       
@@ -242,9 +272,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+    <a href="../../index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
       
-  <img src="logo/kalico-96x96.png" alt="logo">
+  <img src="../../logo/kalico-96x96.png" alt="logo">
 
     </a>
     Kalico Documentation
@@ -271,7 +301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href="../../index.html" class="md-nav__link">
         
   
   
@@ -298,7 +328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Overview.html" class="md-nav__link">
+      <a href="../../Overview.html" class="md-nav__link">
         
   
   
@@ -325,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Features.html" class="md-nav__link">
+      <a href="../../Features.html" class="md-nav__link">
         
   
   
@@ -352,7 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="FAQ.html" class="md-nav__link">
+      <a href="../../FAQ.html" class="md-nav__link">
         
   
   
@@ -406,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Config_Changes.html" class="md-nav__link">
+      <a href="../../Config_Changes.html" class="md-nav__link">
         
   
   
@@ -480,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Config_Reference.html" class="md-nav__link">
+      <a href="../../Config_Reference.html" class="md-nav__link">
         
   
   
@@ -508,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Kalico_Additions.html" class="md-nav__link">
+      <a href="../../Kalico_Additions.html" class="md-nav__link">
         
   
   
@@ -583,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Bleeding_Edge.html" class="md-nav__link">
+      <a href="../../Bleeding_Edge.html" class="md-nav__link">
         
   
   
@@ -611,7 +641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+      <a href="../../Config_Reference_Bleeding_Edge.html" class="md-nav__link">
         
   
   
@@ -639,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
+      <a href="../../Nonlinear_Pressure_Advance.html" class="md-nav__link">
         
   
   
@@ -675,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="PID.html" class="md-nav__link">
+      <a href="../../PID.html" class="md-nav__link">
         
   
   
@@ -703,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="MPC.html" class="md-nav__link">
+      <a href="../../MPC.html" class="md-nav__link">
         
   
   
@@ -731,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Dockable_Probe.html" class="md-nav__link">
+      <a href="../../Dockable_Probe.html" class="md-nav__link">
         
   
   
@@ -759,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="INDX.html" class="md-nav__link">
+      <a href="../../INDX.html" class="md-nav__link">
         
   
   
@@ -841,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="G-Codes.html" class="md-nav__link">
+      <a href="../../G-Codes.html" class="md-nav__link">
         
   
   
@@ -869,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Command_Templates.html" class="md-nav__link">
+      <a href="../../Command_Templates.html" class="md-nav__link">
         
   
   
@@ -897,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="G-Code_Shell_Command.html" class="md-nav__link">
+      <a href="../../G-Code_Shell_Command.html" class="md-nav__link">
         
   
   
@@ -925,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Status_Reference.html" class="md-nav__link">
+      <a href="../../Status_Reference.html" class="md-nav__link">
         
   
   
@@ -1007,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Migrating_from_Klipper.html" class="md-nav__link">
+      <a href="../../Migrating_from_Klipper.html" class="md-nav__link">
         
   
   
@@ -1035,7 +1065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Installation.html" class="md-nav__link">
+      <a href="../../Installation.html" class="md-nav__link">
         
   
   
@@ -1063,7 +1093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="OctoPrint.html" class="md-nav__link">
+      <a href="../../OctoPrint.html" class="md-nav__link">
         
   
   
@@ -1091,7 +1121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="TMC_Drivers.html" class="md-nav__link">
+      <a href="../../TMC_Drivers.html" class="md-nav__link">
         
   
   
@@ -1119,7 +1149,35 @@
   
   
     <li class="md-nav__item">
-      <a href="Config_checks.html" class="md-nav__link">
+      <a href="../../LYX_Drivers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LYX stepper drivers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Config_checks.html" class="md-nav__link">
         
   
   
@@ -1147,7 +1205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Rotation_Distance.html" class="md-nav__link">
+      <a href="../../Rotation_Distance.html" class="md-nav__link">
         
   
   
@@ -1175,7 +1233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Multi_MCU_Homing.html" class="md-nav__link">
+      <a href="../../Multi_MCU_Homing.html" class="md-nav__link">
         
   
   
@@ -1211,10 +1269,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
         
           
-          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
             
   
   
@@ -1232,8 +1290,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1250,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Z_Calibration.html" class="md-nav__link">
+      <a href="../../Z_Calibration.html" class="md-nav__link">
         
   
   
@@ -1278,7 +1336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Bed_Level.html" class="md-nav__link">
+      <a href="../../Bed_Level.html" class="md-nav__link">
         
   
   
@@ -1306,7 +1364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Delta_Calibrate.html" class="md-nav__link">
+      <a href="../../Delta_Calibrate.html" class="md-nav__link">
         
   
   
@@ -1334,7 +1392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Probe_Calibrate.html" class="md-nav__link">
+      <a href="../../Probe_Calibrate.html" class="md-nav__link">
         
   
   
@@ -1362,7 +1420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="BLTouch.html" class="md-nav__link">
+      <a href="../../BLTouch.html" class="md-nav__link">
         
   
   
@@ -1390,7 +1448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Manual_Level.html" class="md-nav__link">
+      <a href="../../Manual_Level.html" class="md-nav__link">
         
   
   
@@ -1418,7 +1476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Bed_Mesh.html" class="md-nav__link">
+      <a href="../../Bed_Mesh.html" class="md-nav__link">
         
   
   
@@ -1446,7 +1504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Endstop_Phase.html" class="md-nav__link">
+      <a href="../../Endstop_Phase.html" class="md-nav__link">
         
   
   
@@ -1474,7 +1532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+      <a href="../../Axis_Twist_Compensation.html" class="md-nav__link">
         
   
   
@@ -1502,7 +1560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Skew_Correction.html" class="md-nav__link">
+      <a href="../../Skew_Correction.html" class="md-nav__link">
         
   
   
@@ -1546,10 +1604,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_10" >
         
           
-          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_10" id="__nav_9_10_label" tabindex="0">
             
   
   
@@ -1567,8 +1625,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1585,7 +1643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Measuring_Resonances.html" class="md-nav__link">
+      <a href="../../Measuring_Resonances.html" class="md-nav__link">
         
   
   
@@ -1613,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Resonance_Compensation.html" class="md-nav__link">
+      <a href="../../Resonance_Compensation.html" class="md-nav__link">
         
   
   
@@ -1641,7 +1699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Pressure_Advance.html" class="md-nav__link">
+      <a href="../../Pressure_Advance.html" class="md-nav__link">
         
   
   
@@ -1731,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Slicers.html" class="md-nav__link">
+      <a href="../../Slicers.html" class="md-nav__link">
         
   
   
@@ -1759,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Exclude_Object.html" class="md-nav__link">
+      <a href="../../Exclude_Object.html" class="md-nav__link">
         
   
   
@@ -1787,7 +1845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Using_PWM_Tools.html" class="md-nav__link">
+      <a href="../../Using_PWM_Tools.html" class="md-nav__link">
         
   
   
@@ -1869,7 +1927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Code_Overview.html" class="md-nav__link">
+      <a href="../../Code_Overview.html" class="md-nav__link">
         
   
   
@@ -1897,7 +1955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Kinematics.html" class="md-nav__link">
+      <a href="../../Kinematics.html" class="md-nav__link">
         
   
   
@@ -1925,7 +1983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Protocol.html" class="md-nav__link">
+      <a href="../../Protocol.html" class="md-nav__link">
         
   
   
@@ -1953,7 +2011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="API_Server.html" class="md-nav__link">
+      <a href="../../API_Server.html" class="md-nav__link">
         
   
   
@@ -1981,7 +2039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="MCU_Commands.html" class="md-nav__link">
+      <a href="../../MCU_Commands.html" class="md-nav__link">
         
   
   
@@ -2009,7 +2067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="CANBUS_protocol.html" class="md-nav__link">
+      <a href="../../CANBUS_protocol.html" class="md-nav__link">
         
   
   
@@ -2037,7 +2095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Debugging.html" class="md-nav__link">
+      <a href="../../Debugging.html" class="md-nav__link">
         
   
   
@@ -2065,7 +2123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Benchmarks.html" class="md-nav__link">
+      <a href="../../Benchmarks.html" class="md-nav__link">
         
   
   
@@ -2093,7 +2151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="CONTRIBUTING.html" class="md-nav__link">
+      <a href="../../CONTRIBUTING.html" class="md-nav__link">
         
   
   
@@ -2121,7 +2179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Packaging.html" class="md-nav__link">
+      <a href="../../Packaging.html" class="md-nav__link">
         
   
   
@@ -2203,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Example_Configs.html" class="md-nav__link">
+      <a href="../../Example_Configs.html" class="md-nav__link">
         
   
   
@@ -2231,7 +2289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="SDCard_Updates.html" class="md-nav__link">
+      <a href="../../SDCard_Updates.html" class="md-nav__link">
         
   
   
@@ -2259,7 +2317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="RPi_microcontroller.html" class="md-nav__link">
+      <a href="../../RPi_microcontroller.html" class="md-nav__link">
         
   
   
@@ -2287,7 +2345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Beaglebone.html" class="md-nav__link">
+      <a href="../../Beaglebone.html" class="md-nav__link">
         
   
   
@@ -2315,7 +2373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Bootloaders.html" class="md-nav__link">
+      <a href="../../Bootloaders.html" class="md-nav__link">
         
   
   
@@ -2343,7 +2401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Bootloader_Entry.html" class="md-nav__link">
+      <a href="../../Bootloader_Entry.html" class="md-nav__link">
         
   
   
@@ -2371,7 +2429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="CANBUS.html" class="md-nav__link">
+      <a href="../../CANBUS.html" class="md-nav__link">
         
   
   
@@ -2399,7 +2457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+      <a href="../../CANBUS_Troubleshooting.html" class="md-nav__link">
         
   
   
@@ -2427,7 +2485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+      <a href="../../TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
         
   
   
@@ -2455,7 +2513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
+      <a href="../../Hall_Filament_Width_Sensor.html" class="md-nav__link">
         
   
   
@@ -2483,7 +2541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Load_Cell.html" class="md-nav__link">
+      <a href="../../Load_Cell.html" class="md-nav__link">
         
   
   
@@ -2518,7 +2576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Telemetry.html" class="md-nav__link">
+      <a href="../../Telemetry.html" class="md-nav__link">
         
   
   
@@ -2545,7 +2603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Contact.html" class="md-nav__link">
+      <a href="../../Contact.html" class="md-nav__link">
         
   
   
@@ -2572,7 +2630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Sponsors.html" class="md-nav__link">
+      <a href="../../Sponsors.html" class="md-nav__link">
         
   
   
@@ -2622,7 +2680,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        功能特性
+        架构
       
     </span>
   </a>
@@ -2633,19 +2691,80 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        快速开始
+        已实施的更改
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="快速开始">
+    <nav class="md-nav" aria-label="已实施的更改">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-poll-epoll-timerfd-pollreactorc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. poll() → epoll + timerfd (pollreactor.c)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-serialqueuec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 实时线程调度 (serialqueue.c)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-serialqueuec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 优先级继承互斥锁 (serialqueue.c)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preempt_rt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PREEMPT_RT 内核配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PREEMPT_RT 内核配置">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        方式一：集成配置
+        内核命令行参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#klipper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        将 Klipper 绑定到隔离核心
       
     </span>
   </a>
@@ -2656,7 +2775,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        方式二：独立模块
+        内核编译选项
       
     </span>
   </a>
@@ -2672,132 +2791,32 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        配置参考
+        预期改进
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="配置参考">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        集成选项
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#servo_alarm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        [servo_alarm] 配置节
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        动作类型
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#g-code" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        G-code 命令
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="G-code 命令">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#query_servo-stepper" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        QUERY_SERVO [STEPPER=&lt;名称&gt;]
+        兼容性
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#reset_servo_fault-stepper" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        RESET_SERVO_FAULT STEPPER=&lt;名称&gt;
+        代码变更摘要
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#query_servo_alarm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        QUERY_SERVO_ALARM
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#query_alarm_-clear_alarm_" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        QUERY_ALARM_&lt;名称&gt; / CLEAR_ALARM_&lt;名称&gt;
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#query_servo_alarm-stepper" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        QUERY_SERVO_ALARM STEPPER=&lt;名称&gt;
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reset_servo_alarm-stepper" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RESET_SERVO_ALARM STEPPER=&lt;名称&gt;
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2805,218 +2824,7 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        状态字段
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="状态字段">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        伺服步进电机状态
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#servoalarm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ServoAlarm 状态
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        硬件接线
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="硬件接线">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#alm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        典型伺服驱动器 ALM 输出
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        电平转换
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24v-33v" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        示例：24V 到 3.3V 分压器
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        配置示例
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="配置示例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cnc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        多轴 CNC 设置
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        工业机器人手臂
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ethercat" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        EtherCAT 伺服设置
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rs485" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RS485 伺服设置
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        故障排除
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="故障排除">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        报警未检测到
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        误报警
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        故障复位不工作
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#unknown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        状态显示 "unknown"
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        相关文档
+        参考资料
       
     </span>
   </a>
@@ -3040,7 +2848,7 @@
 
 
   
-    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/servo-safety_CN.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/RT_Performance_Optimization_CN.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3048,438 +2856,222 @@
   
 
 
-<h1 id="_1">伺服安全监控<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>Kalico 支持工业级伺服驱动器安全监控功能，包括 ALM（报警）引脚检测和故障管理。</p>
-<h2 id="_2">功能特性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h1 id="_1">实时性能优化<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>Kalico 的主机端运动管线已通过三层实时性改进进行了优化。本文档描述了架构、所做的更改，以及如何配置 PREEMPT_RT 内核以获得最大收益。</p>
+<h2 id="_2">架构<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Kalico 中的运动时序管线如下：</p>
+<div class="highlight"><pre><span></span><code>G代码解析 (Python, ~ms/条)
+  -&gt; 前瞻 + 拐角速度规划 (Python, ~us)
+  -&gt; trapq_append (C) — 梯形速度队列
+  -&gt; itersolve (C) — 割线法迭代步进时刻求解
+  -&gt; stepcompress (C) — 步进脉冲压缩/排队
+  -&gt; serialqueue (C, 后台线程) — 定时串口/CAN 发送至 MCU
+  -&gt; UART/CAN 硬件
+</code></pre></div>
+
+<p>所有性能关键 C 代码通过 CFFI 在运行时编译为 <code>c_helper.so</code>。
+时序瓶颈在于 <strong>serialqueue 后台线程</strong>，它必须在微秒级响应硬件和定时器事件，以防 MCU 缓冲区欠载。</p>
+<h2 id="_3">已实施的更改<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1-poll-epoll-timerfd-pollreactorc">1. poll() → epoll + timerfd (<code>pollreactor.c</code>)<a class="headerlink" href="#1-poll-epoll-timerfd-pollreactorc" title="Permanent link">&para;</a></h3>
+<p><strong>问题：</strong> 原先的 <code>pollreactor</code> 使用 <code>poll()</code>，超时精度为毫秒级（最小 1ms）。定时器回调在 <code>poll()</code> 返回<em>之后</em>才检查，引入了不可避免的调度抖动。</p>
+<p><strong>解决方案：</strong> 在 Linux 上（<code>#ifdef __linux__</code>），事件循环现在使用：</p>
 <ul>
-<li><strong>ALM 引脚监控</strong>：实时监控伺服驱动器报警输出引脚</li>
-<li><strong>可配置动作</strong>：报警时可选择紧急停止、暂停、自定义 G-code 或仅记录</li>
-<li><strong>故障检测</strong>：通过通信协议检测 CiA 402 故障状态</li>
-<li><strong>G-code 命令</strong>：交互式查询和复位伺服故障</li>
-<li><strong>状态报告</strong>：通过 API 获取驱动器状态、错误码和报警状态</li>
+<li><code>epoll_create1</code> / <code>epoll_wait</code> — O(1) 事件驱动分发</li>
+<li><code>timerfd_create</code> / <code>timerfd_settime</code> — 纳秒级定时器精度<ul>
+<li>每个定时器回调拥有独立的 <code>timerfd</code> 文件描述符</li>
+<li><code>epoll_wait</code> 在 timerfd 到期时直接唤醒</li>
+<li>无需手动计算超时或轮询</li>
 </ul>
-<h2 id="_3">快速开始<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="_4">方式一：集成配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>在伺服步进电机配置中直接添加 ALM 引脚：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[canopen_stepper stepper_x]</span>
-<span class="na">canopen_bus</span><span class="o">:</span><span class="w"> </span><span class="s">mybus</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/servo.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">360</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-
-<span class="c1"># ALM 报警引脚</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB7</span>
-<span class="na">alarm_action</span><span class="o">:</span><span class="w"> </span><span class="s">shutdown</span>
-<span class="na">alm_invert</span><span class="o">:</span><span class="w"> </span><span class="s">false</span>
-</code></pre></div>
-
-<h3 id="_5">方式二：独立模块<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>使用 <code>[servo_alarm]</code> 实现灵活的多轴监控：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[servo_alarm x_axis]</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB7</span>
-<span class="na">action</span><span class="o">:</span><span class="w"> </span><span class="s">shutdown</span>
-<span class="na">invert</span><span class="o">:</span><span class="w"> </span><span class="s">false</span>
-<span class="na">debounce</span><span class="o">:</span><span class="w"> </span><span class="s">0.01</span>
-</code></pre></div>
-
-<h2 id="_6">配置参考<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<h3 id="_7">集成选项<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p>在 <code>[canopen_stepper]</code>、<code>[ethercat_stepper]</code> 或 <code>[rs485_stepper]</code> 中添加以下选项：</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>默认值</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>alm_pin</code></td>
-<td>无</td>
-<td>连接到伺服 ALM 输出的 GPIO 引脚</td>
-</tr>
-<tr>
-<td><code>alarm_action</code></td>
-<td><code>shutdown</code></td>
-<td>报警动作：<code>shutdown</code>、<code>pause</code>、<code>gcode</code>、<code>none</code></td>
-</tr>
-<tr>
-<td><code>alm_invert</code></td>
-<td><code>false</code></td>
-<td>反转引脚逻辑（高电平报警时设为 <code>true</code>）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="servo_alarm"><code>[servo_alarm]</code> 配置节<a class="headerlink" href="#servo_alarm" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>默认值</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>alm_pin</code></td>
-<td>必填</td>
-<td>报警输入的 GPIO 引脚</td>
-</tr>
-<tr>
-<td><code>action</code></td>
-<td><code>shutdown</code></td>
-<td>报警动作：<code>shutdown</code>、<code>pause</code>、<code>gcode</code>、<code>none</code></td>
-</tr>
-<tr>
-<td><code>invert</code></td>
-<td><code>false</code></td>
-<td>反转引脚逻辑</td>
-</tr>
-<tr>
-<td><code>debounce</code></td>
-<td><code>0.01</code></td>
-<td>防抖时间（秒）</td>
-</tr>
-<tr>
-<td><code>alarm_gcode</code></td>
-<td>无</td>
-<td>当 <code>action: gcode</code> 时执行的 G-code</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_8">动作类型<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>动作</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>shutdown</code></td>
-<td>紧急停止 - 立即停止所有运动</td>
-</tr>
-<tr>
-<td><code>pause</code></td>
-<td>暂停当前打印（如果正在打印）</td>
-</tr>
-<tr>
-<td><code>gcode</code></td>
-<td>执行 <code>alarm_gcode</code> 中的自定义 G-code</td>
-</tr>
-<tr>
-<td><code>none</code></td>
-<td>仅记录日志，不执行自动动作</td>
-</tr>
-</tbody>
-</table>
-<h2 id="g-code">G-code 命令<a class="headerlink" href="#g-code" title="Permanent link">&para;</a></h2>
-<h3 id="query_servo-stepper"><code>QUERY_SERVO [STEPPER=&lt;名称&gt;]</code><a class="headerlink" href="#query_servo-stepper" title="Permanent link">&para;</a></h3>
-<p>查询伺服驱动器状态。不带 <code>STEPPER</code> 参数时，查询所有伺服。</p>
-<div class="highlight"><pre><span></span><code>QUERY_SERVO                        # 查询所有伺服
-QUERY_SERVO STEPPER=stepper_x      # 查询指定伺服
-</code></pre></div>
-
-<p>输出示例：</p>
-<div class="highlight"><pre><span></span><code>stepper_x:
-  state=OPERATION_ENABLED
-  mode=CSP
-  error_code=0x0000
-  is_fault=False
-  alarm_active=False
-</code></pre></div>
-
-<h3 id="reset_servo_fault-stepper"><code>RESET_SERVO_FAULT STEPPER=&lt;名称&gt;</code><a class="headerlink" href="#reset_servo_fault-stepper" title="Permanent link">&para;</a></h3>
-<p>通过 CiA 402 故障复位命令复位伺服驱动器故障。</p>
-<div class="highlight"><pre><span></span><code>RESET_SERVO_FAULT STEPPER=stepper_x
-</code></pre></div>
-
-<h3 id="query_servo_alarm"><code>QUERY_SERVO_ALARM</code><a class="headerlink" href="#query_servo_alarm" title="Permanent link">&para;</a></h3>
-<p>查询所有 <code>[servo_alarm]</code> 模块的状态。</p>
-<div class="highlight"><pre><span></span><code>QUERY_SERVO_ALARM
-</code></pre></div>
-
-<h3 id="query_alarm_-clear_alarm_"><code>QUERY_ALARM_&lt;名称&gt;</code> / <code>CLEAR_ALARM_&lt;名称&gt;</code><a class="headerlink" href="#query_alarm_-clear_alarm_" title="Permanent link">&para;</a></h3>
-<p>查询或清除指定 <code>[servo_alarm]</code> 的状态。名称为配置节名称的最后一部分。</p>
-<div class="highlight"><pre><span></span><code><span class="k">[servo_alarm x_axis]</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>QUERY_ALARM_X_AXIS
-CLEAR_ALARM_X_AXIS
-</code></pre></div>
-
-<h3 id="query_servo_alarm-stepper"><code>QUERY_SERVO_ALARM STEPPER=&lt;名称&gt;</code><a class="headerlink" href="#query_servo_alarm-stepper" title="Permanent link">&para;</a></h3>
-<p>查询指定步进电机的报警状态（当配置了 <code>alm_pin</code> 时）。</p>
-<h3 id="reset_servo_alarm-stepper"><code>RESET_SERVO_ALARM STEPPER=&lt;名称&gt;</code><a class="headerlink" href="#reset_servo_alarm-stepper" title="Permanent link">&para;</a></h3>
-<p>复位指定步进电机的报警和故障状态。</p>
-<h2 id="_9">状态字段<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<h3 id="_10">伺服步进电机状态<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>state</code></td>
-<td>字符串</td>
-<td>CiA 402 状态名（如 "OPERATION_ENABLED"、"FAULT"）</td>
-</tr>
-<tr>
-<td><code>actual_position</code></td>
-<td>整数</td>
-<td>当前编码器位置</td>
-</tr>
-<tr>
-<td><code>error_code</code></td>
-<td>整数</td>
-<td>驱动器错误码（来自 0x603F 寄存器）</td>
-</tr>
-<tr>
-<td><code>mode</code></td>
-<td>字符串</td>
-<td>运行模式（CSP、CSV、PP 等）</td>
-</tr>
-<tr>
-<td><code>is_fault</code></td>
-<td>布尔</td>
-<td>驱动器是否处于故障状态</td>
-</tr>
-<tr>
-<td><code>statusword</code></td>
-<td>整数</td>
-<td>原始 CiA 402 状态字（0x6041）</td>
-</tr>
-<tr>
-<td><code>alarm_active</code></td>
-<td>布尔</td>
-<td>ALM 引脚是否激活</td>
-</tr>
-<tr>
-<td><code>alarm_count</code></td>
-<td>整数</td>
-<td>启动后的报警事件次数</td>
-</tr>
-</tbody>
-</table>
-<h3 id="servoalarm">ServoAlarm 状态<a class="headerlink" href="#servoalarm" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>alarm_active</code></td>
-<td>布尔</td>
-<td>报警是否当前激活</td>
-</tr>
-<tr>
-<td><code>alarm_count</code></td>
-<td>整数</td>
-<td>启动后的报警触发次数</td>
-</tr>
-<tr>
-<td><code>last_alarm_time</code></td>
-<td>浮点</td>
-<td>上次报警事件的时间戳</td>
-</tr>
-<tr>
-<td><code>pin</code></td>
-<td>字符串</td>
-<td>配置的 ALM 引脚</td>
-</tr>
-<tr>
-<td><code>action</code></td>
-<td>字符串</td>
-<td>配置的报警动作</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_11">硬件接线<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<h3 id="alm">典型伺服驱动器 ALM 输出<a class="headerlink" href="#alm" title="Permanent link">&para;</a></h3>
-<p>大多数伺服驱动器具有开集电极 ALM 输出：</p>
-<div class="highlight"><pre><span></span><code>伺服驱动器                    MCU（如 STM32）
-+---------+                    +------------+
-| ALM OUT |---[10k 上拉]------| GPIO (PBx) |
-| GND     |------------------| GND        |
-+---------+                    +------------+
-</code></pre></div>
-
-<ul>
-<li><strong>正常状态</strong>：ALM 引脚为高电平（上拉）</li>
-<li><strong>报警状态</strong>：ALM 引脚为低电平（被拉到 GND）</li>
+</li>
 </ul>
-<p>对于高电平有效的 ALM 输出，设置 <code>alm_invert: true</code>。</p>
-<h3 id="_12">电平转换<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<p>某些伺服驱动器需要 24V ALM 输出。可使用以下方式之一：</p>
-<ol>
-<li><strong>分压器</strong>：24V -&gt; 3.3V 电阻网络</li>
-<li><strong>光耦</strong>：电气隔离（推荐用于工业环境）</li>
-<li><strong>电平转换模块</strong>：双向电平转换</li>
-</ol>
-<h3 id="24v-33v">示例：24V 到 3.3V 分压器<a class="headerlink" href="#24v-33v" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>24V ALM ---[10k]---+---[5.6k]--- GND
-                   |
-                   +--- 连接到 MCU GPIO
+<p><strong>回退方案：</strong> 非 Linux 平台（macOS、BSD）保留原始 <code>poll()</code> 实现以保持兼容性。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>修改前 (<code>poll()</code>)</th>
+<th>修改后 (<code>epoll</code>+<code>timerfd</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定时器精度</td>
+<td>1 ms</td>
+<td>1 ns</td>
+</tr>
+<tr>
+<td>FD 分发方式</td>
+<td>O(n) 扫描</td>
+<td>O(1) 事件驱动</td>
+</tr>
+<tr>
+<td>空闲 CPU 开销</td>
+<td>最少 1000次/秒唤醒</td>
+<td>空闲时 0 次唤醒</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-serialqueuec">2. 实时线程调度 (<code>serialqueue.c</code>)<a class="headerlink" href="#2-serialqueuec" title="Permanent link">&para;</a></h3>
+<p><strong>问题：</strong> 串口后台线程以默认的 <code>SCHED_OTHER</code> 调度类别运行，与 Python 线程、文件系统刷新、网络 I/O 和其他系统任务平等竞争。在繁忙系统上，这可能导致串行数据延迟数十毫秒。</p>
+<p><strong>解决方案：</strong> 线程创建后，后台线程被提升为 <code>SCHED_FIFO</code> 优先级：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">sched_param</span><span class="w"> </span><span class="n">sp</span><span class="p">;</span>
+<span class="n">sp</span><span class="p">.</span><span class="n">sched_priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">pthread_setschedparam</span><span class="p">(</span><span class="n">sq</span><span class="o">-&gt;</span><span class="n">tid</span><span class="p">,</span><span class="w"> </span><span class="n">SCHED_FIFO</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sp</span><span class="p">);</span>
 </code></pre></div>
 
-<h2 id="_13">配置示例<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
-<h3 id="cnc">多轴 CNC 设置<a class="headerlink" href="#cnc" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># CANopen 总线</span>
-<span class="k">[canopen_bus mybus]</span>
-<span class="na">interface</span><span class="o">:</span><span class="w"> </span><span class="s">can0</span>
-<span class="na">channel</span><span class="o">:</span><span class="w"> </span><span class="s">can0</span>
-<span class="na">bitrate</span><span class="o">:</span><span class="w"> </span><span class="s">1000000</span>
-
-<span class="c1"># X 轴</span>
-<span class="k">[canopen_stepper stepper_x]</span>
-<span class="na">canopen_bus</span><span class="o">:</span><span class="w"> </span><span class="s">mybus</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/servo_x.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">360</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB7</span>
-<span class="na">alarm_action</span><span class="o">:</span><span class="w"> </span><span class="s">shutdown</span>
-
-<span class="c1"># Y 轴</span>
-<span class="k">[canopen_stepper stepper_y]</span>
-<span class="na">canopen_bus</span><span class="o">:</span><span class="w"> </span><span class="s">mybus</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">2</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/servo_y.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">360</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB8</span>
-<span class="na">alarm_action</span><span class="o">:</span><span class="w"> </span><span class="s">shutdown</span>
-
-<span class="c1"># Z 轴</span>
-<span class="k">[canopen_stepper stepper_z]</span>
-<span class="na">canopen_bus</span><span class="o">:</span><span class="w"> </span><span class="s">mybus</span>
-<span class="na">node_id</span><span class="o">:</span><span class="w"> </span><span class="s">3</span>
-<span class="na">eds_file</span><span class="o">:</span><span class="w"> </span><span class="s">~/servo_z.eds</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">360</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB9</span>
-<span class="na">alarm_action</span><span class="o">:</span><span class="w"> </span><span class="s">pause</span>
-
-<span class="c1"># 全局报警处理宏</span>
-<span class="k">[gcode_macro ON_SERVO_ALARM]</span>
-<span class="na">gcode</span><span class="o">:</span>
-<span class="w">  </span><span class="na">{% set stepper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">params.STEPPER|default(&quot;unknown&quot;) %}</span>
-<span class="w">  </span><span class="na">M118 警告：{stepper} 伺服故障！</span>
-<span class="w">  </span><span class="na">M104 S0  # 关闭热端</span>
-<span class="w">  </span><span class="na">M140 S0  # 关闭热床</span>
-<span class="w">  </span><span class="na">{action_emergency_stop(&quot;伺服报警&quot;)}</span>
-</code></pre></div>
-
-<h3 id="_14">工业机器人手臂<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 独立报警监控，使用自定义动作</span>
-<span class="k">[servo_alarm joint1_alarm]</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PA0</span>
-<span class="na">action</span><span class="o">:</span><span class="w"> </span><span class="s">gcode</span>
-<span class="na">invert</span><span class="o">:</span><span class="w"> </span><span class="s">false</span>
-<span class="na">debounce</span><span class="o">:</span><span class="w"> </span><span class="s">0.01</span>
-<span class="na">alarm_gcode</span><span class="o">:</span>
-<span class="w">  </span><span class="na">M118 严重错误：关节 1 伺服报警！</span>
-<span class="w">  </span><span class="na">{action_emergency_stop(&quot;关节 1 ALM&quot;)}</span>
-
-<span class="k">[servo_alarm joint2_alarm]</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PA1</span>
-<span class="na">action</span><span class="o">:</span><span class="w"> </span><span class="s">gcode</span>
-<span class="na">invert</span><span class="o">:</span><span class="w"> </span><span class="s">false</span>
-<span class="na">debounce</span><span class="o">:</span><span class="w"> </span><span class="s">0.01</span>
-<span class="na">alarm_gcode</span><span class="o">:</span>
-<span class="w">  </span><span class="na">M118 严重错误：关节 2 伺服报警！</span>
-<span class="w">  </span><span class="na">{action_emergency_stop(&quot;关节 2 ALM&quot;)}</span>
-</code></pre></div>
-
-<h3 id="ethercat">EtherCAT 伺服设置<a class="headerlink" href="#ethercat" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># EtherCAT 伺服</span>
-<span class="k">[ethercat_stepper stepper_x]</span>
-<span class="na">ethercat_interface</span><span class="o">:</span><span class="w"> </span><span class="s">eth0</span>
-<span class="na">ethercat_slave</span><span class="o">:</span><span class="w"> </span><span class="s">0</span>
-<span class="na">ethercat_cycle_time</span><span class="o">:</span><span class="w"> </span><span class="s">0.001</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">360</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB6</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB7</span>
-<span class="na">alarm_action</span><span class="o">:</span><span class="w"> </span><span class="s">shutdown</span>
-
-<span class="k">[ethercat_stepper stepper_y]</span>
-<span class="na">ethercat_interface</span><span class="o">:</span><span class="w"> </span><span class="s">eth0</span>
-<span class="na">ethercat_slave</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">ethercat_cycle_time</span><span class="o">:</span><span class="w"> </span><span class="s">0.001</span>
-<span class="na">canopen_mode</span><span class="o">:</span><span class="w"> </span><span class="s">CSP</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">360</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB6</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB8</span>
-<span class="na">alarm_action</span><span class="o">:</span><span class="w"> </span><span class="s">shutdown</span>
-</code></pre></div>
-
-<h3 id="rs485">RS485 伺服设置<a class="headerlink" href="#rs485" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># RS485 伺服</span>
-<span class="k">[rs485_stepper stepper_x]</span>
-<span class="na">serial_port</span><span class="o">:</span><span class="w"> </span><span class="s">/dev/ttyUSB0</span>
-<span class="na">baud_rate</span><span class="o">:</span><span class="w"> </span><span class="s">9600</span>
-<span class="na">rs485_protocol</span><span class="o">:</span><span class="w"> </span><span class="s">modbus_rtu</span>
-<span class="na">rs485_slave_id</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">rotation_distance</span><span class="o">:</span><span class="w"> </span><span class="s">360</span>
-<span class="na">microsteps</span><span class="o">:</span><span class="w"> </span><span class="s">1</span>
-<span class="na">endstop_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB6</span>
-<span class="na">alm_pin</span><span class="o">:</span><span class="w"> </span><span class="s">PB7</span>
-<span class="na">alarm_action</span><span class="o">:</span><span class="w"> </span><span class="s">pause</span>
-<span class="na">alm_invert</span><span class="o">:</span><span class="w"> </span><span class="s">true</span><span class="w">  </span><span class="c1"># 某些驱动器使用高电平有效 ALM</span>
-</code></pre></div>
-
-<h2 id="_15">故障排除<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
-<h3 id="_16">报警未检测到<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
-<ol>
-<li>检查接线：确认 ALM 引脚连接到正确的 GPIO</li>
-<li>检查引脚逻辑：如果报警是高电平有效，尝试 <code>alm_invert: true</code></li>
-<li>检查防抖：如果出现误触发，增加 <code>debounce</code> 时间</li>
-<li>查询引脚状态：使用 <code>QUERY_ALARM_&lt;名称&gt;</code> 检查当前状态</li>
-</ol>
-<h3 id="_17">误报警<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
-<ol>
-<li>增加防抖时间（如 <code>debounce: 0.02</code>）</li>
-<li>添加硬件滤波（ALM 引脚上的 RC 低通滤波器）</li>
-<li>检查 ALM 信号线是否有噪声</li>
-</ol>
-<h3 id="_18">故障复位不工作<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
-<ol>
-<li>确认驱动器支持 CiA 402 故障复位</li>
-<li>检查驱动器文档了解特定复位序列</li>
-<li>某些驱动器在故障后需要断电重启</li>
-</ol>
-<h3 id="unknown">状态显示 "unknown"<a class="headerlink" href="#unknown" title="Permanent link">&para;</a></h3>
-<ol>
-<li>检查通信（CAN/EtherCAT/RS485）</li>
-<li>确认 EDS 文件正确</li>
-<li>检查驱动器是否已上电且不在引导模式</li>
-</ol>
-<h2 id="_19">相关文档<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="CANopen.html">CANopen 指南</a></li>
-<li><a href="EtherCAT.html">EtherCAT 指南</a></li>
-<li><a href="RS485.html">RS485 指南</a></li>
-<li><a href="Config_Reference.html">配置参考</a></li>
-<li><a href="G-Codes.html">G-code 命令</a></li>
-<li><a href="Status_Reference.html">状态参考</a></li>
+<li>在 <strong>PREEMPT_RT</strong> 内核上，这将串行线程调度到所有 <code>SCHED_OTHER</code> 任务之上，确保及时执行。</li>
+<li>在<strong>标准</strong> Linux 内核上，<code>pthread_setschedparam</code> 会静默忽略此请求（或需要 <code>CAP_SYS_NICE</code>），安全回退到 <code>SCHED_OTHER</code>。</li>
+</ul>
+<h3 id="3-serialqueuec">3. 优先级继承互斥锁 (<code>serialqueue.c</code>)<a class="headerlink" href="#3-serialqueuec" title="Permanent link">&para;</a></h3>
+<p><strong>问题：</strong> Python 主线程和 C 串行线程共享互斥锁（<code>sq-&gt;lock</code>、<code>sq-&gt;fast_reader_dispatch_lock</code>）。当 Python 持有互斥锁且高优先级的串行线程阻塞时，会发生优先级反转——Python 线程以低优先级运行，导致互斥锁无法快速释放。</p>
+<p><strong>解决方案：</strong> 互斥锁使用 <code>PTHREAD_PRIO_INHERIT</code> 初始化：</p>
+<div class="highlight"><pre><span></span><code><span class="n">pthread_mutexattr_t</span><span class="w"> </span><span class="n">mutex_attr</span><span class="p">;</span>
+<span class="n">pthread_mutexattr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex_attr</span><span class="p">);</span>
+<span class="n">pthread_mutexattr_setprotocol</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex_attr</span><span class="p">,</span><span class="w"> </span><span class="n">PTHREAD_PRIO_INHERIT</span><span class="p">);</span>
+<span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sq</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mutex_attr</span><span class="p">);</span>
+</code></pre></div>
+
+<ul>
+<li>在 <strong>PREEMPT_RT</strong> 内核上，Python 线程在持锁期间临时继承串行线程的高优先级，消除优先级反转。</li>
+<li>在<strong>标准</strong>内核上，<code>PTHREAD_PRIO_INHERIT</code> 是安全的无操作指令。</li>
+</ul>
+<h2 id="preempt_rt">PREEMPT_RT 内核配置<a class="headerlink" href="#preempt_rt" title="Permanent link">&para;</a></h2>
+<p>要充分发挥这些优化的效果，请在主机（通常是树莓派）上安装 PREEMPT_RT 补丁内核。</p>
+<h3 id="_4">内核命令行参数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>添加到 <code>/boot/cmdline.txt</code>（树莓派）或 <code>/etc/default/grub</code>（<code>GRUB_CMDLINE_LINUX</code>）：</p>
+<div class="highlight"><pre><span></span><code>isolcpus=3 nohz_full=3 rcu_nocbs=3 irqaffinity=0-2
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isolcpus=3</code></td>
+<td>将 CPU 核心 3 从通用内核调度中隔离</td>
+</tr>
+<tr>
+<td><code>nohz_full=3</code></td>
+<td>核心 3 空闲或单任务时禁用调度器 tick</td>
+</tr>
+<tr>
+<td><code>rcu_nocbs=3</code></td>
+<td>从核心 3 卸载 RCU 回调</td>
+</tr>
+<tr>
+<td><code>irqaffinity=0-2</code></td>
+<td>将所有硬件中断路由到核心 0-2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="klipper">将 Klipper 绑定到隔离核心<a class="headerlink" href="#klipper" title="Permanent link">&para;</a></h3>
+<p>在 Klipper 服务单元文件中（如 <code>/etc/systemd/system/klipper.service</code>）：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[Service]</span>
+<span class="na">CPUAffinity</span><span class="o">=</span><span class="s">3</span>
+</code></pre></div>
+
+<h3 id="_5">内核编译选项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>编译自定义内核时必要的 PREEMPT_RT 配置：</p>
+<div class="highlight"><pre><span></span><code>CONFIG_PREEMPT_RT_FULL=y
+CONFIG_HZ=1000
+CONFIG_HIGH_RES_TIMERS=y
+CONFIG_CPU_ISOLATION=y
+CONFIG_NO_HZ_FULL=y
+</code></pre></div>
+
+<h2 id="_6">预期改进<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>标准内核</th>
+<th>+ epoll/timerfd</th>
+<th>+ SCHED_FIFO</th>
+<th>+ PREEMPT_RT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定时器唤醒精度</td>
+<td>~1 ms</td>
+<td>~10 us</td>
+<td>~10 us</td>
+<td>~5 us</td>
+</tr>
+<tr>
+<td>定时器唤醒抖动</td>
+<td>+/- 5 ms</td>
+<td>+/- 100 us</td>
+<td>+/- 50 us</td>
+<td>+/- 10 us</td>
+</tr>
+<tr>
+<td>串行线程抢占延迟</td>
+<td>0-50 ms</td>
+<td>0-50 ms</td>
+<td>0-5 ms</td>
+<td>&lt; 100 us</td>
+</tr>
+<tr>
+<td>互斥锁优先级反转</td>
+<td>可能</td>
+<td>可能</td>
+<td>减少</td>
+<td>消除</td>
+</tr>
+<tr>
+<td>MCU 缓冲欠载风险</td>
+<td>中等</td>
+<td>低</td>
+<td>极低</td>
+<td>近乎为零</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">兼容性<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Linux（树莓派 OS、Armbian 等）：</strong> 完整的 epoll/timerfd + RT 支持。</li>
+<li><strong>macOS / BSD：</strong> 回退到原始 <code>poll()</code> 实现。SCHED_FIFO 和 PI 互斥锁为无操作。</li>
+<li><strong>Windows：</strong> 不推荐也不支持作为 Klipper 主机。</li>
+</ul>
+<h2 id="_8">代码变更摘要<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>变更</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>klippy/chelper/pollreactor.c</code></td>
+<td>Linux 路径：epoll + timerfd。非 Linux：原始 poll()</td>
+</tr>
+<tr>
+<td><code>klippy/chelper/serialqueue.c</code></td>
+<td><code>#include &lt;sched.h&gt;</code>，PI 互斥锁初始化，SCHED_FIFO 线程</td>
+</tr>
+<tr>
+<td><code>klippy/chelper/pollreactor.h</code></td>
+<td>无 API 变更（完全兼容）</td>
+</tr>
+<tr>
+<td><code>klippy/chelper/__init__.py</code></td>
+<td>无需变更</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">参考资料<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://wiki.linuxfoundation.org/realtime/">Linux PREEMPT_RT Wiki</a></li>
+<li><a href="https://man7.org/linux/man-pages/man2/timerfd_create.2.html">timerfd_create(2) 手册页</a></li>
+<li><a href="https://man7.org/linux/man-pages/man7/epoll.7.html">epoll(7) 手册页</a></li>
+<li>Klipper/Kalico 串行队列架构：<code>klippy/chelper/serialqueue.c</code></li>
 </ul>
 
 
@@ -3553,10 +3145,10 @@ CLEAR_ALARM_X_AXIS
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

@@ -8,11 +8,19 @@
       
       
       
-        <link rel="canonical" href="https://docs.kalico.gg/RT_Performance_Optimization_CN.html">
+        <link rel="canonical" href="https://docs.kalico.gg/LYX_Drivers.html">
       
       
+        <link rel="prev" href="TMC_Drivers.html">
       
       
+        <link rel="next" href="Config_checks.html">
+      
+      
+        
+          <link rel="alternate" href="/" hreflang="en">
+        
+          <link rel="alternate" href="/i18n/simple-chinese/" hreflang="zh-Hans">
         
       
       
@@ -21,7 +29,7 @@
     
     
       
-        <title>实时性能优化 - Kalico Documentation</title>
+        <title>LYX stepper drivers - Kalico Documentation</title>
       
     
     
@@ -84,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#lyx-stepper-drivers" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              实时性能优化
+              LYX stepper drivers
             
           </span>
         </div>
@@ -155,6 +163,32 @@
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/i18n/simple-chinese/" hreflang="zh-Hans" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       
@@ -957,18 +991,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
@@ -989,7 +1025,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1116,6 +1152,342 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LYX stepper drivers
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="LYX_Drivers.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LYX stepper drivers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Requirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#micro-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Micro-controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firmware-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firmware Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combining-with-a-stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining with a stepper
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lyx9231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [lyx9231]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g-code-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G-Code Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G-Code Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_lyx_current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SET_LYX_CURRENT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_lyx_field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SET_LYX_FIELD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_lyx_microstep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SET_LYX_MICROSTEP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump_lyx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DUMP_LYX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lyx_read_reg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LYX_READ_REG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lyx_write_reg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LYX_WRITE_REG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-write-verification-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register write verification fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modbus-communication-never-succeeds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modbus communication never succeeds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-drivers-on-one-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple drivers on one bus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -1211,10 +1583,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
         
           
-          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
             
   
   
@@ -1232,8 +1604,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1546,10 +1918,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_10" >
         
           
-          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_10" id="__nav_9_10_label" tabindex="0">
             
   
   
@@ -1567,8 +1939,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2619,10 +2991,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        架构
+        Overview
       
     </span>
   </a>
@@ -2630,22 +3002,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#hardware-requirements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        已实施的更改
+        Hardware Requirements
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="已实施的更改">
+    <nav class="md-nav" aria-label="Hardware Requirements">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-poll-epoll-timerfd-pollreactorc" class="md-nav__link">
+  <a href="#micro-controller" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. poll() → epoll + timerfd (pollreactor.c)
+        Micro-controller
       
     </span>
   </a>
@@ -2653,21 +3025,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-serialqueuec" class="md-nav__link">
+  <a href="#wiring" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 实时线程调度 (serialqueue.c)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-serialqueuec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 优先级继承互斥锁 (serialqueue.c)
+        Wiring
       
     </span>
   </a>
@@ -2680,44 +3041,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#preempt_rt" class="md-nav__link">
+  <a href="#firmware-requirements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PREEMPT_RT 内核配置
+        Firmware Requirements
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="PREEMPT_RT 内核配置">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#combining-with-a-stepper" class="md-nav__link">
     <span class="md-ellipsis">
       
-        内核命令行参数
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#klipper" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        将 Klipper 绑定到隔离核心
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        内核编译选项
+        Combining with a stepper
       
     </span>
   </a>
@@ -2730,10 +3080,121 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#configuration-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        预期改进
+        Configuration Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lyx9231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [lyx9231]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g-code-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G-Code Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G-Code Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_lyx_current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SET_LYX_CURRENT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_lyx_field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SET_LYX_FIELD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_lyx_microstep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SET_LYX_MICROSTEP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump_lyx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DUMP_LYX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lyx_read_reg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LYX_READ_REG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lyx_write_reg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LYX_WRITE_REG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Map
       
     </span>
   </a>
@@ -2741,35 +3202,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        兼容性
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-write-verification-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register write verification fails
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#modbus-communication-never-succeeds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        代码变更摘要
+        Modbus communication never succeeds
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-drivers-on-one-bus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        参考资料
+        Multiple drivers on one bus
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2790,7 +3268,7 @@
 
 
   
-    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/RT_Performance_Optimization_CN.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/LYX_Drivers.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2798,222 +3276,343 @@
   
 
 
-<h1 id="_1">实时性能优化<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>Kalico 的主机端运动管线已通过三层实时性改进进行了优化。本文档描述了架构、所做的更改，以及如何配置 PREEMPT_RT 内核以获得最大收益。</p>
-<h2 id="_2">架构<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Kalico 中的运动时序管线如下：</p>
-<div class="highlight"><pre><span></span><code>G代码解析 (Python, ~ms/条)
-  -&gt; 前瞻 + 拐角速度规划 (Python, ~us)
-  -&gt; trapq_append (C) — 梯形速度队列
-  -&gt; itersolve (C) — 割线法迭代步进时刻求解
-  -&gt; stepcompress (C) — 步进脉冲压缩/排队
-  -&gt; serialqueue (C, 后台线程) — 定时串口/CAN 发送至 MCU
-  -&gt; UART/CAN 硬件
+<h1 id="lyx-stepper-drivers">LYX stepper drivers<a class="headerlink" href="#lyx-stepper-drivers" title="Permanent link">&para;</a></h1>
+<p>This document provides information on using the LYX9231 closed-loop
+stepper motor driver on Kalico. The LYX9231 is a closed-loop stepper
+driver with integrated encoder feedback. It accepts normal STEP/DIR
+pulses from the micro-controller and is configured through a software
+bit-banged Modbus RTU bus running over a single GPIO pin.</p>
+<p>Kalico uses the micro-controller itself to bit-bang the Modbus RTU
+frames (see <code>src/modbus_uart.c</code>), so no additional hardware such as a
+USB-to-RS485 adapter is required.</p>
+<p>The low-level Modbus RTU framing and the bit-bang bus driver are shared
+with the <a href="RS485.html">RS485 servo support</a>: the <code>ModbusRtuProtocol</code> and
+the <code>rs485_transport: mcu</code> transport use the exact same core
+(<code>klippy/extras/rs485/modbus_frame.py</code> and
+<code>klippy/extras/rs485/mcu_modbus.py</code>). LYX drivers and RS485 servo
+drives may therefore share the same bus pin.</p>
+<p>In addition to this document, be sure to review the
+<a href="Config_Reference.html#lyx-stepper-driver-configuration">LYX driver config reference</a>.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The LYX9231 driver behaves like a regular stepper driver for motion:
+the printer sends STEP and DIR signals exactly like it would for any
+other stepper. The Modbus link is used only for configuration and
+diagnostics:</p>
+<ul>
+<li>Set run / hold current</li>
+<li>Set microstep subdivision</li>
+<li>Configure motor type and control mode</li>
+<li>Read chip status (alarm, motor speed, position error)</li>
+</ul>
+<p>This means the <code>[lyx9231]</code> config section is added alongside the
+regular <code>[stepper_x]</code> section and does <strong>not</strong> replace it.</p>
+<h2 id="hardware-requirements">Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permanent link">&para;</a></h2>
+<h3 id="micro-controller">Micro-controller<a class="headerlink" href="#micro-controller" title="Permanent link">&para;</a></h3>
+<p>Any MCU with a free GPIO pin that Kalico supports. The Modbus bus is
+bit-banged in software on a single pin at 38400 baud (8N1).</p>
+<h3 id="wiring">Wiring<a class="headerlink" href="#wiring" title="Permanent link">&para;</a></h3>
+<p>The LYX9231 uses a half-duplex single-wire Modbus UART, so only one
+GPIO pin is required:</p>
+<div class="highlight"><pre><span></span><code>MCU GPIO ──── LYX9231 communication pin
+MCU GND  ──── LYX9231 GND
 </code></pre></div>
 
-<p>所有性能关键 C 代码通过 CFFI 在运行时编译为 <code>c_helper.so</code>。
-时序瓶颈在于 <strong>serialqueue 后台线程</strong>，它必须在微秒级响应硬件和定时器事件，以防 MCU 缓冲区欠载。</p>
-<h2 id="_3">已实施的更改<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="1-poll-epoll-timerfd-pollreactorc">1. poll() → epoll + timerfd (<code>pollreactor.c</code>)<a class="headerlink" href="#1-poll-epoll-timerfd-pollreactorc" title="Permanent link">&para;</a></h3>
-<p><strong>问题：</strong> 原先的 <code>pollreactor</code> 使用 <code>poll()</code>，超时精度为毫秒级（最小 1ms）。定时器回调在 <code>poll()</code> 返回<em>之后</em>才检查，引入了不可避免的调度抖动。</p>
-<p><strong>解决方案：</strong> 在 Linux 上（<code>#ifdef __linux__</code>），事件循环现在使用：</p>
 <ul>
-<li><code>epoll_create1</code> / <code>epoll_wait</code> — O(1) 事件驱动分发</li>
-<li><code>timerfd_create</code> / <code>timerfd_settime</code> — 纳秒级定时器精度<ul>
-<li>每个定时器回调拥有独立的 <code>timerfd</code> 文件描述符</li>
-<li><code>epoll_wait</code> 在 timerfd 到期时直接唤醒</li>
-<li>无需手动计算超时或轮询</li>
+<li>The communication pin must be idle-high and is driven as a
+  push-pull output with internal pull-up enabled.</li>
+<li>All drivers sharing a bus must use the <strong>same</strong> <code>uart_pin</code> and a
+  unique <code>uart_address</code>.</li>
+<li>Keep the wire short (&lt; 50cm recommended) and, for long runs, add a
+  common ground wire.</li>
 </ul>
-</li>
+<h2 id="firmware-requirements">Firmware Requirements<a class="headerlink" href="#firmware-requirements" title="Permanent link">&para;</a></h2>
+<p>The bit-bang Modbus UART is compiled into the micro-controller
+firmware. When running <code>make menuconfig</code>, enable:</p>
+<ul>
+<li><strong>Support software Modbus RTU UART communication</strong> (the
+  <code>WANT_MODBUSUART</code> option)</li>
 </ul>
-<p><strong>回退方案：</strong> 非 Linux 平台（macOS、BSD）保留原始 <code>poll()</code> 实现以保持兼容性。</p>
+<p>This option is enabled by default when the selected architecture has
+GPIO support, but confirm it is present in your build.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="combining-with-a-stepper">Combining with a stepper<a class="headerlink" href="#combining-with-a-stepper" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>[stepper_x]
+step_pin: PC0
+dir_pin: PC1
+enable_pin: !PC2
+microsteps: 16
+rotation_distance: 40
+endstop_pin: ^PE0
+position_min: 0
+position_max: 200
+homing_speed: 20
+
+[lyx9231 stepper_x]
+uart_pin: PB1
+uart_address: 1
+microstep: 16
+run_current: 1.4
+hold_current: 0.7
+driver_motor_type: 1
+driver_op_mode: 2
+</code></pre></div>
+
+<p>The <code>[lyx9231 stepper_x]</code> section name must match the name of the
+corresponding <code>[stepper_x]</code> section.</p>
+<p>On startup Kalico writes all configured driver registers to the chip
+over the Modbus bus. After that, STEP/DIR motion is entirely handled
+by the normal stepper code path.</p>
+<h2 id="configuration-reference">Configuration Reference<a class="headerlink" href="#configuration-reference" title="Permanent link">&para;</a></h2>
+<h3 id="lyx9231">[lyx9231]<a class="headerlink" href="#lyx9231" title="Permanent link">&para;</a></h3>
+<p>Configure a LYX9231 closed-loop stepper motor driver over a software
+bit-banged Modbus RTU bus.</p>
+<div class="highlight"><pre><span></span><code>[lyx9231 stepper_x]
+uart_pin:
+#   The GPIO pin used for the single-wire Modbus RTU bus. Required.
+uart_address: 1
+#   The Modbus slave address of this driver (1-247). Must be unique
+#   among drivers sharing the same uart_pin. Default is 1.
+sense_resistor: 0.050
+#   The sense resistor value (Ohms) used to convert register values
+#   to current. Default is 0.050.
+run_current: 1.4
+#   The driver run current in Amps. Default is 1.4.
+hold_current:
+#   The driver hold current in Amps. If not specified, defaults to
+#   half of run_current.
+microstep: 16
+#   Microstep subdivision (1-256). Default is 16.
+driver_motor_type: 1
+#   Motor phase type: 1 for 1.8deg, 0 for 0.9deg. Default is 1.
+driver_op_mode: 2
+#   Control mode. 0=OpenLoop, 1=NormalClosed, 2=SuperClosed,
+#   3=ServoClosed, 4=TorqueMode. Default is 2.
+driver_run_current: 896
+#   Raw register value of the run current register. This is normally
+#   computed automatically from run_current and does not need to be
+#   set. Default is 896.
+driver_half_cur_en: 0
+#   Enable the half current function (1=on, 0=off). Default is 0.
+driver_half_cur_time: 3000
+#   Delay (ms) before half current is applied. Default is 3000.
+driver_half_cur_ratio: 64
+#   Half current ratio register value (0-128). 64 corresponds to half
+#   of the run current. Default is 64.
+driver_boost_level: 1
+#   Boost level for extra torque. Default is 1.
+driver_noise_en: 0
+#   Enable noise suppression (1=on, 0=off). Default is 0.
+</code></pre></div>
+
+<h2 id="g-code-commands">G-Code Commands<a class="headerlink" href="#g-code-commands" title="Permanent link">&para;</a></h2>
+<p>These commands are registered per driver and are selected with
+<code>STEPPER=&lt;name&gt;</code>, where <code>&lt;name&gt;</code> matches the <code>[lyx9231 &lt;name&gt;]</code>
+section.</p>
+<h4 id="set_lyx_current">SET_LYX_CURRENT<a class="headerlink" href="#set_lyx_current" title="Permanent link">&para;</a></h4>
+<p><code>SET_LYX_CURRENT STEPPER=&lt;name&gt; [CURRENT=&lt;amps&gt;] [HOLDCURRENT=&lt;amps&gt;]</code>:
+Adjust the run and/or hold current of the driver in Amps. With no
+parameters, prints the current run/hold values.</p>
+<h4 id="set_lyx_field">SET_LYX_FIELD<a class="headerlink" href="#set_lyx_field" title="Permanent link">&para;</a></h4>
+<p><code>SET_LYX_FIELD STEPPER=&lt;name&gt; FIELD=&lt;field&gt; VALUE=&lt;value&gt;</code>:
+Write a raw value to a single driver register field. The field name is
+the lower-case register name from the register map (for example
+<code>driver_run_current</code> is <code>run_current</code>).</p>
+<h4 id="set_lyx_microstep">SET_LYX_MICROSTEP<a class="headerlink" href="#set_lyx_microstep" title="Permanent link">&para;</a></h4>
+<p><code>SET_LYX_MICROSTEP STEPPER=&lt;name&gt; [MICROSTEP=&lt;value&gt;]</code>:
+Change the microstep subdivision (1-256). With no parameter, prints
+the current microstep setting.</p>
+<h4 id="dump_lyx">DUMP_LYX<a class="headerlink" href="#dump_lyx" title="Permanent link">&para;</a></h4>
+<p><code>DUMP_LYX STEPPER=&lt;name&gt;</code>:
+Print the cached write registers and the live read registers of the
+driver.</p>
+<h4 id="lyx_read_reg">LYX_READ_REG<a class="headerlink" href="#lyx_read_reg" title="Permanent link">&para;</a></h4>
+<p><code>LYX_READ_REG STEPPER=&lt;name&gt; REGISTER=&lt;name&gt;</code>:
+Read a single Modbus register and print its raw value. Register names
+follow the register map below.</p>
+<h4 id="lyx_write_reg">LYX_WRITE_REG<a class="headerlink" href="#lyx_write_reg" title="Permanent link">&para;</a></h4>
+<p><code>LYX_WRITE_REG STEPPER=&lt;name&gt; REGISTER=&lt;name&gt; VALUE=&lt;value&gt;</code>:
+Write a raw value to a Modbus register and read back the value to
+verify the write. If the read-back does not match, a warning is
+printed.</p>
+<h2 id="register-map">Register Map<a class="headerlink" href="#register-map" title="Permanent link">&para;</a></h2>
+<p>The LYX9231 registers that are exposed to Kalico:</p>
 <table>
 <thead>
 <tr>
-<th>指标</th>
-<th>修改前 (<code>poll()</code>)</th>
-<th>修改后 (<code>epoll</code>+<code>timerfd</code>)</th>
+<th>Name</th>
+<th>Address</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>定时器精度</td>
-<td>1 ms</td>
-<td>1 ns</td>
+<td>SAVE_PARAM</td>
+<td>0x00</td>
 </tr>
 <tr>
-<td>FD 分发方式</td>
-<td>O(n) 扫描</td>
-<td>O(1) 事件驱动</td>
+<td>BAUDRATE</td>
+<td>0x01</td>
 </tr>
 <tr>
-<td>空闲 CPU 开销</td>
-<td>最少 1000次/秒唤醒</td>
-<td>空闲时 0 次唤醒</td>
+<td>COMM_ADDR</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>CHIP_MODEL</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>PHASE_B_RESIST</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>PHASE_A_RESIST</td>
+<td>0x05</td>
+</tr>
+<tr>
+<td>PHASE_B_INDUCT</td>
+<td>0x06</td>
+</tr>
+<tr>
+<td>PHASE_A_INDUCT</td>
+<td>0x07</td>
+</tr>
+<tr>
+<td>ALARM_CODE</td>
+<td>0x08</td>
+</tr>
+<tr>
+<td>CURRENT_KP</td>
+<td>0x09</td>
+</tr>
+<tr>
+<td>CURRENT_KI</td>
+<td>0x0A</td>
+</tr>
+<tr>
+<td>MOTOR_POS_H</td>
+<td>0x0C</td>
+</tr>
+<tr>
+<td>MOTOR_POS_L</td>
+<td>0x0D</td>
+</tr>
+<tr>
+<td>MOTOR_SPEED</td>
+<td>0x0E</td>
+</tr>
+<tr>
+<td>ERROR_ANGLE</td>
+<td>0x10</td>
+</tr>
+<tr>
+<td>MS_PIN_FUNC</td>
+<td>0x11</td>
+</tr>
+<tr>
+<td>MOTOR_TYPE</td>
+<td>0x12</td>
+</tr>
+<tr>
+<td>RUN_CURRENT</td>
+<td>0x13</td>
+</tr>
+<tr>
+<td>HALF_CUR_TIME</td>
+<td>0x14</td>
+</tr>
+<tr>
+<td>HALF_CUR_RATIO</td>
+<td>0x15</td>
+</tr>
+<tr>
+<td>HALF_CUR_EN</td>
+<td>0x16</td>
+</tr>
+<tr>
+<td>DIR_POLARITY</td>
+<td>0x17</td>
+</tr>
+<tr>
+<td>ENA_POLARITY</td>
+<td>0x18</td>
+</tr>
+<tr>
+<td>MICROSTEP_RATIO</td>
+<td>0x19</td>
+</tr>
+<tr>
+<td>DEAD_TIME</td>
+<td>0x1A</td>
+</tr>
+<tr>
+<td>OCL_THRESHOLD</td>
+<td>0x1B</td>
+</tr>
+<tr>
+<td>OCL_FILTER</td>
+<td>0x1C</td>
+</tr>
+<tr>
+<td>CUR_ANTISAT</td>
+<td>0x1D</td>
+</tr>
+<tr>
+<td>CUR_KP_GAIN</td>
+<td>0x1E</td>
+</tr>
+<tr>
+<td>CUR_KI_GAIN</td>
+<td>0x1F</td>
+</tr>
+<tr>
+<td>BOOST_LEVEL</td>
+<td>0x20</td>
+</tr>
+<tr>
+<td>OP_MODE</td>
+<td>0x21</td>
+</tr>
+<tr>
+<td>STALL_ANGLE</td>
+<td>0x22</td>
+</tr>
+<tr>
+<td>STALL_OUT_EN</td>
+<td>0x23</td>
+</tr>
+<tr>
+<td>MIN_SPEED</td>
+<td>0x26</td>
+</tr>
+<tr>
+<td>NOISE_EN</td>
+<td>0x41</td>
 </tr>
 </tbody>
 </table>
-<h3 id="2-serialqueuec">2. 实时线程调度 (<code>serialqueue.c</code>)<a class="headerlink" href="#2-serialqueuec" title="Permanent link">&para;</a></h3>
-<p><strong>问题：</strong> 串口后台线程以默认的 <code>SCHED_OTHER</code> 调度类别运行，与 Python 线程、文件系统刷新、网络 I/O 和其他系统任务平等竞争。在繁忙系统上，这可能导致串行数据延迟数十毫秒。</p>
-<p><strong>解决方案：</strong> 线程创建后，后台线程被提升为 <code>SCHED_FIFO</code> 优先级：</p>
-<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">sched_param</span><span class="w"> </span><span class="n">sp</span><span class="p">;</span>
-<span class="n">sp</span><span class="p">.</span><span class="n">sched_priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="n">pthread_setschedparam</span><span class="p">(</span><span class="n">sq</span><span class="o">-&gt;</span><span class="n">tid</span><span class="p">,</span><span class="w"> </span><span class="n">SCHED_FIFO</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sp</span><span class="p">);</span>
+<p><code>MOTOR_SPEED</code> and <code>ERROR_ANGLE</code> are interpreted as signed 16-bit
+values. <code>ALARM_CODE</code> values: 0=OK, 1=OverCurrent,
+2=MotorDisconnected, 3=CoilAbnormal, 4=FollowError, 5=Stall.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="register-write-verification-fails">Register write verification fails<a class="headerlink" href="#register-write-verification-fails" title="Permanent link">&para;</a></h3>
+<p>Every register write is read back to verify it was applied. If a write
+cannot be verified after many retries, Kalico shuts down with an error
+message similar to:</p>
+<div class="highlight"><pre><span></span><code>Unable to write lyx uart &#39;stepper_x&#39; register ALARM_CODE due to
+transmission delay, try to reboot Klipper Service to retry
 </code></pre></div>
 
+<p>Check the wiring, the <code>uart_address</code> (must match the chip's address)
+and the shared bus topology. Then restart Klipper.</p>
+<h3 id="modbus-communication-never-succeeds">Modbus communication never succeeds<a class="headerlink" href="#modbus-communication-never-succeeds" title="Permanent link">&para;</a></h3>
+<p>The firmware bit time is derived from the measured MCU clock frequency
+instead of the value reported by the MCU. If the clock frequency is
+not stable, the communication may never succeed. Recheck the wiring
+and ensure the MCU is running at its configured frequency.</p>
+<h3 id="multiple-drivers-on-one-bus">Multiple drivers on one bus<a class="headerlink" href="#multiple-drivers-on-one-bus" title="Permanent link">&para;</a></h3>
 <ul>
-<li>在 <strong>PREEMPT_RT</strong> 内核上，这将串行线程调度到所有 <code>SCHED_OTHER</code> 任务之上，确保及时执行。</li>
-<li>在<strong>标准</strong> Linux 内核上，<code>pthread_setschedparam</code> 会静默忽略此请求（或需要 <code>CAP_SYS_NICE</code>），安全回退到 <code>SCHED_OTHER</code>。</li>
-</ul>
-<h3 id="3-serialqueuec">3. 优先级继承互斥锁 (<code>serialqueue.c</code>)<a class="headerlink" href="#3-serialqueuec" title="Permanent link">&para;</a></h3>
-<p><strong>问题：</strong> Python 主线程和 C 串行线程共享互斥锁（<code>sq-&gt;lock</code>、<code>sq-&gt;fast_reader_dispatch_lock</code>）。当 Python 持有互斥锁且高优先级的串行线程阻塞时，会发生优先级反转——Python 线程以低优先级运行，导致互斥锁无法快速释放。</p>
-<p><strong>解决方案：</strong> 互斥锁使用 <code>PTHREAD_PRIO_INHERIT</code> 初始化：</p>
-<div class="highlight"><pre><span></span><code><span class="n">pthread_mutexattr_t</span><span class="w"> </span><span class="n">mutex_attr</span><span class="p">;</span>
-<span class="n">pthread_mutexattr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex_attr</span><span class="p">);</span>
-<span class="n">pthread_mutexattr_setprotocol</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex_attr</span><span class="p">,</span><span class="w"> </span><span class="n">PTHREAD_PRIO_INHERIT</span><span class="p">);</span>
-<span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sq</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mutex_attr</span><span class="p">);</span>
-</code></pre></div>
-
-<ul>
-<li>在 <strong>PREEMPT_RT</strong> 内核上，Python 线程在持锁期间临时继承串行线程的高优先级，消除优先级反转。</li>
-<li>在<strong>标准</strong>内核上，<code>PTHREAD_PRIO_INHERIT</code> 是安全的无操作指令。</li>
-</ul>
-<h2 id="preempt_rt">PREEMPT_RT 内核配置<a class="headerlink" href="#preempt_rt" title="Permanent link">&para;</a></h2>
-<p>要充分发挥这些优化的效果，请在主机（通常是树莓派）上安装 PREEMPT_RT 补丁内核。</p>
-<h3 id="_4">内核命令行参数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>添加到 <code>/boot/cmdline.txt</code>（树莓派）或 <code>/etc/default/grub</code>（<code>GRUB_CMDLINE_LINUX</code>）：</p>
-<div class="highlight"><pre><span></span><code>isolcpus=3 nohz_full=3 rcu_nocbs=3 irqaffinity=0-2
-</code></pre></div>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>isolcpus=3</code></td>
-<td>将 CPU 核心 3 从通用内核调度中隔离</td>
-</tr>
-<tr>
-<td><code>nohz_full=3</code></td>
-<td>核心 3 空闲或单任务时禁用调度器 tick</td>
-</tr>
-<tr>
-<td><code>rcu_nocbs=3</code></td>
-<td>从核心 3 卸载 RCU 回调</td>
-</tr>
-<tr>
-<td><code>irqaffinity=0-2</code></td>
-<td>将所有硬件中断路由到核心 0-2</td>
-</tr>
-</tbody>
-</table>
-<h3 id="klipper">将 Klipper 绑定到隔离核心<a class="headerlink" href="#klipper" title="Permanent link">&para;</a></h3>
-<p>在 Klipper 服务单元文件中（如 <code>/etc/systemd/system/klipper.service</code>）：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Service]</span>
-<span class="na">CPUAffinity</span><span class="o">=</span><span class="s">3</span>
-</code></pre></div>
-
-<h3 id="_5">内核编译选项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>编译自定义内核时必要的 PREEMPT_RT 配置：</p>
-<div class="highlight"><pre><span></span><code>CONFIG_PREEMPT_RT_FULL=y
-CONFIG_HZ=1000
-CONFIG_HIGH_RES_TIMERS=y
-CONFIG_CPU_ISOLATION=y
-CONFIG_NO_HZ_FULL=y
-</code></pre></div>
-
-<h2 id="_6">预期改进<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>标准内核</th>
-<th>+ epoll/timerfd</th>
-<th>+ SCHED_FIFO</th>
-<th>+ PREEMPT_RT</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>定时器唤醒精度</td>
-<td>~1 ms</td>
-<td>~10 us</td>
-<td>~10 us</td>
-<td>~5 us</td>
-</tr>
-<tr>
-<td>定时器唤醒抖动</td>
-<td>+/- 5 ms</td>
-<td>+/- 100 us</td>
-<td>+/- 50 us</td>
-<td>+/- 10 us</td>
-</tr>
-<tr>
-<td>串行线程抢占延迟</td>
-<td>0-50 ms</td>
-<td>0-50 ms</td>
-<td>0-5 ms</td>
-<td>&lt; 100 us</td>
-</tr>
-<tr>
-<td>互斥锁优先级反转</td>
-<td>可能</td>
-<td>可能</td>
-<td>减少</td>
-<td>消除</td>
-</tr>
-<tr>
-<td>MCU 缓冲欠载风险</td>
-<td>中等</td>
-<td>低</td>
-<td>极低</td>
-<td>近乎为零</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_7">兼容性<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Linux（树莓派 OS、Armbian 等）：</strong> 完整的 epoll/timerfd + RT 支持。</li>
-<li><strong>macOS / BSD：</strong> 回退到原始 <code>poll()</code> 实现。SCHED_FIFO 和 PI 互斥锁为无操作。</li>
-<li><strong>Windows：</strong> 不推荐也不支持作为 Klipper 主机。</li>
-</ul>
-<h2 id="_8">代码变更摘要<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>文件</th>
-<th>变更</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>klippy/chelper/pollreactor.c</code></td>
-<td>Linux 路径：epoll + timerfd。非 Linux：原始 poll()</td>
-</tr>
-<tr>
-<td><code>klippy/chelper/serialqueue.c</code></td>
-<td><code>#include &lt;sched.h&gt;</code>，PI 互斥锁初始化，SCHED_FIFO 线程</td>
-</tr>
-<tr>
-<td><code>klippy/chelper/pollreactor.h</code></td>
-<td>无 API 变更（完全兼容）</td>
-</tr>
-<tr>
-<td><code>klippy/chelper/__init__.py</code></td>
-<td>无需变更</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_9">参考资料<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://wiki.linuxfoundation.org/realtime/">Linux PREEMPT_RT Wiki</a></li>
-<li><a href="https://man7.org/linux/man-pages/man2/timerfd_create.2.html">timerfd_create(2) 手册页</a></li>
-<li><a href="https://man7.org/linux/man-pages/man7/epoll.7.html">epoll(7) 手册页</a></li>
-<li>Klipper/Kalico 串行队列架构：<code>klippy/chelper/serialqueue.c</code></li>
+<li>All drivers must use the identical <code>uart_pin</code>.</li>
+<li>Each <code>uart_address</code> must be unique.</li>
 </ul>
 
 

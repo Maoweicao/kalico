@@ -36,6 +36,9 @@ plugins:
   redirects:
     redirect_maps:
       'Danger_Features.md': 'Kalico_Additions.md'
+  exclude:
+    patterns:
+      - 'i18n/**'
 
 # Website layout configuration (using mkdocs-material theme)
 theme:
@@ -81,6 +84,13 @@ extra:
     - icon: fontawesome/brands/discord
       link: https://kalico.gg/discord
       name: Join our Discord server!
+  alternate:
+    - name: English
+      link: /
+      lang: en
+    - name: 简体中文
+      link: /i18n/simple-chinese/
+      lang: zh-Hans
   # Site usage statistics
   # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-analytics/#site-search-tracking
   analytics:
@@ -116,6 +126,7 @@ nav:
     - Installation.md
     - OctoPrint.md
     - TMC_Drivers.md
+    - LYX_Drivers.md
     - Config_checks.md
     - Rotation_Distance.md
     - Multi_MCU_Homing.md
