@@ -1080,6 +1080,11 @@ class MenuManager:
                 event,
                 self._handle_printer_event,
             )
+        # handwheel mode tracking
+        self.handwheel_active = False
+        self.printer.register_event_handler(
+            "handwheel:toggle", self._on_handwheel_toggle
+        )
 
         # register for key events
         menu_keys.MenuKeys(config, self.key_event)
@@ -1096,6 +1101,10 @@ class MenuManager:
         # start timer
         reactor = self.printer.get_reactor()
         reactor.register_timer(self.timer_event, reactor.NOW)
+
+    def _on_handwheel_toggle(self, is_active):
+        self.handwheel_active = is_active
+        self.display.request_redraw()
 
     def _handle_printer_event(self, *args):
         if self.is_running():
@@ -1161,6 +1170,7 @@ class MenuManager:
             "running": self.running,
             "rows": self.rows,
             "cols": self.cols,
+            "handwheel_active": self.handwheel_active,
         }
 
     def _action_back(self, force=False, update=True):

@@ -15,6 +15,10 @@ class MenuKeys:
         self.printer = config.get_printer()
         self.reactor = self.printer.get_reactor()
         self.callback = callback
+        self.handwheel_active = False
+        self.printer.register_event_handler(
+            "handwheel:toggle", self._on_handwheel_toggle
+        )
         buttons = self.printer.load_object(config, "buttons")
         # Register rotary encoder
         encoder_pins = config.get("encoder_pins", None)
@@ -66,8 +70,13 @@ class MenuKeys:
         else:
             buttons.register_adc_button(pin, amin, amax, pullup, callback)
 
+    def _on_handwheel_toggle(self, is_active):
+        self.handwheel_active = is_active
+
     # Rotary encoder callbacks
     def encoder_cw_callback(self, eventtime):
+        if self.handwheel_active:
+            return
         fast_rate = (
             eventtime - self.last_encoder_cw_eventtime
         ) <= self.encoder_fast_rate
@@ -78,6 +87,8 @@ class MenuKeys:
             self.callback("up", eventtime)
 
     def encoder_ccw_callback(self, eventtime):
+        if self.handwheel_active:
+            return
         fast_rate = (
             eventtime - self.last_encoder_ccw_eventtime
         ) <= self.encoder_fast_rate
