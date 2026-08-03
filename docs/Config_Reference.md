@@ -1193,10 +1193,17 @@ See the [RS485 guide](RS485.md) for hardware setup and protocol details.
 ```
 [rs485_stepper x]
 #rs485_transport: host
-#   Transport type. "host" uses USB-to-RS485 adapter via pyserial.
+#   Transport type. "host" uses a USB-to-RS485 adapter via pyserial.
+#   "mcu" uses the software bit-bang Modbus UART on a single MCU GPIO
+#   pin (the same firmware driver used by the LYX stepper drivers).
 #   Default is "host".
 serial_port:
-#   Serial port path. Required. Examples: /dev/ttyUSB0, COM3.
+#   Serial port path. Required when rs485_transport is "host".
+#   Examples: /dev/ttyUSB0, COM3.
+#uart_pin:
+#   MCU GPIO pin for the single-wire Modbus RTU bus. Required when
+#   rs485_transport is "mcu". The firmware must be built with the
+#   "Support software Modbus RTU UART communication" option.
 #baud_rate: 9600
 #   Baud rate. Range: 1200 to 115200. Default is 9600.
 #rs485_protocol: modbus_rtu
@@ -5609,6 +5616,63 @@ sense_resistor:
 #   "sensorless homing". (Be sure to also set driver_SGT to an
 #   appropriate sensitivity value.) The default is to not enable
 #   sensorless homing.
+```
+
+## LYX stepper driver configuration
+
+Configuration of LYX9231 closed-loop stepper motor drivers over a
+software bit-banged Modbus RTU bus. Additional information is in the
+[LYX Drivers guide](LYX_Drivers.md).
+
+### [lyx9231]
+
+Configure a LYX9231 closed-loop stepper motor driver via a software
+bit-banged Modbus RTU bus on a single GPIO pin. To use this feature,
+define a config section with a "lyx9231" prefix followed by the name
+of the corresponding stepper config section (for example,
+"[lyx9231 stepper_x]"). The firmware must be built with the "Support
+software Modbus RTU UART communication" option enabled.
+
+The STEP/DIR control of the motor is handled by the normal
+[stepper] section; this section only configures the driver registers.
+
+```
+[lyx9231 stepper_x]
+uart_pin:
+#   The GPIO pin used for the single-wire Modbus RTU bus. This
+#   parameter must be provided.
+uart_address: 1
+#   The Modbus slave address of this driver. Must be unique among
+#   drivers sharing the same uart_pin. Default is 1.
+#sense_resistor: 0.050
+#   The sense resistor value (in Ohms) used to convert register
+#   values to current. Default is 0.050.
+#run_current: 1.4
+#   The driver run current in Amps. Default is 1.4.
+#hold_current:
+#   The driver hold current in Amps. If not specified, defaults to
+#   half of run_current.
+#microstep: 16
+#   Microstep subdivision (1-256). Default is 16.
+#driver_motor_type: 1
+#   Motor phase type: 1 for 1.8deg, 0 for 0.9deg. Default is 1.
+#driver_op_mode: 2
+#   Control mode. 0=OpenLoop, 1=NormalClosed, 2=SuperClosed,
+#   3=ServoClosed, 4=TorqueMode. Default is 2.
+#driver_run_current: 896
+#   Raw value of the run current register. This is normally computed
+#   automatically from run_current. Default is 896.
+#driver_half_cur_en: 0
+#   Enable the half current function (1=on, 0=off). Default is 0.
+#driver_half_cur_time: 3000
+#   Delay (in ms) before half current is applied. Default is 3000.
+#driver_half_cur_ratio: 64
+#   Half current ratio register value (0-128). 64 corresponds to half
+#   of the run current. Default is 64.
+#driver_boost_level: 1
+#   Boost level for extra torque. Default is 1.
+#driver_noise_en: 0
+#   Enable noise suppression (1=on, 0=off). Default is 0.
 ```
 
 ## Run-time stepper motor current configuration

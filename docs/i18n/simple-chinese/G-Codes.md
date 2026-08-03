@@ -217,3 +217,34 @@ Kalico使用"扩展"G代码命令进行一般配置和状态。这些扩展命�
 SET_DUMMY_TEMPERATURE SENSOR=chamber TEMPERATURE=40.0
 SET_DUMMY_TEMPERATURE SENSOR=mcu_temp
 ```
+
+### [lyxXXXX]
+
+启用任意 [lyx9231 配置段](Config_Reference.md#lyx9231)
+时，以下命令可用。
+
+#### SET_LYX_CURRENT
+`SET_LYX_CURRENT STEPPER=<名称> [CURRENT=<安培>] [HOLDCURRENT=<安培>]`：
+调整 LYX 驱动器的运行和/或保持电流。不带参数时报告当前运行/保持电流值。
+
+#### SET_LYX_FIELD
+`SET_LYX_FIELD STEPPER=<名称> FIELD=<字段> VALUE=<值>`：
+修改 LYX 驱动器的指定寄存器字段。此命令仅用于底层诊断与调试，因为
+运行时修改字段可能导致打印机出现意外甚至危险的行为。永久性修改应通过
+打印机配置文件进行。
+
+#### SET_LYX_MICROSTEP
+`SET_LYX_MICROSTEP STEPPER=<名称> [MICROSTEP=<值>]`：
+修改 LYX 驱动器的微步细分。不带参数时报告当前细分设置。
+
+#### DUMP_LYX
+`DUMP_LYX STEPPER=<名称>`：读取 LYX 驱动器的写寄存器缓存值与实时读取的
+寄存器值并报告。
+
+#### LYX_READ_REG
+`LYX_READ_REG STEPPER=<名称> REGISTER=<名字>`：读取 LYX 驱动器的单个
+Modbus 寄存器并报告原始值。
+
+#### LYX_WRITE_REG
+`LYX_WRITE_REG STEPPER=<名称> REGISTER=<名字> VALUE=<值>`：向 LYX 驱动器的
+Modbus 寄存器写入原始值，并回读验证写入结果。

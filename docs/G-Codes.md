@@ -2001,6 +2001,45 @@ A VELOCITY can also be specified instead of a VALUE. This velocity is
 converted to the 20bit TSTEP based value representation. Only use the VELOCITY
 argument for fields that represent velocities.
 
+### [lyxXXXX]
+
+The following commands are available when any of the
+[lyxXXXX config sections](Config_Reference.md#lyx-stepper-driver-configuration)
+are enabled.
+
+#### SET_LYX_CURRENT
+`SET_LYX_CURRENT STEPPER=<name> [CURRENT=<amps>] [HOLDCURRENT=<amps>]`:
+This will adjust the run and/or hold currents of the LYX driver. With
+no parameters, the current run and hold values are reported.
+
+#### SET_LYX_FIELD
+`SET_LYX_FIELD STEPPER=<name> FIELD=<field> VALUE=<value>`:
+This will alter the value of the specified register field of the LYX
+driver. This command is intended for low-level diagnostics and
+debugging only, because changing the fields during run-time can lead
+to undesired and potentially dangerous behavior of your printer.
+Permanent changes should be made using the printer configuration file
+instead.
+
+#### SET_LYX_MICROSTEP
+`SET_LYX_MICROSTEP STEPPER=<name> [MICROSTEP=<value>]`: This will
+change the microstep subdivision of the LYX driver. With no parameter,
+the current microstep setting is reported.
+
+#### DUMP_LYX
+`DUMP_LYX STEPPER=<name>`: This command will read the cached write
+registers and the live read registers of the LYX driver and report
+their values.
+
+#### LYX_READ_REG
+`LYX_READ_REG STEPPER=<name> REGISTER=<name>`: This command reads a
+single Modbus register of the LYX driver and reports its raw value.
+
+#### LYX_WRITE_REG
+`LYX_WRITE_REG STEPPER=<name> REGISTER=<name> VALUE=<value>`: This
+command writes a raw value to a Modbus register of the LYX driver and
+reads the register back to verify the write.
+
 ### [toolhead]
 
 The toolhead module is automatically loaded.
