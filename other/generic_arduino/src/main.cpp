@@ -1,10 +1,12 @@
 /**
  * main.cpp - Entry point for the Kalico MCU firmware
  *
- * Maps platform-specific entry points to the Kalico scheduler's sched_main().
+ * Maps platform-specific entry points to the Kalico scheduler.
  *
- * AVR (Arduino):  setup()/loop() → sched_main()
+ * AVR (Arduino):  setup() → sched_main()          (blocking)
  * STM32H723:      main() → clock_setup() → sched_main()
+ * ESP32-S3:       setup() → klipper_init(),
+ *                 loop()  → klipper_loop()         (non-blocking, cooperative)
  *
  * Copyright (C) 2024 Arduino port contributors.
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -67,6 +69,25 @@ int main(void)
 #endif
 #include "arduino/internal.h"
 
+#if CONFIG_MACH_ESP32
+// ESP32-S3: cooperative non-blocking scheduler driven from setup()/loop().
+// The Arduino loopTask adds vTaskDelay(1) each iteration, which also keeps
+// the FreeRTOS task watchdog fed.
+extern "C" void klipper_init(void);
+extern "C" void klipper_loop(void);
+
+void setup()
+{
+    klipper_init();
+}
+
+void loop()
+{
+    klipper_loop();
+}
+
+#else // !CONFIG_MACH_ESP32 (AVR / ARM Arduino)
+
 void setup()
 {
 #if defined(__AVR__)
@@ -84,5 +105,7 @@ void loop()
     // If we ever get here, something went wrong.
     delay(1000);
 }
+
+#endif // CONFIG_MACH_ESP32
 
 #endif // CONFIG_MACH_STM32

@@ -23,7 +23,8 @@
 extern "C" {
 #endif
 
-/* ESP32 Serial0: GPIO1=TX, GPIO3=RX (default UART0) */
+/* ESP32-S3: "Serial" = UART0, default TX=GPIO43 RX=GPIO44.
+ * (On ESP32 classic it is TX=GPIO1 RX=GPIO3 - the Arduino core default.) */
 #define KALICO_SERIAL   Serial
 
 /* ---- TX interrupt callback ---------------------------------------------- */

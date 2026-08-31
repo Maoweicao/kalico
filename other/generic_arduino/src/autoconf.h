@@ -4,7 +4,8 @@
  * This replaces the Kconfig/menuconfig flow for Arduino/STM32 environments.
  * Adjust these values to match your target board and wiring.
  *
- * For STM32 builds: define CONFIG_MACH_STM32=1 in platformio.ini build_flags.
+ * For STM32 builds:  define CONFIG_MACH_STM32=1 in platformio.ini build_flags.
+ * For ESP32 builds:  define CONFIG_MACH_ESP32=1 in platformio.ini build_flags.
  * For Arduino builds: CONFIG_MACH_ARDUINO is the default.
  */
 
@@ -13,8 +14,8 @@
 
 // ---- Machine selection ----------------------------------------------------
 // Determine target platform from build flags.
-// CONFIG_MACH_STM32 is set via -DCONFIG_MACH_STM32=1 in platformio.ini.
-// If not set, default to Arduino.
+// CONFIG_MACH_STM32 / CONFIG_MACH_ESP32 are set via -D in platformio.ini.
+// If neither is set, default to Arduino.
 
 #if CONFIG_MACH_STM32
   // ── STM32 configuration ─────────────────────────────────────────────────
@@ -40,6 +41,39 @@
 
   // Inline stepper dispatch: Cortex-M7 is fast enough for function pointer dispatch
   #define CONFIG_INLINE_STEPPER_HACK  0
+
+#elif CONFIG_MACH_ESP32
+  // ── ESP32 configuration ─────────────────────────────────────────────────
+  #define CONFIG_BOARD_DIRECTORY  "esp32"
+
+  // ESP32 timer runs at 1MHz (1us tick) via hardware divider 80 —
+  // see esp32/timer.c.  timer_from_us() uses this value.
+  #ifndef CONFIG_CLOCK_FREQ
+    #define CONFIG_CLOCK_FREQ       1000000UL
+  #endif
+
+  #ifndef CONFIG_SERIAL_BAUD
+    #define CONFIG_SERIAL_BAUD      250000
+  #endif
+
+  // ESP32-S3 identification (override via -DCONFIG_MCU_NAME for ESP32 classic)
+  #ifndef CONFIG_MCU_NAME
+    #define CONFIG_MCU_NAME         "esp32s3"
+  #endif
+
+  // No AVR stack size on ESP32
+  #define CONFIG_AVR_STACK_SIZE   0
+
+  // Inline stepper dispatch: Xtensa is fast enough for function pointer dispatch
+  #define CONFIG_INLINE_STEPPER_HACK  0
+
+  // WiFi support is not built yet (serial.cpp is compiled instead)
+  #define CONFIG_WANT_WIFI        0
+
+  // Xtensa/FreeRTOS: longjmp() from timer ISR context is unsafe (the
+  // scheduler setjmp frame may have unwound).  sched_shutdown() defers such
+  // shutdowns and klipper_loop() services them in task context.
+  #define CONFIG_DEFER_SHUTDOWN_IN_ISR  1
 
 #else
   // ── Arduino (default) configuration ──────────────────────────────────────

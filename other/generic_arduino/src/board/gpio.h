@@ -2,7 +2,8 @@
  * board/gpio.h - Platform-conditional forwarding header
  *
  * For STM32: → stm32/internal.h (port+bitmask GPIO structs)
- * For Arduino: → generic/gpio.h (pin-based GPIO structs)
+ * For ESP32/Arduino: → generic/gpio.h (pin-based GPIO structs;
+ *   layout must match esp32/internal.h and arduino/internal.h)
  */
 #if CONFIG_MACH_STM32
   #include "stm32/internal.h"

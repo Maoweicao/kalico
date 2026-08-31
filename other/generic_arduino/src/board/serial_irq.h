@@ -7,6 +7,8 @@
  */
 #if CONFIG_MACH_STM32
   #include "stm32/serial.h"
+#elif CONFIG_MACH_ESP32
+  #include "esp32/serial.h"
 #else
   #include "arduino/serial.h"
 #endif

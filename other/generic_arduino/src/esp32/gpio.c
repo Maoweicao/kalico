@@ -1,8 +1,12 @@
 /**
  * esp32/gpio.c - GPIO operations for ESP32
  *
- * Uses Arduino digital pin functions for simplicity.
- * Pin numbering follows Arduino convention (GPIO0-GPIO48).
+ * Configuration paths (setup/reset) use Arduino pin functions.
+ * The stepper/digital-out ISR hot path (toggle_noirq / write / in_read) uses
+ * direct GPIO register writes with IRAM_ATTR so no flash cache stall delays
+ * step pulses.
+ * Pin numbering: Arduino convention; on the standard ESP32 variants the
+ * Arduino pin number equals the GPIO number (identity mapping).
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -12,6 +16,49 @@
 #include "internal.h"
 #include "irq.h"
 #include "command.h"
+
+/* IRAM-resident GPIO registers for IRQ-safe fast toggling */
+#include "esp_attr.h"
+#include "soc/gpio_reg.h"
+
+/* ---- GPIO register helpers ------------------------------------------------
+ * On ESP32 the Arduino "pin" number equals the GPIO number (identity
+ * mapping for the standard variants), so g.pin can be used directly as a
+ * GPIO bit index.  The *_W1TS / *_W1TC registers are single-1-write set /
+ * clear so they are atomic and safe to poke from an ISR.
+ * ------------------------------------------------------------------------- */
+
+static inline void IRAM_ATTR
+esp32_gpio_set(uint8_t gpio, uint8_t val)
+{
+    if (gpio >= 32) {
+        volatile uint32_t *reg = val
+            ? (volatile uint32_t *)GPIO_OUT1_W1TS_REG
+            : (volatile uint32_t *)GPIO_OUT1_W1TC_REG;
+        *reg = (1u << (gpio - 32));
+    } else {
+        volatile uint32_t *reg = val
+            ? (volatile uint32_t *)GPIO_OUT_W1TS_REG
+            : (volatile uint32_t *)GPIO_OUT_W1TC_REG;
+        *reg = (1u << gpio);
+    }
+}
+
+static inline uint8_t IRAM_ATTR
+esp32_gpio_out_state(uint8_t gpio)
+{
+    if (gpio >= 32)
+        return !!((*(volatile uint32_t *)GPIO_OUT1_REG) & (1u << (gpio - 32)));
+    return !!((*(volatile uint32_t *)GPIO_OUT_REG) & (1u << gpio));
+}
+
+static inline uint8_t IRAM_ATTR
+esp32_gpio_in(uint8_t gpio)
+{
+    if (gpio >= 32)
+        return !!((*(volatile uint32_t *)GPIO_IN1_REG) & (1u << (gpio - 32)));
+    return !!((*(volatile uint32_t *)GPIO_IN_REG) & (1u << gpio));
+}
 
 /* ---- GPIO Output -------------------------------------------------------- */
 
@@ -35,10 +82,13 @@ gpio_out_reset(struct gpio_out g, uint8_t val)
     digitalWrite(g.pin, val);
 }
 
-void
+/* Fast IRQ-safe toggle/write paths - called from timer dispatch in ISR
+ * context, so they must live in IRAM and touch hardware registers directly. */
+
+void IRAM_ATTR
 gpio_out_toggle_noirq(struct gpio_out g)
 {
-    digitalWrite(g.pin, !digitalRead(g.pin));
+    esp32_gpio_set(g.pin, !esp32_gpio_out_state(g.pin));
 }
 
 void
@@ -49,10 +99,12 @@ gpio_out_toggle(struct gpio_out g)
     irq_restore(flag);
 }
 
-void
+void IRAM_ATTR
 gpio_out_write(struct gpio_out g, uint8_t val)
 {
-    digitalWrite(g.pin, val);
+    if (g.invert)
+        val = !val;
+    esp32_gpio_set(g.pin, val);
 }
 
 uint8_t
@@ -89,10 +141,10 @@ gpio_in_reset(struct gpio_in g, int8_t pull_up)
         pinMode(g.pin, INPUT);
 }
 
-uint8_t
+uint8_t IRAM_ATTR
 gpio_in_read(struct gpio_in g)
 {
-    return !!digitalRead(g.pin);
+    return esp32_gpio_in(g.pin) ^ g.invert;
 }
 
 /* ---- GPIO ADC (stubs for now) ------------------------------------------- */

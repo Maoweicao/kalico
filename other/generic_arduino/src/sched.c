@@ -22,7 +22,13 @@ static struct {
     struct timer *timer_list, *last_insert;
     int8_t tasks_status, tasks_busy;
     uint8_t shutdown_status, shutdown_reason;
+    // Non-zero while inside sched_timer_dispatch() (i.e. timer ISR context)
+    uint8_t in_isr;
 } SchedStatus = {.timer_list = &periodic_timer, .last_insert = &periodic_timer};
+
+// A shutdown() call made from ISR context on platforms with
+// CONFIG_DEFER_SHUTDOWN_IN_ISR (safe to serve from the next loop() pass).
+static uint8_t shutdown_deferred;
 
 
 /****************************************************************
@@ -56,7 +62,12 @@ static struct timer periodic_timer = {
 static uint_fast8_t
 sentinel_event(struct timer *t)
 {
+    (void)t;
     shutdown("sentinel timer called");
+    // shutdown() is noreturn on platforms that longjmp directly; on
+    // CONFIG_DEFER_SHUTDOWN_IN_ISR platforms (e.g. ESP32) it returns after
+    // deferring, so never fall off the end of this non-void function.
+    return SF_DONE;
 }
 
 static struct timer sentinel_timer = {
@@ -146,10 +157,12 @@ sched_del_timer(struct timer *del)
 }
 
 // Invoke the next timer - called from board hardware irq code.
-
 unsigned int
 sched_timer_dispatch(void)
 {
+    // Mark ISR context (used to defer shutdowns triggered in timers)
+    SchedStatus.in_isr++;
+
     // Invoke timer callback
     struct timer *t = SchedStatus.timer_list;
     uint_fast8_t res;
@@ -163,8 +176,17 @@ sched_timer_dispatch(void)
     }
 
     // Update timer_list (rescheduling current timer if necessary)
-    unsigned int next_waketime = updated_waketime;
-    if (unlikely(res == SF_DONE)) {
+    unsigned int next_waketime;
+    if (unlikely(SchedStatus.shutdown_status)) {
+        // The callback requested a shutdown.  If it was deferred from ISR
+        // context, sched_shutdown() already reset the timer list - stop
+        // dispatching and back the ISR off until run_shutdown() (task
+        // context) restores the scheduler.  Also drop the just-fired timer
+        // instead of rescheduling it.
+        next_waketime = timer_read_time() + timer_from_us(100000);
+        SchedStatus.timer_list = &deleted_timer;
+        SchedStatus.last_insert = &periodic_timer;
+    } else if (unlikely(res == SF_DONE)) {
         next_waketime = t->next->waketime;
         SchedStatus.timer_list = t->next;
         if (SchedStatus.last_insert == t)
@@ -177,8 +199,12 @@ sched_timer_dispatch(void)
             pos = SchedStatus.timer_list;
         insert_timer(pos, t, updated_waketime);
         SchedStatus.last_insert = t;
+    } else {
+        // Timer stays at the head of the list - no list change needed
+        next_waketime = updated_waketime;
     }
 
+    SchedStatus.in_isr--;
     return next_waketime;
 }
 
@@ -338,6 +364,19 @@ static jmp_buf shutdown_jmp;
 void
 sched_shutdown(uint_fast8_t reason)
 {
+#if CONFIG_DEFER_SHUTDOWN_IN_ISR
+    if (SchedStatus.in_isr) {
+        // Called from timer ISR context - longjmp() is not safe here (the
+        // scheduler frame may have unwound past the setjmp by the time the
+        // ISR fires).  Stop all timers now and let klipper_loop() run the
+        // shutdown handlers in task context on its next pass.
+        SchedStatus.shutdown_status = 2;
+        SchedStatus.shutdown_reason = reason;
+        shutdown_deferred = 1;
+        sched_timer_reset();
+        return;
+    }
+#endif
     irq_disable();
     longjmp(shutdown_jmp, reason);
 }
@@ -347,9 +386,10 @@ sched_shutdown(uint_fast8_t reason)
  * Startup
  ****************************************************************/
 
-// Main loop of program
+// Initialize the MCU (board, timers, serial) and announce the start.
+// Call this once from Arduino setup() before any klipper_loop() calls.
 void
-sched_main(void)
+klipper_init(void)
 {
     extern void ctr_run_initfuncs(void);
     ctr_run_initfuncs();
@@ -357,6 +397,56 @@ sched_main(void)
     sentinel_timer.waketime = periodic_timer.waketime + 0x80000000;
 
     sendf("starting");
+}
+
+// Run one non-blocking pass of the scheduler.  Call repeatedly from Arduino
+// loop().  Returns immediately when idle so the surrounding loop stays
+// responsive (WiFi, LEDs, etc).  Shutdowns requested from timer ISR context
+// are serviced here in task context; shutdowns from task context longjmp
+// directly and are also handled here.
+void
+klipper_loop(void)
+{
+    static uint8_t shutdown_count;
+
+    irq_disable();
+    int ret = setjmp(shutdown_jmp);
+    if (ret) {
+        run_shutdown(ret);
+        shutdown_count++;
+        // Auto-clear shutdown (allow multiple retries during config).  Limit
+        // to 50 to prevent infinite loops.
+        if (shutdown_count <= 50)
+            sched_clear_shutdown();
+        irq_enable();
+        return;
+    }
+    irq_enable();
+
+    // Run a shutdown that was deferred from ISR context
+    if (shutdown_deferred) {
+        shutdown_deferred = 0;
+        irq_disable();
+        longjmp(shutdown_jmp, SchedStatus.shutdown_reason);
+    }
+
+    // One non-blocking pass over the task list
+    extern void ctr_run_taskfuncs(void);
+    irq_poll();
+    if (SchedStatus.tasks_status == TS_REQUESTED) {
+        SchedStatus.tasks_status = TS_RUNNING;
+        uint32_t start = timer_read_time();
+        ctr_run_taskfuncs();
+        stats_update(start, timer_read_time());
+    }
+}
+
+// Main loop of program (blocking).  Compatible entry used by AVR/STM32
+// where the board has no cooperative host loop.
+void
+sched_main(void)
+{
+    klipper_init();
 
     static uint8_t shutdown_count;
     irq_disable();

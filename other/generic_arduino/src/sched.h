@@ -34,8 +34,12 @@ uint8_t sched_check_wake(struct task_wake *w);
 uint8_t sched_is_shutdown(void);
 void sched_clear_shutdown(void);
 void sched_try_shutdown(uint_fast8_t reason);
-void sched_shutdown(uint_fast8_t reason) __noreturn;
+void sched_shutdown(uint_fast8_t reason);
 void sched_report_shutdown(void);
 void sched_main(void);
+// Non-blocking cooperative scheduler API.  Call klipper_init() once from
+// setup(), then call klipper_loop() repeatedly from loop().
+void klipper_init(void);
+void klipper_loop(void);
 
 #endif // sched.h
