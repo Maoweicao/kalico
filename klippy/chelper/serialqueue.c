@@ -13,10 +13,10 @@
 // background thread is launched to do this work and minimize latency.
 
 #ifndef __APPLE__
-#include <linux/can.h>    // struct can_frame
-#include <linux/canfd.h>  // struct canfd_frame
+#include <linux/can.h>    // struct can_frame, struct canfd_frame
 #include <net/if.h>       // struct ifreq, SIOCGIFMTU
-#include <sys/socket.h>    // socket(), ioctl()
+#include <sys/ioctl.h>    // ioctl(), SIOCGIFMTU
+#include <sys/socket.h>    // socket()
 #endif
 #include <math.h> // fabs
 #include <pthread.h> // pthread_mutex_lock

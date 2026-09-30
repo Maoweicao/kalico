@@ -398,12 +398,12 @@ choice CANBUS_FREQUENCY_CHOICE
         bool "1000000 (1M)"
 
     # FDCAN hardware can also do these higher arbitration speeds
-    config CANBUS_FREQ_2M if CANBUS_FD
-        bool "2000000 (2M)"
-    config CANBUS_FREQ_5M if CANBUS_FD
-        bool "5000000 (5M)"
-    config CANBUS_FREQ_8M if CANBUS_FD
-        bool "8000000 (8M)"
+    config CANBUS_FREQ_2M
+        bool "2000000 (2M)" if CANBUS_FD
+    config CANBUS_FREQ_5M
+        bool "5000000 (5M)" if CANBUS_FD
+    config CANBUS_FREQ_8M
+        bool "8000000 (8M)" if CANBUS_FD
 
     config CANBUS_FREQ_CUSTOM
         bool "Custom"
