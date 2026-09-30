@@ -245,7 +245,7 @@ text_log_file: ~/alarm_log.txt
 
 ## 相关文档
 
-- [伺服安全监控](servo-safety_CN.md)
+- [伺服安全监控](servo-safety.md)
 - [配置参考](Config_Reference.md)
 - [G-code 命令](G-Codes.md)
 - [状态参考](Status_Reference.md)

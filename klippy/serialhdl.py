@@ -33,6 +33,8 @@ class SerialReader:
         # Threading
         self.lock = threading.Lock()
         self.background_thread = None
+        # CAN interface name for FD mode detection
+        self._canbus_iface = None
         # Message handlers
         self.handlers = {}
         self.register_response(self._handle_unknown_init, "#unknown")
@@ -91,11 +93,13 @@ class SerialReader:
                     return identify_data
                 identify_data += msgdata
 
-    def _start_session(self, serial_dev, serial_fd_type=b"u", client_id=0):
+    def _start_session(self, serial_dev, serial_fd_type=b"u", client_id=0,
+                        iface_name=None):
         self.serial_dev = serial_dev
+        iface_b = iface_name.encode() if iface_name else b""
         self.serialqueue = self.ffi_main.gc(
             self.ffi_lib.serialqueue_alloc(
-                serial_dev.fileno(), serial_fd_type, client_id
+                serial_dev.fileno(), serial_fd_type, client_id, iface_b
             ),
             self.ffi_lib.serialqueue_free,
         )
@@ -115,12 +119,22 @@ class SerialReader:
         # Setup baud adjust
         if serial_fd_type == b"c":
             wire_freq = msgparser.get_constant_float("CANBUS_FREQUENCY", None)
+            if wire_freq is not None:
+                self.ffi_lib.serialqueue_set_wire_frequency(
+                    self.serialqueue, wire_freq
+                )
+            # For CAN FD, also set data phase frequency if available
+            data_freq = msgparser.get_constant_float("CANBUS_DATA_FREQUENCY", None)
+            if data_freq is not None:
+                self.ffi_lib.serialqueue_set_wire_data_frequency(
+                    self.serialqueue, data_freq
+                )
         else:
             wire_freq = msgparser.get_constant_float("SERIAL_BAUD", None)
-        if wire_freq is not None:
-            self.ffi_lib.serialqueue_set_wire_frequency(
-                self.serialqueue, wire_freq
-            )
+            if wire_freq is not None:
+                self.ffi_lib.serialqueue_set_wire_frequency(
+                    self.serialqueue, wire_freq
+                )
         receive_window = msgparser.get_constant_int("RECEIVE_WINDOW", None)
         if receive_window is not None:
             self.ffi_lib.serialqueue_set_receive_window(
@@ -198,6 +212,7 @@ class SerialReader:
     def connect_canbus(self, canbus_uuid, canbus_nodeid, canbus_iface="can0"):
         import can  # XXX
 
+        self._canbus_iface = canbus_iface
         txid = canbus_nodeid * 2 + 256
         filters = [{"can_id": txid + 1, "can_mask": 0x7FF, "extended": False}]
         # Prep for SET_NODEID command
@@ -236,7 +251,7 @@ class SerialReader:
                 self.reactor.pause(self.reactor.monotonic() + 5.0)
                 continue
             bus.close = bus.shutdown  # XXX
-            ret = self._start_session(bus, b"c", txid)
+            ret = self._start_session(bus, b"c", txid, self._canbus_iface)
             if not ret:
                 continue
             # Verify correct canbus_nodeid to canbus_uuid mapping
@@ -317,7 +332,7 @@ class SerialReader:
         self.serial_dev = debugoutput
         self.msgparser.process_identify(dictionary, decompress=False)
         self.serialqueue = self.ffi_main.gc(
-            self.ffi_lib.serialqueue_alloc(self.serial_dev.fileno(), b"f", 0),
+            self.ffi_lib.serialqueue_alloc(self.serial_dev.fileno(), b"f", 0, b""),
             self.ffi_lib.serialqueue_free,
         )
 

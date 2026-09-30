@@ -7,7 +7,7 @@
 // This file may be distributed under the terms of the GNU GPLv3 license.
 
 #include <string.h> // memcpy
-#include "autoconf.h" // CONFIG_HAVE_BOOTLOADER_REQUEST
+#include "autoconf.h" // CONFIG_HAVE_BOOTLOADER_REQUEST, CONFIG_CANBUS_FD
 #include "board/io.h" // readb
 #include "board/irq.h" // irq_save
 #include "board/misc.h" // console_sendf
@@ -35,8 +35,8 @@ static struct canbus_data {
 
     // Transfer buffers
     struct canbus_msg admin_queue[8];
-    uint8_t transmit_buf[96];
-    uint8_t receive_buf[192];
+    uint8_t transmit_buf[256];
+    uint8_t receive_buf[512];
 } CanData;
 
 
@@ -64,10 +64,14 @@ canserial_tx_task(void)
     msg.id = id + 1;
     uint32_t tpos = CanData.transmit_pos, tmax = CanData.transmit_max;
     for (;;) {
-        int avail = tmax - tpos, now = avail > 8 ? 8 : avail;
+        int avail = tmax - tpos, now = avail > CANBUS_PAYLOAD_LEN ? CANBUS_PAYLOAD_LEN : avail;
         if (avail <= 0)
             break;
+#if CONFIG_CANBUS_FD
+        msg.dlc = canbus_len_to_dlc(now);
+#else
         msg.dlc = now;
+#endif
         memcpy(msg.data, &CanData.transmit_buf[tpos], now);
         int ret = canbus_send(&msg);
         if (ret <= 0)

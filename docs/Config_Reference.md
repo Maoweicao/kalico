@@ -80,6 +80,19 @@ pins such as "extra_mcu:ar9" may then be used elsewhere in the config
 # See the "mcu" section for configuration parameters.
 ```
 
+### [canbus_stats]
+
+Report CAN bus connection status for micro-controllers that are
+configured to use a CAN bus (via the `canbus_uuid` parameter in their
+`[mcu]` section). This object is created automatically for each such
+micro-controller, so no configuration is normally needed. It is also
+possible to define a section explicitly, but it has no configurable
+parameters.
+
+The reported status (`rx_error`, `tx_error`, `tx_retries` and
+`bus_state`) is available in the
+[Status reference](Status_Reference.md#canbus_stats).
+
 ## ⚠️ Danger Options
 
 A collection of Kalico-specific system options
@@ -173,6 +186,46 @@ A collection of Kalico-specific system options
 #   module_mcu.log, etc.) in the same directory as the main log file.
 #   Each file contains only log entries from its respective module.
 #   The default is False.
+```
+
+## [hardware]
+
+Host CPU/GPU detection and compute scheduling.
+
+At startup Kalico detects the host CPU and, if present, a GPU. It can pin the
+main process and the background calibration worker processes (input-shaper
+calibration, coordinate descent, etc.) to user-selected CPU cores, and it can
+offload the heavy numeric calibration work (e.g. the shaper Welch-PSD FFT) to a
+GPU when one is available. All of this is off by default - existing
+installations are unaffected unless you opt in.
+
+GPU acceleration uses either CUDA (NVIDIA, via the optional `cupy` package) or
+OpenCL (AMD/Intel, via the optional `pyopencl` package). Both are installed with
+the `gpu` extra (`pip install Kalico[gpu]`). When neither is available, or when
+no GPU is detected, Kalico transparently falls back to the CPU `numpy` backend.
+
+```
+[hardware]
+#cpu_affinity_main:
+#   Comma-separated list of CPU cores to pin the Kalico main process to. Leave
+#   empty to keep the default OS scheduling. Only supported on Linux.
+#   Example: cpu_affinity_main: 0
+#cpu_affinity_background:
+#   Comma-separated list of CPU cores to pin the background calibration worker
+#   processes (shaper calibration, coordinate descent, etc.) to. This keeps the
+#   heavier offline calculations off the cores used by the real-time pipeline.
+#   Only supported on Linux. The default is empty (no pinning).
+#   Example: cpu_affinity_background: 2,3
+#gpu_backend: auto
+#   Numerical backend used for offline calculations. Options:
+#   auto    - prefer CUDA, then OpenCL, then numpy (the default)
+#   cuda    - force NVIDIA CUDA (requires `cupy`)
+#   opencl  - force OpenCL (requires `pyopencl`)
+#   numpy   - disable GPU acceleration and use the CPU numpy backend
+#gpu_accelerate_calibration: True
+#   When True (and a GPU backend is active), accelerate the input-shaper
+#   calibration frequency response (Welch PSD) computation on the GPU.
+#   The default is True.
 ```
 
 ## ⚠️ Configuration references
@@ -2325,6 +2378,75 @@ gcode:
 #   a delayed_gcode"
 ```
 
+### [event_trigger]
+
+Generic event listener and delayed action scheduler. Subscribe to one or
+more printer events (such as print completion, filament runout, idle
+timeout, etc.) and execute a gcode or Python template after an optional
+delay. The action template reuses the full `[gcode_macro]` rendering
+machinery, so both Jinja2 gcode and Python (`!` prefixed) templates are
+supported.
+
+See the
+[command reference](G-Codes.md#event_trigger) for more information.
+
+```
+[event_trigger on_print_complete]
+#   Required - a unique name for this trigger instance.
+events:
+#   Required - a comma and/or newline separated list of printer events
+#   to listen for.  Any of the listed events firing will arm the
+#   trigger.
+#   Examples of available events:
+#     print_stats:start_printing, print_stats:complete_printing,
+#     print_stats:cancelled_printing, print_stats:error_printing,
+#     idle_timeout:idle, idle_timeout:ready, idle_timeout:printing,
+#     filament:runout, filament:insert, klippy:ready, klippy:shutdown,
+#     virtual_sdcard:load_file, virtual_sdcard:reset_file, ...
+#delay: 0.0
+#   Seconds to wait after the event fires before executing the action
+#   gcode.  A value of 0 means "execute as soon as possible" (via a
+#   reactor timer).  Default is 0.
+#condition:
+#   An optional Jinja2 expression that is evaluated before running the
+#   action.  The expression must render to a Python-evaluable literal
+#   (True/False).  If it evaluates to false the trigger is silently
+#   skipped for that event.
+#   Example: printer.idle_timeout.state == "Idle"
+gcode:
+#   Required - the gcode or Python template to execute.
+#   The template receives the following extra context variables:
+#     event  - name of the event that fired (str)
+#     params - tuple of positional arguments passed with the event
+#     printer, action_*, math, ...  (same as [gcode_macro])
+#   Prefix the gcode with '!' for a Python script.
+```
+
+**Runtime G-Code commands** (see
+[G-Codes](G-Codes.md#event_trigger) for details):
+- `RUN_EVENT_TRIGGER ID=<name> [DELAY=<sec>]` - manually fire a trigger
+- `CANCEL_EVENT_TRIGGER ID=<name>` - cancel a pending trigger
+
+**Available event names** (non-exhaustive - any event emitted by any
+loaded module can be listened to):
+
+| Event | Fired when |
+|-------|-----------|
+| `print_stats:start_printing` | Print job starts |
+| `print_stats:complete_printing` | Print job completes successfully |
+| `print_stats:cancelled_printing` | Print job is cancelled |
+| `print_stats:error_printing` | Print job encounters an error |
+| `print_stats:paused_printing` | Print job is paused |
+| `idle_timeout:idle` | Idle timeout elapses (Ready -> Idle) |
+| `idle_timeout:ready` | Toolhead quiesces (Printing -> Ready) |
+| `idle_timeout:printing` | Toolhead begins moving (Idle -> Printing) |
+| `filament:runout` | Filament runout detected |
+| `filament:insert` | Filament inserted |
+| `klippy:ready` | Printer becomes ready |
+| `klippy:shutdown` | Printer shutdown |
+| `virtual_sdcard:load_file` | SD card file loaded for printing |
+| `virtual_sdcard:reset_file` | SD card file reset |
+
 ### [save_variables]
 
 Support saving variables to disk so that they are retained across
@@ -2695,6 +2817,47 @@ accelerometers (one may define any number of sections with an
 [mpu9250 my_accelerometer]
 #i2c_address:
 #   Default is 104 (0x68). If AD0 is high, it would be 0x69 instead.
+#i2c_mcu:
+#i2c_bus:
+#i2c_software_scl_pin:
+#i2c_software_sda_pin:
+#i2c_speed: 400000
+#   See the "common I2C settings" section for a description of the
+#   above parameters. The default "i2c_speed" is 400000.
+#axes_map: x, y, z
+#   See the "adxl345" section for information on this parameter.
+```
+
+### [bmi160]
+
+Support for bmi160 accelerometers. This support allows one to query
+accelerometer measurements from the sensor using the same
+ACCELEROMETER_* commands as [adxl345](G-Codes.md#adxl345) (pass
+`CHIP=bmi160` to select this sensor). The default chip name is "bmi160",
+but one may specify an explicit name (eg, `[bmi160 my_chip_name]`).
+
+The bmi160 may be connected via SPI or I2C. If `cs_pin` is provided the
+sensor is configured in SPI mode, otherwise it is configured in I2C
+mode. The accelerometer runs at a fixed output data rate of 1600Hz with
+a measurement range of +/-16g.
+
+```
+[bmi160]
+#cs_pin:
+#   The SPI enable pin for the sensor. If provided, the sensor is
+#   configured in SPI mode, otherwise I2C mode is used.
+#spi_speed: 1000000
+#   The SPI speed (in hz) to use when communicating with the chip.
+#   The default is 1000000.
+#spi_bus:
+#spi_software_sclk_pin:
+#spi_software_mosi_pin:
+#spi_software_miso_pin:
+#   See the "common SPI settings" section for a description of the
+#   above parameters.
+#i2c_address: 105
+#   The I2C address that the chip is using on the i2c bus. The default
+#   is 105 (0x69).
 #i2c_mcu:
 #i2c_bus:
 #i2c_software_scl_pin:
@@ -5827,6 +5990,45 @@ wiper:
 #   scale the 'wiper' parameter.
 ```
 
+### [dac084S085]
+
+Statically configured DAC084S085 quad channel SPI DAC (one may define
+any number of sections with a "dac084S085" prefix). Each channel may be
+set to a static output value, which is typically used to set stepper
+voltage references or analog output levels.
+
+```
+[dac084S085 my_dac]
+enable_pin:
+#   The SPI enable pin for the DAC. This parameter must be provided.
+#spi_speed: 10000000
+#   The SPI speed (in hz) to use when communicating with the chip.
+#   The default is 10000000.
+#spi_bus:
+#spi_software_sclk_pin:
+#spi_software_mosi_pin:
+#spi_software_miso_pin:
+#   See the "common SPI settings" section for a description of the
+#   above parameters.
+#scale: 1.0
+#   This parameter can be used to alter how the 'channel_<A-D>'
+#   parameters are interpreted. If provided, the 'channel_<A-D>'
+#   parameters should be between 0.0 and 'scale'. This may be useful
+#   when the DAC is used to set stepper voltage references: 'scale' can
+#   be set to the equivalent stepper amperage if the DAC is at its
+#   highest output, and the 'channel_<A-D>' parameters can be specified
+#   using the desired amperage value for the stepper. The default is to
+#   not scale the 'channel_<A-D>' parameters.
+#channel_A:
+#channel_B:
+#channel_C:
+#channel_D:
+#   The value to statically set the given DAC channel to. This is
+#   typically set to a number between 0.0 and 1.0 with 1.0 being the
+#   highest output and 0.0 being the lowest output. However, the range
+#   may be changed with the 'scale' parameter (see above).
+```
+
 ## Display support
 
 ### [display]
@@ -7045,6 +7247,101 @@ host_mcu:
 #   (True sets CFG5 high, False sets it low). The default is True.
 ```
 
+## Closed-loop position control
+
+### [encoder]
+
+Position encoder support for reading absolute angle (SPI) or
+incremental quadrature measurements. The encoder position may be
+queried at run-time and, when paired with a stepper via the `stepper`
+parameter, provides encoder feedback for the [closed_loop] module. See
+the [G-Code reference](G-Codes.md#encoder) for the available commands
+and the [API Server](API_Server.md) for the `encoder/dump_encoder`
+endpoint.
+
+Supported SPI absolute sensor types are "a1333", "a1333lletr",
+"as5047d", "tle5012b", "mt6816", "mt6826s" and "mt6701". Supported
+quadrature sensor types are "quadrature" and "heds9740".
+
+```
+[encoder my_encoder]
+encoder_type:
+#   The type of the encoder sensor. Available choices are "a1333",
+#   "a1333lletr", "as5047d", "tle5012b", "mt6816", "mt6826s", "mt6701",
+#   "quadrature" and "heds9740". This parameter must be specified.
+#stepper:
+#   The name of the stepper that the encoder is attached to (eg,
+#   "stepper_x"). Setting this value enables the encoder to report a
+#   position in millimeters (using the stepper's rotation_distance) and
+#   registers the encoder with the [closed_loop] module. The default is
+#   to not associate the encoder with a stepper.
+#sample_period: 0.000400
+#   The query period (in seconds) to use during measurements. The
+#   default is 0.000400 (which is 2500 samples per second).
+#   The following parameters are used for SPI absolute sensor types:
+#cs_pin:
+#   The SPI enable pin for the sensor. This parameter must be provided.
+#spi_speed:
+#spi_bus:
+#spi_software_sclk_pin:
+#spi_software_mosi_pin:
+#spi_software_miso_pin:
+#   See the "common SPI settings" section for a description of the
+#   above parameters.
+#   The following parameters are used for quadrature sensor types:
+#channel_a_pin:
+#   The MCU gpio pin connected to the encoder channel A. This parameter
+#   must be provided for quadrature sensors.
+#channel_b_pin:
+#   The MCU gpio pin connected to the encoder channel B. This parameter
+#   must be provided for quadrature sensors.
+#cpr:
+#   The number of encoder counts per revolution (counts per rotation)
+#   of the quadrature encoder. This parameter must be provided for
+#   quadrature sensors.
+```
+
+### [closed_loop]
+
+Closed-loop position control using encoder feedback. The module reads
+the position reported by registered [encoder] objects and applies PID
+corrections to the paired steppers to maintain commanded position.
+Corrections are applied by adjusting the stepper position within
+`max_correction` of the commanded position.
+
+The module is disabled by default and must be explicitly enabled (either
+with `enable: True` or at run-time with the `CLOSED_LOOP_ENABLE`
+command). See the [G-Code reference](G-Codes.md#closed_loop) for the
+available commands.
+
+```
+[closed_loop]
+#enable: False
+#   Enable closed-loop control at startup. The default is False.
+#enable_correction: False
+#   Whether stepper position corrections should be applied. If False,
+#   the module only monitors and reports position error without
+#   correcting the steppers. The default is False.
+#pid_kp: 0.5
+#   The proportional gain of the closed-loop PID controller. The
+#   default is 0.5.
+#pid_ki: 0.0
+#   The integral gain of the closed-loop PID controller. The default is
+#   0.0.
+#pid_kd: 0.0
+#   The derivative gain of the closed-loop PID controller. The default
+#   is 0.0.
+#max_correction: 1.0
+#   The maximum stepper position correction (in mm) applied per update.
+#   The default is 1.0.
+#correction_interval: 0.050
+#   The interval (in seconds) between correction updates. The default is
+#   0.050.
+#error_threshold: 0.5
+#   The position error (in mm) above which an error is logged for the
+#   affected encoder. The default is 0.5.
+```
+
 ## Other Custom Modules
 
 ### [palette2]
@@ -7114,6 +7411,31 @@ cs_pin:
 #spi_software_miso_pin:
 #   See the "common SPI settings" section for a description of the
 #   above parameters.
+```
+
+### [gcode_mcu_trace]
+
+G-code to MCU command tracing and recording module. It provides a
+one-to-one tracing of gcode commands and their corresponding MCU
+commands, with support for recording and replay. The section has no
+configurable parameters; enabling the section simply activates the
+`MCU_RECORD_START`, `MCU_RECORD_STOP`, `MCU_REPLAY` and
+`MCU_TRACE_STATUS` commands. See the
+[G-Code reference](G-Codes.md#gcode_mcu_trace) for details.
+
+```
+[gcode_mcu_trace]
+```
+
+### [query_pins]
+
+Utility for querying MCU pin/bus configuration and detecting pin
+conflicts. The section has no configurable parameters; enabling the
+section simply activates the `QUERY_PINS` command. See the
+[G-Code reference](G-Codes.md#query_pins) for details.
+
+```
+[query_pins]
 ```
 
 ### ⚠️ [tools_calibrate]

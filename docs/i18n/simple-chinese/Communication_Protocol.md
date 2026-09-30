@@ -1,4 +1,4 @@
-# 通信协议：C 与 Python 接口
+﻿# 通信协议：C 与 Python 接口
 
 本文档描述了 Kalico 中 `src/` 目录下的 C/C++ 代码
 与 `klippy/` 目录下的 Python 代码之间的各种通信机制。
@@ -118,7 +118,7 @@ FFI_lib.set_python_logging_callback(pyhelper_logging_callback)
 
 ### 数据流：CFFI
 
-![CFFI 数据流](../img/zh/comm-cffi-flow.svg)
+![CFFI 数据流](img/zh/comm-cffi-flow.svg)
 
 ---
 
@@ -168,7 +168,7 @@ void serial_enable_receive(int fd) {
 
 ### 数据流：串口通信
 
-![串口数据流](../img/zh/comm-serial-flow.svg)
+![串口数据流](img/zh/comm-serial-flow.svg)
 
 ---
 
@@ -404,7 +404,7 @@ Klippy 主机进程共使用 **4 个线程**：
 
 ## 6. 完整数据流图
 
-![完整架构](../img/zh/comm-full-architecture.svg)
+![完整架构](img/zh/comm-full-architecture.svg)
 
 ---
 

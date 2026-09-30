@@ -1,4 +1,4 @@
-# 插件开发指南
+﻿# 插件开发指南
 
 本文档介绍了如何为 Kalico 开发、安装和管理插件。插件可以在不修改核心源代码树的情况下
 扩展 Kalico 的功能，确保自定义代码不会因为更新而丢失。
@@ -134,7 +134,7 @@ from .helpers import my_helper                   # 插件子包内部
 
 下图展示了各关键组件之间的交互：
 
-![插件架构图](../img/zh/plugin-architecture.svg)
+![插件架构图](img/zh/plugin-architecture.svg)
 
 - **printer.cfg** 提供 `[section]` 定义和选项值。
 - **ConfigWrapper** 包装每个配置段，提供类型化访问（`get()`、`getfloat()`、`getint()` 等）。
@@ -149,7 +149,7 @@ from .helpers import my_helper                   # 插件子包内部
 
 ## 生命周期
 
-![插件生命周期](../img/zh/plugin-lifecycle.svg)
+![插件生命周期](img/zh/plugin-lifecycle.svg)
 
 ### 各阶段详情
 

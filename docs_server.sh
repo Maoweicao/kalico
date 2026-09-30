@@ -12,15 +12,18 @@
 
 PORT="${1:-8800}"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+VENV_PY="$SCRIPT_DIR/docs/_kalico/.venv/bin/python"
 
 echo "============================================="
-echo "  Kalico Documentation Server"
+echo "  Kalico Documentation Server (mkdocs serve)"
 echo "  Port: $PORT"
 echo "============================================="
 echo ""
-echo "Place .md files in:  docs/"
-echo "Translations in:     docs/zh/  docs/de/  etc."
-echo "   or in:            docs/i18n/simple-chinese/  etc."
+echo "Opening http://127.0.0.1:$PORT/ in browser..."
 echo ""
 
-python3 "$SCRIPT_DIR/docs_server.py" --port "$PORT"
+if [ -x "$VENV_PY" ]; then
+  "$VENV_PY" "$SCRIPT_DIR/docs_server.py" --port "$PORT"
+else
+  python3 "$SCRIPT_DIR/docs_server.py" --port "$PORT"
+fi

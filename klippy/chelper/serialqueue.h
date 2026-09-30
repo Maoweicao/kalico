@@ -27,7 +27,7 @@ struct pull_queue_message {
 
 struct serialqueue;
 struct serialqueue *serialqueue_alloc(int serial_fd, char serial_fd_type
-                                      , int client_id);
+                                      , int client_id, char *iface_name);
 void serialqueue_exit(struct serialqueue *sq);
 void serialqueue_free(struct serialqueue *sq);
 struct command_queue *serialqueue_alloc_commandqueue(void);
@@ -43,6 +43,7 @@ void serialqueue_send(struct serialqueue *sq, struct command_queue *cq
                       , uint64_t req_clock, uint64_t notify_id);
 void serialqueue_pull(struct serialqueue *sq, struct pull_queue_message *pqm);
 void serialqueue_set_wire_frequency(struct serialqueue *sq, double frequency);
+void serialqueue_set_wire_data_frequency(struct serialqueue *sq, double frequency);
 void serialqueue_set_receive_window(struct serialqueue *sq, int receive_window);
 void serialqueue_set_clock_est(struct serialqueue *sq, double est_freq
                                , double conv_time, uint64_t conv_clock

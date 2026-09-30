@@ -69,6 +69,13 @@ def background_coordinate_descent(printer, adj_params, params, error_func):
 
     def wrapper():
         queuelogger.clear_bg_logging()
+        # Pin this worker onto the configured background CPU core(s).
+        try:
+            from .extras.hardware import get_hardware
+
+            get_hardware().apply_process_affinity()
+        except Exception:
+            pass
         try:
             res = coordinate_descent(adj_params, params, error_func)
         except:

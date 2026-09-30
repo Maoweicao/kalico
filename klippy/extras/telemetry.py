@@ -200,6 +200,29 @@ class KalicoTelementry:
             "python": sys.version,
         }
 
+    def _collect_hardware(self):
+        """
+        Collect anonymized host hardware / compute information.
+
+        Only coarse capability flags are reported (no model serials or
+        temperatures) so this does not leak identifying details.
+        """
+        try:
+            hw = self.printer.lookup_object("hardware", None)
+            if hw is None:
+                return None
+        except Exception:
+            return None
+        status = hw.get_status()
+        gpu = status.get("gpu")
+        return {
+            "cpu_count": status.get("cpu_count"),
+            "gpu_detected": gpu is not None,
+            "gpu_api": gpu["api"] if gpu else None,
+            "compute_backend": status.get("compute_backend"),
+            "affinity_supported": status.get("affinity_supported"),
+        }
+
     def _collect_os_release(self):
         """
         Collect the freedesktop OS-RELEASE information.
@@ -262,6 +285,8 @@ class KalicoTelementry:
             "cpu_info": start_args.get("cpu_info", "unknown"),
             # git_remote, e.g. 'https://github.com/danger-klippers/dangerklipper
             "platform": self._collect_platform(),
+            # anonymized hardware / compute capability flags
+            "hardware": self._collect_hardware(),
             "config": self._collect_anonymized_config(),
             "objects": self._collect_printer_objects(),
         }

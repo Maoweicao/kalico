@@ -319,6 +319,7 @@ class Printer:
             self.load_object(config, section_config.get_name(), None)
         # Kalico on-by-default extras
         for section_config in [
+            "hardware",
             "force_move",
             "respond",
             "exclude_object",

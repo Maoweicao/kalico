@@ -75,6 +75,9 @@ modules are automatically loaded.
 
 The following commands are available when an
 [adxl345 config section](Config_Reference.md#adxl345) is enabled.
+These commands can also be used with a
+[bmi160 config section](Config_Reference.md#bmi160) by passing
+`CHIP=bmi160` (or the explicit name of the bmi160 chip).
 
 #### ACCELEROMETER_MEASURE
 `ACCELEROMETER_MEASURE [CHIP=<config_name>] [NAME=<value>]`: Starts
@@ -332,6 +335,38 @@ conjunction with other calibration commands to store the results of
 calibration tests.
 If RESTART is set to 0, no restart will be performed !!USE WITH CAUTION!!.
 
+### [closed_loop]
+
+The following commands are available when a
+[closed_loop config section](Config_Reference.md#closed_loop) is
+enabled and at least one [encoder](Config_Reference.md#encoder) has
+been paired with a stepper.
+
+#### CLOSED_LOOP_ENABLE
+`CLOSED_LOOP_ENABLE`: Enable closed-loop position control. When
+enabled, the PID controller reads encoder feedback and applies
+corrections to the paired steppers to maintain commanded position.
+
+#### CLOSED_LOOP_DISABLE
+`CLOSED_LOOP_DISABLE`: Disable closed-loop position control. Stepper
+position corrections are no longer applied until the module is
+re-enabled.
+
+#### CLOSED_LOOP_STATUS
+`CLOSED_LOOP_STATUS`: Report the current closed-loop status. For each
+registered encoder the reported position, paired stepper position and
+position error are listed, along with the last applied PID error and
+correction values, the enabled/correction_active state and the PID
+gains.
+
+#### CLOSED_LOOP_CALIBRATE
+`CLOSED_LOOP_CALIBRATE AXIS=<encoder_name>`: Calibrate the zero offset
+of the given encoder to match the current commanded stepper position.
+The reported offset is stored in the module state (see the "zero_offset"
+status field in the [Status reference](Status_Reference.md#closed_loop)).
+The encoder name is the name used in its config section (eg, the
+`my_encoder` of `[encoder my_encoder]`).
+
 ### [delayed_gcode]
 
 The following command is enabled if a
@@ -344,6 +379,22 @@ been enabled (also see the
 delay duration for the identified [delayed_gcode] and starts the timer
 for gcode execution. A value of 0 will cancel a pending delayed gcode
 from executing.
+
+### [event_trigger]
+
+The following commands are available when an
+[event_trigger config section](Config_Reference.md#event_trigger) has
+been enabled.
+
+#### RUN_EVENT_TRIGGER
+`RUN_EVENT_TRIGGER [ID=<name>] [DELAY=<seconds>]`: Manually fire the
+identified [event_trigger].  An optional DELAY overrides the delay
+configured in the section.  This is useful for testing or for triggering
+an action from another macro or gcode command.
+
+#### CANCEL_EVENT_TRIGGER
+`CANCEL_EVENT_TRIGGER [ID=<name>]`: Cancel a pending (not yet fired)
+delayed trigger for the identified [event_trigger].
 
 ### [delta_calibrate]
 
@@ -465,6 +516,23 @@ endstop stepper phases during past homing operations. When a STEPPER
 parameter is provided it arranges for the given endstop phase setting
 to be written to the config file (in conjunction with the SAVE_CONFIG
 command).
+
+### [encoder]
+
+The following commands are available when an
+[encoder config section](Config_Reference.md#encoder) is enabled.
+
+#### ENCODER_POSITION
+`ENCODER_POSITION ENCODER=<name>`: Query the current position of the
+given encoder. The reported raw position, type and (when the encoder
+is paired with a stepper) position in millimeters are listed. The name
+is the name used in the encoder config section (eg, the `my_encoder`
+of `[encoder my_encoder]`).
+
+#### ENCODER_RAW_DATA
+`ENCODER_RAW_DATA ENCODER=<name>`: Query the raw sensor data of the
+given encoder. The raw position value (in decimal and hexadecimal), the
+sensor type and the error count are reported.
 
 ### [exclude_object]
 
@@ -924,6 +992,37 @@ be issued to move back to the previous XYZ position. If "MOVE_SPEED"
 is specified then the toolhead move will be performed with the given
 speed (in mm/s); otherwise the toolhead move will use the restored
 g-code speed.
+
+### [gcode_mcu_trace]
+
+The following commands are available when a
+[gcode_mcu_trace config section](Config_Reference.md#gcode_mcu_trace)
+is enabled.
+
+#### MCU_RECORD_START
+`MCU_RECORD_START [DURATION=<seconds>]`: Start recording MCU commands
+for later replay. The optional DURATION parameter stops the recording
+automatically after the given number of seconds. The recording captures
+the one-to-one mapping between gcode commands and the MCU commands they
+generate.
+
+#### MCU_RECORD_STOP
+`MCU_RECORD_STOP`: Stop recording MCU commands.
+
+#### MCU_REPLAY
+`MCU_REPLAY FILE=<filename> [SEND=0] [SPEED=<value>] [FILTER=<pattern>]`:
+Replay previously recorded MCU commands from a trace file. FILE is the
+path to a trace file produced by the trace system. When SEND=1 the
+recorded commands are sent to the MCU serial interface (this is not
+allowed while a print is active); when SEND=0 the commands are only
+listed read-only. SPEED sets the replay rate (1.0 is real-time; values
+greater than 1.0 speed the replay up, values less than 1.0 slow it
+down). FILTER is an optional regular expression matched against the MCU
+command name; only matching commands are replayed.
+
+#### MCU_TRACE_STATUS
+`MCU_TRACE_STATUS`: Report whether recording or replaying is currently
+active.
 
 ### [hall_filament_width_sensor]
 
@@ -1728,6 +1827,22 @@ not recommended:
 `QUERY_ENDSTOPS`: Probe the axis endstops and report if they are
 "triggered" or in an "open" state. This command is typically used to
 verify that an endstop is working correctly.
+
+### [query_pins]
+
+The following command is available when a
+[query_pins config section](Config_Reference.md#query_pins) is
+enabled.
+
+#### QUERY_PINS
+`QUERY_PINS [MCU=<name>] [PIN=<pin_name>]`: Report the MCU pin/bus
+configuration. When MCU is provided, the pin configuration of that MCU
+is reported, including the MCU type, available SPI/I2C bus
+enumerations, bus pin mappings, reserved pins, pin aliases, active
+pins (with their share type, config section, and invert/pullup flags)
+and any detected pin conflicts. When MCU is omitted, the list of all
+registered chips is reported. When PIN is provided, the usage of that
+pin across all MCUs is reported.
 
 ### [resonance_tester]
 

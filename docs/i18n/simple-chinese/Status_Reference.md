@@ -57,6 +57,16 @@
 - `filament_heat_capacity`：灯丝的当前比热容量（J/g/K）。
 - `filament_density`：灯丝的当前密度（g/mm³）。
 
+## closed_loop
+
+以下信息在[closed_loop](Config_Reference.md#closed_loop)对象中可用：
+- `enabled`：如果当前启用了闭环位置控制，则为True。
+- `correction_active`：如果当前正在对步进电机施加位置修正，则为True。
+- `<encoder name>`：每个已注册编码器的子对象，包含[encoder](Status_Reference.md#encoder)对象报告的字段（见下文）以及以下字段：
+  - `zero_offset`：应用于编码器位置的零偏移（毫米）（使用`CLOSED_LOOP_CALIBRATE`设置）。仅在标定后存在。
+  - `error`：该编码器最后的PID位置误差（毫米）。
+  - `correction`：应用于配对步进电机的最后PID位置修正（毫米）。
+
 ## display_status
 
 以下信息在`display_status`对象中可用（如果定义了[display](Config_Reference.md#display)配置部分，此对象自动可用）：
@@ -74,6 +84,15 @@
 - `last_home.<stepper name>.phase`：上一次归零尝试结束时步进电机的阶段。
 - `last_home.<stepper name>.phases`：步进电机上可用的总阶段数。
 - `last_home.<stepper name>.mcu_position`：上一次归零尝试结束时步进电机的位置（由微控制器跟踪）。该位置是向前方向中采取的总步数减去自微控制器最后一次重启以来反向采取的总步数。
+
+## encoder
+
+以下信息在[encoder some_name](Config_Reference.md#encoder)对象中可用：
+- `position`：最后的原始编码器位置。
+- `position_mm`：编码器位置（毫米）。仅当编码器通过`stepper`参数与步进电机配对时，此值才非零。
+- `encoder_type`：编码器传感器的类型（例如"as5047d"或"quadrature"）。
+- `cpr`：编码器每转的计数数。仅对正交传感器类型存在。
+- `temperature`：传感器的最后一次温度读数（摄氏度）。仅对SPI传感器类型存在，且仅在测量正在进行时（否则报告`None`）。
 
 ## exclude_object
 

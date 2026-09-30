@@ -24,11 +24,43 @@
 - [`BED_MESH_CHECK`](./G-Codes.md#bed_mesh_check) 根据指定条件验证当前床网格，允许在打印前检查最大偏差和相邻点之间的斜率。
 - [`[resonance_tester]`](./Config_Reference.md#resonance_tester) 现在通过新的 `accel_chips` 参数支持多个加速度计芯片，允许来自多个加速度计的数据组合以进行更准确的输入整形校准。
 
+## 固定设备标识（自定义 CAN UUID / USB 名称）
+
+以下选项在固件编译时通过 `make menuconfig` 配置。
+
+### 自定义 / 固定 CAN 总线 UUID
+
+默认情况下，CAN 总线 UUID 由微控制器的出厂芯片 id 派生而来（参见 [CANBUS](./CANBUS.md#finding-the-canbus_uuid-for-new-micro-controllers)）。Kalico 还允许你设置一个自己定义的固定 UUID：
+
+1. 运行 `make menuconfig` 并打开 **"CAN bus UUID"** 菜单。
+2. `CAN_UUID_USE_CHIPID`（默认启用）会对芯片 id 进行哈希来生成 UUID。取消勾选它，改为使用你自己定义的值。
+3. 在 `CAN_UUID_CUSTOM` 中填入任意字符串（例如 `myboard01`）。固件会对该字符串运行 `fasthash64` 以生成固定的 6 字节 UUID。相同的字符串总是映射到相同的 UUID，因此同一值可跨多块板卡复用。
+
+支持 stm32、atsamd、atsam、rp2040 和 lpc176x 微控制器。同时适用于直接 CAN 模式和 USB 转 CAN 桥接模式（在桥接模式下 UUID 仍由 `chipid_init` 生成）。
+
+### 固定 USB 设备名称
+
+使用 USB（USB 串口 / `USB-CDC`）模式时，可以固定 Linux 下的设备名称：
+
+1. 运行 `make menuconfig` 并打开 **"USB ids"** 菜单。
+2. `USB_MANUFACTURER` – 厂商名称（默认 `Klipper`）。
+3. `USB_PRODUCT` – 产品名称（默认为 MCU 型号）。
+4. `USB_SERIAL_NUMBER` – 固定序列号（默认 `12345`）。`USB_SERIAL_NUMBER_CHIPID` 会用芯片 id 替代该值。
+
+这些会以形如 `usb-<厂商>_<产品>_<序列号>-if00` 的稳定 `/dev/serial/by-id/` 路径出现在 Linux 中，可从 printer.cfg 引用（参见 [MCU 连接方式](./MCU_Connection_Methods.md)）。
+
+> 注意：在 **USB 转 CAN 桥接**模式下，USB 厂商/产品 id 固定为 gs_usb 的 `1d50:606f`，不可自定义（这是为了让内核 gs_usb 驱动绑定所需的）。在桥接模式下，节点通过其 CAN UUID 而非 USB 名称来识别。
+
 ## 新 Kalico 模块
 
 - [gcode_shell_command](./G-Code_Shell_Command.md) - 从 Kalico 中执行 Linux 命令和脚本
 - [dummy_thermistor](./Dummy_Thermistor.md) - 用于测试和冷挤出机的虚拟温度传感器
 - [冷挤出机](./Cold_Extruder.md) - 用于陶泥、混凝土和其他冷材料的无加热器挤出机支持
+- [`[closed_loop]`](./Config_Reference.md#closed_loop) - 使用 [encoder](./Config_Reference.md#encoder) 反馈的闭环位置控制
+- [`[encoder]`](./Config_Reference.md#encoder) - 位置编码器支持（SPI 绝对传感器和正交传感器），带 `ENCODER_POSITION` 和 `ENCODER_RAW_DATA` 命令
+- [`[gcode_mcu_trace]`](./Config_Reference.md#gcode_mcu_trace) - G-code 到 MCU 命令的追踪，带 `MCU_RECORD_START`、`MCU_RECORD_STOP`、`MCU_REPLAY` 和 `MCU_TRACE_STATUS` 命令
+- [`[bmi160]`](./Config_Reference.md#bmi160) - bmi160 加速度计支持（SPI 或 I2C）
+- [`[query_pins]`](./Config_Reference.md#query_pins) - 使用 `QUERY_PINS` 命令查询 MCU 引脚/总线配置的实用工具
 
 ## 无传感器归位
 

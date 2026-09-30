@@ -26,9 +26,20 @@ jobs:
         working-directory: docs/_kalico/
         run: uv python install
 
-      - name: Build MkDocs Pages
+      - name: Build MkDocs Pages (English)
         working-directory: docs/_kalico/
         run: uv run mkdocs build
+
+      - name: Build MkDocs Pages (Simplified Chinese)
+        working-directory: docs/_kalico/
+        run: uv run mkdocs build -f mkdocs.zh.yml
+
+      - name: Copy shared assets to Simplified Chinese site
+        working-directory: docs/_kalico/
+        run: |
+          cp -r ../img ../logo ../prints ../resources site/i18n/simple-chinese/ 2>/dev/null || true
+          mkdir -p site/i18n/simple-chinese/_kalico/css
+          cp ../_kalico/css/extra.css site/i18n/simple-chinese/_kalico/css/extra.css
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.4.3

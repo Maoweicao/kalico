@@ -64,6 +64,12 @@ serial:
 # See the "mcu" section for configuration parameters.
 ```
 
+### [canbus_stats]
+
+报告配置为使用 CAN 总线（通过其 `[mcu]` 段中的 `canbus_uuid` 参数）的微控制器的 CAN 总线连接状态。该对象会为每个此类微控制器自动创建，因此通常无需配置。也可以显式定义一个配置段，但它没有任何可配置参数。
+
+报告的状态（`rx_error`、`tx_error`、`tx_retries` 和 `bus_state`）可在[状态参考](Status_Reference.md#canbus_stats)中查看。
+
 ## ⚠️ 危险选项
 
 一组Kalico特有的系统选项
@@ -2524,6 +2530,40 @@ MPU-9250, MPU-9255, MPU-6515, MPU-6050 和 MPU-6500 加速度计支持（可以�
 [mpu9250 my_accelerometer]
 #i2c_address:
 #   Default is 104 (0x68). If AD0 is high, it would be 0x69 instead.
+#i2c_mcu:
+#i2c_bus:
+#i2c_software_scl_pin:
+#i2c_software_sda_pin:
+#i2c_speed: 400000
+#   See the "common I2C settings" section for a description of the
+#   above parameters. The default "i2c_speed" is 400000.
+#axes_map: x, y, z
+#   See the "adxl345" section for information on this parameter.
+```
+
+### [bmi160]
+
+bmi160 加速度计支持。与 [adxl345](G-Codes.md#adxl345) 一样，可以使用相同的 ACCELEROMETER_* 命令查询该传感器的加速度测量值（传入 `CHIP=bmi160` 以选择该传感器）。默认芯片名为"bmi160"，但可以指定一个显式名称（例如 `[bmi160 my_chip_name]`）。
+
+bmi160 可通过 SPI 或 I2C 连接。如果提供了 `cs_pin`，传感器以 SPI 模式配置，否则以 I2C 模式配置。加速度计以固定的 1600Hz 输出数据速率运行，测量范围为 +/-16g。
+
+```
+[bmi160]
+#cs_pin:
+#   The SPI enable pin for the sensor. If provided, the sensor is
+#   configured in SPI mode, otherwise I2C mode is used.
+#spi_speed: 1000000
+#   The SPI speed (in hz) to use when communicating with the chip.
+#   The default is 1000000.
+#spi_bus:
+#spi_software_sclk_pin:
+#spi_software_mosi_pin:
+#spi_software_miso_pin:
+#   See the "common SPI settings" section for a description of the
+#   above parameters.
+#i2c_address: 105
+#   The I2C address that the chip is using on the i2c bus. The default
+#   is 105 (0x69).
 #i2c_mcu:
 #i2c_bus:
 #i2c_software_scl_pin:
@@ -5426,6 +5466,42 @@ wiper:
 #   scale the 'wiper' parameter.
 ```
 
+### [dac084S085]
+
+静态配置的 DAC084S085 四通道 SPI DAC（可以定义任意数量的前缀为"dac084S085"的配置段）。每个通道可以设置为一个静态输出值，通常用于设置步进电机的电压参考或模拟输出电平。
+
+```
+[dac084S085 my_dac]
+enable_pin:
+#   The SPI enable pin for the DAC. This parameter must be provided.
+#spi_speed: 10000000
+#   The SPI speed (in hz) to use when communicating with the chip.
+#   The default is 10000000.
+#spi_bus:
+#spi_software_sclk_pin:
+#spi_software_mosi_pin:
+#spi_software_miso_pin:
+#   See the "common SPI settings" section for a description of the
+#   above parameters.
+#scale: 1.0
+#   This parameter can be used to alter how the 'channel_<A-D>'
+#   parameters are interpreted. If provided, the 'channel_<A-D>'
+#   parameters should be between 0.0 and 'scale'. This may be useful
+#   when the DAC is used to set stepper voltage references: 'scale' can
+#   be set to the equivalent stepper amperage if the DAC is at its
+#   highest output, and the 'channel_<A-D>' parameters can be specified
+#   using the desired amperage value for the stepper. The default is to
+#   not scale the 'channel_<A-D>' parameters.
+#channel_A:
+#channel_B:
+#channel_C:
+#channel_D:
+#   The value to statically set the given DAC channel to. This is
+#   typically set to a number between 0.0 and 1.0 with 1.0 being the
+#   highest output and 0.0 being the lowest output. However, the range
+#   may be changed with the 'scale' parameter (see above).
+```
+
 ## 显示屏支持
 
 ### [display]
@@ -6572,6 +6648,86 @@ host_mcu:
 #   (True sets CFG5 high, False sets it low). The default is True.
 ```
 
+## 闭环位置控制
+
+### [encoder]
+
+用于读取绝对角度（SPI）或增量正交测量的位置编码器支持。可以在运行时查询编码器位置，并且当通过 `stepper` 参数与步进电机配对时，为 [closed_loop] 模块提供编码器反馈。参见[命令参考](G-Codes.md#encoder)了解可用的命令，以及 [API Server](API_Server.md) 了解 `encoder/dump_encoder` 端点。
+
+支持的 SPI 绝对传感器类型为 "a1333"、"a1333lletr"、"as5047d"、"tle5012b"、"mt6816"、"mt6826s" 和 "mt6701"。支持的正交传感器类型为 "quadrature" 和 "heds9740"。
+
+```
+[encoder my_encoder]
+encoder_type:
+#   The type of the encoder sensor. Available choices are "a1333",
+#   "a1333lletr", "as5047d", "tle5012b", "mt6816", "mt6826s", "mt6701",
+#   "quadrature" and "heds9740". This parameter must be specified.
+#stepper:
+#   The name of the stepper that the encoder is attached to (eg,
+#   "stepper_x"). Setting this value enables the encoder to report a
+#   position in millimeters (using the stepper's rotation_distance) and
+#   registers the encoder with the [closed_loop] module. The default is
+#   to not associate the encoder with a stepper.
+#sample_period: 0.000400
+#   The query period (in seconds) to use during measurements. The
+#   default is 0.000400 (which is 2500 samples per second).
+#   The following parameters are used for SPI absolute sensor types:
+#cs_pin:
+#   The SPI enable pin for the sensor. This parameter must be provided.
+#spi_speed:
+#spi_bus:
+#spi_software_sclk_pin:
+#spi_software_mosi_pin:
+#spi_software_miso_pin:
+#   See the "common SPI settings" section for a description of the
+#   above parameters.
+#   The following parameters are used for quadrature sensor types:
+#channel_a_pin:
+#   The MCU gpio pin connected to the encoder channel A. This parameter
+#   must be provided for quadrature sensors.
+#channel_b_pin:
+#   The MCU gpio pin connected to the encoder channel B. This parameter
+#   must be provided for quadrature sensors.
+#cpr:
+#   The number of encoder counts per revolution (counts per rotation)
+#   of the quadrature encoder. This parameter must be provided for
+#   quadrature sensors.
+```
+
+### [closed_loop]
+
+使用编码器反馈的闭环位置控制。该模块读取已注册的 [encoder] 对象报告的位置，并对配对的步进电机施加 PID 修正，以保持命令位置。修正在命令位置的 `max_correction` 范围内通过调整步进电机位置来施加。
+
+该模块默认禁用，必须显式启用（通过 `enable: True` 或在运行时使用 `CLOSED_LOOP_ENABLE` 命令）。参见[命令参考](G-Codes.md#closed_loop)了解可用的命令。
+
+```
+[closed_loop]
+#enable: False
+#   Enable closed-loop control at startup. The default is False.
+#enable_correction: False
+#   Whether stepper position corrections should be applied. If False,
+#   the module only monitors and reports position error without
+#   correcting the steppers. The default is False.
+#pid_kp: 0.5
+#   The proportional gain of the closed-loop PID controller. The
+#   default is 0.5.
+#pid_ki: 0.0
+#   The integral gain of the closed-loop PID controller. The default is
+#   0.0.
+#pid_kd: 0.0
+#   The derivative gain of the closed-loop PID controller. The default
+#   is 0.0.
+#max_correction: 1.0
+#   The maximum stepper position correction (in mm) applied per update.
+#   The default is 1.0.
+#correction_interval: 0.050
+#   The interval (in seconds) between correction updates. The default is
+#   0.050.
+#error_threshold: 0.5
+#   The position error (in mm) above which an error is logged for the
+#   affected encoder. The default is 0.5.
+```
+
 ## 其他自定义模块
 
 ### [palette2]
@@ -6628,6 +6784,22 @@ cs_pin:
 #spi_software_miso_pin:
 #   See the "common SPI settings" section for a description of the
 #   above parameters.
+```
+
+### [gcode_mcu_trace]
+
+G-code 到 MCU 命令的追踪和记录模块。它提供 gcode 命令与其对应的 MCU 命令之间的一对一追踪，并支持记录与回放。该配置段没有任何可配置参数；启用该配置段即可激活 `MCU_RECORD_START`、`MCU_RECORD_STOP`、`MCU_REPLAY` 和 `MCU_TRACE_STATUS` 命令。详细信息参见[命令参考](G-Codes.md#gcode_mcu_trace)。
+
+```
+[gcode_mcu_trace]
+```
+
+### [query_pins]
+
+用于查询 MCU 引脚/总线配置并检测引脚冲突的实用工具。该配置段没有任何可配置参数；启用该配置段即可激活 `QUERY_PINS` 命令。详细信息参见[命令参考](G-Codes.md#query_pins)。
+
+```
+[query_pins]
 ```
 
 ### ⚠️ [tools_calibrate]

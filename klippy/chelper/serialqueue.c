@@ -13,7 +13,10 @@
 // background thread is launched to do this work and minimize latency.
 
 #ifndef __APPLE__
-#include <linux/can.h> // // struct can_frame
+#include <linux/can.h>    // struct can_frame
+#include <linux/canfd.h>  // struct canfd_frame
+#include <net/if.h>       // struct ifreq, SIOCGIFMTU
+#include <sys/socket.h>    // socket(), ioctl()
 #endif
 #include <math.h> // fabs
 #include <pthread.h> // pthread_mutex_lock
@@ -39,7 +42,7 @@ struct command_queue {
 struct serialqueue {
     // Input reading
     struct pollreactor *pr;
-    int serial_fd, serial_fd_type, client_id;
+    int serial_fd, serial_fd_type, client_id, is_fd_mode;
     int pipe_fds[2];
     uint8_t input_buf[4096];
     uint8_t need_sync;
@@ -51,7 +54,7 @@ struct serialqueue {
     int receive_waiting;
     // Baud / clock tracking
     int receive_window;
-    double bittime_adjust, idle_time;
+    double bittime_adjust, data_bittime_adjust, idle_time;
     struct clock_estimate ce;
     double last_receive_sent_time;
     // Retransmit support
@@ -139,18 +142,34 @@ kick_bg_thread(struct serialqueue *sq)
         report_errno("pipe write", ret);
 }
 
-// Minimum number of bits in a canbus message
+// Minimum number of bits in a canbus message (classic CAN, 8 bytes per frame)
 #define CANBUS_PACKET_BITS ((1 + 11 + 3 + 4) + (16 + 2 + 7 + 3))
+// CAN FD frame overhead bits: arbitration (same as classic) + data phase
+// Arbitration: SOF(1) + ID(11) + RTR(1) + IDE(1) + DLC(4) + CRC(15) + CRC_DEL(1) + ACK(1) + EOF(7) = 47 bits
+// Data phase: DATA(n*8) + CRC(n*8+17) + stuff + delimiter = varies
+// For simplicity, use classic formula for arbitration + data phase at data_rate
 #define CANBUS_IFS_BITS 4
+// CAN FD payload per frame (accounting for framing overhead)
+#define CANBUS_FD_PAYLOAD 64
 
 // Determine minimum time needed to transmit a given number of bytes
 static double
 calculate_bittime(struct serialqueue *sq, uint32_t bytes)
 {
     if (sq->serial_fd_type == SQT_CAN) {
-        uint32_t pkts = DIV_ROUND_UP(bytes, 8);
-        uint32_t bits = bytes * 8 + pkts * CANBUS_PACKET_BITS - CANBUS_IFS_BITS;
-        return sq->bittime_adjust * bits;
+        if (sq->is_fd_mode) {
+            // CAN FD: compute arbitration + data phase separately
+            uint32_t pkts = DIV_ROUND_UP(bytes, CANBUS_FD_PAYLOAD);
+            uint32_t arb_bits = pkts * ((1 + 11 + 3 + 4) + (16 + 2 + 7 + 3)) - CANBUS_IFS_BITS;
+            uint32_t data_bits = bytes * 8;
+            // bittime_adjust = 1/arb_rate, data_bittime_adjust = 1/data_rate
+            return sq->bittime_adjust * arb_bits + sq->data_bittime_adjust * data_bits;
+        } else {
+            // Classic CAN: single bitrate
+            uint32_t pkts = DIV_ROUND_UP(bytes, 8);
+            uint32_t bits = bytes * 8 + pkts * CANBUS_PACKET_BITS - CANBUS_IFS_BITS;
+            return sq->bittime_adjust * bits;
+        }
     } else {
         return sq->bittime_adjust * bytes;
     }
@@ -303,17 +322,32 @@ input_event(struct serialqueue *sq, double eventtime)
 {
     if (sq->serial_fd_type == SQT_CAN) {
 #ifndef __APPLE__
-        struct can_frame cf;
-        int ret = read(sq->serial_fd, &cf, sizeof(cf));
-        if (ret <= 0) {
-            report_errno("can read", ret);
-            pollreactor_do_exit(sq->pr);
-            return;
+        if (sq->is_fd_mode) {
+            struct canfd_frame cfd;
+            int ret = read(sq->serial_fd, &cfd, sizeof(cfd));
+            if (ret <= 0) {
+                report_errno("can read", ret);
+                pollreactor_do_exit(sq->pr);
+                return;
+            }
+            if (cfd.can_id != sq->client_id + 1)
+                return;
+            int dlc = cfd.len; // canfd_frame.len is already the byte count
+            memcpy(&sq->input_buf[sq->input_pos], cfd.data, dlc);
+            sq->input_pos += dlc;
+        } else {
+            struct can_frame cf;
+            int ret = read(sq->serial_fd, &cf, sizeof(cf));
+            if (ret <= 0) {
+                report_errno("can read", ret);
+                pollreactor_do_exit(sq->pr);
+                return;
+            }
+            if (cf.can_id != sq->client_id + 1)
+                return;
+            memcpy(&sq->input_buf[sq->input_pos], cf.data, cf.can_dlc);
+            sq->input_pos += cf.can_dlc;
         }
-        if (cf.can_id != sq->client_id + 1)
-            return;
-        memcpy(&sq->input_buf[sq->input_pos], cf.data, cf.can_dlc);
-        sq->input_pos += cf.can_dlc;
 #else
         exit(1);
 #endif
@@ -373,28 +407,56 @@ do_write(struct serialqueue *sq, void *buf, int buflen)
         return;
     }
 #ifndef __APPLE__
-    // Write to CAN fd
-    struct can_frame cf;
-    while (buflen) {
-        int size = buflen > 8 ? 8 : buflen;
-        cf.can_id = sq->client_id;
-        cf.can_dlc = size;
-        memcpy(cf.data, buf, size);
-        int ret = write(sq->serial_fd, &cf, sizeof(cf));
-        if (ret < 0) {
-            report_errno("can write", ret);
-            double curtime = get_monotonic();
-            if (!sq->last_write_fail_time) {
-                sq->last_write_fail_time = curtime;
-            } else if (curtime > sq->last_write_fail_time + 10.0) {
-                errorf("Halting reads due to CAN write errors.");
-                pollreactor_do_exit(sq->pr);
+    if (sq->is_fd_mode) {
+        // CAN FD mode: up to 64 bytes per frame
+        struct canfd_frame cfd;
+        while (buflen) {
+            int size = buflen > CANBUS_FD_PAYLOAD ? CANBUS_FD_PAYLOAD : buflen;
+            cfd.can_id = sq->client_id;
+            cfd.len = size;
+            memset(cfd.data, 0, sizeof(cfd.data)); // zero pad
+            memcpy(cfd.data, buf, size);
+            int ret = write(sq->serial_fd, &cfd, sizeof(cfd));
+            if (ret < 0) {
+                report_errno("canfd write", ret);
+                double curtime = get_monotonic();
+                if (!sq->last_write_fail_time) {
+                    sq->last_write_fail_time = curtime;
+                } else if (curtime > sq->last_write_fail_time + 10.0) {
+                    errorf("Halting reads due to CAN write errors.");
+                    pollreactor_do_exit(sq->pr);
+                }
+                return;
             }
-            return;
+            sq->last_write_fail_time = 0.0;
+            buf += size;
+            buflen -= size;
         }
-        sq->last_write_fail_time = 0.0;
-        buf += size;
-        buflen -= size;
+    } else {
+        // Classic CAN mode: 8 bytes per frame
+        struct can_frame cf;
+        while (buflen) {
+            int size = buflen > 8 ? 8 : buflen;
+            cf.can_id = sq->client_id;
+            cf.can_dlc = size;
+            memset(cf.data, 0, sizeof(cf.data));
+            memcpy(cf.data, buf, size);
+            int ret = write(sq->serial_fd, &cf, sizeof(cf));
+            if (ret < 0) {
+                report_errno("can write", ret);
+                double curtime = get_monotonic();
+                if (!sq->last_write_fail_time) {
+                    sq->last_write_fail_time = curtime;
+                } else if (curtime > sq->last_write_fail_time + 10.0) {
+                    errorf("Halting reads due to CAN write errors.");
+                    pollreactor_do_exit(sq->pr);
+                }
+                return;
+            }
+            sq->last_write_fail_time = 0.0;
+            buf += size;
+            buflen -= size;
+        }
     }
 #else
     exit(1);
@@ -633,13 +695,15 @@ background_thread(void *data)
 
 // Create a new 'struct serialqueue' object
 struct serialqueue * __visible
-serialqueue_alloc(int serial_fd, char serial_fd_type, int client_id)
+serialqueue_alloc(int serial_fd, char serial_fd_type, int client_id
+                  , char *iface_name)
 {
     struct serialqueue *sq = malloc(sizeof(*sq));
     memset(sq, 0, sizeof(*sq));
     sq->serial_fd = serial_fd;
     sq->serial_fd_type = serial_fd_type;
     sq->client_id = client_id;
+    sq->data_bittime_adjust = 0.; // default: same as arbitration if not set
 
     int ret = pipe(sq->pipe_fds);
     if (ret)
@@ -655,6 +719,19 @@ serialqueue_alloc(int serial_fd, char serial_fd_type, int client_id)
     fd_set_non_blocking(serial_fd);
     fd_set_non_blocking(sq->pipe_fds[0]);
     fd_set_non_blocking(sq->pipe_fds[1]);
+
+    // Detect CAN FD mode by checking socket interface MTU
+    sq->is_fd_mode = 0;
+#ifndef __APPLE__
+    if (serial_fd_type == SQT_CAN && iface_name != NULL) {
+        struct ifreq ifr;
+        memset(&ifr, 0, sizeof(ifr));
+        strncpy(ifr.ifr_name, iface_name, IFNAMSIZ - 1);
+        if (ioctl(serial_fd, SIOCGIFMTU, &ifr) >= 0) {
+            sq->is_fd_mode = (ifr.ifr_mtu >= 72);
+        }
+    }
+#endif
 
     // Retransmit setup
     sq->send_seq = 1;
@@ -892,9 +969,22 @@ serialqueue_set_wire_frequency(struct serialqueue *sq, double frequency)
     pthread_mutex_lock(&sq->lock);
     if (sq->serial_fd_type == SQT_CAN) {
         sq->bittime_adjust = 1. / frequency;
+        // Default data phase to same rate; serialqueue_set_wire_data_frequency
+        // will override this if the firmware reports a separate data frequency.
+        sq->data_bittime_adjust = sq->bittime_adjust;
     } else {
         // An 8N1 serial line is 10 bits per byte (1 start, 8 data, 1 stop)
         sq->bittime_adjust = 10. / frequency;
+    }
+    pthread_mutex_unlock(&sq->lock);
+}
+
+void __visible
+serialqueue_set_wire_data_frequency(struct serialqueue *sq, double frequency)
+{
+    pthread_mutex_lock(&sq->lock);
+    if (sq->serial_fd_type == SQT_CAN) {
+        sq->data_bittime_adjust = 1. / frequency;
     }
     pthread_mutex_unlock(&sq->lock);
 }

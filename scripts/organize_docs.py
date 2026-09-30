@@ -17,7 +17,7 @@ NAV_FILES = {
     "index.md", "Overview.md", "Features.md", "FAQ.md", "Config_Changes.md",
     "Config_Reference.md", "Kalico_Additions.md", "Bleeding_Edge.md",
     "Config_Reference_Bleeding_Edge.md", "Nonlinear_Pressure_Advance.md",
-    "PID.md", "MPC.md", "Dockable_Probe.md", "INDX.md",
+    "PID.md", "MPC.md", "Dockable_Probe.md", "INDX.md", "Handwheel.md",
     "G-Codes.md", "Command_Templates.md", "G-Code_Shell_Command.md", "Status_Reference.md",
     "Migrating_from_Klipper.md", "Installation.md", "OctoPrint.md", "TMC_Drivers.md",
     "Config_checks.md", "Rotation_Distance.md", "Multi_MCU_Homing.md",
@@ -33,6 +33,8 @@ NAV_FILES = {
     "Beaglebone.md", "Bootloaders.md", "Bootloader_Entry.md",
     "CANBUS.md", "CANBUS_Troubleshooting.md",
     "TSL1401CL_Filament_Width_Sensor.md", "Hall_Filament_Width_Sensor.md", "Load_Cell.md",
+    "safety-monitoring.md", "servo-safety.md", "RT_Performance_Optimization.md",
+    "MCU_Connection_Methods.md",
     "Telemetry.md", "Contact.md", "Sponsors.md",
 }
 
@@ -142,12 +144,13 @@ def generate_sitemap(docs_root):
     <changefreq>monthly</changefreq>
   </url>""")
 
-    # Chinese translations
+    # Chinese translations (including subdirectories such as ai/ and fly_features/)
     i18n_dir = docs_root / I18N_DIR
     if i18n_dir.exists():
-        for md_file in sorted(i18n_dir.glob("*.md")):
+        for md_file in sorted(i18n_dir.rglob("*.md")):
+            rel = md_file.relative_to(docs_root).as_posix()
             urls.append(f"""  <url>
-    <loc>{SITE_URL}/{I18N_DIR}/{md_file.name}</loc>
+    <loc>{SITE_URL}/{rel}</loc>
     <lastmod>{today}</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>

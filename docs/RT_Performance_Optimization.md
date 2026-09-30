@@ -142,12 +142,38 @@ CONFIG_NO_HZ_FULL=y
 | Mutex priority inversion | possible | possible | reduced | eliminated |
 | MCU buffer underrun risk | moderate | low | very low | near zero |
 
+## Runtime CPU affinity and GPU acceleration (`[hardware]`)
+
+The kernel-level configuration above is the recommended way to isolate Klipper's
+real-time pipeline. In addition, Kalico provides the [`[hardware]`](./Config_Reference.md#hardware)
+module for runtime control over where the host's *offline* Python computations
+run.
+
+- `cpu_affinity_background` pins the background calibration worker processes
+  (input-shaper calibration, coordinate descent, delta/z-tilt calibration) to
+  specific CPU cores. This keeps the heavy offline math off the cores used by
+  the real-time motion pipeline. It is applied from inside each forked worker,
+  so it does not touch the real-time C pipeline.
+- `cpu_affinity_main` optionally pins the Kalico main process itself.
+- `gpu_backend` and `gpu_accelerate_calibration` enable GPU acceleration of the
+  shaper calibration frequency-response (Welch PSD) FFT when a GPU is detected
+  (CUDA via `cupy`, or OpenCL via `pyopencl`). Both are optional installs; when
+  absent, Kalico transparently falls back to the CPU `numpy` backend.
+
+These options are complements to the PREEMPT_RT / isolcpus configuration above:
+the kernel setup protects the real-time serial thread, while `[hardware]` steers
+the offline calibration work onto other cores (and optionally a GPU).
+
 ## Compatibility
 
 - **Linux (Raspberry Pi OS, Armbian, etc.):** Full epoll/timerfd + RT support.
 - **macOS / BSD:** Falls back to the original `poll()` implementation.
   SCHED_FIFO and PI mutex are no-ops.
 - **Windows:** Not supported as a Klipper host.
+
+The `[hardware]` CPU-affinity options require `os.sched_setaffinity` (Linux). On
+non-Linux hosts they are ignored with a warning. GPU acceleration is always
+optional and fails safe to numpy when the required library or GPU is absent.
 
 ## Code Changes Summary
 

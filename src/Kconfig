@@ -354,9 +354,111 @@ config CANSERIAL
 config CANBUS
     bool
     default y if CANSERIAL || USBCANBUS
+
+# CAN FD mode (requires FDCAN hardware)
+choice CANBUS_FD_CHOICE
+    prompt "Enable CAN FD mode" if LOW_LEVEL_OPTIONS && CANBUS
+    default CANBUS_FD_DISABLED
+    help
+        Enable CAN FD (Flexible Data-Rate) mode. This allows higher
+        throughput (up to 64 bytes per frame vs 8) and faster data
+        segment bitrates (up to 8Mbit/s). Requires FDCAN hardware
+        (STM32 G4/H7/G0, SAME5x, SAME70, etc.) and a CAN FD
+        capable transceiver. RP2040, STM32F1/F4 and older MCUs
+        do not support CAN FD.
+
+    config CANBUS_FD_DISABLED
+        bool "Disabled (Classic CAN only)"
+    config CANBUS_FD_ENABLED
+        bool "Enabled (CAN FD)"
+endchoice
+
+config CANBUS_FD
+    bool
+    default y if CANBUS_FD_ENABLED
+    default n if CANBUS_FD_DISABLED
+
+# CAN bus arbitration segment speed
+choice CANBUS_FREQUENCY_CHOICE
+    prompt "CAN bus speed (arbitration bitrate)" if LOW_LEVEL_OPTIONS && CANBUS
+    default CANBUS_FREQ_1M
+
+    config CANBUS_FREQ_125K
+        bool "125000 (125K)"
+    config CANBUS_FREQ_250K
+        bool "250000 (250K)"
+    config CANBUS_FREQ_500K
+        bool "500000 (500K)"
+    config CANBUS_FREQ_1M
+        bool "1000000 (1M)"
+
+    # FDCAN hardware can also do these higher arbitration speeds
+    config CANBUS_FREQ_2M if CANBUS_FD
+        bool "2000000 (2M)"
+    config CANBUS_FREQ_5M if CANBUS_FD
+        bool "5000000 (5M)"
+    config CANBUS_FREQ_8M if CANBUS_FD
+        bool "8000000 (8M)"
+
+    config CANBUS_FREQ_CUSTOM
+        bool "Custom"
+endchoice
+
+config CANBUS_FREQUENCY_CUSTOM
+    int "Custom CAN bus speed (arbitration)"
+    default 1000000 if CANBUS_FREQ_CUSTOM
+    help
+        Specify a custom arbitration bitrate in Hz.
+        Common values: 125000, 250000, 500000, 1000000.
+
 config CANBUS_FREQUENCY
-    int "CAN bus speed" if LOW_LEVEL_OPTIONS && CANBUS
-    default 1000000
+    int
+    default 125000 if CANBUS_FREQ_125K
+    default 250000 if CANBUS_FREQ_250K
+    default 500000 if CANBUS_FREQ_500K
+    default 1000000 if CANBUS_FREQ_1M
+    default 2000000 if CANBUS_FREQ_2M
+    default 5000000 if CANBUS_FREQ_5M
+    default 8000000 if CANBUS_FREQ_8M
+    default 1000000 if CANBUS_FREQ_CUSTOM
+
+# CAN FD data segment speed (only when CAN FD is enabled)
+choice CANBUS_DATA_FREQUENCY_CHOICE
+    prompt "CAN FD data segment bitrate" if LOW_LEVEL_OPTIONS && CANBUS && CANBUS_FD
+    default CANBUS_DATA_FREQ_5M
+    help
+        CAN FD data segment bitrate. This is the high-speed portion
+        of each CAN FD frame. Typically set to 4x-8x the arbitration
+        rate for best throughput (e.g. 1M arbitration / 5M data).
+        Must be >= arbitration bitrate. Requires a CAN FD capable
+        transceiver and properly configured Linux socketcan interface
+        (ip link set can0 type can ... dbitrate X fd on).
+
+    config CANBUS_DATA_FREQ_1M
+        bool "1000000 (1M)"
+    config CANBUS_DATA_FREQ_2M
+        bool "2000000 (2M)"
+    config CANBUS_DATA_FREQ_5M
+        bool "5000000 (5M)"
+    config CANBUS_DATA_FREQ_8M
+        bool "8000000 (8M)"
+    config CANBUS_DATA_FREQ_CUSTOM
+        bool "Custom"
+endchoice
+
+config CANBUS_DATA_FREQUENCY_CUSTOM
+    int "Custom CAN FD data segment bitrate"
+    default 5000000 if CANBUS_DATA_FREQ_CUSTOM
+    depends on CANBUS_FD
+
+config CANBUS_DATA_FREQUENCY
+    int
+    default 1000000 if CANBUS_DATA_FREQ_1M
+    default 2000000 if CANBUS_DATA_FREQ_2M
+    default 5000000 if CANBUS_DATA_FREQ_5M
+    default 8000000 if CANBUS_DATA_FREQ_8M
+    default 5000000 if CANBUS_DATA_FREQ_CUSTOM
+
 config CANBUS_FILTER
     bool
     default y if CANSERIAL

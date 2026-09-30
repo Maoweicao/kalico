@@ -99,6 +99,24 @@ The following information is available in the `extruder.control_stats` object
 - `filament_heat_capacity`: The current specific heat capacity of filament in J/g/K.
 - `filament_density`: The current filament density in g/mm^3.
 
+## closed_loop
+
+The following information is available in the
+[closed_loop](Config_Reference.md#closed_loop) object:
+- `enabled`: True if closed-loop position control is currently enabled.
+- `correction_active`: True if stepper position corrections are
+  currently being applied.
+- `<encoder name>`: A sub-object for each registered encoder containing
+  the fields reported by the
+  [encoder](Status_Reference.md#encoder) object (see below) along with
+  the following fields:
+  - `zero_offset`: The zero offset (in mm) applied to the encoder
+    position (set with `CLOSED_LOOP_CALIBRATE`). Only present after
+    calibration.
+  - `error`: The last PID position error (in mm) for the encoder.
+  - `correction`: The last PID position correction (in mm) applied to
+    the paired stepper.
+
 ## display_status
 
 The following information is available in the `display_status` object
@@ -131,6 +149,22 @@ The following information is available in the
   home attempt. The position is the total number of steps taken in a
   forward direction minus the total number of steps taken in the
   reverse direction since the micro-controller was last restarted.
+
+## encoder
+
+The following information is available in
+[encoder some_name](Config_Reference.md#encoder) objects:
+- `position`: The last raw encoder position.
+- `position_mm`: The encoder position (in mm). This is only non-zero
+  if the encoder is paired with a stepper (via the `stepper`
+  parameter).
+- `encoder_type`: The type of the encoder sensor (eg, "as5047d" or
+  "quadrature").
+- `cpr`: The number of encoder counts per revolution. Only present for
+  quadrature sensor types.
+- `temperature`: The last temperature reading (in Celsius) from the
+  sensor. Only present for SPI sensor types and only while measurements
+  are in progress (otherwise it reports `None`).
 
 ## exclude_object
 

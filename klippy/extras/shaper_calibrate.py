@@ -90,6 +90,14 @@ class ShaperCalibrate:
                 "installed via `~/klippy-env/bin/pip install` (refer to "
                 "docs/Measuring_Resonances.md for more details)."
             )
+        # Attach the active [hardware] compute backend (GPU acceleration).
+        # Falls back to None (pure numpy) when hardware has not been loaded.
+        try:
+            from .hardware import get_hardware
+
+            self.backend = get_hardware().get_backend()
+        except Exception:
+            self.backend = None
 
     def background_process_exec(self, method, args):
         if self.printer is None:
@@ -100,6 +108,13 @@ class ShaperCalibrate:
 
         def wrapper():
             queuelogger.clear_bg_logging()
+            # Pin this worker onto the configured background CPU core(s).
+            try:
+                from .hardware import get_hardware
+
+                get_hardware().apply_process_affinity()
+            except Exception:
+                pass
             try:
                 res = method(*args)
             except:
@@ -145,6 +160,21 @@ class ShaperCalibrate:
         # Calculate power spectral density (PSD) using Welch's algorithm
         np = self.numpy
         window = np.kaiser(nfft, 6.0)
+
+        # When a GPU backend is active, try the accelerated Welch PSD first.
+        backend = getattr(self, "backend", None)
+        if backend is not None and backend.gpu:
+            import numpy as _np
+
+            res = backend.accelerated_welch_psd(
+                _np.asarray(x, dtype=_np.float64),
+                window,
+                nfft,
+                fs,
+            )
+            if res is not None:
+                return res
+
         # Compensation for windowing loss
         scale = 1.0 / (window**2).sum()
 

@@ -6,6 +6,8 @@
 //
 // This file may be distributed under the terms of the GNU GPLv3 license.
 
+#include <string.h> // memcpy
+#include "autoconf.h" // CONFIG_CANBUS_FD, CONFIG_CANBUS_DATA_FREQUENCY
 #include "board/irq.h" // irq_save
 #include "command.h" // DECL_CONSTANT_STR
 #include "generic/armcm_boot.h" // armcm_enable_irq
@@ -98,6 +100,8 @@ struct fdcan_fifo {
 
 #define FDCAN_XTD (1<<30)
 #define FDCAN_RTR (1<<29)
+#define FDCAN_FDF (1<<22)  // FDCAN FD format indicator bit (tx element)
+#define FDCAN_BRS (1<<21)  // Bit Rate Switch bit
 
 struct fdcan_msg_ram {
     uint32_t FLS[28]; // Filter list standard
@@ -137,10 +141,16 @@ canhw_send(struct canbus_msg *msg)
     else
         ids = (msg->id & 0x7ff) << 18;
     ids |= msg->id & CANMSG_ID_RTR ? FDCAN_RTR : 0;
+#if CONFIG_CANBUS_FD
+    // Set FDF bit for CAN FD frames
+    ids |= FDCAN_FDF;
+    // Set BRS bit if data rate differs from arbitration rate
+    ids |= FDCAN_BRS;
+#endif
     txfifo->id_section = ids;
     txfifo->dlc_section = (msg->dlc & 0x0f) << 16;
-    txfifo->data[0] = msg->data32[0];
-    txfifo->data[1] = msg->data32[1];
+    // Copy full 64 bytes of data
+    memcpy(txfifo->data, msg->data, sizeof(txfifo->data));
     barrier();
     SOC_CAN->TXBAR = ((uint32_t)1 << w_index);
     return CANMSG_DATA_LEN(msg);
@@ -243,8 +253,8 @@ CAN_IRQHandler(void)
                 msg.id = (ids >> 18) & 0x7ff;
             msg.id |= ids & FDCAN_RTR ? CANMSG_ID_RTR : 0;
             msg.dlc = (rxf0->dlc_section >> 16) & 0x0f;
-            msg.data32[0] = rxf0->data[0];
-            msg.data32[1] = rxf0->data[1];
+            // Read full 64 bytes of data
+            memcpy(msg.data, rxf0->data, sizeof(msg.data));
             barrier();
             SOC_CAN->RXF0A = idx;
 
@@ -272,10 +282,10 @@ CAN_IRQHandler(void)
 }
 
 static inline const uint32_t
-make_btr(uint32_t sjw,       // Sync jump width, ... hmm
-         uint32_t time_seg1, // time segment before sample point, 1 .. 16
-         uint32_t time_seg2, // time segment after sample point, 1 .. 8
-         uint32_t brp)       // Baud rate prescaler, 1 .. 1024
+make_btr(uint32_t sjw,       // Sync jump width
+         uint32_t time_seg1, // time segment before sample point
+         uint32_t time_seg2, // time segment after sample point
+         uint32_t brp)       // Baud rate prescaler
 {
     return (((uint32_t)(sjw-1)) << FDCAN_NBTP_NSJW_Pos
             | ((uint32_t)(time_seg1-1)) << FDCAN_NBTP_NTSEG1_Pos
@@ -283,29 +293,16 @@ make_btr(uint32_t sjw,       // Sync jump width, ... hmm
             | ((uint32_t)(brp - 1)) << FDCAN_NBTP_NBRP_Pos);
 }
 
+// Nominal bit timing (arbitration segment) - same for classic CAN and FD
 static inline const uint32_t
 compute_btr(uint32_t pclock, uint32_t bitrate)
 {
-    /*
-        Some equations:
-        Tpclock = 1 / pclock
-        Tq      = brp * Tpclock
-        Tbs1    = Tq * TS1
-        Tbs2    = Tq * TS2
-        NominalBitTime = Tq + Tbs1 + Tbs2
-        BaudRate = 1/NominalBitTime
-        Bit value sample point is after Tq+Tbs1. Ideal sample point
-        is at 87.5% of NominalBitTime
-        Use the lowest brp where ts1 and ts2 are in valid range
-     */
-
     uint32_t bit_clocks = pclock / bitrate; // clock ticks per bit
 
     uint32_t sjw = 2;
     uint32_t qs;
     // Find number of time quantas that gives us the exact wanted bit time
     for (qs = 18; qs > 9; qs--) {
-        // check that bit_clocks / quantas is an integer
         uint32_t brp_rem = bit_clocks % qs;
         if (brp_rem == 0)
             break;
@@ -315,6 +312,36 @@ compute_btr(uint32_t pclock, uint32_t bitrate)
     uint32_t time_seg1 = qs - (1 + time_seg2);
 
     return make_btr(sjw, time_seg1, time_seg2, brp);
+}
+
+// Data phase bit timing (CAN FD data segment)
+static inline const uint32_t
+compute_dbtr(uint32_t pclock, uint32_t bitrate)
+{
+    uint32_t bit_clocks = pclock / bitrate;
+
+    uint32_t sjw = 2;
+    uint32_t qs;
+    // For data phase, use fewer time quantas (faster response)
+    for (qs = 12; qs > 4; qs--) {
+        uint32_t brp_rem = bit_clocks % qs;
+        if (brp_rem == 0)
+            break;
+    }
+    uint32_t brp = bit_clocks / qs;
+    uint32_t time_seg2 = qs / 4; // sample at ~75%
+    uint32_t time_seg1 = qs - (1 + time_seg2);
+
+    // Clamp to valid register field ranges
+    if (sjw > 15) sjw = 15;
+    if (time_seg1 > 31) time_seg1 = 31;
+    if (time_seg2 > 15) time_seg2 = 15;
+    if (brp > 31) brp = 31;
+
+    return (((uint32_t)(sjw-1)) << 0   // DSJW
+            | ((uint32_t)(time_seg2-1)) << 4  // DTSEG2
+            | ((uint32_t)(time_seg1-1)) << 8  // DTSEG1
+            | ((uint32_t)(brp - 1)) << 16);  // DBRP
 }
 
 void
@@ -348,6 +375,13 @@ can_init(void)
     SOC_CAN->CCCR |= FDCAN_CCCR_PXHD;
 
     SOC_CAN->NBTP = btr;
+
+    // Configure CAN FD data phase bit timing
+#if CONFIG_CANBUS_FD
+    SOC_CAN->CCCR |= FDCAN_CCCR_FDOE;
+    uint32_t dbtr = compute_dbtr(pclock, CONFIG_CANBUS_DATA_FREQUENCY);
+    SOC_CAN->DBTP = dbtr;
+#endif
 
 #if CONFIG_MACH_STM32H7
     /* Setup message RAM addresses */

@@ -47,7 +47,7 @@ Kalico使用"扩展"G代码命令进行一般配置和状态。这些扩展命�
 
 ### [adxl345]
 
-启用[adxl345配置部分](Config_Reference.md#adxl345)时，以下命令可用。
+启用[adxl345配置部分](Config_Reference.md#adxl345)时，以下命令可用。这些命令也可以与[bmi160配置部分](Config_Reference.md#bmi160)一起使用，方法是传入`CHIP=bmi160`（或bmi160芯片的显式名称）。
 
 #### ACCELEROMETER_MEASURE
 `ACCELEROMETER_MEASURE [CHIP=<config_name>] [NAME=<value>]`：以请求的每秒样本数启动加速度计测量。如果未指定CHIP，则默认为"adxl345"。该命令以开始-停止模式工作：首次执行时，它启动测量；下一次执行停止测量。测量结果写入名为`/tmp/adxl345-<chip>-<name>.csv`的文件，其中`<chip>`是加速度计芯片的名称(来自`[adxl345 my_chip_name]`的`my_chip_name`)，`<name>`是可选的NAME参数。如果未指定NAME，则默认为"YYYYMMDD_HHMMSS"格式的当前时间。如果加速度计在其配置部分中没有名称(只是`[adxl345]`)，则不生成名称的`<chip>`部分。
@@ -98,6 +98,55 @@ Kalico使用"扩展"G代码命令进行一般配置和状态。这些扩展命�
 
 #### BED_MESH_CALIBRATE
 `BED_MESH_CALIBRATE [PROFILE=<name>] [METHOD=manual] [HORIZONTAL_MOVE_Z=<value>] [<probe_parameter>=<value>] [<mesh_parameter>=<value>] [ADAPTIVE=1] [ADAPTIVE_MARGIN=<value>]`：此命令使用配置中的参数指定的生成点来探测床。探测后，生成网格，并根据网格调整z运动。网格将被保存到`PROFILE`参数指定的配置文件中，或者如果未指定则保存到`default`。有关可选探针参数的详细信息，请参见PROBE命令。如果指定METHOD=manual，则激活手动探针工具——有关此工具处于活动状态时可用的其他命令的详细信息，请参见上面的MANUAL_PROBE命令。可选的`HORIZONTAL_MOVE_Z`值覆盖配置文件中指定的`horizontal_move_z`选项。如果指定ADAPTIVE=1，则将使用由正在打印的G代码文件定义的对象来定义探针区域。可选的`ADAPTIVE_MARGIN`值覆盖配置文件中指定的`adaptive_margin`选项。
+
+### [closed_loop]
+
+启用[closed_loop配置部分](Config_Reference.md#closed_loop)并且至少有一个[encoder](Config_Reference.md#encoder)与步进电机配对时，以下命令可用。
+
+#### CLOSED_LOOP_ENABLE
+`CLOSED_LOOP_ENABLE`：启用闭环位置控制。启用后，PID控制器读取编码器反馈，并对配对的步进电机施加修正，以保持命令位置。
+
+#### CLOSED_LOOP_DISABLE
+`CLOSED_LOOP_DISABLE`：禁用闭环位置控制。在模块重新启用之前，不再对步进电机施加位置修正。
+
+#### CLOSED_LOOP_STATUS
+`CLOSED_LOOP_STATUS`：报告当前闭环状态。对于每个已注册的编码器，列出报告的位置、配对的步进电机位置和位置误差，以及最近应用的PID误差和修正值、enabled/correction_active状态和PID增益。
+
+#### CLOSED_LOOP_CALIBRATE
+`CLOSED_LOOP_CALIBRATE AXIS=<encoder_name>`：将给定编码器的零偏移标定为与当前命令的步进电机位置匹配。报告的偏移存储在模块状态中（参见[状态参考](Status_Reference.md#closed_loop)中的"zero_offset"状态字段）。编码器名称是其配置部分中使用的名称（例如，`[encoder my_encoder]`中的`my_encoder`）。
+
+### [encoder]
+
+启用[encoder配置部分](Config_Reference.md#encoder)时，以下命令可用。
+
+#### ENCODER_POSITION
+`ENCODER_POSITION ENCODER=<name>`：查询给定编码器的当前位置。列出报告的原始位置、类型，以及（当编码器与步进电机配对时）以毫米为单位的位置。名称是编码器配置部分中使用的名称（例如，`[encoder my_encoder]`中的`my_encoder`）。
+
+#### ENCODER_RAW_DATA
+`ENCODER_RAW_DATA ENCODER=<name>`：查询给定编码器的原始传感器数据。报告原始位置值（十进制和十六进制）、传感器类型和错误计数。
+
+### [gcode_mcu_trace]
+
+启用[gcode_mcu_trace配置部分](Config_Reference.md#gcode_mcu_trace)时，以下命令可用。
+
+#### MCU_RECORD_START
+`MCU_RECORD_START [DURATION=<seconds>]`：开始记录MCU命令以供稍后回放。可选的DURATION参数在给定的秒数后自动停止记录。记录捕获gcode命令与其生成的MCU命令之间的一对一映射。
+
+#### MCU_RECORD_STOP
+`MCU_RECORD_STOP`：停止记录MCU命令。
+
+#### MCU_REPLAY
+`MCU_REPLAY FILE=<filename> [SEND=0] [SPEED=<value>] [FILTER=<pattern>]`：从跟踪文件回放之前记录的MCU命令。FILE是跟踪系统生成的跟踪文件的路径。当SEND=1时，将记录的命令发送到MCU串行接口（打印处于活动状态时不允许）；当SEND=0时，仅以只读方式列出命令。SPEED设置回放速率（1.0为实时；大于1.0的值加快回放，小于1.0的值减慢回放）。FILTER是针对MCU命令名称的可选正则表达式；只回放匹配的命令。
+
+#### MCU_TRACE_STATUS
+`MCU_TRACE_STATUS`：报告当前是否正在进行记录或回放。
+
+### [query_pins]
+
+启用[query_pins配置部分](Config_Reference.md#query_pins)时，以下命令可用。
+
+#### QUERY_PINS
+`QUERY_PINS [MCU=<name>] [PIN=<pin_name>]`：报告MCU引脚/总线配置。当提供MCU时，报告该MCU的引脚配置，包括MCU类型、可用的SPI/I2C总线枚举、总线引脚映射、保留引脚、引脚别名、活动引脚（含共享类型、配置部分、反相/上拉标志）以及检测到的任何引脚冲突。当省略MCU时，报告所有已注册芯片的列表。当提供PIN时，报告该引脚在所有MCU中的使用情况。
 
 ### ⚠️ [hc595]
 
