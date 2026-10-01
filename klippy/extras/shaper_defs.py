@@ -5,8 +5,9 @@
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import collections
 import math
-import mathutil
 import re
+
+from klippy import mathutil
 
 SHAPER_VIBRATION_REDUCTION = 20.0
 DEFAULT_DAMPING_RATIO = 0.1

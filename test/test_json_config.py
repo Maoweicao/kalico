@@ -2,7 +2,7 @@ import pathlib
 import typing
 
 import pytest
-from klippy_testing import PrinterShim
+from klippy_testing import PrinterShim, Restart
 
 
 def test_json_config_loading(

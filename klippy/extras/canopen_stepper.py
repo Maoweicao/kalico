@@ -8,9 +8,9 @@ import os
 
 from klippy import stepper
 
-from . import cia402, eds_parser
-from .canopen_backend import CANopenBackend
-from .canopen_master import CANopenMaster
+from .canopen import cia402, eds_parser
+from .canopen.canopen_backend import CANopenBackend
+from .canopen.canopen_master import CANopenMaster
 
 # Global registry of CANopen masters (one per bus)
 _global_masters = {}

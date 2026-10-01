@@ -104,6 +104,60 @@ def _json_to_cfg(json_data, source_file=""):
     return "\n".join(lines)
 
 
+def _load_json_dict(filename, required=True, label="config"):
+    """Parse a JSON config file and return its top level object.
+
+    Args:
+        filename: Path to JSON file
+        required: If False a missing file yields an empty object
+        label: Name used in error messages ("config" or "autosave")
+
+    Returns:
+        The parsed JSON object
+    """
+    try:
+        with open(filename, "r") as f:
+            json_data = json.load(f)
+    except FileNotFoundError:
+        if required:
+            msg = "Unable to open config file %s" % (filename,)
+            logging.exception(msg)
+            raise error(msg)
+        return {}
+    except json.JSONDecodeError as e:
+        msg = f"Unable to parse JSON {label} file {filename}: {e}"
+        logging.exception(msg)
+        raise error(msg)
+    except Exception:
+        msg = f"Unable to open JSON {label} file {filename}"
+        logging.exception(msg)
+        raise error(msg)
+
+    if not isinstance(json_data, dict):
+        raise error(f"JSON {label} file {filename} must contain a JSON object")
+
+    return json_data
+
+
+def _merge_json_dicts(base, override):
+    """Merge two JSON config objects, with 'override' taking precedence.
+
+    Sections present in both are merged option by option so that a saved
+    autosave value replaces only the option it defines, not the whole
+    section.
+    """
+    merged = {}
+    for section, values in base.items():
+        merged[section] = dict(values) if isinstance(values, dict) else values
+    for section, values in override.items():
+        current = merged.get(section)
+        if isinstance(values, dict) and isinstance(current, dict):
+            current.update(values)
+        else:
+            merged[section] = values
+    return merged
+
+
 def _read_json_config_file(filename):
     """Read a JSON configuration file and convert to CFG format.
     
@@ -115,21 +169,8 @@ def _read_json_config_file(filename):
         - cfg_data: Configuration in CFG format string
         - json_autosave_path: Path to JSON autosave file (or None)
     """
-    try:
-        with open(filename, "r") as f:
-            json_data = json.load(f)
-    except json.JSONDecodeError as e:
-        msg = f"Unable to parse JSON config file {filename}: {e}"
-        logging.exception(msg)
-        raise error(msg)
-    except Exception:
-        msg = f"Unable to open config file {filename}"
-        logging.exception(msg)
-        raise error(msg)
-    
-    if not isinstance(json_data, dict):
-        raise error(f"JSON config file {filename} must contain a JSON object")
-    
+    json_data = _load_json_dict(filename, label="config")
+
     # Convert JSON to CFG format
     cfg_data = _json_to_cfg(json_data, filename)
     
@@ -696,12 +737,19 @@ class PrinterConfig:
         data = self._read_config_file(filename)
         
         if self.is_json_config:
-            # JSON config uses separate autosave file
-            autosave_data = self._load_json_autosave()
-            regular_config = self._build_config_wrapper(data, filename)
-            autosave_data = self._strip_duplicates(autosave_data, regular_config)
-            self.autosave = self._build_config_wrapper(autosave_data, filename)
-            cfg = self._build_config_wrapper(data + autosave_data, filename)
+            # A JSON config keeps its autosave in a separate file. It is
+            # merged over the main config so a saved value replaces the
+            # matching option instead of being dropped as a duplicate.
+            autosave_dict = self._load_json_autosave()
+            self.autosave = self._build_config_wrapper(
+                _json_to_cfg(autosave_dict, filename), filename
+            )
+            merged = _merge_json_dicts(
+                _load_json_dict(filename, label="config"), autosave_dict
+            )
+            cfg = self._build_config_wrapper(
+                _json_to_cfg(merged, filename), filename
+            )
         else:
             # Traditional CFG config with inline autosave
             regular_data, autosave_data = self._find_autosave_data(data)
@@ -713,38 +761,22 @@ class PrinterConfig:
         return cfg
 
     def _load_json_autosave(self):
-        """Load autosave data from JSON autosave file."""
+        """Load the JSON autosave file and return its top level object."""
         if not self.json_autosave_path:
-            return ""
-        
-        if not os.path.exists(self.json_autosave_path):
-            return ""
-        
+            return {}
         try:
-            with open(self.json_autosave_path, "r") as f:
-                autosave_json = json.load(f)
-        except json.JSONDecodeError as e:
-            logging.warning(
-                "Can't read JSON autosave file %s: %s",
-                self.json_autosave_path, e
+            return _load_json_dict(
+                self.json_autosave_path, required=False, label="autosave"
             )
-            return ""
-        except Exception:
+        except error as e:
+            # A broken autosave must not keep the printer from starting,
+            # but it has to be visible or the saved values vanish silently.
             logging.warning(
-                "Unable to read JSON autosave file %s",
-                self.json_autosave_path
+                "Ignoring unusable JSON autosave file %s: %s",
+                self.json_autosave_path,
+                e,
             )
-            return ""
-        
-        if not isinstance(autosave_json, dict):
-            logging.warning(
-                "JSON autosave file %s must contain a JSON object",
-                self.json_autosave_path
-            )
-            return ""
-        
-        # Convert JSON autosave to CFG format
-        return _json_to_cfg(autosave_json, self.json_autosave_path)
+            return {}
 
     def check_unused_options(self, config, error_on_unused):
         fileconfig = config.fileconfig

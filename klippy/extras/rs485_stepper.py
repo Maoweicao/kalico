@@ -8,8 +8,8 @@ import logging
 
 from klippy import stepper
 
-from .rs485_backend import RS485Backend
-from .transport import HostRS485Transport
+from .rs485.rs485_backend import RS485Backend
+from .rs485.transport import HostRS485Transport
 
 
 class RS485Stepper:
@@ -51,7 +51,7 @@ class RS485Stepper:
                 raise config.error(
                     "uart_pin must be provided for rs485_transport: mcu"
                 )
-            from .transport import McuRS485Transport
+            from .rs485.transport import McuRS485Transport
             self._transport = McuRS485Transport(
                 config=config, slave_id=slave_id)
         else:
@@ -64,7 +64,7 @@ class RS485Stepper:
         protocol_type = config.get("rs485_protocol", "modbus_rtu")
 
         if protocol_type == "modbus_rtu":
-            from .modbus_rtu import ModbusRtuProtocol
+            from .rs485.modbus_rtu import ModbusRtuProtocol
             register_map = self._parse_register_map(config)
             response_delay = config.getfloat("rs485_response_delay", None)
             inter_frame_delay = config.getfloat("rs485_inter_frame_delay", None)
@@ -76,7 +76,7 @@ class RS485Stepper:
                 inter_frame_delay=inter_frame_delay,
             )
         elif protocol_type == "uart_passthrough":
-            from .uart_passthrough import UartPassthroughProtocol
+            from .rs485.uart_passthrough import UartPassthroughProtocol
             response_length = config.getint("rs485_response_length", 0)
             self._protocol = UartPassthroughProtocol(
                 transport=self._transport,
