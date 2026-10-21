@@ -1,0 +1,14 @@
+# Tests for the endstop monitor
+DICTIONARY atmega2560.dict
+CONFIG endstop_monitor.cfg
+
+# The monitor is enabled by default
+ASSERT TEST='{printer["endstop_monitor axis"].enable is true}'
+
+# The monitoring is only armed while a print is running
+ASSERT TEST='{printer["endstop_monitor axis"].armed is false}'
+
+# The monitored endstop is resolved
+ASSERT TEST='{"x" in printer["endstop_monitor axis"].monitored}'
+
+QUERY_ENDSTOP_MONITOR

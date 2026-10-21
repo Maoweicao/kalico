@@ -1,0 +1,26 @@
+# Tests for the closed loop position controller
+DICTIONARY atmega2560.dict
+CONFIG closed_loop.cfg
+
+# The controller is disabled by default
+ASSERT TEST='{printer.closed_loop.enabled is false}'
+ASSERT TEST='{printer.closed_loop.correction_active is false}'
+
+# The cartesian kinematics support a position correction
+ASSERT TEST='{printer.closed_loop.correction_supported is true}'
+
+CLOSED_LOOP_STATUS
+
+# The controller can be enabled and disabled at runtime
+CLOSED_LOOP_ENABLE
+ASSERT TEST='{printer.closed_loop.enabled is true}'
+
+CLOSED_LOOP_DISABLE
+ASSERT TEST='{printer.closed_loop.enabled is false}'
+
+# A calibration needs a registered encoder - there is none in this config
+CLOSED_LOOP_CALIBRATE
+CLOSED_LOOP_CALIBRATE AXIS=not_registered
+
+# The status of an encoder free controller is still reported
+CLOSED_LOOP_STATUS
