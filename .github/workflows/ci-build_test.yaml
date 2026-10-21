@@ -65,8 +65,19 @@ jobs:
       - name: Test Klippy (Python 3.11)
         run: docker run -v $PWD:/klipper dangerklippers/klipper-build:latest --python 3.11 py.test -n auto
 
-      - name: Test Klippy (Python 3.12)
-        run: docker run -v $PWD:/klipper dangerklippers/klipper-build:latest --python 3.12 py.test -n auto
+      - name: Test Klippy with coverage (Python 3.12)
+        # The coverage is only measured once - the end to end tests spawn a
+        # full klipper per test file and would make the run very slow
+        run: |
+          docker run -v $PWD:/klipper dangerklippers/klipper-build:latest --python 3.12 \
+            py.test -n auto --ignore=test/klippy \
+            --cov=klippy --cov-report=xml --cov-report=term-missing
+
+      - name: Upload the coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage.xml
 
       - name: Test Klippy (Python 3.13)
         run: docker run -v $PWD:/klipper dangerklippers/klipper-build:latest --python 3.13 py.test -n auto
