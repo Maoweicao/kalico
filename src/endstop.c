@@ -4,11 +4,12 @@
 //
 // This file may be distributed under the terms of the GNU GPLv3 license.
 
-#include "basecmd.h" // oid_alloc
+#include "basecmd.h" // oid_alloc, foreach_oid
 #include "board/gpio.h" // struct gpio
 #include "board/irq.h" // irq_disable
+#include "board/misc.h" // timer_read_time
 #include "command.h" // DECL_COMMAND
-#include "sched.h" // struct timer
+#include "sched.h" // struct timer, sched_wake_task
 #include "trsync.h" // trsync_do_trigger
 
 struct endstop {
@@ -19,7 +20,14 @@ struct endstop {
     uint8_t flags, sample_count, trigger_count, trigger_reason;
 };
 
-enum { ESF_PIN_HIGH=1<<0, ESF_HOMING=1<<1 };
+enum {
+    ESF_PIN_HIGH=1<<0,
+    ESF_HOMING=1<<1,
+    ESF_MONITOR=1<<2,   // continuous monitoring (outside of homing)
+    ESF_REPORT=1<<3,    // a monitor trigger is waiting to be reported
+};
+
+static struct task_wake endstop_wake;
 
 static uint_fast8_t endstop_oversample_event(struct timer *t);
 
@@ -55,6 +63,16 @@ endstop_oversample_event(struct timer *t)
     }
     uint8_t count = e->trigger_count - 1;
     if (!count) {
+        if (e->flags & ESF_MONITOR) {
+            // Monitor mode: report the hit to the host, but do not stop
+            // steppers (no trsync is attached in this mode).  The host
+            // decides what action to take and re-arms monitoring.
+            irq_disable();
+            e->flags |= ESF_REPORT;
+            irq_enable();
+            sched_wake_task(&endstop_wake);
+            return SF_DONE;
+        }
         trsync_do_trigger(e->ts, e->trigger_reason);
         return SF_DONE;
     }
@@ -113,3 +131,53 @@ command_endstop_query_state(uint32_t *args)
           , oid, !!(eflags & ESF_HOMING), nextwake, gpio_in_read(e->pin));
 }
 DECL_COMMAND(command_endstop_query_state, "endstop_query_state oid=%c");
+
+// Arm continuous monitoring of an endstop outside of homing (e.g. during
+// printing).  This reuses the same sampling logic as homing, but on a hit it
+// only reports to the host instead of stopping the steppers.  Passing
+// clock=0 disables monitoring.
+void
+command_endstop_monitor(uint32_t *args)
+{
+    struct endstop *e = oid_lookup(args[0], command_config_endstop);
+    sched_del_timer(&e->time);
+    if (!args[1]) {
+        // Disable monitoring
+        e->flags &= ~(ESF_MONITOR | ESF_REPORT);
+        e->ts = NULL;
+        return;
+    }
+    e->time.waketime = args[1];
+    e->sample_time = args[2];
+    e->sample_count = args[3];
+    e->rest_time = args[4];
+    e->flags = ESF_MONITOR | (args[5] ? ESF_PIN_HIGH : 0);
+    e->trigger_count = e->sample_count;
+    e->ts = NULL;
+    e->time.func = endstop_event;
+    sched_add_timer(&e->time);
+}
+DECL_COMMAND(command_endstop_monitor,
+             "endstop_monitor oid=%c clock=%u sample_ticks=%u sample_count=%c"
+             " rest_ticks=%u pin_value=%c");
+
+// Report any pending monitor triggers to the host
+void
+endstop_task(void)
+{
+    if (!sched_check_wake(&endstop_wake))
+        return;
+    uint8_t oid;
+    struct endstop *e;
+    foreach_oid(oid, e, command_config_endstop) {
+        irq_disable();
+        uint8_t flags = e->flags;
+        e->flags &= ~ESF_REPORT;
+        irq_enable();
+        if (!(flags & ESF_REPORT))
+            continue;
+        sendf("endstop_monitor_state oid=%c clock=%u pin_value=%c"
+              , oid, timer_read_time(), gpio_in_read(e->pin));
+    }
+}
+DECL_TASK(endstop_task);

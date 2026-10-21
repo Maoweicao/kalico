@@ -433,6 +433,9 @@ class MCU_endstop:
     def get_mcu(self):
         return self._mcu
 
+    def get_oid(self):
+        return self._oid
+
     def add_stepper(self, stepper):
         self._dispatch.add_stepper(stepper)
 
@@ -464,6 +467,38 @@ class MCU_endstop:
             oid=self._oid,
             cq=cmd_queue,
         )
+        self._monitor_cmd = self._mcu.lookup_command(
+            "endstop_monitor oid=%c clock=%u sample_ticks=%u sample_count=%c"
+            " rest_ticks=%u pin_value=%c",
+            cq=cmd_queue,
+        )
+
+    def monitor_start(
+        self, print_time, sample_time, sample_count, rest_time, triggered=True
+    ):
+        clock = self._mcu.print_time_to_clock(print_time)
+        rest_ticks = (
+            self._mcu.print_time_to_clock(print_time + rest_time) - clock
+        )
+        self._monitor_cmd.send(
+            [
+                self._oid,
+                clock,
+                self._mcu.seconds_to_clock(sample_time),
+                sample_count,
+                rest_ticks,
+                triggered ^ self._invert,
+            ]
+        )
+
+    def monitor_stop(self):
+        self._monitor_cmd.send([self._oid, 0, 0, 0, 0, 0])
+
+    def register_monitor_callback(self, cb):
+        self._mcu.register_response(cb, "endstop_monitor_state", self._oid)
+
+    def unregister_monitor_callback(self):
+        self._mcu.register_response(None, "endstop_monitor_state", self._oid)
 
     def home_start(
         self, print_time, sample_time, sample_count, rest_time, triggered=True

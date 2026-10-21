@@ -78,10 +78,11 @@ from printer.cfg (see [MCU connection methods](./MCU_Connection_Methods.md)).
 - [Cold Extruder](./Cold_Extruder.md) - No-heater extruder support for clay, concrete, and other cold materials
 - [indx](./INDX.md) - Support for the Bondtech INDX toolboard and its inductive nozzle heater
 - [`[closed_loop]`](./Config_Reference.md#closed_loop) - Closed-loop position control using [encoder](./Config_Reference.md#encoder) feedback
-- [`[encoder]`](./Config_Reference.md#encoder) - Position encoder support (SPI absolute and quadrature sensors) with `ENCODER_POSITION` and `ENCODER_RAW_DATA` commands
+- [`[encoder]`](./Config_Reference.md#encoder) - Position encoder support (SPI absolute sensors) with `ENCODER_POSITION` and `ENCODER_RAW_DATA` commands
 - [`[gcode_mcu_trace]`](./Config_Reference.md#gcode_mcu_trace) - G-code to MCU command tracing with `MCU_RECORD_START`, `MCU_RECORD_STOP`, `MCU_REPLAY` and `MCU_TRACE_STATUS` commands
 - [`[bmi160]`](./Config_Reference.md#bmi160) - Support for bmi160 accelerometers (SPI or I2C)
 - [`[query_pins]`](./Config_Reference.md#query_pins) - Utility for querying MCU pin/bus configuration with the `QUERY_PINS` command
+- [`[endstop_monitor]`](./Config_Reference.md#endstop_monitor) - Continuously monitor endstop switches during printing with the `QUERY_ENDSTOP_MONITOR` command
 
 ## Sensorless Homing
 

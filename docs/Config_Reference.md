@@ -2318,6 +2318,61 @@ information.
 #   layer will occur on a full step.) The default is False.
 ```
 
+### [endstop_monitor]
+
+Continuously monitor endstop switches while printing. Normally the
+micro-controller only samples the endstop pins during homing and
+probing, so a switch that is hit during a print is otherwise ignored.
+This module re-arms endstop sampling on the micro-controller whenever a
+print is running and reports any hit to the host, which can then take
+an action (for example, stop or pause the print).
+
+Multiple sections may be defined, each with its own action and its own
+set of monitored endstops (for example "[endstop_monitor axis]" and
+"[endstop_monitor probe_guard]"). A switch may be monitored by only one
+section; if two sections list the same switch the later one logs a
+warning and skips it.
+
+```
+[endstop_monitor]
+#enable: True
+#   Enable monitoring during printing. The default is True.
+#action: shutdown
+#   Action to take when a monitored endstop is triggered while
+#   printing. Options:
+#     shutdown - immediately stop the printer
+#     pause    - pause the running print
+#     gcode    - run the G-code given by the "gcode" option
+#     none     - only log the event
+#   The default is shutdown.
+#gcode:
+#   G-code to run when action is "gcode". Optional.
+#poll_time: 0.000050
+#   How often the micro-controller samples the endstop pins, in
+#   seconds. The default is 0.000050 (50 microseconds).
+#sample_count: 4
+#   Number of consecutive matching samples required before a hit is
+#   reported. Increase this value if the switch is noisy. The default
+#   is 4.
+#debounce: 0.05
+#   Ignore repeated hits on the same endstop within this many seconds.
+#   The default is 0.05.
+#monitored:
+#   Optional comma separated list of endstops to monitor. Each entry may
+#   be an axis name (x, y, z), the full name of a stepper that owns an
+#   endstop (stepper_x), or the config section name of any other
+#   endstop provider (probe, bltouch, input_pin my_pin, ...).
+#   If omitted, every endstop registered by a stepper is monitored.
+```
+
+Monitoring is armed automatically when a print starts and disarmed
+when the print finishes. If the printer is homed while a print is
+running, monitoring is re-armed automatically afterwards.
+
+The `QUERY_ENDSTOP_MONITOR` G-code command reports every configured
+section, whether it is armed, and the current state of each monitored
+endstop.
+
 ## G-Code macros and events
 
 ### [gcode_macro]
@@ -7263,22 +7318,37 @@ the [G-Code reference](G-Codes.md#encoder) for the available commands
 and the [API Server](API_Server.md) for the `encoder/dump_encoder`
 endpoint.
 
-Supported SPI absolute sensor types are "a1333", "a1333lletr",
-"as5047d", "tle5012b", "mt6816", "mt6826s" and "mt6701". Supported
-quadrature sensor types are "quadrature" and "heds9740".
+Supported SPI absolute sensor types are "a1333", "as5047d", "tle5012b",
+"mt6816" and "mt6826s". The quadrature sensor types "quadrature" and
+"heds9740" are not usable at present - they require a firmware module
+that is not part of the build.
 
 ```
 [encoder my_encoder]
 encoder_type:
 #   The type of the encoder sensor. Available choices are "a1333",
-#   "a1333lletr", "as5047d", "tle5012b", "mt6816", "mt6826s", "mt6701",
-#   "quadrature" and "heds9740". This parameter must be specified.
+#   "as5047d", "tle5012b", "mt6816" and "mt6826s". This parameter must be
+#   specified.
 #stepper:
 #   The name of the stepper that the encoder is attached to (eg,
 #   "stepper_x"). Setting this value enables the encoder to report a
-#   position in millimeters (using the stepper's rotation_distance) and
-#   registers the encoder with the [closed_loop] module. The default is
-#   to not associate the encoder with a stepper.
+#   position in millimeters and registers the encoder with the
+#   [closed_loop] module. The default is to not associate the encoder with
+#   a stepper.
+#axis:
+#   The cartesian axis that the encoder measures (eg, "x"). It is used to
+#   map the measured position onto the machine axes. The default is to
+#   derive the axis from the name of the paired stepper. It may be set
+#   explicitly when the encoder is not paired with a stepper or when the
+#   stepper name does not follow the "stepper_<axis>" convention.
+#scale:
+#   The number of millimeters of axis travel per encoder revolution. The
+#   default is the `rotation_distance` of the paired stepper, which is
+#   correct when the encoder is coupled 1:1 to the axis. Set this
+#   explicitly when the encoder is mounted on the load side of a drive
+#   with a gear or belt ratio.
+#invert: False
+#   Invert the direction of the reported position. The default is False.
 #sample_period: 0.000400
 #   The query period (in seconds) to use during measurements. The
 #   default is 0.000400 (which is 2500 samples per second).
@@ -7292,31 +7362,37 @@ encoder_type:
 #spi_software_miso_pin:
 #   See the "common SPI settings" section for a description of the
 #   above parameters.
-#   The following parameters are used for quadrature sensor types:
-#channel_a_pin:
-#   The MCU gpio pin connected to the encoder channel A. This parameter
-#   must be provided for quadrature sensors.
-#channel_b_pin:
-#   The MCU gpio pin connected to the encoder channel B. This parameter
-#   must be provided for quadrature sensors.
-#cpr:
-#   The number of encoder counts per revolution (counts per rotation)
-#   of the quadrature encoder. This parameter must be provided for
-#   quadrature sensors.
 ```
 
 ### [closed_loop]
 
 Closed-loop position control using encoder feedback. The module reads
-the position reported by registered [encoder] objects and applies PID
-corrections to the paired steppers to maintain commanded position.
-Corrections are applied by adjusting the stepper position within
-`max_correction` of the commanded position.
+the position reported by registered [encoder] objects, compares it with
+the position the machine was commanded to be at at the very same instant
+and applies PID corrections to the paired steppers.
+
+The comparison is time aligned - the encoder sample carries the print
+time it was taken at and the commanded position of that instant is
+recovered from the step time history.  Comparing a fresh encoder reading
+with a stale commanded position would report the motion delay as a
+position error.
+
+Corrections are applied by re-anchoring the reference position of the
+paired stepper.  The step time solver uses that reference as the start
+of the next trapezoid segment, so lowering it makes the stepper travel
+an additional distance without disturbing the planned trajectory.  The
+correction that can be applied at once is limited by
+`max_reanchor_steps` - the step compressor is not able to deliver steps
+that are closer together than its timing error tolerance.
 
 The module is disabled by default and must be explicitly enabled (either
 with `enable: True` or at run-time with the `CLOSED_LOOP_ENABLE`
 command). See the [G-Code reference](G-Codes.md#closed_loop) for the
 available commands.
+
+Only the `cartesian` kinematics are supported for position correction.
+On other kinematics the module monitors the position error but does not
+apply any correction.
 
 ```
 [closed_loop]
@@ -7330,20 +7406,41 @@ available commands.
 #   The proportional gain of the closed-loop PID controller. The
 #   default is 0.5.
 #pid_ki: 0.0
-#   The integral gain of the closed-loop PID controller. The default is
-#   0.0.
+#   The integral gain of the closed-loop PID controller. It has units of
+#   1/second. The default is 0.0.
 #pid_kd: 0.0
-#   The derivative gain of the closed-loop PID controller. The default
-#   is 0.0.
-#max_correction: 1.0
+#   The derivative gain of the closed-loop PID controller. It has units of
+#   seconds. The default is 0.0.
+#max_correction: 0.05
 #   The maximum stepper position correction (in mm) applied per update.
-#   The default is 1.0.
-#correction_interval: 0.050
+#   The default is 0.05.
+#max_correction_rate: 2.0
+#   The maximum total correction (in mm/second) that may be applied. A
+#   value of 0 disables the rate limit. The default is 2.0.
+#max_reanchor_steps: 2
+#   The maximum number of steps that a stepper reference may be
+#   re-anchored by in a single update. This is a hard limit imposed by
+#   the step compressor - the additional steps of a corrected segment are
+#   all emitted at the start of that segment and the compressor can not
+#   deliver steps that are closer together than its timing error
+#   tolerance. Two steps is the largest value Klipper accepts. The
+#   default is 2.
+#correction_interval: 0.020
 #   The interval (in seconds) between correction updates. The default is
-#   0.050.
-#error_threshold: 0.5
-#   The position error (in mm) above which an error is logged for the
-#   affected encoder. The default is 0.5.
+#   0.020.
+#error_threshold: 0.05
+#   The position error (in mm) above which an error is reported for the
+#   affected encoder and the configured `action` is taken. The default is
+#   0.05.
+#max_sample_age: 0.250
+#   The maximum age (in seconds) of an encoder sample that is still used
+#   for a position error calculation. Samples that are older are ignored.
+#   The default is 0.250.
+#action: shutdown
+#   The action to take when the position error exceeds
+#   `error_threshold`. One of "log" (report the error in the log), "pause"
+#   (pause the print) or "shutdown" (halt the printer). The default is
+#   "shutdown".
 ```
 
 ## Other Custom Modules

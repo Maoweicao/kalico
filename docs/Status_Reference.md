@@ -106,6 +106,10 @@ The following information is available in the
 - `enabled`: True if closed-loop position control is currently enabled.
 - `correction_active`: True if stepper position corrections are
   currently being applied.
+- `correction_supported`: True if the configured kinematics supports
+  position correction (currently only `cartesian`).
+- `action`: The action taken when the position error exceeds the
+  configured threshold ("log", "pause" or "shutdown").
 - `<encoder name>`: A sub-object for each registered encoder containing
   the fields reported by the
   [encoder](Status_Reference.md#encoder) object (see below) along with
@@ -116,6 +120,11 @@ The following information is available in the
   - `error`: The last PID position error (in mm) for the encoder.
   - `correction`: The last PID position correction (in mm) applied to
     the paired stepper.
+  - `sample_age`: The age (in seconds) of the encoder sample that was
+    used for the last error calculation.
+  - `lead`: The accumulated correction (in mm) that was applied to the
+    axis. The step count of a stepper includes these extra steps, so the
+    lead is subtracted to recover the commanded position.
 
 ## display_status
 
@@ -158,8 +167,12 @@ The following information is available in
 - `position_mm`: The encoder position (in mm). This is only non-zero
   if the encoder is paired with a stepper (via the `stepper`
   parameter).
-- `encoder_type`: The type of the encoder sensor (eg, "as5047d" or
-  "quadrature").
+- `encoder_type`: The type of the encoder sensor (eg, "as5047d").
+- `scale`: The number of millimeters of axis travel per encoder
+  revolution.
+- `invert`: True if the direction of the reported position is inverted.
+- `axis`: The cartesian axis measured by the encoder (eg, "x"). Only
+  present when the encoder is paired with a stepper.
 - `cpr`: The number of encoder counts per revolution. Only present for
   quadrature sensor types.
 - `temperature`: The last temperature reading (in Celsius) from the

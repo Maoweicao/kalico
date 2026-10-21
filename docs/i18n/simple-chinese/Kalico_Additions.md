@@ -57,10 +57,11 @@
 - [dummy_thermistor](./Dummy_Thermistor.md) - 用于测试和冷挤出机的虚拟温度传感器
 - [冷挤出机](./Cold_Extruder.md) - 用于陶泥、混凝土和其他冷材料的无加热器挤出机支持
 - [`[closed_loop]`](./Config_Reference.md#closed_loop) - 使用 [encoder](./Config_Reference.md#encoder) 反馈的闭环位置控制
-- [`[encoder]`](./Config_Reference.md#encoder) - 位置编码器支持（SPI 绝对传感器和正交传感器），带 `ENCODER_POSITION` 和 `ENCODER_RAW_DATA` 命令
+- [`[encoder]`](./Config_Reference.md#encoder) - 位置编码器支持（SPI 绝对传感器），带 `ENCODER_POSITION` 和 `ENCODER_RAW_DATA` 命令
 - [`[gcode_mcu_trace]`](./Config_Reference.md#gcode_mcu_trace) - G-code 到 MCU 命令的追踪，带 `MCU_RECORD_START`、`MCU_RECORD_STOP`、`MCU_REPLAY` 和 `MCU_TRACE_STATUS` 命令
 - [`[bmi160]`](./Config_Reference.md#bmi160) - bmi160 加速度计支持（SPI 或 I2C）
 - [`[query_pins]`](./Config_Reference.md#query_pins) - 使用 `QUERY_PINS` 命令查询 MCU 引脚/总线配置的实用工具
+- [`[endstop_monitor]`](./Config_Reference.md#endstop_monitor) - 打印过程中持续监测限位开关，带 `QUERY_ENDSTOP_MONITOR` 命令
 
 ## 无传感器归位
 

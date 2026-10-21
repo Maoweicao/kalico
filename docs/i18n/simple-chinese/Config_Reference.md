@@ -2113,6 +2113,48 @@ gcode:
 #   layer will occur on a full step.) The default is False.
 ```
 
+### [endstop_monitor]
+
+在打印过程中持续监测限位开关。通常微控制器只在归位和调平时采样限位引脚，
+因此打印期间触发限位开关通常会被忽略。本模块在打印运行时重新在微控制器上
+布防限位采样，并将任何触发上报给主机，由主机执行相应动作（例如停止或暂停打印）。
+
+可以定义多个分段，每个分段有自己的动作和监测的限位集合（例如
+"[endstop_monitor axis]" 和 "[endstop_monitor probe_guard]"）。同一个限位只能被一个
+分段监测；如果两个分段列出了同一个限位，后一个会记录警告并跳过它。
+
+```
+[endstop_monitor]
+#enable: True
+#   是否在打印时启用监测。默认值为 True。
+#action: shutdown
+#   打印期间被监测的限位开关触发时执行的动作。选项：
+#     shutdown - 立即停止打印机
+#     pause    - 暂停正在运行的打印
+#     gcode    - 运行 "gcode" 选项给定的 G-Code
+#     none     - 仅记录事件
+#   默认值为 shutdown。
+#gcode:
+#   当 action 为 "gcode" 时运行的 G-Code。可选。
+#poll_time: 0.000050
+#   微控制器采样限位引脚的周期，单位为秒。默认值为 0.000050（50 微秒）。
+#sample_count: 4
+#   上报触发所需的连续匹配采样次数。如果开关有噪声，请增大此值。默认值为 4。
+#debounce: 0.05
+#   在此秒数内忽略同一限位的重复触发。默认值为 0.05。
+#monitored:
+#   可选的逗号分隔的限位列表。每项可以是轴名称（x, y, z）、拥有endstop的
+#   步进电机的完整名称（stepper_x），或任何其他限位提供者的配置段名称
+#   （probe、bltouch、input_pin my_pin 等）。如果省略，则监测由步进电机
+#   注册的所有限位。
+```
+
+打印开始时自动布防监测，打印结束时自动撤防。如果打印期间对打印机进行归位，
+之后会自动重新布防监测。
+
+`QUERY_ENDSTOP_MONITOR` G-Code 命令会报告每个已配置的分段、是否已布防，
+以及每个被监测限位的当前状态。
+
 ## G-Code宏和事件
 
 ### [gcode_macro]
@@ -6654,20 +6696,34 @@ host_mcu:
 
 用于读取绝对角度（SPI）或增量正交测量的位置编码器支持。可以在运行时查询编码器位置，并且当通过 `stepper` 参数与步进电机配对时，为 [closed_loop] 模块提供编码器反馈。参见[命令参考](G-Codes.md#encoder)了解可用的命令，以及 [API Server](API_Server.md) 了解 `encoder/dump_encoder` 端点。
 
-支持的 SPI 绝对传感器类型为 "a1333"、"a1333lletr"、"as5047d"、"tle5012b"、"mt6816"、"mt6826s" 和 "mt6701"。支持的正交传感器类型为 "quadrature" 和 "heds9740"。
+支持的 SPI 绝对传感器类型为 "a1333"、"as5047d"、"tle5012b"、"mt6816" 和 "mt6826s"。正交传感器类型 "quadrature" 和 "heds9740" 目前不可用 —— 它们需要尚未编入固件构建的模块支持。
 
 ```
 [encoder my_encoder]
 encoder_type:
 #   The type of the encoder sensor. Available choices are "a1333",
-#   "a1333lletr", "as5047d", "tle5012b", "mt6816", "mt6826s", "mt6701",
-#   "quadrature" and "heds9740". This parameter must be specified.
+#   "as5047d", "tle5012b", "mt6816" and "mt6826s". This parameter must be
+#   specified.
 #stepper:
 #   The name of the stepper that the encoder is attached to (eg,
 #   "stepper_x"). Setting this value enables the encoder to report a
-#   position in millimeters (using the stepper's rotation_distance) and
-#   registers the encoder with the [closed_loop] module. The default is
-#   to not associate the encoder with a stepper.
+#   position in millimeters and registers the encoder with the
+#   [closed_loop] module. The default is to not associate the encoder with
+#   a stepper.
+#axis:
+#   The cartesian axis that the encoder measures (eg, "x"). It is used to
+#   map the measured position onto the machine axes. The default is to
+#   derive the axis from the name of the paired stepper. It may be set
+#   explicitly when the encoder is not paired with a stepper or when the
+#   stepper name does not follow the "stepper_<axis>" convention.
+#scale:
+#   The number of millimeters of axis travel per encoder revolution. The
+#   default is the `rotation_distance` of the paired stepper, which is
+#   correct when the encoder is coupled 1:1 to the axis. Set this
+#   explicitly when the encoder is mounted on the load side of a drive
+#   with a gear or belt ratio.
+#invert: False
+#   Invert the direction of the reported position. The default is False.
 #sample_period: 0.000400
 #   The query period (in seconds) to use during measurements. The
 #   default is 0.000400 (which is 2500 samples per second).
@@ -6681,24 +6737,19 @@ encoder_type:
 #spi_software_miso_pin:
 #   See the "common SPI settings" section for a description of the
 #   above parameters.
-#   The following parameters are used for quadrature sensor types:
-#channel_a_pin:
-#   The MCU gpio pin connected to the encoder channel A. This parameter
-#   must be provided for quadrature sensors.
-#channel_b_pin:
-#   The MCU gpio pin connected to the encoder channel B. This parameter
-#   must be provided for quadrature sensors.
-#cpr:
-#   The number of encoder counts per revolution (counts per rotation)
-#   of the quadrature encoder. This parameter must be provided for
-#   quadrature sensors.
 ```
 
 ### [closed_loop]
 
-使用编码器反馈的闭环位置控制。该模块读取已注册的 [encoder] 对象报告的位置，并对配对的步进电机施加 PID 修正，以保持命令位置。修正在命令位置的 `max_correction` 范围内通过调整步进电机位置来施加。
+使用编码器反馈的闭环位置控制。该模块读取已注册的 [encoder] 对象报告的位置，把它与机器在同一时刻被命令到达的位置比较，并对配对的步进电机施加 PID 修正。
+
+比较是**时间对齐**的 —— 编码器样本带有采样时的打印时间，命令位置则从步进时间历史中还原出该时刻的值。用新鲜的编码器读数去比较陈旧的命令位置，会把运动延迟误报成位置误差。
+
+修正是通过重新锚定配对步进电机的参考位置来施加的。步进时序求解器把该参考位置当作下一个梯形段的起点，因此把它下移就能让步进电机多走一段距离，同时不破坏已规划的轨迹。单次可施加的修正量受 `max_reanchor_steps` 限制 —— 步进压缩器无法输出间隔小于其时序误差容限的步进。
 
 该模块默认禁用，必须显式启用（通过 `enable: True` 或在运行时使用 `CLOSED_LOOP_ENABLE` 命令）。参见[命令参考](G-Codes.md#closed_loop)了解可用的命令。
+
+目前只有 `cartesian` 运动学支持位置修正。在其他运动学上，该模块只监测位置误差而不施加任何修正。
 
 ```
 [closed_loop]
@@ -6712,20 +6763,41 @@ encoder_type:
 #   The proportional gain of the closed-loop PID controller. The
 #   default is 0.5.
 #pid_ki: 0.0
-#   The integral gain of the closed-loop PID controller. The default is
-#   0.0.
+#   The integral gain of the closed-loop PID controller. It has units of
+#   1/second. The default is 0.0.
 #pid_kd: 0.0
-#   The derivative gain of the closed-loop PID controller. The default
-#   is 0.0.
-#max_correction: 1.0
+#   The derivative gain of the closed-loop PID controller. It has units of
+#   seconds. The default is 0.0.
+#max_correction: 0.05
 #   The maximum stepper position correction (in mm) applied per update.
-#   The default is 1.0.
-#correction_interval: 0.050
+#   The default is 0.05.
+#max_correction_rate: 2.0
+#   The maximum total correction (in mm/second) that may be applied. A
+#   value of 0 disables the rate limit. The default is 2.0.
+#max_reanchor_steps: 2
+#   The maximum number of steps that a stepper reference may be
+#   re-anchored by in a single update. This is a hard limit imposed by
+#   the step compressor - the additional steps of a corrected segment are
+#   all emitted at the start of that segment and the compressor can not
+#   deliver steps that are closer together than its timing error
+#   tolerance. Two steps is the largest value Klipper accepts. The
+#   default is 2.
+#correction_interval: 0.020
 #   The interval (in seconds) between correction updates. The default is
-#   0.050.
-#error_threshold: 0.5
-#   The position error (in mm) above which an error is logged for the
-#   affected encoder. The default is 0.5.
+#   0.020.
+#error_threshold: 0.05
+#   The position error (in mm) above which an error is reported for the
+#   affected encoder and the configured `action` is taken. The default is
+#   0.05.
+#max_sample_age: 0.250
+#   The maximum age (in seconds) of an encoder sample that is still used
+#   for a position error calculation. Samples that are older are ignored.
+#   The default is 0.250.
+#action: shutdown
+#   The action to take when the position error exceeds
+#   `error_threshold`. One of "log" (report the error in the log), "pause"
+#   (pause the print) or "shutdown" (halt the printer). The default is
+#   "shutdown".
 ```
 
 ## 其他自定义模块

@@ -311,6 +311,7 @@ class ToolHead:
         self.trapq_finalize_moves = ffi_lib.trapq_finalize_moves
         # Motion flushing
         self.step_generators = []
+        self.pre_step_gen_callbacks = []
         self.flush_trapqs = [self.trapq]
         # Create kinematics class
         gcode = self.printer.lookup_object("gcode")
@@ -400,6 +401,10 @@ class ToolHead:
             self.print_time - self.kin_flush_delay,
         )
         sg_flush_time = max(sg_flush_want, flush_time)
+        # Run pre step generation callbacks - these may adjust the stepper
+        # reference positions before any step is generated for this flush
+        for cb in list(self.pre_step_gen_callbacks):
+            cb(flush_time)
         for sg in self.step_generators:
             sg(sg_flush_time)
         self.min_restart_time = max(self.min_restart_time, sg_flush_time)
@@ -834,6 +839,20 @@ class ToolHead:
     def unregister_step_generator(self, handler):
         if handler in self.step_generators:
             self.step_generators.remove(handler)
+
+    # Register a callback to run immediately before step generation.  The
+    # callback is invoked with the flush time and is expected to be quick and
+    # non-blocking.  It is the correct place to adjust the stepper reference
+    # positions because the step time solver reads each stepper reference
+    # once at the start of a segment - adjusting here keeps all steppers of
+    # a segment consistent.
+    def register_pre_step_gen_callback(self, handler):
+        if handler not in self.pre_step_gen_callbacks:
+            self.pre_step_gen_callbacks.append(handler)
+
+    def unregister_pre_step_gen_callback(self, handler):
+        if handler in self.pre_step_gen_callbacks:
+            self.pre_step_gen_callbacks.remove(handler)
 
     def note_step_generation_scan_time(self, delay, old_delay=0.0):
         self.flush_step_generation()

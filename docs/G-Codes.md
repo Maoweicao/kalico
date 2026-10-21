@@ -344,8 +344,10 @@ been paired with a stepper.
 
 #### CLOSED_LOOP_ENABLE
 `CLOSED_LOOP_ENABLE`: Enable closed-loop position control. When
-enabled, the PID controller reads encoder feedback and applies
-corrections to the paired steppers to maintain commanded position.
+enabled, the PID controller reads encoder feedback, compares it with the
+position the machine was commanded to be at at the same instant and
+applies corrections to the paired steppers to maintain commanded
+position.
 
 #### CLOSED_LOOP_DISABLE
 `CLOSED_LOOP_DISABLE`: Disable closed-loop position control. Stepper
@@ -354,10 +356,10 @@ re-enabled.
 
 #### CLOSED_LOOP_STATUS
 `CLOSED_LOOP_STATUS`: Report the current closed-loop status. For each
-registered encoder the reported position, paired stepper position and
-position error are listed, along with the last applied PID error and
-correction values, the enabled/correction_active state and the PID
-gains.
+registered encoder the position error, the last applied correction, the
+age of the encoder sample, the accumulated lead and the calibration state
+are listed, along with the enabled/correction_active state, whether the
+kinematics supports correction, the configured action and the PID gains.
 
 #### CLOSED_LOOP_CALIBRATE
 `CLOSED_LOOP_CALIBRATE AXIS=<encoder_name>`: Calibrate the zero offset
@@ -366,6 +368,11 @@ The reported offset is stored in the module state (see the "zero_offset"
 status field in the [Status reference](Status_Reference.md#closed_loop)).
 The encoder name is the name used in its config section (eg, the
 `my_encoder` of `[encoder my_encoder]`).
+
+A calibration is required before the controller may apply any
+correction - until then the measured position is not comparable with the
+commanded position.  The calibration is invalidated by a homing move and
+has to be repeated afterwards.
 
 ### [delayed_gcode]
 
@@ -1829,6 +1836,17 @@ not recommended:
 `QUERY_ENDSTOPS`: Probe the axis endstops and report if they are
 "triggered" or in an "open" state. This command is typically used to
 verify that an endstop is working correctly.
+
+### [endstop_monitor]
+
+The following command is available when an
+[endstop_monitor config section](Config_Reference.md#endstop_monitor)
+is enabled.
+
+#### QUERY_ENDSTOP_MONITOR
+`QUERY_ENDSTOP_MONITOR`: Report every configured endstop monitor
+section, whether it is armed, and the current state of each monitored
+endstop.
 
 ### [query_pins]
 

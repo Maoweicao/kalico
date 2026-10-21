@@ -1,17 +1,22 @@
 # Support for position encoders (SPI absolute + quadrature incremental)
 #
-# Copyright (C) 2024  Kalico Contributors
+# Copyright (C) 2024-2026  Kalico Contributors
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import logging
+
 from . import bulk_sensor, bus
 
 MIN_MSG_TIME = 0.100
 TCODE_ERROR = 0xFF
 
-SPI_SENSOR_TYPES = ["a1333", "a1333lletr", "as5047d", "tle5012b",
-                    "mt6816", "mt6826s", "mt6701"]
+# SPI absolute angle sensors supported by src/sensor_angle.c
+SPI_SENSOR_TYPES = ["a1333", "as5047d", "tle5012b", "mt6816", "mt6826s"]
+# Quadrature incremental sensors - these require src/encoder_quadrature.c
+# which is not part of the firmware build at present.  The code path is kept
+# so that it is ready once the firmware support lands.
 QUADRATURE_SENSOR_TYPES = ["quadrature", "heds9740"]
+UNSUPPORTED_SENSOR_TYPES = QUADRATURE_SENSOR_TYPES
 
 BYTES_PER_SAMPLE_SPI = 3
 BYTES_PER_SAMPLE_QUAD = 4
@@ -19,6 +24,11 @@ SAMPLES_PER_BLOCK = bulk_sensor.MAX_BULK_MSG_SIZE // BYTES_PER_SAMPLE_SPI
 
 SAMPLE_PERIOD = 0.000400
 BATCH_UPDATES = 0.100
+
+# SPI angle sensors report a normalized 16bit angle
+ANGLE_FULL_SCALE = 65536.0
+
+AXIS_LIST = ["x", "y", "z"]
 
 
 class Encoder:
@@ -28,13 +38,34 @@ class Encoder:
         self.encoder_type = config.getchoice(
             "encoder_type",
             {t: t for t in SPI_SENSOR_TYPES + QUADRATURE_SENSOR_TYPES})
+        if self.encoder_type in UNSUPPORTED_SENSOR_TYPES:
+            raise config.error(
+                "Encoder type '%s' is not yet supported by the firmware"
+                " (src/encoder_quadrature.c is not built).  Use an SPI"
+                " absolute sensor (eg 'as5047d') instead."
+                % (self.encoder_type,))
         self.is_quadrature = self.encoder_type in QUADRATURE_SENSOR_TYPES
         self.stepper_name = config.get("stepper", None)
         self.last_position = 0
+        self.last_sample = None
         self.error_count = 0
         self.mcu_stepper = None
         self.cpr = None
         self.rotation_distance = 1.0
+        self._sampling_active = False
+        # Encoder scaling - "scale" is the number of millimeters of axis
+        # travel per encoder revolution.  It defaults to the paired
+        # stepper's rotation_distance which is correct when the encoder is
+        # coupled 1:1 to the axis.
+        self.scale = config.getfloat("scale", None, above=0.0)
+        self.invert = config.getboolean("invert", False)
+        # Axis of the cartesian machine measured by this encoder
+        self.axis = config.get("axis", None)
+        if self.axis is not None and self.axis not in AXIS_LIST:
+            raise config.error(
+                "Invalid axis '%s' in section '%s'"
+                % (self.axis, config.get_name()))
+        self._resolve_stepper_config(config)
 
         if self.is_quadrature:
             self._init_quadrature(config)
@@ -64,14 +95,18 @@ class Encoder:
     cmd_ENCODER_RAW_DATA_help = "Query raw encoder sensor data"
 
     def _init_spi(self, config):
-        from .angle import (HelperA1333, HelperAS5047D, HelperTLE5012B,
-                            HelperMT6816, HelperMT6826S, HelperMT6701)
+        from .angle import (
+            HelperA1333,
+            HelperAS5047D,
+            HelperMT6816,
+            HelperMT6826S,
+            HelperTLE5012B,
+        )
 
         sensors = {
-            "a1333": HelperA1333, "a1333lletr": HelperA1333,
-            "as5047d": HelperAS5047D, "tle5012b": HelperTLE5012B,
-            "mt6816": HelperMT6816, "mt6826s": HelperMT6826S,
-            "mt6701": HelperMT6701,
+            "a1333": HelperA1333, "as5047d": HelperAS5047D,
+            "tle5012b": HelperTLE5012B, "mt6816": HelperMT6816,
+            "mt6826s": HelperMT6826S,
         }
         self.sample_period = config.getfloat(
             "sample_period", SAMPLE_PERIOD, above=0.0)
@@ -153,7 +188,7 @@ class Encoder:
     def _finish_spi_measurements(self):
         self.query_cmd.send_wait_ack([self.oid, 0, 0, 0])
         self.bulk_queue.clear_queue()
-        logging.info("Stopped encoder '%s' measurements", self.name)
+        logging.info("Stopped encoder '%s' SPI measurements", self.name)
 
     def _start_quad_measurements(self):
         self.bulk_queue.clear_queue()
@@ -180,7 +215,7 @@ class Encoder:
         samples, error_count = self._extract_spi_samples(raw_samples)
         if not samples:
             return {}
-        self.last_position = samples[-1][1] if samples else self.last_position
+        self._note_sample(samples[-1])
         return {"data": samples, "errors": error_count,
                 "position": self.last_position}
 
@@ -191,9 +226,17 @@ class Encoder:
         samples, error_count = self._extract_quad_samples(raw_samples)
         if not samples:
             return {}
-        self.last_position = samples[-1][1] if samples else self.last_position
+        self._note_sample(samples[-1])
         return {"data": samples, "errors": error_count,
                 "position": self.last_position}
+
+    def _note_sample(self, sample):
+        # Keep the raw position along with the print time it was taken at.
+        # The closed loop controller needs the timestamp to align the
+        # measurement with the commanded position of the same instant.
+        ptime, raw_pos = sample
+        self.last_position = raw_pos
+        self.last_sample = (ptime, raw_pos)
 
     def _extract_spi_samples(self, raw_samples):
         sample_ticks = self.sample_ticks
@@ -274,8 +317,14 @@ class Encoder:
             % (self.name, self.encoder_type, pos, pos_mm))
         if self.is_quadrature:
             gcmd.respond_info("  CPR=%d" % (self.cpr,))
+        gcmd.respond_info("  scale=%.6f mm/rev invert=%s axis=%s"
+                          % (self.scale or 0.0, self.invert,
+                             self.axis or "n/a"))
         if self.stepper_name:
             gcmd.respond_info("  paired_stepper=%s" % (self.stepper_name,))
+        sample = self.last_sample
+        if sample is not None:
+            gcmd.respond_info("  last sample print_time=%.6f" % (sample[0],))
 
     def cmd_ENCODER_RAW_DATA(self, gcmd):
         pos = self.get_position()
@@ -289,7 +338,10 @@ class Encoder:
     def get_status(self, eventtime=None):
         st = {"position": self.last_position,
               "position_mm": self.get_position_mm(),
-              "encoder_type": self.encoder_type}
+              "encoder_type": self.encoder_type,
+              "scale": self.scale,
+              "invert": self.invert,
+              "axis": self.axis}
         if self.is_quadrature:
             st["cpr"] = self.cpr
         else:
@@ -300,33 +352,98 @@ class Encoder:
         return self.last_position
 
     def get_position_mm(self):
-        if self.rotation_distance is None or self.last_position == 0:
+        # Convert the raw sensor position into millimeters of axis travel
+        return self._raw_to_mm(self.last_position)
+
+    def _raw_to_mm(self, raw):
+        scale = self.scale
+        if scale is None:
             return 0.0
         if self.is_quadrature and self.cpr:
-            return (self.last_position * self.rotation_distance
-                    / self.cpr)
-        return (self.last_position * self.rotation_distance
-                / 65536.0)
+            val = raw * scale / self.cpr
+        else:
+            val = raw * scale / ANGLE_FULL_SCALE
+        if self.invert:
+            val = -val
+        return val
+
+    def get_latest_sample(self):
+        # Return the (print_time, raw_position) of the most recent sample
+        return self.last_sample
+
+    def get_sample_mm(self, sample):
+        # Convert a (print_time, raw_position) sample into axis travel (mm)
+        return self._raw_to_mm(sample[1])
+
+    def get_axis_index(self):
+        # Index of the cartesian axis measured by this encoder
+        if self.axis is None:
+            return None
+        return AXIS_LIST.index(self.axis)
 
     def add_client(self, client_cb):
         self.batch_bulk.add_client(client_cb)
 
-    def _handle_ready(self):
+    def _ensure_sampling(self):
+        # The bulk sensor batch is only started when a client is attached.
+        # Register an internal client so that measurements are always
+        # running - otherwise the encoder would only report data while a
+        # web client is connected to the "encoder/dump_encoder" endpoint.
+        if self._sampling_active:
+            return
+        self._sampling_active = True
+
+        def _internal_client(msg):
+            return True
+
+        self.batch_bulk.add_client(_internal_client)
+
+    def _resolve_stepper_config(self, config):
+        # Resolve the scale and the measured axis from the paired stepper.
+        # This is done at config time so that a misconfiguration is
+        # reported when the config is parsed.
         if self.stepper_name is None:
+            return
+        scfg = self.printer.lookup_object("configfile")
+        try:
+            ssection = scfg.getsection(self.stepper_name)
+            self.rotation_distance = ssection.getfloat("rotation_distance")
+        except Exception:
+            # The stepper section is validated when the printer is ready
+            pass
+        if self.scale is None:
+            self.scale = self.rotation_distance
+        if self.axis is None:
+            # Infer the measured axis from the stepper name
+            for axis_name in AXIS_LIST:
+                if self.stepper_name.endswith("_" + axis_name):
+                    self.axis = axis_name
+                    break
+        if self.axis is None:
+            raise config.error(
+                "Encoder '%s': unable to determine the measured axis of"
+                " stepper '%s' - set the 'axis' option explicitly"
+                % (self.name, self.stepper_name))
+
+    def _handle_ready(self):
+        self._sampling_active = False
+        if self.stepper_name is None:
+            # Standalone encoder - still sample so the position is reported
+            self._ensure_sampling()
             return
         try:
             fmove = self.printer.lookup_object("force_move")
             self.mcu_stepper = fmove.lookup_stepper(self.stepper_name)
-            scfg = self.printer.lookup_object("configfile")
-            ssection = scfg.getsection(self.stepper_name)
-            self.rotation_distance = ssection.getfloat("rotation_distance")
-            closed_loop = self.printer.lookup_object("closed_loop", None)
-            if closed_loop is not None:
-                closed_loop.register_encoder(self)
         except self.printer.command_error:
             logging.warning(
                 "Encoder '%s': referenced stepper '%s' not found",
                 self.name, self.stepper_name)
+            self._ensure_sampling()
+            return
+        closed_loop = self.printer.lookup_object("closed_loop", None)
+        if closed_loop is not None:
+            closed_loop.register_encoder(self)
+        self._ensure_sampling()
 
     def get_stepper(self):
         return self.mcu_stepper

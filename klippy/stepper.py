@@ -361,6 +361,23 @@ class MCU_stepper:
         ffi_main, ffi_lib = chelper.get_ffi()
         return ffi_lib.itersolve_get_commanded_pos(self._stepper_kinematics)
 
+    # Re-anchor the stepper reference position (in stepper units) without
+    # changing the reported mcu step count.  The step time solver uses the
+    # reference as the starting point of the next trapezoid segment, so
+    # lowering it by "d" makes the stepper travel an extra "d".  This is
+    # how the closed loop controller asks a stepper to move further than
+    # the planned trajectory (see klippy/extras/closed_loop.py).
+    def set_commanded_pos(self, pos):
+        mcu_pos = self.get_mcu_position()
+        ffi_main, ffi_lib = chelper.get_ffi()
+        ffi_lib.itersolve_set_commanded_pos(self._stepper_kinematics, pos)
+        self._set_mcu_position(mcu_pos)
+        if queuelogger.should_log_component_interactions():
+            logging.debug(
+                "stepper %s: re-anchor pos=%.4f mcu_pos=%d",
+                self._name, pos, mcu_pos,
+            )
+
     def get_mcu_position(self, cmd_pos=None):
         if cmd_pos is None:
             cmd_pos = self.get_commanded_position()

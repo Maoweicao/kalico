@@ -273,6 +273,17 @@ itersolve_set_position(struct stepper_kinematics *sk
     sk->commanded_pos = itersolve_calc_position_from_coord(sk, x, y, z);
 }
 
+// Directly set the stepper reference position (in stepper units).  Unlike
+// itersolve_set_position() this does not perform a cartesian conversion - the
+// caller must supply a value in the stepper's own position space.  This is
+// used by the closed loop controller to re-anchor the reference so that the
+// stepper travels an extra distance (see klippy/extras/closed_loop.py).
+void __visible
+itersolve_set_commanded_pos(struct stepper_kinematics *sk, double pos)
+{
+    sk->commanded_pos = pos;
+}
+
 double __visible
 itersolve_get_commanded_pos(struct stepper_kinematics *sk)
 {

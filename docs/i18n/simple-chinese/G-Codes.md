@@ -104,16 +104,18 @@ Kalico使用"扩展"G代码命令进行一般配置和状态。这些扩展命�
 启用[closed_loop配置部分](Config_Reference.md#closed_loop)并且至少有一个[encoder](Config_Reference.md#encoder)与步进电机配对时，以下命令可用。
 
 #### CLOSED_LOOP_ENABLE
-`CLOSED_LOOP_ENABLE`：启用闭环位置控制。启用后，PID控制器读取编码器反馈，并对配对的步进电机施加修正，以保持命令位置。
+`CLOSED_LOOP_ENABLE`：启用闭环位置控制。启用后，PID控制器读取编码器反馈，把它与机器在同一时刻被命令到达的位置比较，并对配对的步进电机施加修正，以保持命令位置。
 
 #### CLOSED_LOOP_DISABLE
 `CLOSED_LOOP_DISABLE`：禁用闭环位置控制。在模块重新启用之前，不再对步进电机施加位置修正。
 
 #### CLOSED_LOOP_STATUS
-`CLOSED_LOOP_STATUS`：报告当前闭环状态。对于每个已注册的编码器，列出报告的位置、配对的步进电机位置和位置误差，以及最近应用的PID误差和修正值、enabled/correction_active状态和PID增益。
+`CLOSED_LOOP_STATUS`：报告当前闭环状态。对于每个已注册的编码器，列出位置误差、最近应用的修正值、编码器样本的年龄、累计的领先量以及标定状态，同时列出enabled/correction_active状态、当前运动学是否支持修正、配置的action和PID增益。
 
 #### CLOSED_LOOP_CALIBRATE
 `CLOSED_LOOP_CALIBRATE AXIS=<encoder_name>`：将给定编码器的零偏移标定为与当前命令的步进电机位置匹配。报告的偏移存储在模块状态中（参见[状态参考](Status_Reference.md#closed_loop)中的"zero_offset"状态字段）。编码器名称是其配置部分中使用的名称（例如，`[encoder my_encoder]`中的`my_encoder`）。
+
+在施加任何修正之前必须先完成标定 —— 在此之前测得的位置与命令位置不可比较。归零动作会使标定失效，之后需要重新标定。
 
 ### [encoder]
 
@@ -253,6 +255,13 @@ Kalico使用"扩展"G代码命令进行一般配置和状态。这些扩展命�
 
 #### RESET_SERVO_ALARM
 `RESET_SERVO_ALARM STEPPER=<名称>`：复位指定步进电机的报警和故障状态。清除alarm_active标志，并尝试复位存在的驱动器故障。
+
+### [endstop_monitor]
+
+启用[endstop_monitor配置部分](Config_Reference.md#endstop_monitor)时，以下命令可用。
+
+#### QUERY_ENDSTOP_MONITOR
+`QUERY_ENDSTOP_MONITOR`：报告每个已配置的限位监测分段、是否已布防，以及每个被监测限位的当前状态。
 
 ### [dummy_thermistor]
 
