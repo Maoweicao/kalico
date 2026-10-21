@@ -548,6 +548,7 @@ class PrinterConfig:
     def __init__(self, printer):
         self.printer = printer
         self.autosave = None
+        self._main_config = None
         self.json_autosave_path = None
         self.is_json_config = False
         self.deprecated = {}
@@ -570,6 +571,14 @@ class PrinterConfig:
 
     def get_printer(self):
         return self.printer
+
+    def getsection(self, section):
+        # Return a config wrapper for a section of the main config.  This
+        # lets a module read an option of another section - the main
+        # config wrapper itself is the "[printer]" section.
+        if self._main_config is None:
+            raise error("The main config has not been read yet")
+        return self._main_config.getsection(section)
 
     def _read_config_file(self, filename):
         # Check if this is a JSON config file
@@ -757,7 +766,10 @@ class PrinterConfig:
             autosave_data = self._strip_duplicates(autosave_data, regular_config)
             self.autosave = self._build_config_wrapper(autosave_data, filename)
             cfg = self._build_config_wrapper(regular_data + autosave_data, filename)
-        
+
+        # Keep the main config around so that a module can read an option
+        # of another section via PrinterConfig.getsection()
+        self._main_config = cfg
         return cfg
 
     def _load_json_autosave(self):

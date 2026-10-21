@@ -27,11 +27,12 @@ Then connect kalico_debug_tool::
     > send_command identify offset=0 count=40
 """
 
+from __future__ import annotations
+
 import argparse
 import logging
 import select
 import socket
-import sys
 import time
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -76,52 +77,36 @@ class MCUProtocol:
 
     @staticmethod
     def _vlq_encode_one(v: int) -> List[int]:
-        v_u = v & 0xFFFFFFFF
-        sv = v
-        if sv < (3 << 5) and sv >= -(1 << 5):
-            return [v_u & 0x7F]
-        if sv < (3 << 12) and sv >= -(1 << 12):
-            return [0x80 | ((v_u >> 7) & 0x3F), v_u & 0x7F]
-        if sv < (3 << 19) and sv >= -(1 << 19):
-            return [0x80 | 0x40 | ((v_u >> 14) & 0x1F),
-                    (v_u >> 7) & 0x7F, v_u & 0x7F]
-        if sv < (3 << 26) and sv >= -(1 << 26):
-            return [0x80 | 0x40 | 0x20 | ((v_u >> 21) & 0x0F),
-                    (v_u >> 14) & 0x7F, (v_u >> 7) & 0x7F, v_u & 0x7F]
-        return [0x80 | 0x40 | 0x20 | 0x10 | ((v_u >> 28) & 0x0F),
-                (v_u >> 21) & 0x7F, (v_u >> 14) & 0x7F,
-                (v_u >> 7) & 0x7F, v_u & 0x7F]
+        """Encode an integer the way the klipper firmware does.
+
+        The format uses a continuation bit (0x80) on every byte but the
+        last one and encodes the sign in the 0x60 bits of the first byte.
+        """
+        out: List[int] = []
+        if v >= 0xC000000 or v < -0x4000000:
+            out.append((v >> 28) & 0x7F | 0x80)
+        if v >= 0x180000 or v < -0x80000:
+            out.append((v >> 21) & 0x7F | 0x80)
+        if v >= 0x3000 or v < -0x1000:
+            out.append((v >> 14) & 0x7F | 0x80)
+        if v >= 0x60 or v < -0x20:
+            out.append((v >> 7) & 0x7F | 0x80)
+        out.append(v & 0x7F)
+        return out
 
     @staticmethod
     def vlq_decode(data: bytes, offset: int = 0) -> Tuple[int, int]:
-        """Decode one VLQ value. Returns (value, new_offset)."""
-        b0 = data[offset]
-        if not (b0 & 0x80):
-            val = b0
-            if val >= 96:
-                val -= 128
-            return val, offset + 1
-        if not (b0 & 0x40):
-            val = ((b0 & 0x3F) << 7) | data[offset + 1]
-            if val >= 4096:
-                val -= 8192
-            return val, offset + 2
-        if not (b0 & 0x20):
-            val = ((b0 & 0x1F) << 14) | (data[offset + 1] << 7) | data[offset + 2]
-            if val >= 524288:
-                val -= 1048576
-            return val, offset + 3
-        if not (b0 & 0x10):
-            val = ((b0 & 0x0F) << 21) | (data[offset + 1] << 14) | \
-                  (data[offset + 2] << 7) | data[offset + 3]
-            if val >= 67108864:
-                val -= 134217728
-            return val, offset + 4
-        val = ((b0 & 0x0F) << 28) | (data[offset + 1] << 21) | \
-              (data[offset + 2] << 14) | (data[offset + 3] << 7) | data[offset + 4]
-        if val >= 2147483648:
-            val -= 4294967296
-        return val, offset + 5
+        """Decode an integer the way the klipper firmware does."""
+        c = data[offset]
+        offset += 1
+        v = c & 0x7F
+        if (c & 0x60) == 0x60:
+            v |= -0x20
+        while c & 0x80:
+            c = data[offset]
+            offset += 1
+            v = (v << 7) | (c & 0x7F)
+        return v, offset
 
     @classmethod
     def build_message(cls, seq: int, content_bytes: bytes) -> bytes:
@@ -250,7 +235,8 @@ class PyMCU:
         The host uses it to discover available commands and their
         parameter formats.
         """
-        import json, zlib
+        import json
+        import zlib
 
         # These are the exact message formats from the Kalico firmware
         # (derived from DECL_COMMAND / DECL_OUTPUT macros)

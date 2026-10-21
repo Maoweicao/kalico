@@ -360,7 +360,8 @@ class MessageParser:
         msglen = MESSAGE_MIN + len(cmd)
         seq = (seq & MESSAGE_SEQ_MASK) | MESSAGE_DEST
         out = [msglen, seq] + cmd
-        out.append(crc16_ccitt(out))
+        # The crc is two bytes - they have to be appended individually
+        out.extend(crc16_ccitt(out))
         out.append(MESSAGE_SYNC)
         return out
 
