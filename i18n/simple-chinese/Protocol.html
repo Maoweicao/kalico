@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/Protocol.html">
       
       
+        <link rel="prev" href="Kinematics.html">
+      
+      
+        <link rel="next" href="Communication_Protocol.html">
       
       
         
@@ -20,19 +24,19 @@
         
       
       
-      <link rel="icon" href="../../logo/kalico-32x32.png">
+      <link rel="icon" href="logo/kalico-32x32.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>协议 - Kalico Documentation</title>
+        <title>协议 - Kalico 文档</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,21 +55,11 @@
       
     
     
-      <link rel="stylesheet" href="../../_kalico/css/extra.css">
+      <link rel="stylesheet" href="_kalico/css/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3YZJ9658GV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3YZJ9658GV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3YZJ9658GV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -95,6 +89,22 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://github.com/KalicoCrew/kalico">
+    <span style="display: inline-flex; align-items: center; gap: 6px;">
+      <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.672.668 3.059 6.197 6.838.993a.75.75 0 0 1 .416 1.28l-4.948 4.823 1.168 6.812a.75.75 0 0 1-1.088.79L12 18.347l-6.116 3.216a.75.75 0 0 1-1.088-.791l1.168-6.811-4.948-4.823a.749.749 0 0 1 .416-1.279l6.838-.994L11.327.668a.75.75 0 0 1 1.345 0"/></svg></span>
+      Kalico is community maintained and free - consider supporting the project
+      <span style="font-weight: 700; text-transform: uppercase;">on GitHub</span>
+    </span>
+  </a>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -104,9 +114,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+    <a href="index.html" title="Kalico 文档" class="md-header__button md-logo" aria-label="Kalico 文档" data-md-component="logo">
       
-  <img src="../../logo/kalico-96x96.png" alt="logo">
+  <img src="logo/kalico-96x96.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +127,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Kalico Documentation
+            Kalico 文档
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -136,20 +146,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
@@ -202,7 +212,7 @@
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
@@ -272,12 +282,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+    <a href="index.html" title="Kalico 文档" class="md-nav__button md-logo" aria-label="Kalico 文档" data-md-component="logo">
       
-  <img src="../../logo/kalico-96x96.png" alt="logo">
+  <img src="logo/kalico-96x96.png" alt="logo">
 
     </a>
-    Kalico Documentation
+    Kalico 文档
   </label>
   
     <div class="md-nav__source">
@@ -301,14 +311,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    首页
   
 
     
@@ -328,14 +338,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview.html" class="md-nav__link">
+      <a href="Overview.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Overview
+    概述
   
 
     
@@ -355,14 +365,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Features.html" class="md-nav__link">
+      <a href="Features.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Features
+    功能
   
 
     
@@ -382,14 +392,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../FAQ.html" class="md-nav__link">
+      <a href="FAQ.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Frequently Asked Questions
+    常见问题
   
 
     
@@ -416,7 +426,7 @@
   <span class="md-ellipsis">
     
   
-    Releases
+    版本发布
   
 
     
@@ -436,14 +446,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Config_Changes.html" class="md-nav__link">
+      <a href="Config_Changes.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration Changes
+    配置变更
   
 
     
@@ -481,7 +491,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    配置
   
 
     
@@ -497,7 +507,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Configuration
+    配置
   
 
           </label>
@@ -510,14 +520,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Config_Reference.html" class="md-nav__link">
+      <a href="Config_Reference.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration reference
+    配置参考
   
 
     
@@ -538,14 +548,126 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Kalico_Additions.html" class="md-nav__link">
+      <a href="Kalico_Additions.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kalico additions
+    Kalico 附加功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dummy_Thermistor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    虚拟热敏电阻
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Cold_Extruder.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    冷挤出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kinematics_Additions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动学附加功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Handwheel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手轮
   
 
     
@@ -574,17 +696,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
         
           
-          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Bleeding Edge
+    边缘版本
   
 
     
@@ -595,12 +717,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bleeding Edge
+    边缘版本
   
 
           </label>
@@ -613,14 +735,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bleeding_Edge.html" class="md-nav__link">
+      <a href="Bleeding_Edge.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bleeding Edge Features Documentation
+    前沿功能文档
   
 
     
@@ -641,14 +763,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+      <a href="Config_Reference_Bleeding_Edge.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration reference for Bleeding Edge features
+    前沿功能配置参考
   
 
     
@@ -669,14 +791,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Nonlinear_Pressure_Advance.html" class="md-nav__link">
+      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Nonlinear Pressure Advance
+    非线性压力推进
   
 
     
@@ -705,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../PID.html" class="md-nav__link">
+      <a href="PID.html" class="md-nav__link">
         
   
   
@@ -733,14 +855,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../MPC.html" class="md-nav__link">
+      <a href="MPC.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Model Predictive Control
+    MPC
   
 
     
@@ -761,14 +883,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Dockable_Probe.html" class="md-nav__link">
+      <a href="Dockable_Probe.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Dockable Probe
+    可停靠探针
   
 
     
@@ -789,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../INDX.html" class="md-nav__link">
+      <a href="INDX.html" class="md-nav__link">
         
   
   
@@ -842,7 +964,7 @@
   <span class="md-ellipsis">
     
   
-    G-Code Reference
+    G-Code 参考
   
 
     
@@ -858,7 +980,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    G-Code Reference
+    G-Code 参考
   
 
           </label>
@@ -871,14 +993,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../G-Codes.html" class="md-nav__link">
+      <a href="G-Codes.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    G-Codes
+    G代码
   
 
     
@@ -899,14 +1021,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Command_Templates.html" class="md-nav__link">
+      <a href="Command_Templates.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Commands templates
+    命令模板
   
 
     
@@ -927,14 +1049,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../G-Code_Shell_Command.html" class="md-nav__link">
+      <a href="G-Code_Shell_Command.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    G-Code Shell Command Extension
+    G-Code Shell 命令扩展
   
 
     
@@ -955,14 +1077,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Status_Reference.html" class="md-nav__link">
+      <a href="Status_Reference.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Status reference
+    状态参考
   
 
     
@@ -1008,7 +1130,7 @@
   <span class="md-ellipsis">
     
   
-    Getting up and running
+    入门与运行
   
 
     
@@ -1024,7 +1146,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Getting up and running
+    入门与运行
   
 
           </label>
@@ -1037,14 +1159,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Migrating_from_Klipper.html" class="md-nav__link">
+      <a href="Migrating_from_Klipper.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Migrating from Klipper
+    从 Klipper 迁移
   
 
     
@@ -1065,14 +1187,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Installation.html" class="md-nav__link">
+      <a href="Installation.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Installation
+    安装
   
 
     
@@ -1093,14 +1215,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../OctoPrint.html" class="md-nav__link">
+      <a href="OctoPrint.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Using OctoPrint
+    使用 OctoPrint
   
 
     
@@ -1121,14 +1243,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../TMC_Drivers.html" class="md-nav__link">
+      <a href="MCU_Connection_Methods.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TMC drivers
+    MCU 连接方式
   
 
     
@@ -1149,14 +1271,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LYX_Drivers.html" class="md-nav__link">
+      <a href="RT_Performance_Optimization.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    LYX stepper drivers
+    实时性能优化
   
 
     
@@ -1177,14 +1299,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Config_checks.html" class="md-nav__link">
+      <a href="TMC_Drivers.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration checks
+    TMC驱动程序
   
 
     
@@ -1205,14 +1327,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rotation_Distance.html" class="md-nav__link">
+      <a href="LYX_Drivers.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Rotation distance
+    LYX 步进驱动
   
 
     
@@ -1233,14 +1355,98 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Multi_MCU_Homing.html" class="md-nav__link">
+      <a href="Config_checks.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Multiple Micro-controller Homing and Probing
+    配置检查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="System_Checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统配置检查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Rotation_Distance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    旋转距离
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Multi_MCU_Homing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多微控制器归位和探针
   
 
     
@@ -1269,17 +1475,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_12" >
         
           
-          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_12" id="__nav_9_12_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Bed leveling, Probes and Endstops
+    床平、探针与末端限位
   
 
     
@@ -1290,12 +1496,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_12">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bed leveling, Probes and Endstops
+    床平、探针与末端限位
   
 
           </label>
@@ -1308,14 +1514,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Z_Calibration.html" class="md-nav__link">
+      <a href="Z_Calibration.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Automatic Z-Offset Calibration
+    自动 Z 偏移校准
   
 
     
@@ -1336,14 +1542,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bed_Level.html" class="md-nav__link">
+      <a href="Bed_Level.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bed leveling
+    床面平整化
   
 
     
@@ -1364,14 +1570,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Delta_Calibrate.html" class="md-nav__link">
+      <a href="Delta_Calibrate.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Delta calibration
+    Delta 校准
   
 
     
@@ -1392,14 +1598,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Probe_Calibrate.html" class="md-nav__link">
+      <a href="Probe_Calibrate.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Probe calibration
+    探针校准
   
 
     
@@ -1420,7 +1626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../BLTouch.html" class="md-nav__link">
+      <a href="BLTouch.html" class="md-nav__link">
         
   
   
@@ -1448,14 +1654,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Manual_Level.html" class="md-nav__link">
+      <a href="Manual_Level.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Manual leveling
+    手动调平
   
 
     
@@ -1476,14 +1682,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bed_Mesh.html" class="md-nav__link">
+      <a href="Bed_Mesh.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bed Mesh
+    床面网格
   
 
     
@@ -1504,14 +1710,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Endstop_Phase.html" class="md-nav__link">
+      <a href="Endstop_Phase.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Endstop phase
+    限位开关相位
   
 
     
@@ -1532,14 +1738,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Axis_Twist_Compensation.html" class="md-nav__link">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Axis Twist Compensation
+    轴扭转补偿
   
 
     
@@ -1560,14 +1766,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Skew_Correction.html" class="md-nav__link">
+      <a href="Skew_Correction.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Skew correction
+    歪斜纠正
   
 
     
@@ -1604,17 +1810,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_13" >
         
           
-          <label class="md-nav__link" for="__nav_9_10" id="__nav_9_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_13" id="__nav_9_13_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Tuning
+    调优
   
 
     
@@ -1625,12 +1831,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_13">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Tuning
+    调优
   
 
           </label>
@@ -1643,14 +1849,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Measuring_Resonances.html" class="md-nav__link">
+      <a href="Measuring_Resonances.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Measuring Resonances
+    测量共振
   
 
     
@@ -1671,14 +1877,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Resonance_Compensation.html" class="md-nav__link">
+      <a href="Resonance_Compensation.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Resonance Compensation
+    共振补偿
   
 
     
@@ -1699,14 +1905,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Pressure_Advance.html" class="md-nav__link">
+      <a href="Pressure_Advance.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pressure advance
+    压力前进
   
 
     
@@ -1760,7 +1966,7 @@
   <span class="md-ellipsis">
     
   
-    Slicers
+    切片软件
   
 
     
@@ -1776,7 +1982,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Slicers
+    切片软件
   
 
           </label>
@@ -1789,14 +1995,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Slicers.html" class="md-nav__link">
+      <a href="Slicers.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Slicers
+    切片机
   
 
     
@@ -1817,14 +2023,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Exclude_Object.html" class="md-nav__link">
+      <a href="Exclude_Object.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Exclude Objects
+    排除对象
   
 
     
@@ -1845,14 +2051,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Using_PWM_Tools.html" class="md-nav__link">
+      <a href="Using_PWM_Tools.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Using PWM tools
+    使用 PWM 工具
   
 
     
@@ -1877,18 +2083,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1898,7 +2106,7 @@
   <span class="md-ellipsis">
     
   
-    Developer Documentation
+    开发者文档
   
 
     
@@ -1909,12 +2117,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Developer Documentation
+    开发者文档
   
 
           </label>
@@ -1927,14 +2135,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Code_Overview.html" class="md-nav__link">
+      <a href="Code_Overview.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Code overview
+    代码概览
   
 
     
@@ -1955,14 +2163,284 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Kinematics.html" class="md-nav__link">
+      <a href="Kinematics.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kinematics
+    运动学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    协议
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Protocol.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    协议
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        微控制器接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="微控制器接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        声明命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        声明响应
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="声明响应">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输出响应
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        声明枚举
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        声明常量
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        低级消息编码
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="低级消息编码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        消息块
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        消息块内容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="消息块内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可变长度数量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可变长度字符串
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据字典
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        消息流
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Communication_Protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通信协议：C 与 Python 接口
   
 
     
@@ -1983,14 +2461,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Protocol.html" class="md-nav__link">
+      <a href="Dependency_System.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Protocol
+    依赖自动禁用系统
   
 
     
@@ -2011,14 +2489,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../API_Server.html" class="md-nav__link">
+      <a href="Plugin_Development.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API server
+    插件开发指南
   
 
     
@@ -2039,14 +2517,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../MCU_Commands.html" class="md-nav__link">
+      <a href="API_Server.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    MCU commands
+    API 服务器
   
 
     
@@ -2067,14 +2545,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CANBUS_protocol.html" class="md-nav__link">
+      <a href="MCU_Commands.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CANBUS protocol
+    MCU 命令
   
 
     
@@ -2095,14 +2573,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Debugging.html" class="md-nav__link">
+      <a href="CANBUS_protocol.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Debugging
+    CANBUS 协议
   
 
     
@@ -2123,14 +2601,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Benchmarks.html" class="md-nav__link">
+      <a href="Debugging.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Benchmarks
+    调试
   
 
     
@@ -2151,14 +2629,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CONTRIBUTING.html" class="md-nav__link">
+      <a href="Benchmarks.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Contributing to Kalico
+    基准测试
   
 
     
@@ -2179,14 +2657,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Packaging.html" class="md-nav__link">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Packaging Kalico
+    为 Kalico 做出贡献
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Packaging.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打包Kalico
   
 
     
@@ -2232,7 +2738,7 @@
   <span class="md-ellipsis">
     
   
-    Device Specific Documents
+    设备专属文档
   
 
     
@@ -2248,7 +2754,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Device Specific Documents
+    设备专属文档
   
 
           </label>
@@ -2261,14 +2767,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Example_Configs.html" class="md-nav__link">
+      <a href="Example_Configs.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Example configurations
+    示例配置
   
 
     
@@ -2289,14 +2795,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../SDCard_Updates.html" class="md-nav__link">
+      <a href="SDCard_Updates.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    SDCard updates
+    SD 卡更新
   
 
     
@@ -2317,14 +2823,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RPi_microcontroller.html" class="md-nav__link">
+      <a href="RPi_microcontroller.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    RPi microcontroller
+    RPi 微控制器
   
 
     
@@ -2345,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Beaglebone.html" class="md-nav__link">
+      <a href="Beaglebone.html" class="md-nav__link">
         
   
   
@@ -2373,14 +2879,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bootloaders.html" class="md-nav__link">
+      <a href="Bootloaders.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bootloaders
+    引导加载程序
   
 
     
@@ -2401,14 +2907,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bootloader_Entry.html" class="md-nav__link">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bootloader Entry
+    引导加载程序入口
   
 
     
@@ -2429,7 +2935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CANBUS.html" class="md-nav__link">
+      <a href="CANBUS.html" class="md-nav__link">
         
   
   
@@ -2457,14 +2963,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CANBUS_Troubleshooting.html" class="md-nav__link">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CANBUS Troubleshooting
+    CANBUS 故障排查
   
 
     
@@ -2485,14 +2991,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+      <a href="CANopen.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TSL1401CL filament width sensor
+    CANopen 伺服支持
   
 
     
@@ -2513,14 +3019,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hall_Filament_Width_Sensor.html" class="md-nav__link">
+      <a href="EtherCAT.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Hall filament width sensor
+    EtherCAT 伺服支持
   
 
     
@@ -2541,14 +3047,182 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Load_Cell.html" class="md-nav__link">
+      <a href="RS485.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Load Cells
+    RS485 伺服支持
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PulseGen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部脉冲发生器支持
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSL1401CL 线材宽度传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hall 灯丝宽度传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Load_Cell.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    负载传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="safety-monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工业安全监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="servo-safety.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伺服安全监控
   
 
     
@@ -2576,14 +3250,429 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Telemetry.html" class="md-nav__link">
+      <a href="Klipper_Guide_CN.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kalico Telemetry
+    Kalico Klipper 指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly 功能集
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly 功能集
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico Fly 功能集
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/power_loss_resume.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    断电续打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/filament_blockage_detection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耗材堵塞检测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/non_fatal_errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    非致命错误处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/nozzle_filament_diameter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    喷嘴与耗材直径命令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/ldc1612_frequency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDC1612 外部晶振频率配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/from_height_print.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从指定高度打印
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 助手
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI 助手
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/AI_QUICK_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI 快速参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/CLI_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    面向 AI 助手的 Kalico CLI 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Telemetry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遥测
   
 
     
@@ -2603,14 +3692,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contact.html" class="md-nav__link">
+      <a href="Contact.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Contact
+    联系
   
 
     
@@ -2630,14 +3719,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Sponsors.html" class="md-nav__link">
+      <a href="Sponsors.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sponsors
+    赞助
   
 
     
@@ -2862,7 +3951,7 @@
   
     <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/Protocol.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
   
   
@@ -2870,13 +3959,12 @@
 
 <h1 id="_1">协议<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>Kalico 消息协议（Protocol）用于 Kalico 主机软件和 Kalico 微控制器（MCU - Micro-Controller Unit）软件之间的低级通信。高层来说，协议可以被认为是一系列被压缩、传输然后在接收端处理的命令和响应字符串。一个未压缩的人类可读格式的命令序列示例可能看起来像这样：</p>
-<div class="highlight"><pre><span></span><code>set_digital_out pin=PA3 value=1
-set_digital_out pin=PA7 value=1
-schedule_digital_out oid=8 clock=4000000 value=0
-queue_step oid=7 interval=7458 count=10 add=331
-queue_step oid=7 interval=11717 count=4 add=1281
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>set_digital_out pin=PA3 value=1
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>set_digital_out pin=PA7 value=1
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>schedule_digital_out oid=8 clock=4000000 value=0
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>queue_step oid=7 interval=7458 count=10 add=331
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>queue_step oid=7 interval=11717 count=4 add=1281
 </code></pre></div>
-
 <p>有关可用命令的信息，请参见 <a href="MCU_Commands.html">MCU 命令</a>文档。有关如何将 G-Code 文件翻译为相应的人类可读微控制器命令的信息，请参见<a href="Debugging.html">调试</a>文档。</p>
 <p>本页提供了 Kalico 消息协议本身的高级描述。它描述了消息是如何声明的、如何编码为二进制格式（"压缩"方案）以及如何被传输的。</p>
 <p>协议的目标是在主机和微控制器之间启用无错误的通信通道，该通道具有低延迟、低带宽和对微控制器而言低复杂性的特点。</p>
@@ -2884,66 +3972,57 @@ queue_step oid=7 interval=11717 count=4 add=1281
 <p>Kalico 传输协议可以被认为是微控制器和主机之间的一种 <a href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a>（远程过程调用）机制。微控制器软件声明主机可以调用的命令以及它可以生成的响应消息。主机使用这些信息来命令微控制器执行动作并解释结果。</p>
 <h3 id="_3">声明命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>微控制器软件通过在 C 代码中使用 DECL_COMMAND() 宏来声明"命令"。例如：</p>
-<div class="highlight"><pre><span></span><code>DECL_COMMAND(command_update_digital_out, &quot;update_digital_out oid=%c value=%c&quot;);
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>DECL_COMMAND(command_update_digital_out, &quot;update_digital_out oid=%c value=%c&quot;);
 </code></pre></div>
-
 <p>上面声明了一个名为"update_digital_out"的命令。这允许主机"调用"这个命令，这将导致微控制器中的 command_update_digital_out() C 函数被执行。上面还表示该命令需要两个整数参数。当执行 command_update_digital_out() C 代码时，它将被传递一个包含这两个整数的数组——第一个对应"oid"，第二个对应"value"。</p>
 <p>通常，参数使用 printf() 样式语法来描述（例如，"%u"）。格式直接对应于命令的人类可读视图（例如，"update_digital_out oid=7 value=1"）。在上面的示例中，"value="是参数名称，"%c"表示参数是一个整数。在内部，参数名称仅用作文档。在这个例子中，"%c"也被用作文档来指示预期的整数大小为 1 字节（声明的整数大小不影响解析或编码）。</p>
 <p>微控制器构建将收集所有用 DECL_COMMAND() 声明的命令、确定它们的参数，并安排它们可被调用。</p>
 <h3 id="_4">声明响应<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>要从微控制器向主机发送信息，将生成一个"响应"。这些既被声明又使用 sendf() C 宏来传输。例如：</p>
-<div class="highlight"><pre><span></span><code>sendf(&quot;status clock=%u status=%c&quot;, sched_read_time(), sched_is_shutdown());
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sendf(&quot;status clock=%u status=%c&quot;, sched_read_time(), sched_is_shutdown());
 </code></pre></div>
-
 <p>上面传输了一个"status"响应消息，其包含两个整数参数（"clock"和"status"）。微控制器构建自动找到所有 sendf() 调用并为它们生成编码器。sendf() 函数的第一个参数描述了响应，其格式与命令声明相同。</p>
 <p>主机可以为每个响应注册一个回调函数。因此，实际上，命令允许主机调用微控制器中的 C 函数，而响应允许微控制器软件调用主机中的代码。</p>
 <p>sendf() 宏只应从命令或任务处理程序中调用，不应从中断或计时器中调用。代码不需要为了响应收到的命令而发出 sendf()，它在调用 sendf() 的次数上没有限制，并且它可以在任何时候从任务处理程序中调用 sendf()。</p>
 <h4 id="_5">输出响应<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <p>为了简化调试，还有一个 output() C 函数。例如：</p>
-<div class="highlight"><pre><span></span><code>output(&quot;The value of %u is %s with size %u.&quot;, x, buf, buf_len);
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>output(&quot;The value of %u is %s with size %u.&quot;, x, buf, buf_len);
 </code></pre></div>
-
 <p>output() 函数在使用上类似于 printf()——它旨在生成和格式化用于人类消费的任意消息。</p>
 <h3 id="_6">声明枚举<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>枚举允许主机代码对微控制器处理为整数的参数使用字符串标识符。它们在微控制器代码中声明——例如：</p>
-<div class="highlight"><pre><span></span><code>DECL_ENUMERATION(&quot;spi_bus&quot;, &quot;spi&quot;, 0);
-
-DECL_ENUMERATION_RANGE(&quot;pin&quot;, &quot;PC0&quot;, 16, 8);
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>DECL_ENUMERATION(&quot;spi_bus&quot;, &quot;spi&quot;, 0);
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>DECL_ENUMERATION_RANGE(&quot;pin&quot;, &quot;PC0&quot;, 16, 8);
 </code></pre></div>
-
 <p>在第一个例子中，DECL_ENUMERATION() 宏为任何参数名称为"spi_bus"或参数名称以"_spi_bus"为后缀的命令/响应消息定义一个枚举。对于这些参数，字符串"spi"是一个有效值，它将以零的整数值进行传输。</p>
 <p>也可以声明一个枚举范围。在第二个例子中，"pin"参数（或任何参数名称以"_pin"为后缀的参数）将接受 PC0、PC1、PC2、...、PC7 作为有效值。这些字符串将以整数 16、17、18、...、23 进行传输。</p>
 <h3 id="_7">声明常量<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>常量也可以被导出。例如，以下代码：</p>
-<div class="highlight"><pre><span></span><code>DECL_CONSTANT(&quot;SERIAL_BAUD&quot;, 250000);
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>DECL_CONSTANT(&quot;SERIAL_BAUD&quot;, 250000);
 </code></pre></div>
-
 <p>将导出一个名为"SERIAL_BAUD"的常量，其值从微控制器为 250000 到主机。也可以声明一个字符串常量——例如：</p>
-<div class="highlight"><pre><span></span><code>DECL_CONSTANT_STR(&quot;MCU&quot;, &quot;pru&quot;);
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>DECL_CONSTANT_STR(&quot;MCU&quot;, &quot;pru&quot;);
 </code></pre></div>
-
 <h2 id="_8">低级消息编码<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>为了实现上述 RPC 机制，每个命令和响应都被编码为二进制格式进行传输。本节描述了传输系统。</p>
 <h3 id="_9">消息块<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>从主机到微控制器以及反向发送的所有数据都包含在"消息块"中。消息块有一个两字节头和一个三字节尾。消息块的格式是：</p>
-<div class="highlight"><pre><span></span><code>&lt;1 byte length&gt;&lt;1 byte sequence&gt;&lt;n-byte content&gt;&lt;2 byte crc&gt;&lt;1 byte sync&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&lt;1 byte length&gt;&lt;1 byte sequence&gt;&lt;n-byte content&gt;&lt;2 byte crc&gt;&lt;1 byte sync&gt;
 </code></pre></div>
-
 <p>长度字节包含消息块中的字节数，包括头和尾字节（因此最小消息长度为 5 字节）。最大消息块长度目前为 64 字节。序列字节包含低位中的 4 位序列号，高位始终包含 0x10（高位为将来使用保留）。内容字节包含任意数据，其格式在下一节中描述。CRC 字节包含消息块的 16 位 CCITT <a href="https://en.wikipedia.org/wiki/Cyclic_redundancy_check">CRC</a>（循环冗余校验），包括头字节但不包括尾字节。同步字节为 0x7e。</p>
 <p>消息块的格式受 <a href="https://en.wikipedia.org/wiki/High-Level_Data_Link_Control">HDLC</a>（高级数据链路控制）消息帧的启发。与 HDLC 类似，消息块可以选择性地在块的开始处包含额外的同步字符。与 HDLC 不同，同步字符不是成帧的独占字符，可能在消息块内容中出现。</p>
 <h3 id="_10">消息块内容<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>从主机到微控制器发送的每个消息块在其内容中包含零个或多个消息命令序列。每个命令以一个 <a href="#variable-length-quantities">VLQ 编码</a>（可变长度数量）的整数命令-id 开始，然后是给定命令的零个或多个 VLQ 参数。</p>
 <p>例如，以下四个命令可能被放置在单个消息块中：</p>
-<div class="highlight"><pre><span></span><code>update_digital_out oid=6 value=1
-update_digital_out oid=5 value=0
-get_config
-get_clock
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>update_digital_out oid=6 value=1
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>update_digital_out oid=5 value=0
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>get_config
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>get_clock
 </code></pre></div>
-
 <p>并编码为以下八个 VLQ 整数：</p>
-<div class="highlight"><pre><span></span><code>&lt;id_update_digital_out&gt;&lt;6&gt;&lt;1&gt;&lt;id_update_digital_out&gt;&lt;5&gt;&lt;0&gt;&lt;id_get_config&gt;&lt;id_get_clock&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&lt;id_update_digital_out&gt;&lt;6&gt;&lt;1&gt;&lt;id_update_digital_out&gt;&lt;5&gt;&lt;0&gt;&lt;id_get_config&gt;&lt;id_get_clock&gt;
 </code></pre></div>
-
 <p>为了编码和解析消息内容，主机和微控制器都必须同意命令 id 和每个命令具有的参数数量。因此，在上面的示例中，主机和微控制器都会知道"id_update_digital_out"始终后跟两个参数，而"id_get_config"和"id_get_clock"具有零参数。主机和微控制器共享一个"数据字典"，将命令描述（例如，"update_digital_out oid=%c value=%c"）映射到它们的整数命令-id。在处理数据时，解析器将知道在给定命令 id 之后期望特定数量的 VLQ 编码参数。</p>
 <p>从微控制器到主机发送的消息块的消息内容遵循相同的格式。这些消息中的标识符是"响应 id"，但它们的目的相同并遵循相同的编码规则。实际上，从微控制器发送到主机的消息块在消息块内容中从不包含超过一个响应。</p>
 <h4 id="_11">可变长度数量<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
@@ -2980,9 +4059,8 @@ get_clock
 </table>
 <h4 id="_12">可变长度字符串<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
 <p>作为上述编码规则的例外，如果命令或响应的参数是动态字符串，那么参数不被编码为简单的 VLQ 整数。相反，它通过传输长度作为 VLQ 编码整数，后跟内容本身来编码：</p>
-<div class="highlight"><pre><span></span><code>&lt;VLQ encoded length&gt;&lt;n-byte contents&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&lt;VLQ encoded length&gt;&lt;n-byte contents&gt;
 </code></pre></div>
-
 <p>数据字典中的命令描述允许主机和微控制器知道哪些命令参数使用简单 VLQ 编码，哪些参数使用字符串编码。</p>
 <h2 id="_13">数据字典<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <p>为了在微控制器和主机之间建立有意义的通信，双方必须同意一个"数据字典"。这个数据字典包含命令和响应的整数标识符以及它们的描述。</p>
@@ -3006,8 +4084,6 @@ get_clock
 
 
 
-  
-
 
 
 
@@ -3029,6 +4105,46 @@ get_clock
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="Kinematics.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 运动学">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                运动学
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="Communication_Protocol.html" class="md-footer__link md-footer__link--next" aria-label="Next: 通信协议：C 与 Python 接口">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                通信协议：C 与 Python 接口
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -3037,19 +4153,6 @@ get_clock
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
-    </a>
-  
-</div>
-      
-        
-<div class="md-social">
-  
-    
-    
-    
-    
-    <a href="https://kalico.gg/discord" target="_blank" rel="noopener" title="Join our Discord server!" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
     </a>
   
 </div>
@@ -3069,10 +4172,10 @@ get_clock
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.code.copy", "content.code.annotate", "content.code.select", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

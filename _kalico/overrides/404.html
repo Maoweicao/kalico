@@ -1,0 +1,53 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<style>
+  .eyes {
+    font-size: 5rem;
+    margin-bottom: -1rem;
+  }
+  .error-title {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    background: linear-gradient(90deg, #ff9800, #ff5722, #ffb74d, #ff9800);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  }
+  .not-found {
+    display: block;
+    font-size: 2.5rem;
+    color: #ff5722;
+    margin-top: -1rem;
+  }
+  .error-actions {
+    margin-top: 2rem;
+  }
+</style>
+
+<center>
+  <div class="eyes">🛰️ 🔍</div>
+  <h1 class="error-title">
+    <span class="not-found">404 - Not found</span>
+  </h1>
+  <h2 style="font-size: 1.8rem; color: var(--md-default-fg-color--light); margin-top: 1rem;">
+    The page you are looking for could not be found.
+  </h2>
+  <p style="max-width: 34rem; margin: 1rem auto; color: var(--md-default-fg-color--light);">
+    It may have been moved, renamed, or never existed. Use the search bar or
+    the navigation menu to find what you need.
+  </p>
+  <div class="error-actions">
+    <a href="{{ config.site_url }}" class="md-button md-button--primary">
+      Go to Home
+    </a>
+    <a href="{{ base_url }}/Overview.html" class="md-button">
+      Browse Documentation
+    </a>
+  </div>
+</center>
+
+{% endblock %}

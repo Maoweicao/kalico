@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://docs.kalico.gg/Kinematics_Additions.html">
       
       
+        <link rel="prev" href="Cold_Extruder.html">
+      
+      
+        <link rel="next" href="Handwheel.html">
       
       
         
@@ -95,6 +99,22 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://github.com/KalicoCrew/kalico">
+    <span style="display: inline-flex; align-items: center; gap: 6px;">
+      <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.672.668 3.059 6.197 6.838.993a.75.75 0 0 1 .416 1.28l-4.948 4.823 1.168 6.812a.75.75 0 0 1-1.088.79L12 18.347l-6.116 3.216a.75.75 0 0 1-1.088-.791l1.168-6.811-4.948-4.823a.749.749 0 0 1 .416-1.279l6.838-.994L11.327.668a.75.75 0 0 1 1.345 0"/></svg></span>
+      Kalico is community maintained and free - consider supporting the project
+      <span style="font-weight: 700; text-transform: uppercase;">on GitHub</span>
+    </span>
+  </a>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -139,7 +159,7 @@
     <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
@@ -149,7 +169,7 @@
     <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
@@ -202,7 +222,7 @@
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
@@ -460,18 +480,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -492,7 +514,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -565,6 +587,504 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="Dummy_Thermistor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dummy Thermistor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Cold_Extruder.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cold Extruder (No Heater)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Kinematics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Kinematics_Additions.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Kinematics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Kinematics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scara-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SCARA Kinematics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SCARA Kinematics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepper-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stepper Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tpara-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TPARA Kinematics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TPARA Kinematics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepper-configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stepper Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polargraph-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Polargraph Kinematics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Polargraph Kinematics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepper-configuration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stepper Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#belt-printer-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Belt Printer Kinematics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Belt Printer Kinematics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepper-configuration_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stepper Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#robot-arm-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robot Arm Kinematics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Robot Arm Kinematics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepper-configuration_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stepper Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foam-cutter-kinematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foam Cutter Kinematics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Foam Cutter Kinematics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepper-configuration_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stepper Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Variants
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Variants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coreyx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CoreYX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coreyz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CoreYZ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corezx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CoreZX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corezy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CoreZY
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Handwheel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handwheel (Jog Wheel) Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -574,10 +1094,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
         
           
-          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
             
   
   
@@ -595,8 +1115,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1121,6 +1641,62 @@
   
   
     <li class="md-nav__item">
+      <a href="MCU_Connection_Methods.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU Connection Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RT_Performance_Optimization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time Performance Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="TMC_Drivers.html" class="md-nav__link">
         
   
@@ -1205,6 +1781,34 @@
   
   
     <li class="md-nav__item">
+      <a href="System_Checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Configuration Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="Rotation_Distance.html" class="md-nav__link">
         
   
@@ -1269,10 +1873,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_12" >
         
           
-          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_12" id="__nav_9_12_label" tabindex="0">
             
   
   
@@ -1290,8 +1894,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_12">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1604,10 +2208,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_13" >
         
           
-          <label class="md-nav__link" for="__nav_9_10" id="__nav_9_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_13" id="__nav_9_13_label" tabindex="0">
             
   
   
@@ -1625,8 +2229,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_13">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1991,6 +2595,90 @@
     
   
     Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Communication_Protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Communication Protocol: C ↔ Python Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dependency_System.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Auto-Disable System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Plugin_Development.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Development Guide
   
 
     
@@ -2485,6 +3173,118 @@
   
   
     <li class="md-nav__item">
+      <a href="CANopen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CANopen Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="EtherCAT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherCAT Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RS485.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RS485 Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PulseGen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Pulse Generator Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
         
   
@@ -2549,6 +3349,450 @@
     
   
     Load Cells
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="safety-monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Industrial Safety Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="servo-safety.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servo Safety Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico Fly Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/power_loss_resume.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Loss Resume
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/filament_blockage_detection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filament Blockage Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/non_fatal_errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Fatal Error Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/nozzle_filament_diameter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nozzle &amp; Filament Diameter Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/ldc1612_frequency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDC1612 External Crystal Frequency Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/from_height_print.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From-Height Print
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Assistant
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI Assistant
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/AI_QUICK_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/CLI_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico CLI Reference for AI Assistants
   
 
     
@@ -3034,7 +4278,7 @@
   
     <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/Kinematics_Additions.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
   
   
@@ -3107,62 +4351,60 @@
 <h2 id="scara-kinematics">SCARA Kinematics<a class="headerlink" href="#scara-kinematics" title="Permanent link">&para;</a></h2>
 <p>SCARA (Selective Compliance Assembly Robot Arm) is a common industrial robot arm configuration.</p>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: scara
-
-[scara]
-linkage_1: 150
-#   Length of inner arm in mm. This parameter must be provided.
-linkage_2: 150
-#   Length of outer arm in mm. This parameter must be provided.
-offset_x: 100
-#   X offset of tower from bed center in mm. Default is 0.
-offset_y: -56
-#   Y offset of tower from bed center in mm. Default is 0.
-segments_per_second: 200
-#   Number of segments per second for curved moves. Default is 200.
-variant: morgan
-#   SCARA variant: &quot;morgan&quot; or &quot;mp&quot;. Default is &quot;morgan&quot;.
-print_radius: 250
-#   Maximum print radius in mm. Default is linkage_1 + linkage_2.
-home_x: 100
-#   Home X position in mm. Default is 0.
-home_y: 100
-#   Home Y position in mm. Default is 0.
-home_z: 0
-#   Home Z position in mm. Default is 0.
-max_z: 300
-#   Maximum Z height in mm. Default is 300.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[printer]
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kinematics: scara
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[scara]
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>linkage_1: 150
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>#   Length of inner arm in mm. This parameter must be provided.
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>linkage_2: 150
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>#   Length of outer arm in mm. This parameter must be provided.
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>offset_x: 100
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>#   X offset of tower from bed center in mm. Default is 0.
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>offset_y: -56
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>#   Y offset of tower from bed center in mm. Default is 0.
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>segments_per_second: 200
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>#   Number of segments per second for curved moves. Default is 200.
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>variant: morgan
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>#   SCARA variant: &quot;morgan&quot; or &quot;mp&quot;. Default is &quot;morgan&quot;.
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>print_radius: 250
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>#   Maximum print radius in mm. Default is linkage_1 + linkage_2.
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>home_x: 100
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>#   Home X position in mm. Default is 0.
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>home_y: 100
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>#   Home Y position in mm. Default is 0.
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>home_z: 0
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>#   Home Z position in mm. Default is 0.
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>max_z: 300
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>#   Maximum Z height in mm. Default is 300.
 </code></pre></div>
-
 <h3 id="stepper-configuration">Stepper Configuration<a class="headerlink" href="#stepper-configuration" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[stepper_a]
-# Shoulder motor (rotational)
-step_pin: PA0
-dir_pin: PA1
-endstop_pin: PA2
-rotation_distance: 360
-#   360 degrees per full rotation
-microsteps: 16
-
-[stepper_b]
-# Elbow motor (rotational)
-step_pin: PB0
-dir_pin: PB1
-endstop_pin: PB2
-rotation_distance: 360
-microsteps: 16
-
-[stepper_z]
-# Z axis (linear)
-step_pin: PC0
-dir_pin: PC1
-endstop_pin: PC2
-position_endstop: 0
-position_max: 300
-microsteps: 16
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[stepper_a]
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a># Shoulder motor (rotational)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>step_pin: PA0
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>dir_pin: PA1
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>endstop_pin: PA2
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>rotation_distance: 360
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>#   360 degrees per full rotation
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>microsteps: 16
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>[stepper_b]
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a># Elbow motor (rotational)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>step_pin: PB0
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>dir_pin: PB1
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>endstop_pin: PB2
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>rotation_distance: 360
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>microsteps: 16
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>[stepper_z]
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a># Z axis (linear)
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>step_pin: PC0
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>dir_pin: PC1
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>endstop_pin: PC2
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>position_endstop: 0
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>position_max: 300
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>microsteps: 16
 </code></pre></div>
-
 <h3 id="variants">Variants<a class="headerlink" href="#variants" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Morgan SCARA</strong>: Uses Cartesian XY home position</li>
@@ -3171,256 +4413,242 @@ microsteps: 16
 <h2 id="tpara-kinematics">TPARA Kinematics<a class="headerlink" href="#tpara-kinematics" title="Permanent link">&para;</a></h2>
 <p>TPARA (Three Parallel Axis Rotary Arm) is a 3-axis robotic arm with three parallel rotation axes.</p>
 <h3 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: tpara
-
-[tpara]
-linkage_1: 120
-#   Length of inner arm in mm. This parameter must be provided.
-linkage_2: 120
-#   Length of outer arm in mm. This parameter must be provided.
-offset_x: 0
-#   X offset in mm. Default is 0.
-offset_y: 0
-#   Y offset in mm. Default is 0.
-offset_z: 0
-#   Z offset in mm. Default is 0.
-segments_per_second: 200
-#   Number of segments per second. Default is 200.
-print_radius: 200
-#   Maximum print radius in mm. Default is linkage_1 + linkage_2.
-max_z: 300
-#   Maximum Z height in mm. Default is 300.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[printer]
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kinematics: tpara
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>[tpara]
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>linkage_1: 120
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>#   Length of inner arm in mm. This parameter must be provided.
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>linkage_2: 120
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>#   Length of outer arm in mm. This parameter must be provided.
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>offset_x: 0
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>#   X offset in mm. Default is 0.
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>offset_y: 0
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>#   Y offset in mm. Default is 0.
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>offset_z: 0
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>#   Z offset in mm. Default is 0.
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>segments_per_second: 200
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>#   Number of segments per second. Default is 200.
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>print_radius: 200
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>#   Maximum print radius in mm. Default is linkage_1 + linkage_2.
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>max_z: 300
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>#   Maximum Z height in mm. Default is 300.
 </code></pre></div>
-
 <h3 id="stepper-configuration_1">Stepper Configuration<a class="headerlink" href="#stepper-configuration_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[stepper_a]
-# Base rotation
-step_pin: PA0
-dir_pin: PA1
-endstop_pin: PA2
-rotation_distance: 360
-microsteps: 16
-
-[stepper_b]
-# Shoulder rotation
-step_pin: PB0
-dir_pin: PB1
-endstop_pin: PB2
-rotation_distance: 360
-microsteps: 16
-
-[stepper_c]
-# Elbow rotation
-step_pin: PC0
-dir_pin: PC1
-endstop_pin: PC2
-rotation_distance: 360
-microsteps: 16
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[stepper_a]
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a># Base rotation
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>step_pin: PA0
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>dir_pin: PA1
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>endstop_pin: PA2
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>rotation_distance: 360
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>microsteps: 16
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>[stepper_b]
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a># Shoulder rotation
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>step_pin: PB0
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>dir_pin: PB1
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>endstop_pin: PB2
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>rotation_distance: 360
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>microsteps: 16
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>[stepper_c]
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a># Elbow rotation
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>step_pin: PC0
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>dir_pin: PC1
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>endstop_pin: PC2
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>rotation_distance: 360
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>microsteps: 16
 </code></pre></div>
-
 <h2 id="polargraph-kinematics">Polargraph Kinematics<a class="headerlink" href="#polargraph-kinematics" title="Permanent link">&para;</a></h2>
 <p>Polargraph (also known as wall plotter or cable-driven plotter) uses two motors mounted at the top corners to control a pen/gripper via strings/cables.</p>
 <h3 id="configuration_2">Configuration<a class="headerlink" href="#configuration_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: polargraph
-
-[polargraph]
-motor_distance_x: 1000.0
-#   Distance between the two motor centers in mm. This parameter
-#   must be provided.
-motor_offset_y: 50.0
-#   Y offset from motor center to home position in mm. Default is 0.
-max_belt_length: 1200.0
-#   Maximum belt/cable length in mm. Default is motor_distance_x * 1.2.
-segments_per_second: 5
-#   Number of segments per second. Default is 5.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[printer]
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kinematics: polargraph
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>[polargraph]
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>motor_distance_x: 1000.0
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>#   Distance between the two motor centers in mm. This parameter
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>#   must be provided.
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>motor_offset_y: 50.0
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>#   Y offset from motor center to home position in mm. Default is 0.
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>max_belt_length: 1200.0
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>#   Maximum belt/cable length in mm. Default is motor_distance_x * 1.2.
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>segments_per_second: 5
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>#   Number of segments per second. Default is 5.
 </code></pre></div>
-
 <h3 id="stepper-configuration_2">Stepper Configuration<a class="headerlink" href="#stepper-configuration_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[stepper_left]
-# Left motor
-step_pin: PA0
-dir_pin: PA1
-endstop_pin: PA2
-rotation_distance: 40
-microsteps: 16
-
-[stepper_right]
-# Right motor
-step_pin: PB0
-dir_pin: PB1
-endstop_pin: PB2
-rotation_distance: 40
-microsteps: 16
-
-[stepper_z]
-# Optional Z axis for pen lift
-step_pin: PC0
-dir_pin: PC1
-endstop_pin: PC2
-position_endstop: 0
-position_max: 100
-microsteps: 16
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[stepper_left]
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a># Left motor
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>step_pin: PA0
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>dir_pin: PA1
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>endstop_pin: PA2
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>rotation_distance: 40
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>microsteps: 16
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>[stepper_right]
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a># Right motor
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>step_pin: PB0
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>dir_pin: PB1
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>endstop_pin: PB2
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>rotation_distance: 40
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>microsteps: 16
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>[stepper_z]
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a># Optional Z axis for pen lift
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>step_pin: PC0
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>dir_pin: PC1
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>endstop_pin: PC2
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>position_endstop: 0
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>position_max: 100
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>microsteps: 16
 </code></pre></div>
-
 <h2 id="belt-printer-kinematics">Belt Printer Kinematics<a class="headerlink" href="#belt-printer-kinematics" title="Permanent link">&para;</a></h2>
 <p>Belt printers have an infinite Z axis (conveyor belt bed) and are typically tilted at 45 degrees.</p>
 <h3 id="configuration_3">Configuration<a class="headerlink" href="#configuration_3" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: belt
-
-[belt]
-bed_tilt: 45.0
-#   Bed tilt angle in degrees. Default is 45.
-bed_rotation_axis: y
-#   Bed rotation axis: &quot;x&quot; or &quot;y&quot;. Default is &quot;y&quot;.
-segments_per_second: 10
-#   Number of segments per second. Default is 10.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[printer]
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>kinematics: belt
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>[belt]
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>bed_tilt: 45.0
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>#   Bed tilt angle in degrees. Default is 45.
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>bed_rotation_axis: y
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>#   Bed rotation axis: &quot;x&quot; or &quot;y&quot;. Default is &quot;y&quot;.
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>segments_per_second: 10
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>#   Number of segments per second. Default is 10.
 </code></pre></div>
-
 <h3 id="stepper-configuration_3">Stepper Configuration<a class="headerlink" href="#stepper-configuration_3" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[stepper_x]
-step_pin: PA0
-dir_pin: PA1
-endstop_pin: PA2
-position_endstop: 0
-position_max: 200
-
-[stepper_y]
-step_pin: PB0
-dir_pin: PB1
-endstop_pin: PB2
-position_endstop: 0
-position_max: 200
-
-[stepper_z]
-# Conveyor belt motor
-step_pin: PC0
-dir_pin: PC1
-endstop_pin: PC2
-position_endstop: 0
-position_max: 200
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[stepper_x]
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>step_pin: PA0
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>dir_pin: PA1
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>endstop_pin: PA2
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>position_endstop: 0
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>position_max: 200
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>[stepper_y]
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>step_pin: PB0
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>dir_pin: PB1
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>endstop_pin: PB2
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>position_endstop: 0
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>position_max: 200
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>[stepper_z]
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a># Conveyor belt motor
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>step_pin: PC0
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>dir_pin: PC1
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>endstop_pin: PC2
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>position_endstop: 0
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>position_max: 200
 </code></pre></div>
-
 <h2 id="robot-arm-kinematics">Robot Arm Kinematics<a class="headerlink" href="#robot-arm-kinematics" title="Permanent link">&para;</a></h2>
 <p>Articulated robot arm with multiple rotational joints.</p>
 <h3 id="configuration_4">Configuration<a class="headerlink" href="#configuration_4" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: robot_arm
-
-[robot_arm]
-d1: 100
-#   Base height in mm. Default is 100.
-a1: 50
-#   Link 1 length in mm. Default is 50.
-a2: 200
-#   Link 2 length in mm. Default is 200.
-a3: 150
-#   Link 3 length in mm. Default is 150.
-segments_per_second: 100
-#   Number of segments per second. Default is 100.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>[printer]
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>kinematics: robot_arm
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>[robot_arm]
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>d1: 100
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>#   Base height in mm. Default is 100.
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>a1: 50
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>#   Link 1 length in mm. Default is 50.
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>a2: 200
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>#   Link 2 length in mm. Default is 200.
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>a3: 150
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>#   Link 3 length in mm. Default is 150.
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>segments_per_second: 100
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>#   Number of segments per second. Default is 100.
 </code></pre></div>
-
 <h3 id="stepper-configuration_4">Stepper Configuration<a class="headerlink" href="#stepper-configuration_4" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[stepper_a]
-# Base rotation
-step_pin: PA0
-dir_pin: PA1
-endstop_pin: PA2
-rotation_distance: 360
-microsteps: 16
-
-[stepper_b]
-# Shoulder rotation
-step_pin: PB0
-dir_pin: PB1
-endstop_pin: PB2
-rotation_distance: 360
-microsteps: 16
-
-[stepper_c]
-# Elbow rotation
-step_pin: PC0
-dir_pin: PC1
-endstop_pin: PC2
-rotation_distance: 360
-microsteps: 16
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>[stepper_a]
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a># Base rotation
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>step_pin: PA0
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>dir_pin: PA1
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>endstop_pin: PA2
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>rotation_distance: 360
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>microsteps: 16
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>[stepper_b]
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a># Shoulder rotation
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>step_pin: PB0
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>dir_pin: PB1
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>endstop_pin: PB2
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>rotation_distance: 360
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>microsteps: 16
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>[stepper_c]
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a># Elbow rotation
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>step_pin: PC0
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>dir_pin: PC1
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>endstop_pin: PC2
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>rotation_distance: 360
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>microsteps: 16
 </code></pre></div>
-
 <h2 id="foam-cutter-kinematics">Foam Cutter Kinematics<a class="headerlink" href="#foam-cutter-kinematics" title="Permanent link">&para;</a></h2>
 <p>Foam cutters use a hot wire to cut foam, typically with 4 axes: X, Y (wire top) and U, V (wire bottom).</p>
 <h3 id="configuration_5">Configuration<a class="headerlink" href="#configuration_5" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: foam_cutter
-
-[foam_cutter]
-wire_length: 500.0
-#   Wire length in mm. This parameter must be provided.
-segments_per_second: 10
-#   Number of segments per second. Default is 10.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>[printer]
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>kinematics: foam_cutter
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>[foam_cutter]
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>wire_length: 500.0
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>#   Wire length in mm. This parameter must be provided.
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>segments_per_second: 10
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>#   Number of segments per second. Default is 10.
 </code></pre></div>
-
 <h3 id="stepper-configuration_5">Stepper Configuration<a class="headerlink" href="#stepper-configuration_5" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[stepper_x]
-# Wire top X
-step_pin: PA0
-dir_pin: PA1
-endstop_pin: PA2
-position_endstop: 0
-position_max: 500
-
-[stepper_y]
-# Wire top Y
-step_pin: PB0
-dir_pin: PB1
-endstop_pin: PB2
-position_endstop: 0
-position_max: 500
-
-[stepper_u]
-# Wire bottom X
-step_pin: PC0
-dir_pin: PC1
-endstop_pin: PC2
-position_endstop: 0
-position_max: 500
-
-[stepper_v]
-# Wire bottom Y
-step_pin: PD0
-dir_pin: PD1
-endstop_pin: PD2
-position_endstop: 0
-position_max: 500
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>[stepper_x]
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a># Wire top X
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>step_pin: PA0
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>dir_pin: PA1
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>endstop_pin: PA2
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>position_endstop: 0
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>position_max: 500
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>[stepper_y]
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a># Wire top Y
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>step_pin: PB0
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>dir_pin: PB1
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>endstop_pin: PB2
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>position_endstop: 0
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>position_max: 500
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>[stepper_u]
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a># Wire bottom X
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>step_pin: PC0
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>dir_pin: PC1
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>endstop_pin: PC2
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>position_endstop: 0
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>position_max: 500
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>[stepper_v]
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a># Wire bottom Y
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>step_pin: PD0
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>dir_pin: PD1
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>endstop_pin: PD2
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>position_endstop: 0
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>position_max: 500
 </code></pre></div>
-
 <h2 id="core-variants">Core Variants<a class="headerlink" href="#core-variants" title="Permanent link">&para;</a></h2>
 <p>These are variations of the standard CoreXY kinematics with different axis couplings.</p>
 <h3 id="coreyx">CoreYX<a class="headerlink" href="#coreyx" title="Permanent link">&para;</a></h3>
 <p>Reversed CoreXY - Y moves independently, X and Z are coupled.</p>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: coreyx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>[printer]
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>kinematics: coreyx
 </code></pre></div>
-
 <h3 id="coreyz">CoreYZ<a class="headerlink" href="#coreyz" title="Permanent link">&para;</a></h3>
 <p>X moves independently, Y and Z are coupled.</p>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: coreyz
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>[printer]
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>kinematics: coreyz
 </code></pre></div>
-
 <h3 id="corezx">CoreZX<a class="headerlink" href="#corezx" title="Permanent link">&para;</a></h3>
 <p>Y moves independently, Z and X are coupled.</p>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: corezx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>[printer]
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kinematics: corezx
 </code></pre></div>
-
 <h3 id="corezy">CoreZY<a class="headerlink" href="#corezy" title="Permanent link">&para;</a></h3>
 <p>Z moves independently, X and Y are coupled.</p>
-<div class="highlight"><pre><span></span><code>[printer]
-kinematics: corezy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>[printer]
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>kinematics: corezy
 </code></pre></div>
-
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>All rotational axes use <code>rotation_distance: 360</code> for 360 degrees per full rotation</li>
@@ -3459,13 +4687,53 @@ kinematics: corezy
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M214.6 17.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 117.3V488c0 17.7 14.3 32 32 32s32-14.3 32-32V117.3l105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
   Back to top
 </button>
         
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="Cold_Extruder.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cold Extruder (No Heater)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Cold Extruder (No Heater)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="Handwheel.html" class="md-footer__link md-footer__link--next" aria-label="Next: Handwheel (Jog Wheel) Support">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Handwheel (Jog Wheel) Support
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -3507,7 +4775,7 @@ kinematics: corezy
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.code.copy", "content.code.annotate", "content.code.select", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>

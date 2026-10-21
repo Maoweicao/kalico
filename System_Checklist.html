@@ -1,0 +1,5467 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.kalico.gg/System_Checklist.html">
+      
+      
+        <link rel="prev" href="Config_checks.html">
+      
+      
+        <link rel="next" href="Rotation_Distance.html">
+      
+      
+        
+          <link rel="alternate" href="/" hreflang="en">
+        
+          <link rel="alternate" href="/i18n/simple-chinese/" hreflang="zh-Hans">
+        
+      
+      
+      <link rel="icon" href="logo/kalico-32x32.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>System Configuration Checklist - Kalico Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="_kalico/css/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3YZJ9658GV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3YZJ9658GV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3YZJ9658GV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system-configuration-checklist" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://github.com/KalicoCrew/kalico">
+    <span style="display: inline-flex; align-items: center; gap: 6px;">
+      <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.672.668 3.059 6.197 6.838.993a.75.75 0 0 1 .416 1.28l-4.948 4.823 1.168 6.812a.75.75 0 0 1-1.088.79L12 18.347l-6.116 3.216a.75.75 0 0 1-1.088-.791l1.168-6.811-4.948-4.823a.749.749 0 0 1 .416-1.279l6.838-.994L11.327.668a.75.75 0 0 1 1.345 0"/></svg></span>
+      Kalico is community maintained and free - consider supporting the project
+      <span style="font-weight: 700; text-transform: uppercase;">on GitHub</span>
+    </span>
+  </a>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalico Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              System Configuration Checklist
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/i18n/simple-chinese/" hreflang="zh-Hans" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+      
+  <img src="logo/kalico-96x96.png" alt="logo">
+
+    </a>
+    Kalico Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KalicoCrew/kalico/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    KalicoCrew/kalico
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Features.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="FAQ.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frequently Asked Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/KalicoCrew/kalico/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Config_Changes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Config_Reference.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kalico_Additions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico additions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dummy_Thermistor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dummy Thermistor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Cold_Extruder.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cold Extruder (No Heater)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kinematics_Additions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Kinematics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Handwheel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handwheel (Jog Wheel) Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bleeding Edge
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bleeding Edge
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bleeding Edge Features Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration reference for Bleeding Edge features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nonlinear Pressure Advance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PID.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PID
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="MPC.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Predictive Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dockable_Probe.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dockable Probe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="INDX.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bondtech INDX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    G-Code Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    G-Code Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="G-Codes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    G-Codes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Command_Templates.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="G-Code_Shell_Command.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    G-Code Shell Command Extension
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Status_Reference.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting up and running
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting up and running
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Migrating_from_Klipper.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrating from Klipper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using OctoPrint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="MCU_Connection_Methods.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU Connection Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RT_Performance_Optimization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time Performance Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="TMC_Drivers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TMC drivers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="LYX_Drivers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LYX stepper drivers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Config_checks.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="System_Checklist.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Configuration Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Rotation_Distance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rotation distance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Multi_MCU_Homing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple Micro-controller Homing and Probing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_12" id="__nav_9_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bed leveling, Probes and Endstops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bed leveling, Probes and Endstops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Z_Calibration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatic Z-Offset Calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bed_Level.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bed leveling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Delta_Calibrate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delta calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Probe_Calibrate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probe calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BLTouch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BL-Touch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Manual_Level.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual leveling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bed_Mesh.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bed Mesh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Endstop_Phase.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Endstop phase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis Twist Compensation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skew_Correction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skew correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_13" id="__nav_9_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tuning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tuning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Measuring_Resonances.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measuring Resonances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Resonance_Compensation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resonance Compensation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Pressure_Advance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pressure advance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Slicers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Slicers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Slicers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Slicers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Exclude_Object.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exclude Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Using_PWM_Tools.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using PWM tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Code_Overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kinematics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kinematics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Communication_Protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Communication Protocol: C ↔ Python Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dependency_System.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Auto-Disable System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Plugin_Development.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Development Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="API_Server.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="MCU_Commands.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CANBUS protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Debugging.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Benchmarks.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing to Kalico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Packaging.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packaging Kalico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Specific Documents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Device Specific Documents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Example_Configs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example configurations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SDCard_Updates.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDCard updates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RPi_microcontroller.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RPi microcontroller
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Beaglebone.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beaglebone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bootloaders.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bootloaders
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bootloader Entry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CANBUS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CANBUS Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANopen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CANopen Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="EtherCAT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherCAT Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RS485.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RS485 Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PulseGen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Pulse Generator Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSL1401CL filament width sensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hall filament width sensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Load_Cell.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load Cells
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="safety-monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Industrial Safety Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="servo-safety.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servo Safety Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico Fly Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/power_loss_resume.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Loss Resume
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/filament_blockage_detection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filament Blockage Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/non_fatal_errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Fatal Error Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/nozzle_filament_diameter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nozzle &amp; Filament Diameter Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/ldc1612_frequency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDC1612 External Crystal Frequency Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/from_height_print.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From-Height Print
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Assistant
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI Assistant
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/AI_QUICK_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/CLI_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico CLI Reference for AI Assistants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Telemetry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico Telemetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Contact.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sponsors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/System_Checklist.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="system-configuration-checklist">System Configuration Checklist<a class="headerlink" href="#system-configuration-checklist" title="Permanent link">&para;</a></h1>
+<p>This interactive checklist helps you diagnose and verify your Klipper/Kalico printer configuration step by step. Select your printer's kinematics type first, then work through each section.</p>
+<div class="rd-calc-container" id="system-checklist">
+
+<style>
+:root {
+  --sc-primary: #e67e22;
+  --sc-primary-dark: #d35400;
+  --sc-success: #27ae60;
+  --sc-warning: #f39c12;
+  --sc-danger: #e74c3c;
+  --sc-info: #3498db;
+  --sc-bg: #f8f9fa;
+  --sc-border: #dee2e6;
+  --sc-text: #2c3e50;
+  --sc-radius: 8px;
+}
+[data-md-color-scheme="slate"] {
+  --sc-bg: #1e1e2e;
+  --sc-border: #45475a;
+  --sc-text: #cdd6f4;
+}
+.sc-header {
+  background: linear-gradient(135deg, var(--sc-primary), var(--sc-primary-dark));
+  color: white;
+  padding: 20px 24px;
+  border-radius: var(--sc-radius) var(--sc-radius) 0 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sc-header svg { width: 32px; height: 32px; fill: white; }
+.sc-header-text h2 { margin: 0; font-size: 1.4em; }
+.sc-header-text p { margin: 4px 0 0; opacity: 0.9; font-size: 0.9em; }
+.sc-body { padding: 20px 24px; background: var(--sc-bg); border: 1px solid var(--sc-border); border-top: none; border-radius: 0 0 var(--sc-radius) var(--sc-radius); }
+.sc-controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--sc-border); }
+.sc-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.sc-btn-primary { background: var(--sc-primary); color: white; }
+.sc-btn-primary:hover { background: var(--sc-primary-dark); transform: translateY(-1px); }
+.sc-btn-danger { background: var(--sc-danger); color: white; }
+.sc-btn-danger:hover { background: #c0392b; }
+.sc-btn-success { background: var(--sc-success); color: white; }
+.sc-btn-success:hover { background: #219a52; }
+.sc-btn-info { background: var(--sc-info); color: white; }
+.sc-btn-info:hover { background: #2980b9; }
+.sc-progress {
+  background: var(--sc-border);
+  border-radius: 20px;
+  height: 24px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.sc-progress-bar {
+  background: linear-gradient(90deg, var(--sc-success), #2ecc71);
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.8em;
+  font-weight: bold;
+  min-width: 40px;
+}
+.sc-section {
+  margin-bottom: 24px;
+  border: 1px solid var(--sc-border);
+  border-radius: var(--sc-radius);
+  overflow: hidden;
+}
+.sc-section-header {
+  padding: 12px 16px;
+  background: var(--sc-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  user-select: none;
+  transition: background 0.2s;
+}
+.sc-section-header:hover { background: #d0d5dd; }
+[data-md-color-scheme="slate"] .sc-section-header:hover { background: #585b70; }
+.sc-section-header .arrow { transition: transform 0.2s; }
+.sc-section-header.collapsed .arrow { transform: rotate(-90deg); }
+.sc-section-badge {
+  margin-left: auto;
+  background: var(--sc-primary);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+}
+.sc-section-content { padding: 16px; }
+.sc-section-content.hidden { display: none; }
+.sc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--sc-border);
+}
+.sc-item:last-child { border-bottom: none; }
+.sc-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--sc-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.sc-item-info { flex: 1; }
+.sc-item-title { font-weight: 600; margin-bottom: 4px; }
+.sc-item-desc { font-size: 0.9em; color: #666; }
+[data-md-color-scheme="slate"] .sc-item-desc { color: #a6adc8; }
+.sc-item-command {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85em;
+  margin-top: 6px;
+  overflow-x: auto;
+}
+.sc-item-config {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85em;
+  margin-top: 8px;
+  border-left: 3px solid var(--sc-primary);
+}
+.sc-item-tip {
+  background: var(--sc-info);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  margin-top: 8px;
+}
+.sc-item-warning {
+  background: var(--sc-warning);
+  color: #2c3e50;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  margin-top: 8px;
+}
+.sc-item-danger {
+  background: var(--sc-danger);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  margin-top: 8px;
+}
+.sc-kinematics-selector {
+  background: var(--sc-bg);
+  border: 2px solid var(--sc-primary);
+  border-radius: var(--sc-radius);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.sc-kinematics-selector h3 {
+  margin: 0 0 16px;
+  color: var(--sc-primary);
+}
+.sc-kin-group { margin-bottom: 16px; }
+.sc-kin-group-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--sc-text);
+  font-size: 0.95em;
+}
+.sc-kin-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sc-kin-option {
+  padding: 8px 14px;
+  border: 2px solid var(--sc-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9em;
+  background: white;
+}
+[data-md-color-scheme="slate"] .sc-kin-option { background: #313244; }
+.sc-kin-option:hover { border-color: var(--sc-primary); background: #fff5eb; }
+[data-md-color-scheme="slate"] .sc-kin-option:hover { background: #45475a; }
+.sc-kin-option.selected {
+  border-color: var(--sc-primary);
+  background: var(--sc-primary);
+  color: white;
+}
+.sc-diagnostic {
+  background: #fff8f0;
+  border: 2px solid var(--sc-warning);
+  border-radius: var(--sc-radius);
+  padding: 16px;
+  margin-top: 12px;
+}
+[data-md-color-scheme="slate"] .sc-diagnostic { background: #313244; border-color: #f9e2af; }
+.sc-diagnostic h4 { margin: 0 0 12px; color: var(--sc-warning); }
+.sc-diagnostic-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.sc-diagnostic-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--sc-warning);
+}
+.sc-diagnostic-result {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  display: none;
+}
+.sc-diagnostic-result.show { display: block; }
+.sc-diagnostic-result.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.sc-diagnostic-result.warning { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.sc-diagnostic-result.danger { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+[data-md-color-scheme="slate"] .sc-diagnostic-result.success { background: #1e3a2f; color: #a3d9a5; border-color: #2d5a3f; }
+[data-md-color-scheme="slate"] .sc-diagnostic-result.warning { background: #3d3520; color: #f9e2af; border-color: #5a4f2a; }
+[data-md-color-scheme="slate"] .sc-diagnostic-result.danger { background: #3d2020; color: #f5a0a0; border-color: #5a2a2a; }
+.sc-export-section {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--sc-border);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.sc-hidden { display: none !important; }
+@media print {
+  .sc-controls, .sc-export-section, .sc-btn, input[type="checkbox"] { display: none !important; }
+  .sc-section-content { display: block !important; }
+  .sc-item { page-break-inside: avoid; }
+}
+@media (max-width: 768px) {
+  .sc-kin-options { flex-direction: column; }
+  .sc-kin-option { width: 100%; text-align: center; }
+}
+</style>
+
+<div class="sc-header">
+  <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+  <div class="sc-header-text">
+    <h2>System Configuration Checklist</h2>
+    <p>Step-by-step diagnostic for Klipper/Kalico printer configuration</p>
+  </div>
+</div>
+
+<div class="sc-body">
+  <div class="sc-controls">
+    <button class="sc-btn sc-btn-danger" onclick="SC.resetAll()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+      Reset All
+    </button>
+    <button class="sc-btn sc-btn-info" onclick="SC.exportJSON()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      Export JSON
+    </button>
+    <button class="sc-btn sc-btn-success" onclick="SC.exportPDF()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+      Print / PDF
+    </button>
+  </div>
+
+  <div class="sc-progress">
+    <div class="sc-progress-bar" id="sc-progress-bar" style="width: 0%">0%</div>
+  </div>
+
+  <!-- Kinematics Selector -->
+  <div class="sc-kinematics-selector">
+    <h3>⚠️ Select Your Printer Kinematics Type</h3>
+
+    <div class="sc-kin-group">
+      <div class="sc-kin-group-title">Standard 3D Printers</div>
+      <div class="sc-kin-options">
+        <div class="sc-kin-option" data-kin="cartesian" onclick="SC.selectKinematics(this)">Cartesian</div>
+        <div class="sc-kin-option" data-kin="corexy" onclick="SC.selectKinematics(this)">CoreXY</div>
+        <div class="sc-kin-option" data-kin="corexz" onclick="SC.selectKinematics(this)">CoreXZ</div>
+        <div class="sc-kin-option" data-kin="delta" onclick="SC.selectKinematics(this)">Delta</div>
+      </div>
+    </div>
+
+    <div class="sc-kin-group">
+      <div class="sc-kin-group-title">Core Variants</div>
+      <div class="sc-kin-options">
+        <div class="sc-kin-option" data-kin="coreyx" onclick="SC.selectKinematics(this)">CoreYX</div>
+        <div class="sc-kin-option" data-kin="coreyz" onclick="SC.selectKinematics(this)">CoreYZ</div>
+        <div class="sc-kin-option" data-kin="corezx" onclick="SC.selectKinematics(this)">CoreZX</div>
+        <div class="sc-kin-option" data-kin="corezy" onclick="SC.selectKinematics(this)">CoreZY</div>
+      </div>
+    </div>
+
+    <div class="sc-kin-group">
+      <div class="sc-kin-group-title">Limited Variants (per-axis velocity/accel limits)</div>
+      <div class="sc-kin-options">
+        <div class="sc-kin-option" data-kin="limited_cartesian" onclick="SC.selectKinematics(this)">Limited Cartesian</div>
+        <div class="sc-kin-option" data-kin="limited_corexy" onclick="SC.selectKinematics(this)">Limited CoreXY</div>
+        <div class="sc-kin-option" data-kin="limited_corexz" onclick="SC.selectKinematics(this)">Limited CoreXZ</div>
+      </div>
+    </div>
+
+    <div class="sc-kin-group">
+      <div class="sc-kin-group-title">Hybrid / IDEX Structures</div>
+      <div class="sc-kin-options">
+        <div class="sc-kin-option" data-kin="hybrid_corexy" onclick="SC.selectKinematics(this)">Hybrid CoreXY</div>
+        <div class="sc-kin-option" data-kin="hybrid_corexz" onclick="SC.selectKinematics(this)">Hybrid CoreXZ</div>
+      </div>
+    </div>
+
+    <div class="sc-kin-group">
+      <div class="sc-kin-group-title">Special Structures</div>
+      <div class="sc-kin-options">
+        <div class="sc-kin-option" data-kin="deltesian" onclick="SC.selectKinematics(this)">Deltesian</div>
+        <div class="sc-kin-option" data-kin="polar" onclick="SC.selectKinematics(this)">Polar</div>
+        <div class="sc-kin-option" data-kin="rotary_delta" onclick="SC.selectKinematics(this)">Rotary Delta</div>
+        <div class="sc-kin-option" data-kin="scara" onclick="SC.selectKinematics(this)">SCARA</div>
+        <div class="sc-kin-option" data-kin="tpara" onclick="SC.selectKinematics(this)">TPARA</div>
+        <div class="sc-kin-option" data-kin="polargraph" onclick="SC.selectKinematics(this)">Polargraph</div>
+        <div class="sc-kin-option" data-kin="belt" onclick="SC.selectKinematics(this)">Belt (Conveyor)</div>
+        <div class="sc-kin-option" data-kin="robot_arm" onclick="SC.selectKinematics(this)">Robot Arm</div>
+        <div class="sc-kin-option" data-kin="foam_cutter" onclick="SC.selectKinematics(this)">Foam Cutter</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 1: Power & Hardware -->
+  <div class="sc-section" id="sc-section-power">
+    <div class="sc-section-header" onclick="SC.toggleSection('power')">
+      <span class="arrow">▼</span>
+      <span>🔌 Power & Hardware Connection</span>
+      <span class="sc-section-badge" id="sc-badge-power">0/5</span>
+    </div>
+    <div class="sc-section-content" id="sc-content-power">
+      <div class="sc-item">
+        <input type="checkbox" id="sc-p1" onchange="SC.updateCheck('power')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Power Supply Voltage Match</div>
+          <div class="sc-item-desc">Verify the PSU output voltage matches your motherboard requirements (typically 24V for most boards).</div>
+          <div class="sc-item-tip">💡 Check the label on your PSU and compare with motherboard specs.</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-p2" onchange="SC.updateCheck('power')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Motherboard Power Connection</div>
+          <div class="sc-item-desc">Ensure all power cables are properly connected to the motherboard, drivers, and heated bed (if applicable).</div>
+          <div class="sc-item-warning">⚠️ Always disconnect power before checking wiring!</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-p3" onchange="SC.updateCheck('power')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">MCU Connection Status</div>
+          <div class="sc-item-desc">Verify MCU is recognized by the host. Run <code>STATUS</code> command to confirm communication.</div>
+          <div class="sc-item-command">STATUS</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-p4" onchange="SC.updateCheck('power')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Stepper Drivers Installed</div>
+          <div class="sc-item-desc">Verify all stepper drivers are properly seated in their sockets and orientation is correct.</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-p5" onchange="SC.updateCheck('power')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">CAN Bus Connection (if applicable)</div>
+          <div class="sc-item-desc">If using CAN bus, verify the CAN interface is up and MCU is reachable.</div>
+          <div class="sc-item-command">bash-canbus.sh canscan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Endstops -->
+  <div class="sc-section" id="sc-section-endstop">
+    <div class="sc-section-header" onclick="SC.toggleSection('endstop')">
+      <span class="arrow">▼</span>
+      <span>🔴 Endstop Switch Check</span>
+      <span class="sc-section-badge" id="sc-badge-endstop">0/5</span>
+    </div>
+    <div class="sc-section-content" id="sc-content-endstop">
+      <div class="sc-item">
+        <input type="checkbox" id="sc-e1" onchange="SC.updateCheck('endstop')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Select Endstop Type</div>
+          <div class="sc-item-desc">Choose the type of endstop switches you are using:</div>
+          <div class="sc-kin-options" style="margin-top: 8px;">
+            <div class="sc-kin-option" data-endstop="micro" onclick="SC.selectEndstop(this)">Microswitch (NC)</div>
+            <div class="sc-kin-option" data-endstop="tap" onclick="SC.selectEndstop(this)">Voron TAP</div>
+            <div class="sc-kin-option" data-endstop="optical" onclick="SC.selectEndstop(this)">Optical</div>
+            <div class="sc-kin-option" data-endstop="inductive" onclick="SC.selectEndstop(this)">Inductive/Capacitive</div>
+            <div class="sc-kin-option" data-endstop="sensorless" onclick="SC.selectEndstop(this)">Sensorless Homing</div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-e2" onchange="SC.updateCheck('endstop')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Endstop Wiring Check</div>
+          <div class="sc-item-desc">Verify endstop wiring is correct. For microswitches, use NC (Normally Closed) for safety.</div>
+          <div class="sc-item-danger">🔴 Three-wire microswitches: Cut the 5V wire (usually red) to prevent short circuits on FLY boards!</div>
+          <div class="sc-item-config">[stepper_x]
+endstop_pin: ^!PD9  # ^ = pullup, ! = invert for NC switch</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-e3" onchange="SC.updateCheck('endstop')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">QUERY_ENDSTOPS Test</div>
+          <div class="sc-item-desc">Run this command to verify endstop states. All should show "open" when not triggered.</div>
+          <div class="sc-item-command">QUERY_ENDSTOPS</div>
+          <div class="sc-item-tip">💡 Manually trigger each endstop and verify it shows "TRIGGERED".</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-e4" onchange="SC.updateCheck('endstop')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Endstop Trigger Direction</div>
+          <div class="sc-item-desc">Verify the trigger logic is correct: "open" when not triggered, "TRIGGERED" when pressed.</div>
+          <div class="sc-item-tip">💡 If inverted, add or remove <code>!</code> in endstop_pin. If no change, check wiring and add <code>^</code> for pullup.</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-e5" onchange="SC.updateCheck('endstop')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Pullup Resistor Configuration</div>
+          <div class="sc-item-desc">Ensure <code>^</code> is present in endstop_pin for most endstop types (microswitch, optical, etc.).</div>
+          <div class="sc-item-config">endstop_pin: ^!PD9  # ^ enables internal pullup resistor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Motor Direction (dynamic based on kinematics) -->
+  <div class="sc-section" id="sc-section-motor">
+    <div class="sc-section-header" onclick="SC.toggleSection('motor')">
+      <span class="arrow">▼</span>
+      <span>⚙️ Motor Direction Calibration</span>
+      <span class="sc-section-badge" id="sc-badge-motor">0/4</span>
+    </div>
+    <div class="sc-section-content" id="sc-content-motor">
+      <!-- Content populated dynamically by JavaScript -->
+      <div id="sc-motor-content">
+        <p><em>Please select your kinematics type above to see motor calibration steps.</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Heating System -->
+  <div class="sc-section" id="sc-section-heat">
+    <div class="sc-section-header" onclick="SC.toggleSection('heat')">
+      <span class="arrow">▼</span>
+      <span>🌡️ Heating System Check</span>
+      <span class="sc-section-badge" id="sc-badge-heat">0/6</span>
+    </div>
+    <div class="sc-section-content" id="sc-content-heat">
+      <div class="sc-item">
+        <input type="checkbox" id="sc-h1" onchange="SC.updateCheck('heat')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Extruder Temperature Reading</div>
+          <div class="sc-item-desc">Verify the extruder temperature is being reported and is stable (not rising on its own).</div>
+          <div class="sc-item-danger">🔴 If temperature is rising without heating command, disconnect power immediately!</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-h2" onchange="SC.updateCheck('heat')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Heated Bed (if applicable)</div>
+          <div class="sc-item-desc">Check if your printer has a heated bed. If yes, verify temperature reading is stable.</div>
+          <div class="sc-kin-options" style="margin-top: 8px;">
+            <div class="sc-kin-option" data-bed="yes" onclick="SC.selectBed(this)">Has Heated Bed</div>
+            <div class="sc-kin-option" data-bed="no" onclick="SC.selectBed(this)">No Heated Bed</div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-h3" onchange="SC.updateCheck('heat')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">M112 Emergency Stop Test</div>
+          <div class="sc-item-desc">Send M112 command to test emergency stop. Verify Klipper enters shutdown state. Clear with FIRMWARE_RESTART.</div>
+          <div class="sc-item-command">M112
+# Wait for shutdown, then:
+FIRMWARE_RESTART</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-h4" onchange="SC.updateCheck('heat')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Extruder Heating Test</div>
+          <div class="sc-item-desc">Set extruder to 50°C and verify temperature rises. Monitor the temperature graph.</div>
+          <div class="sc-item-command">M104 S50  # Set extruder to 50°C
+# Wait 30-60 seconds, verify temp rises
+M104 S0   # Turn off</div>
+          <div class="sc-item-tip">💡 If temp doesn't rise, check heater_pin configuration.</div>
+        </div>
+      </div>
+      <div class="sc-item" id="sc-h5-bed" style="display:none;">
+        <input type="checkbox" id="sc-h5" onchange="SC.updateCheck('heat')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Heated Bed Heating Test</div>
+          <div class="sc-item-desc">Set bed to 50°C and verify temperature rises.</div>
+          <div class="sc-item-command">M140 S50  # Set bed to 50°C
+# Wait 30-60 seconds, verify temp rises
+M140 S0   # Turn off</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-h6" onchange="SC.updateCheck('heat')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">PID Calibration</div>
+          <div class="sc-item-desc">After verifying heating works, run PID calibration for stable temperature control.</div>
+          <div class="sc-item-command">PID_CALIBRATE HEATER=extruder TARGET=200
+SAVE_CONFIG
+# If heated bed:
+PID_CALIBRATE HEATER=heater_bed TARGET=60
+SAVE_CONFIG</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Calibration -->
+  <div class="sc-section" id="sc-section-calibration">
+    <div class="sc-section-header" onclick="SC.toggleSection('calibration')">
+      <span class="arrow">▼</span>
+      <span>📏 Calibration</span>
+      <span class="sc-section-badge" id="sc-badge-calibration">0/5</span>
+    </div>
+    <div class="sc-section-content" id="sc-content-calibration">
+      <div class="sc-item">
+        <input type="checkbox" id="sc-c1" onchange="SC.updateCheck('calibration')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Rotation Distance Calibration</div>
+          <div class="sc-item-desc">Calibrate extruder rotation distance for accurate extrusion. Mark filament, extrude 50mm, measure actual distance.</div>
+          <div class="sc-item-command">G91
+G1 E50 F60  # Extrude 50mm at slow speed
+# Measure actual extruded length
+# new_rotation_distance = old_value * actual_length / 50</div>
+          <div class="sc-item-config">[extruder]
+rotation_distance: 23.280  # Update with calibrated value</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-c2" onchange="SC.updateCheck('calibration')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Z Offset Calibration</div>
+          <div class="sc-item-desc">Calibrate nozzle-to-bed distance using paper method. Adjust until paper has slight resistance.</div>
+          <div class="sc-item-command">G28
+G90
+G1 X150 Y150 F3000  # Move to center
+G1 Z2 F300
+# Use baby stepping or adjust Z offset
+# For mechanical endstop: Z_OFFSET_APPLY_ENDSTOP
+# For probe: Z_OFFSET_APPLY_PROBE
+SAVE_CONFIG</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-c3" onchange="SC.updateCheck('calibration')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Bed Mesh Calibration (if applicable)</div>
+          <div class="sc-item-desc">If using automatic bed leveling, run bed mesh calibration.</div>
+          <div class="sc-kin-options" style="margin-top: 8px;">
+            <div class="sc-kin-option" data-mesh="yes" onclick="SC.selectMesh(this)">Uses Bed Mesh</div>
+            <div class="sc-kin-option" data-mesh="no" onclick="SC.selectMesh(this)">No Bed Mesh</div>
+          </div>
+          <div class="sc-item-command" id="sc-mesh-cmd" style="display:none;">BED_MESH_CALIBRATE
+SAVE_CONFIG</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-c4" onchange="SC.updateCheck('calibration')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Input Shaper Calibration (if applicable)</div>
+          <div class="sc-item-desc">If using ADXL345 accelerometer, calibrate input shaper to reduce ringing.</div>
+          <div class="sc-kin-options" style="margin-top: 8px;">
+            <div class="sc-kin-option" data-shaper="yes" onclick="SC.selectShaper(this)">Uses Input Shaper</div>
+            <div class="sc-kin-option" data-shaper="no" onclick="SC.selectShaper(this)">No Input Shaper</div>
+          </div>
+          <div class="sc-item-command" id="sc-shaper-cmd" style="display:none;">SHAPER_CALIBRATE
+SAVE_CONFIG</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-c5" onchange="SC.updateCheck('calibration')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Pressure Advance Calibration (if applicable)</div>
+          <div class="sc-item-desc">Calibrate Pressure Advance for better extrusion control at corners.</div>
+          <div class="sc-kin-options" style="margin-top: 8px;">
+            <div class="sc-kin-option" data-pa="yes" onclick="SC.selectPA(this)">Uses PA</div>
+            <div class="sc-kin-option" data-pa="no" onclick="SC.selectPA(this)">No PA</div>
+          </div>
+          <div class="sc-item-config" id="sc-pa-config" style="display:none;">[extruder]
+pressure_advance: 0.04
+pressure_advance_smooth_time: 0.040</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: Optional Peripherals -->
+  <div class="sc-section" id="sc-section-peripheral">
+    <div class="sc-section-header" onclick="SC.toggleSection('peripheral')">
+      <span class="arrow">▼</span>
+      <span>🔧 Optional Peripherals</span>
+      <span class="sc-section-badge" id="sc-badge-peripheral">0/9</span>
+    </div>
+    <div class="sc-section-content" id="sc-content-peripheral">
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per1" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">BLTouch / CR Touch</div>
+          <div class="sc-item-desc">Auto bed leveling probe. Check deployment, stowing, and Z endstop function.</div>
+          <div class="sc-item-command">DEPLOY_PROBE
+# Verify probe deploys
+QUERY_ENDSTOPS  # Should show probe triggered
+STOW_PROBE</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per2" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Voron TAP</div>
+          <div class="sc-item-desc">Nozzle-based probe. Verify probe pin responds to nozzle contact.</div>
+          <div class="sc-item-config">[probe]
+pin: ^PC15
+x_offset: 0
+y_offset: 0
+# z_offset: 0  # Set via PROBE_CALIBRATE</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per3" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Multi-Z Axis</div>
+          <div class="sc-item-desc">Multiple Z stepper motors (dual/triple/quad Z). Verify all Z motors move correctly.</div>
+          <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_z
+STEPPER_BUZZ STEPPER=stepper_z1
+# STEPPER_BUZZ STEPPER=stepper_z2 (if applicable)
+# STEPPER_BUZZ STEPPER=stepper_z3 (if applicable)</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per4" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Z Tilt Adjustment</div>
+          <div class="sc-item-desc">For multi-Z printers, run Z tilt adjustment to level the gantry.</div>
+          <div class="sc-item-command">Z_TILT_ADJUST</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per5" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Skew Correction</div>
+          <div class="sc-item-desc">Compensate for mechanical skew in XY plane.</div>
+          <div class="sc-item-config">[skew_correction]</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per6" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Filament Sensor</div>
+          <div class="sc-item-desc">Filament runout detection sensor.</div>
+          <div class="sc-item-command">FILAMENT_SENSOR_ENABLE SENSOR=runout
+# Test by simulating runout</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per7" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">Servo</div>
+          <div class="sc-item-desc">Servo motor (e.g., for pen lift, bed leveling).</div>
+          <div class="sc-item-command">SET_SERVO SERVO=servo0 ANGLE=0
+SET_SERVO SERVO=servo0 ANGLE=90</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per8" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">RGB LED Strip</div>
+          <div class="sc-item-desc">Addressable LED strip for status indication.</div>
+          <div class="sc-item-command">SET_LED LED=led_print LED=white TRANSMIT=1</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per9" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">ADXL345 Accelerometer</div>
+          <div class="sc-item-desc">For input shaper calibration. Verify SPI connection.</div>
+          <div class="sc-item-command">ACCELEROMETER_QUERY  # Should return values</div>
+        </div>
+      </div>
+      <div class="sc-item">
+        <input type="checkbox" id="sc-per10" onchange="SC.updateCheck('peripheral')">
+        <div class="sc-item-info">
+          <div class="sc-item-title">IDEX Dual Carriage</div>
+          <div class="sc-item-desc">Independent dual extrusion with two print heads.</div>
+          <div class="sc-item-command">SET_DUAL_CARRIAGE CARRIAGE=1 MODE=PRIMARY
+# Test independent movement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7: Advanced (dynamic based on kinematics) -->
+  <div class="sc-section sc-hidden" id="sc-section-advanced">
+    <div class="sc-section-header" onclick="SC.toggleSection('advanced')">
+      <span class="arrow">▼</span>
+      <span>🚀 Advanced Kinematics Settings</span>
+      <span class="sc-section-badge" id="sc-badge-advanced">0/3</span>
+    </div>
+    <div class="sc-section-content" id="sc-content-advanced">
+      <div id="sc-advanced-content">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Section -->
+  <div class="sc-export-section">
+    <button class="sc-btn sc-btn-info" onclick="SC.exportJSON()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      Export JSON Report
+    </button>
+    <button class="sc-btn sc-btn-success" onclick="SC.exportPDF()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+      Print / Save PDF
+    </button>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const STORAGE_KEY = 'kalico_system_checklist';
+  const SECTIONS = ['power', 'endstop', 'motor', 'heat', 'calibration', 'peripheral', 'advanced'];
+
+  let state = {
+    kinematics: null,
+    endstopType: null,
+    hasBed: null,
+    hasMesh: null,
+    hasShaper: null,
+    hasPA: null,
+    checks: {}
+  };
+
+  // Load state from localStorage
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        state = { ...state, ...parsed };
+        restoreUI();
+      }
+    } catch(e) {
+      console.warn('Failed to load checklist state:', e);
+    }
+  }
+
+  // Save state to localStorage
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch(e) {
+      console.warn('Failed to save checklist state:', e);
+    }
+  }
+
+  // Restore UI from state
+  function restoreUI() {
+    // Restore checkboxes
+    Object.keys(state.checks).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.checked = state.checks[id];
+    });
+
+    // Restore kinematics selection
+    if (state.kinematics) {
+      const kinEl = document.querySelector(`.sc-kin-option[data-kin="${state.kinematics}"]`);
+      if (kinEl) {
+        selectKinematics(kinEl, false);
+      }
+    }
+
+    // Restore endstop selection
+    if (state.endstopType) {
+      const endEl = document.querySelector(`.sc-kin-option[data-endstop="${state.endstopType}"]`);
+      if (endEl) endEl.classList.add('selected');
+    }
+
+    // Restore bed selection
+    if (state.hasBed !== null) {
+      const bedEl = document.querySelector(`.sc-kin-option[data-bed="${state.hasBed}"]`);
+      if (bedEl) {
+        bedEl.classList.add('selected');
+        document.getElementById('sc-h5-bed').style.display = state.hasBed === 'yes' ? 'flex' : 'none';
+      }
+    }
+
+    // Restore mesh selection
+    if (state.hasMesh !== null) {
+      const meshEl = document.querySelector(`.sc-kin-option[data-mesh="${state.hasMesh}"]`);
+      if (meshEl) {
+        meshEl.classList.add('selected');
+        document.getElementById('sc-mesh-cmd').style.display = state.hasMesh === 'yes' ? 'block' : 'none';
+      }
+    }
+
+    // Restore shaper selection
+    if (state.hasShaper !== null) {
+      const shaperEl = document.querySelector(`.sc-kin-option[data-shaper="${state.hasShaper}"]`);
+      if (shaperEl) {
+        shaperEl.classList.add('selected');
+        document.getElementById('sc-shaper-cmd').style.display = state.hasShaper === 'yes' ? 'block' : 'none';
+      }
+    }
+
+    // Restore PA selection
+    if (state.hasPA !== null) {
+      const paEl = document.querySelector(`.sc-kin-option[data-pa="${state.hasPA}"]`);
+      if (paEl) {
+        paEl.classList.add('selected');
+        document.getElementById('sc-pa-config').style.display = state.hasPA === 'yes' ? 'block' : 'none';
+      }
+    }
+
+    updateProgress();
+  }
+
+  // Select kinematics type
+  function selectKinematics(el, save = true) {
+    document.querySelectorAll('.sc-kinematics-selector .sc-kin-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    el.classList.add('selected');
+    state.kinematics = el.dataset.kin;
+
+    updateMotorSection();
+    updateAdvancedSection();
+    updateProgress();
+
+    if (save) saveState();
+  }
+
+  // Select endstop type
+  function selectEndstop(el) {
+    el.parentElement.querySelectorAll('.sc-kin-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    el.classList.add('selected');
+    state.endstopType = el.dataset.endstop;
+    saveState();
+  }
+
+  // Select bed option
+  function selectBed(el) {
+    el.parentElement.querySelectorAll('.sc-kin-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    el.classList.add('selected');
+    state.hasBed = el.dataset.bed;
+    document.getElementById('sc-h5-bed').style.display = state.hasBed === 'yes' ? 'flex' : 'none';
+    updateProgress();
+    saveState();
+  }
+
+  // Select mesh option
+  function selectMesh(el) {
+    el.parentElement.querySelectorAll('.sc-kin-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    el.classList.add('selected');
+    state.hasMesh = el.dataset.mesh;
+    document.getElementById('sc-mesh-cmd').style.display = state.hasMesh === 'yes' ? 'block' : 'none';
+    updateProgress();
+    saveState();
+  }
+
+  // Select shaper option
+  function selectShaper(el) {
+    el.parentElement.querySelectorAll('.sc-kin-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    el.classList.add('selected');
+    state.hasShaper = el.dataset.shaper;
+    document.getElementById('sc-shaper-cmd').style.display = state.hasShaper === 'yes' ? 'block' : 'none';
+    updateProgress();
+    saveState();
+  }
+
+  // Select PA option
+  function selectPA(el) {
+    el.parentElement.querySelectorAll('.sc-kin-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    el.classList.add('selected');
+    state.hasPA = el.dataset.pa;
+    document.getElementById('sc-pa-config').style.display = state.hasPA === 'yes' ? 'block' : 'none';
+    updateProgress();
+    saveState();
+  }
+
+  // Toggle section collapse
+  function toggleSection(section) {
+    const header = document.querySelector(`#sc-section-${section} .sc-section-header`);
+    const content = document.getElementById(`sc-content-${section}`);
+    header.classList.toggle('collapsed');
+    content.classList.toggle('hidden');
+  }
+
+  // Update checkbox state and save
+  function updateCheck(section) {
+    const content = document.getElementById(`sc-content-${section}`);
+    const checkboxes = content.querySelectorAll('input[type="checkbox"]');
+    let checked = 0;
+    checkboxes.forEach(cb => {
+      state.checks[cb.id] = cb.checked;
+      if (cb.checked) checked++;
+    });
+    document.getElementById(`sc-badge-${section}`).textContent = `${checked}/${checkboxes.length}`;
+    updateProgress();
+    saveState();
+  }
+
+  // Update progress bar
+  function updateProgress() {
+    let total = 0;
+    let checked = 0;
+    SECTIONS.forEach(section => {
+      if (section === 'advanced' && !document.getElementById('sc-section-advanced').classList.contains('sc-hidden')) {
+        const content = document.getElementById(`sc-content-${section}`);
+        if (content) {
+          const cbs = content.querySelectorAll('input[type="checkbox"]');
+          total += cbs.length;
+          cbs.forEach(cb => { if (cb.checked) checked++; });
+        }
+      } else if (section !== 'advanced') {
+        const content = document.getElementById(`sc-content-${section}`);
+        if (content) {
+          const cbs = content.querySelectorAll('input[type="checkbox"]');
+          total += cbs.length;
+          cbs.forEach(cb => { if (cb.checked) checked++; });
+        }
+      }
+    });
+
+    // Add kinematics selection as a check
+    total++;
+    if (state.kinematics) checked++;
+
+    const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+    const bar = document.getElementById('sc-progress-bar');
+    bar.style.width = pct + '%';
+    bar.textContent = pct + '%';
+  }
+
+  // Update motor section based on kinematics
+  function updateMotorSection() {
+    const container = document.getElementById('sc-motor-content');
+    const kin = state.kinematics;
+
+    if (!kin) {
+      container.innerHTML = '<p><em>Please select your kinematics type above to see motor calibration steps.</em></p>';
+      return;
+    }
+
+    let html = '';
+
+    // Group kinematics by type for motor diagnostics
+    const corexyVariants = ['corexy', 'coreyx'];
+    const corexzVariants = ['corexz', 'coreyz', 'corezx', 'corezy'];
+    const deltaTypes = ['delta', 'rotary_delta'];
+    const armTypes = ['scara', 'tpara', 'robot_arm'];
+
+    if (corexyVariants.includes(kin) || kin === 'limited_corexy' || kin === 'hybrid_corexy') {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">X Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify X stepper motor moves correctly. Motor should oscillate 1mm forward and back.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_x</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Y Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Y stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_y</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Z Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Z stepper motor moves correctly. <strong>Z must move UP first, then DOWN</strong>.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_z</div>
+            <div class="sc-item-warning">⚠️ If Z moves down first, invert dir_pin by adding/removing <code>!</code></div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">CoreXY Direction Diagnostic</div>
+            <div class="sc-item-desc">Select the issue you observe to get a solution:</div>
+            <div class="sc-diagnostic">
+              <h4>⚙️ CoreXY Motor Direction Diagnosis</h4>
+              <p style="margin:0 0 8px;font-size:0.9em;">Move the toolhead manually via <code>G91</code> + <code>G1 X10 F3000</code> and <code>G1 Y10 F3000</code>. Observe which motor actually moves and the direction.</p>
+
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexy', 'case1')">
+                <input type="radio" name="corexy_diag" id="corexy-case1">
+                <div>
+                  <strong>Case 1:</strong> XY axes swapped AND directions reversed
+                  <div class="sc-diagnostic-result" id="corexy-result-case1">
+                    <strong>Solution:</strong> Swap X motor wiring (exchange any two phase wires of X motor).
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexy', 'case2')">
+                <input type="radio" name="corexy_diag" id="corexy-case2">
+                <div>
+                  <strong>Case 2:</strong> XY axes swapped, but directions correct
+                  <div class="sc-diagnostic-result" id="corexy-result-case2">
+                    <strong>Solution:</strong> Swap Y motor wiring (exchange any two phase wires of Y motor).
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexy', 'case3')">
+                <input type="radio" name="corexy_diag" id="corexy-case3">
+                <div>
+                  <strong>Case 3:</strong> XY swapped, X direction correct, Y reversed
+                  <div class="sc-diagnostic-result" id="corexy-result-case3">
+                    <strong>Solution:</strong> 1) Swap X motor wiring. 2) Swap X and Y motor cables at the board.
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexy', 'case4')">
+                <input type="radio" name="corexy_diag" id="corexy-case4">
+                <div>
+                  <strong>Case 4:</strong> XY swapped, X reversed, Y correct
+                  <div class="sc-diagnostic-result" id="corexy-result-case4">
+                    <strong>Solution:</strong> 1) Swap Y motor wiring. 2) Swap X and Y motor cables at the board.
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexy', 'case5')">
+                <input type="radio" name="corexy_diag" id="corexy-case5">
+                <div>
+                  <strong>Case 5:</strong> XY axes correct, but both directions reversed
+                  <div class="sc-diagnostic-result" id="corexy-result-case5">
+                    <strong>Solution:</strong> Swap both X and Y motor wiring (invert both).
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexy', 'case6')">
+                <input type="radio" name="corexy_diag" id="corexy-case6">
+                <div>
+                  <strong>Case 6:</strong> XY correct, X correct, Y reversed
+                  <div class="sc-diagnostic-result" id="corexy-result-case6">
+                    <strong>Solution:</strong> Swap X and Y motor cables at the board.
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexy', 'case7')">
+                <input type="radio" name="corexy_diag" id="corexy-case7">
+                <div>
+                  <strong>Case 7:</strong> XY correct, X reversed, Y correct
+                  <div class="sc-diagnostic-result" id="corexy-result-case7">
+                    <strong>Solution:</strong> 1) Swap X and Y motor cables. 2) Swap both X and Y motor wiring.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (corexzVariants.includes(kin) || kin === 'limited_corexz' || kin === 'hybrid_corexz') {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">X Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify X stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_x</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Y Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Y stepper motor moves correctly (independent axis).</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_y</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Z Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Z stepper motor moves correctly. <strong>Z must move UP first</strong>.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_z</div>
+            <div class="sc-item-warning">⚠️ If Z moves down first, invert dir_pin by adding/removing <code>!</code></div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">CoreXZ Direction Diagnostic</div>
+            <div class="sc-item-desc">X and Z are coupled in CoreXZ. Select the issue you observe:</div>
+            <div class="sc-diagnostic">
+              <h4>⚙️ CoreXZ Motor Direction Diagnosis</h4>
+              <p style="margin:0 0 8px;font-size:0.9em;">Use <code>G91</code> + <code>G1 X10 F3000</code> and <code>G1 Z10 F3000</code> to test.</p>
+
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexz', 'case1')">
+                <input type="radio" name="corexz_diag" id="corexz-case1">
+                <div>
+                  <strong>Case 1:</strong> XZ axes swapped AND directions reversed
+                  <div class="sc-diagnostic-result" id="corexz-result-case1">
+                    <strong>Solution:</strong> Swap X motor wiring (exchange any two phase wires).
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexz', 'case2')">
+                <input type="radio" name="corexz_diag" id="corexz-case2">
+                <div>
+                  <strong>Case 2:</strong> XZ swapped, directions correct
+                  <div class="sc-diagnostic-result" id="corexz-result-case2">
+                    <strong>Solution:</strong> Swap Z motor wiring.
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexz', 'case3')">
+                <input type="radio" name="corexz_diag" id="corexz-case3">
+                <div>
+                  <strong>Case 3:</strong> XZ swapped, X correct, Z reversed
+                  <div class="sc-diagnostic-result" id="corexz-result-case3">
+                    <strong>Solution:</strong> 1) Swap X motor wiring. 2) Swap X and Z motor cables.
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexz', 'case4')">
+                <input type="radio" name="corexz_diag" id="corexz-case4">
+                <div>
+                  <strong>Case 4:</strong> XZ swapped, X reversed, Z correct
+                  <div class="sc-diagnostic-result" id="corexz-result-case4">
+                    <strong>Solution:</strong> 1) Swap Z motor wiring. 2) Swap X and Z motor cables.
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexz', 'case5')">
+                <input type="radio" name="corexz_diag" id="corexz-case5">
+                <div>
+                  <strong>Case 5:</strong> XZ correct, both directions reversed
+                  <div class="sc-diagnostic-result" id="corexz-result-case5">
+                    <strong>Solution:</strong> Swap both X and Z motor wiring.
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexz', 'case6')">
+                <input type="radio" name="corexz_diag" id="corexz-case6">
+                <div>
+                  <strong>Case 6:</strong> XZ correct, X correct, Z reversed
+                  <div class="sc-diagnostic-result" id="corexz-result-case6">
+                    <strong>Solution:</strong> Swap X and Z motor cables at the board.
+                  </div>
+                </div>
+              </div>
+              <div class="sc-diagnostic-option" onclick="SC.selectDiagnostic('corexz', 'case7')">
+                <input type="radio" name="corexz_diag" id="corexz-case7">
+                <div>
+                  <strong>Case 7:</strong> XZ correct, X reversed, Z correct
+                  <div class="sc-diagnostic-result" id="corexz-result-case7">
+                    <strong>Solution:</strong> 1) Swap X and Z motor cables. 2) Swap both motor wiring.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (deltaTypes.includes(kin)) {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Tower A STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Tower A stepper motor moves correctly (should move UP first).</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_a</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Tower B STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Tower B stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_b</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Tower C STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Tower C stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_c</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Delta Calibration</div>
+            <div class="sc-item-desc">Run DELTA_CALIBRATE to calibrate delta geometry. Save results after calibration.</div>
+            <div class="sc-item-command">DELTA_CALIBRATE
+# Follow prompts to probe calibration points
+SAVE_CONFIG</div>
+            <div class="sc-item-config">[printer]
+kinematics: delta
+delta_radius: 100  # Calibrated value
+
+[stepper_a]
+arm_length: 200  # Must be > delta_radius</div>
+          </div>
+        </div>
+      `;
+    } else if (kin === 'scara') {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Shoulder Motor (Stepper A) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify shoulder stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_a</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Elbow Motor (Stepper B) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify elbow stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_b</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Z Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Z stepper motor moves correctly (should move UP first).</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_z</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">SCARA Arm Length Verification</div>
+            <div class="sc-item-desc">Verify linkage lengths are accurately measured and configured.</div>
+            <div class="sc-item-config">[scara]
+linkage_1: 100  # Inner arm length (mm)
+linkage_2: 100  # Outer arm length (mm)
+offset_x: 0     # Tower offset from bed center
+offset_y: 0
+variant: morgan  # or "mp"</div>
+          </div>
+        </div>
+      `;
+    } else if (kin === 'tpara') {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Base Motor (Stepper A) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify base rotation stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_a</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Shoulder Motor (Stepper B) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify shoulder stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_b</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Elbow Motor (Stepper C) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify elbow stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_c</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">TPARA Arm Length Verification</div>
+            <div class="sc-item-desc">Verify linkage lengths are accurately measured.</div>
+            <div class="sc-item-config">[tpara]
+linkage_1: 100  # Inner arm length (mm)
+linkage_2: 100  # Outer arm length (mm)</div>
+          </div>
+        </div>
+      `;
+    } else if (kin === 'polargraph') {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Left Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify left stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_left</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Right Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify right stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_right</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Motor Distance Verification</div>
+            <div class="sc-item-desc">Verify the distance between motors is accurately measured and configured.</div>
+            <div class="sc-item-config">[polargraph]
+motor_distance_x: 400  # Distance between motor centers (mm)</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Z Motor (Pen Lift) STEPPER_BUZZ (if applicable)</div>
+            <div class="sc-item-desc">If using a Z axis for pen lift, verify it works.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_z</div>
+          </div>
+        </div>
+      `;
+    } else if (kin === 'belt') {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">X Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify X stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_x</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Y Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Y stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_y</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Z Motor (Conveyor Belt) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify conveyor belt motor moves correctly. Note: Z axis is infinite (no homing needed).</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_z</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Bed Tilt Angle Verification</div>
+            <div class="sc-item-desc">Verify bed tilt angle matches your physical setup (typically 45°).</div>
+            <div class="sc-item-config">[belt]
+bed_tilt: 45.0  # Must match physical angle exactly
+bed_rotation_axis: y  # or "x"</div>
+          </div>
+        </div>
+      `;
+    } else if (kin === 'robot_arm') {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Base Motor (Stepper A) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify base rotation stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_a</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Shoulder Motor (Stepper B) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify shoulder stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_b</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Elbow Motor (Stepper C) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify elbow stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_c</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">DH Parameter Verification</div>
+            <div class="sc-item-desc">Verify link lengths are accurately measured and configured.</div>
+            <div class="sc-item-config">[robot_arm]
+d1: 100   # Base height (mm)
+a1: 50    # Link 1 length (mm)
+a2: 200   # Link 2 length (mm)
+a3: 150   # Link 3 length (mm)</div>
+          </div>
+        </div>
+      `;
+    } else if (kin === 'foam_cutter') {
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">X Motor (Wire Top) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify X stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_x</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Y Motor (Wire Top) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Y stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_y</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">U Motor (Wire Bottom) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify U stepper motor (bottom X) moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_u</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">V Motor (Wire Bottom) STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify V stepper motor (bottom Y) moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_v</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m5" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Wire Length Verification</div>
+            <div class="sc-item-desc">Verify hot wire length is correctly configured. Moves will be rejected if endpoints exceed this distance.</div>
+            <div class="sc-item-config">[foam_cutter]
+wire_length: 500.0  # Wire length in mm</div>
+          </div>
+        </div>
+      `;
+    } else {
+      // Cartesian and other simple kinematics
+      html = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m1" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">X Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify X stepper motor moves correctly. Motor should oscillate 1mm forward and back.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_x</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m2" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Y Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Y stepper motor moves correctly.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_y</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m3" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Z Motor STEPPER_BUZZ</div>
+            <div class="sc-item-desc">Verify Z stepper motor moves correctly. <strong>Z must move UP first, then DOWN</strong>.</div>
+            <div class="sc-item-command">STEPPER_BUZZ STEPPER=stepper_z</div>
+            <div class="sc-item-warning">⚠️ If Z moves down first, invert dir_pin by adding/removing <code>!</code></div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-m4" onchange="SC.updateCheck('motor')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Motor Direction Verification</div>
+            <div class="sc-item-desc">Verify all motors move in the correct direction when using G1 commands.</div>
+            <div class="sc-item-command">G91
+G1 X10 F3000  # X should move right
+G1 Y10 F3000  # Y should move forward
+G1 Z10 F300   # Z should move up
+G1 X-10 F3000
+G1 Y-10 F3000
+G1 Z-10 F300</div>
+            <div class="sc-item-tip">💡 If any axis moves in wrong direction, add or remove <code>!</code> in the dir_pin for that axis.</div>
+          </div>
+        </div>
+      `;
+    }
+
+    container.innerHTML = html;
+  }
+
+  // Update advanced section based on kinematics
+  function updateAdvancedSection() {
+    const container = document.getElementById('sc-advanced-content');
+    const section = document.getElementById('sc-section-advanced');
+    const kin = state.kinematics;
+
+    const limitedTypes = ['limited_cartesian', 'limited_corexy', 'limited_corexz'];
+    const hybridTypes = ['hybrid_corexy', 'hybrid_corexz'];
+    const multiZTypes = ['limited_cartesian', 'cartesian', 'corexy'];
+
+    if (limitedTypes.includes(kin)) {
+      section.classList.remove('sc-hidden');
+      container.innerHTML = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-a1" onchange="SC.updateCheck('advanced')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Per-Axis Velocity Limits</div>
+            <div class="sc-item-desc">Configure maximum velocity for each axis independently.</div>
+            <div class="sc-item-config">[printer]
+kinematics: ${kin}
+max_velocity: 500  # Should be hypotenuse of X and Y velocities
+max_accel: 5000
+
+[${kin.replace('limited_', '')}]
+max_x_velocity: 400
+max_y_velocity: 300
+max_z_velocity: 5
+max_x_accel: 5000
+max_y_accel: 4000
+max_z_accel: 100</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-a2" onchange="SC.updateCheck('advanced')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Dynamic Limit Adjustment</div>
+            <div class="sc-item-desc">Test the SET_KINEMATICS_LIMIT command to dynamically adjust limits.</div>
+            <div class="sc-item-command">SET_KINEMATICS_LIMIT X_ACCEL=4000 Y_ACCEL=3000
+# Query current limits:
+SET_KINEMATICS_LIMIT QUERY=1</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-a3" onchange="SC.updateCheck('advanced')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Scale XY Accel</div>
+            <div class="sc-item-desc">If enabled, per-axis acceleration limits scale proportionally with M204 value.</div>
+            <div class="sc-item-config">[${kin.replace('limited_', '')}]
+scale_xy_accel: True  # or False</div>
+          </div>
+        </div>
+      `;
+    } else if (hybridTypes.includes(kin)) {
+      section.classList.remove('sc-hidden');
+      const kinName = kin === 'hybrid_corexy' ? 'corexy' : 'corexz';
+      container.innerHTML = `
+        <div class="sc-item">
+          <input type="checkbox" id="sc-a1" onchange="SC.updateCheck('advanced')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Dual Carriage Configuration</div>
+            <div class="sc-item-desc">Configure the second carriage (toolhead) for IDEX operation.</div>
+            <div class="sc-item-config">[dual_carriage]
+axis: x
+max_velocity: 300
+max_accel: 3000
+step_pin: <second_carriage_step>
+dir_pin: <second_carriage_dir>
+enable_pin: <second_carriage_enable></div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-a2" onchange="SC.updateCheck('advanced')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">Invert Kinematics (if needed)</div>
+            <div class="sc-item-desc">If motor direction is reversed, try inverting the kinematics coupling.</div>
+            <div class="sc-item-config">[${kin}]
+invert_kinematics: true  # or false</div>
+          </div>
+        </div>
+        <div class="sc-item">
+          <input type="checkbox" id="sc-a3" onchange="SC.updateCheck('advanced')">
+          <div class="sc-item-info">
+            <div class="sc-item-title">IDEX Mode Test</div>
+            <div class="sc-item-desc">Test dual carriage modes: PRIMARY, COPY, MIRROR.</div>
+            <div class="sc-item-command">SET_DUAL_CARRIAGE CARRIAGE=1 MODE=PRIMARY
+G28 X
+SET_DUAL_CARRIAGE CARRIAGE=1 MODE=COPY
+# Test copy mode
+SET_DUAL_CARRIAGE CARRIAGE=1 MODE=MIRROR
+# Test mirror mode</div>
+          </div>
+        </div>
+      `;
+    } else {
+      section.classList.add('sc-hidden');
+    }
+  }
+
+  // CoreXY/CoreXZ diagnostic selection
+  function selectDiagnostic(type, caseId) {
+    document.querySelectorAll(`[id^="${type}-result-"]`).forEach(el => {
+      el.classList.remove('show');
+    });
+    const result = document.getElementById(`${type}-result-${caseId}`);
+    if (result) {
+      result.classList.add('show');
+    }
+  }
+
+  // Reset all checks
+  function resetAll() {
+    if (!confirm('Are you sure you want to reset all checklist items? This cannot be undone.')) {
+      return;
+    }
+
+    state = {
+      kinematics: null,
+      endstopType: null,
+      hasBed: null,
+      hasMesh: null,
+      hasShaper: null,
+      hasPA: null,
+      checks: {}
+    };
+
+    localStorage.removeItem(STORAGE_KEY);
+
+    // Reset all checkboxes
+    document.querySelectorAll('#system-checklist input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
+    });
+
+    // Reset all selections
+    document.querySelectorAll('.sc-kin-option.selected').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+
+    // Reset diagnostic results
+    document.querySelectorAll('[id$="-result-case1"], [id$="-result-case2"], [id$="-result-case3"], [id$="-result-case4"], [id$="-result-case5"], [id$="-result-case6"], [id$="-result-case7"]').forEach(el => {
+      el.classList.remove('show');
+    });
+
+    // Hide conditional elements
+    document.getElementById('sc-h5-bed').style.display = 'none';
+    document.getElementById('sc-mesh-cmd').style.display = 'none';
+    document.getElementById('sc-shaper-cmd').style.display = 'none';
+    document.getElementById('sc-pa-config').style.display = 'none';
+    document.getElementById('sc-section-advanced').classList.add('sc-hidden');
+
+    // Reset motor section
+    document.getElementById('sc-motor-content').innerHTML = '<p><em>Please select your kinematics type above to see motor calibration steps.</em></p>';
+
+    // Reset badges
+    SECTIONS.forEach(section => {
+      const badge = document.getElementById(`sc-badge-${section}`);
+      if (badge) {
+        const content = document.getElementById(`sc-content-${section}`);
+        if (content) {
+          const total = content.querySelectorAll('input[type="checkbox"]').length;
+          badge.textContent = `0/${total}`;
+        }
+      }
+    });
+
+    updateProgress();
+  }
+
+  // Export as JSON
+  function exportJSON() {
+    const data = {
+      timestamp: new Date().toISOString(),
+      kinematics: state.kinematics,
+      endstopType: state.endstopType,
+      hasBed: state.hasBed,
+      hasMesh: state.hasMesh,
+      hasShaper: state.hasShaper,
+      hasPA: state.hasPA,
+      sections: {}
+    };
+
+    SECTIONS.forEach(section => {
+      const content = document.getElementById(`sc-content-${section}`);
+      if (content) {
+        const items = [];
+        content.querySelectorAll('.sc-item').forEach(item => {
+          const checkbox = item.querySelector('input[type="checkbox"]');
+          const title = item.querySelector('.sc-item-title');
+          if (checkbox && title) {
+            items.push({
+              id: checkbox.id,
+              title: title.textContent,
+              checked: checkbox.checked
+            });
+          }
+        });
+        data.sections[section] = items;
+      }
+    });
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `kalico-checklist-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // Export as PDF (print)
+  function exportPDF() {
+    window.print();
+  }
+
+  // Initialize
+  function init() {
+    loadState();
+    updateProgress();
+  }
+
+  // Public API
+  window.SC = {
+    selectKinematics,
+    selectEndstop,
+    selectBed,
+    selectMesh,
+    selectShaper,
+    selectPA,
+    toggleSection,
+    updateCheck,
+    selectDiagnostic,
+    resetAll,
+    exportJSON,
+    exportPDF
+  };
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M214.6 17.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 117.3V488c0 17.7 14.3 32 32 32s32-14.3 32-32V117.3l105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="Config_checks.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration checks">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Configuration checks
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="Rotation_Distance.html" class="md-footer__link md-footer__link--next" aria-label="Next: Rotation distance">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Rotation distance
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://kalico.gg/discord" target="_blank" rel="noopener" title="Join our Discord server!" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.code.copy", "content.code.annotate", "content.code.select", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,36 +1,221 @@
-/* Customization of mkdocs generated site */
+/* ============================================================
+   Kalico documentation site customizations
+   Style tuned to match the site's orange brand color.
+   ============================================================ */
 
-[data-md-color-scheme="slate"] {
-    --md-hue: 40; 
+/* --- Brand theme variables --- */
+:root {
+  --base-border-radius: 0.8rem;
+  --card-border-radius: 1rem;
+  --selection-bg-color: var(--md-primary-fg-color);
+  --selection-text-color: #fff;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.14);
 }
 
+[data-md-color-scheme="slate"] {
+  --md-hue: 30;
+  --selection-bg-color: var(--md-accent-fg-color);
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* --- Logo --- */
 .md-logo {
-    transform: scale(1.6);
-    transition: transform 0.2s;
-    transition-timing-function: ease-in-out;
+  transform: scale(1.6);
+  transition: transform 0.2s ease-in-out;
 }
 
 .md-logo:hover {
-    opacity: 1;
-    transform: scale(1.8) rotate(10deg);
+  transform: scale(1.8) rotate(10deg);
 }
 
+/* Keep image backgrounds transparent where needed */
 img {
-    background-color: white;
+  background-color: white;
 }
 
 .md-logo img, img.nobg {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .center-image {
-    margin: 0 auto;
-    display: block;
+  margin: 0 auto;
+  display: block;
 }
 
 .main-logo {
-    width: 300px;
-    height: 300px;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+  width: 300px;
+  height: 300px;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+/* --- Text selection --- */
+::selection {
+  background-color: var(--selection-bg-color);
+  color: var(--selection-text-color);
+  text-shadow: none;
+}
+
+/* --- Link styling (exclude buttons, nav, headerlinks, footer) --- */
+.md-typeset a:not(.md-button):not(.md-nav__link):not(.headerlink):not(.md-footer__link):not(footer a) {
+  color: var(--md-typeset-a-color, var(--md-accent-fg-color));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.md-typeset a:not(.md-button):not(.md-nav__link):not(.headerlink):not(.md-footer__link):not(footer a):hover,
+.md-nav__link--active {
+  color: var(--md-accent-fg-color) !important;
+}
+
+/* --- Rounded corners for common elements --- */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .md-button,
+.md-typeset table:not([class]) {
+  border-radius: var(--base-border-radius);
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.md-typeset .grid.cards > ul > li {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+/* --- Search box --- */
+.md-search__form {
+  border-radius: var(--base-border-radius);
+}
+
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+  border-top-right-radius: var(--base-border-radius);
+  border-top-left-radius: var(--base-border-radius);
+}
+
+[dir="ltr"] .md-search__output {
+  border-bottom-right-radius: var(--base-border-radius);
+  border-bottom-left-radius: var(--base-border-radius);
+}
+
+/* --- Admonitions --- */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: var(--base-border-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.md-typeset .admonition:hover,
+.md-typeset details:hover {
+  box-shadow: var(--card-shadow-hover);
+  transition: box-shadow 0.3s;
+}
+
+/* --- Tables --- */
+.md-typeset table:not([class]) {
+  box-shadow: var(--card-shadow);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--md-primary-fg-color);
+  color: #fff;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  color: #000;
+}
+
+/* --- Code blocks --- */
+.md-typeset pre > code {
+  border-radius: var(--base-border-radius);
+}
+
+/* --- Footer --- */
+.md-footer__inner {
+  border-radius: var(--base-border-radius);
+  margin-top: 0.8rem;
+}
+
+/* --- Top scroll-to-top button styling --- */
+.md-top {
+  border-radius: var(--base-border-radius);
+  backdrop-filter: blur(4px);
+  box-shadow: var(--card-shadow);
+}
+
+/* --- Smooth scrolling --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Scrollbar styling --- */
+.md-sidebar__scrollwrap::-webkit-scrollbar {
+  width: 6px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background: var(--md-default-fg-color--lightest);
+  border-radius: 3px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
+  background: var(--md-accent-fg-color);
+}
+
+/* --- Announce banner --- */
+.md-banner {
+  background-color: var(--md-primary-fg-color);
+}
+
+.md-banner a {
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+[data-md-color-scheme="slate"] .md-banner {
+  background-color: var(--md-accent-fg-color);
+}
+
+/* --- Header subtle blur on scroll --- */
+.md-header {
+  backdrop-filter: blur(4px);
+}
+
+/* --- Button tweaks --- */
+.md-typeset .md-button--primary {
+  border-radius: var(--base-border-radius);
+}
+
+.md-typeset .md-button {
+  border-radius: var(--base-border-radius);
+}
+
+/* --- Home page hero --- */
+.home-hero {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.home-hero .md-button {
+  margin: 0.3rem;
+}
+
+.home-feature-grid {
+  margin-top: 1rem;
+}
+
+/* --- "News" style card tweaks on index --- */
+.md-typeset .grid.cards > ul > li > hr {
+  opacity: 0.25;
+}
+
+/* --- Keyboard keys --- */
+.md-typeset kbd {
+  border-radius: 0.3rem;
 }

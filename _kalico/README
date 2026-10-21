@@ -14,3 +14,17 @@ uv venv
 uv sync
 uv run mkdocs serve
 ```
+
+The Simplified Chinese site is built with a separate configuration
+(`mkdocs.zh.yml`) and published under `/i18n/simple-chinese/`. The
+deployment workflow (`cd-docs.yaml`) builds both sites, then copies the
+shared assets (`img/`, `logo/`, `prints/`, `resources/`, `_kalico/css/`)
+into the Chinese site output. To build it locally:
+
+```bash
+cd docs/_kalico/
+uv run mkdocs build -f mkdocs.zh.yml
+cp -r ../img ../logo ../prints ../resources site/i18n/simple-chinese/
+mkdir -p site/i18n/simple-chinese/_kalico/css
+cp ../_kalico/css/extra.css site/i18n/simple-chinese/_kalico/css/extra.css
+```

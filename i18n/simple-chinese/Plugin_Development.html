@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://docs.kalico.gg/i18n/simple-chinese/Plugin_Development.html">
       
       
+        <link rel="prev" href="Dependency_System.html">
+      
+      
+        <link rel="next" href="API_Server.html">
       
       
         
@@ -20,19 +24,19 @@
         
       
       
-      <link rel="icon" href="../../logo/kalico-32x32.png">
+      <link rel="icon" href="logo/kalico-32x32.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>插件开发指南 - Kalico Documentation</title>
+        <title>插件开发指南 - Kalico 文档</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,21 +55,11 @@
       
     
     
-      <link rel="stylesheet" href="../../_kalico/css/extra.css">
+      <link rel="stylesheet" href="_kalico/css/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3YZJ9658GV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3YZJ9658GV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3YZJ9658GV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -95,6 +89,22 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://github.com/KalicoCrew/kalico">
+    <span style="display: inline-flex; align-items: center; gap: 6px;">
+      <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.672.668 3.059 6.197 6.838.993a.75.75 0 0 1 .416 1.28l-4.948 4.823 1.168 6.812a.75.75 0 0 1-1.088.79L12 18.347l-6.116 3.216a.75.75 0 0 1-1.088-.791l1.168-6.811-4.948-4.823a.749.749 0 0 1 .416-1.279l6.838-.994L11.327.668a.75.75 0 0 1 1.345 0"/></svg></span>
+      Kalico is community maintained and free - consider supporting the project
+      <span style="font-weight: 700; text-transform: uppercase;">on GitHub</span>
+    </span>
+  </a>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -104,9 +114,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="Kalico Documentation" class="md-header__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+    <a href="index.html" title="Kalico 文档" class="md-header__button md-logo" aria-label="Kalico 文档" data-md-component="logo">
       
-  <img src="../../logo/kalico-96x96.png" alt="logo">
+  <img src="logo/kalico-96x96.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +127,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Kalico Documentation
+            Kalico 文档
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -136,20 +146,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
@@ -202,7 +212,7 @@
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
@@ -272,12 +282,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="Kalico Documentation" class="md-nav__button md-logo" aria-label="Kalico Documentation" data-md-component="logo">
+    <a href="index.html" title="Kalico 文档" class="md-nav__button md-logo" aria-label="Kalico 文档" data-md-component="logo">
       
-  <img src="../../logo/kalico-96x96.png" alt="logo">
+  <img src="logo/kalico-96x96.png" alt="logo">
 
     </a>
-    Kalico Documentation
+    Kalico 文档
   </label>
   
     <div class="md-nav__source">
@@ -301,14 +311,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    首页
   
 
     
@@ -328,14 +338,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview.html" class="md-nav__link">
+      <a href="Overview.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Overview
+    概述
   
 
     
@@ -355,14 +365,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Features.html" class="md-nav__link">
+      <a href="Features.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Features
+    功能
   
 
     
@@ -382,14 +392,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../FAQ.html" class="md-nav__link">
+      <a href="FAQ.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Frequently Asked Questions
+    常见问题
   
 
     
@@ -416,7 +426,7 @@
   <span class="md-ellipsis">
     
   
-    Releases
+    版本发布
   
 
     
@@ -436,14 +446,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Config_Changes.html" class="md-nav__link">
+      <a href="Config_Changes.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration Changes
+    配置变更
   
 
     
@@ -481,7 +491,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    配置
   
 
     
@@ -497,7 +507,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Configuration
+    配置
   
 
           </label>
@@ -510,14 +520,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Config_Reference.html" class="md-nav__link">
+      <a href="Config_Reference.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration reference
+    配置参考
   
 
     
@@ -538,14 +548,126 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Kalico_Additions.html" class="md-nav__link">
+      <a href="Kalico_Additions.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kalico additions
+    Kalico 附加功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dummy_Thermistor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    虚拟热敏电阻
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Cold_Extruder.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    冷挤出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kinematics_Additions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动学附加功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Handwheel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手轮
   
 
     
@@ -574,17 +696,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
         
           
-          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Bleeding Edge
+    边缘版本
   
 
     
@@ -595,12 +717,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bleeding Edge
+    边缘版本
   
 
           </label>
@@ -613,14 +735,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bleeding_Edge.html" class="md-nav__link">
+      <a href="Bleeding_Edge.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bleeding Edge Features Documentation
+    前沿功能文档
   
 
     
@@ -641,14 +763,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Config_Reference_Bleeding_Edge.html" class="md-nav__link">
+      <a href="Config_Reference_Bleeding_Edge.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration reference for Bleeding Edge features
+    前沿功能配置参考
   
 
     
@@ -669,14 +791,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Nonlinear_Pressure_Advance.html" class="md-nav__link">
+      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Nonlinear Pressure Advance
+    非线性压力推进
   
 
     
@@ -705,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../PID.html" class="md-nav__link">
+      <a href="PID.html" class="md-nav__link">
         
   
   
@@ -733,14 +855,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../MPC.html" class="md-nav__link">
+      <a href="MPC.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Model Predictive Control
+    MPC
   
 
     
@@ -761,14 +883,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Dockable_Probe.html" class="md-nav__link">
+      <a href="Dockable_Probe.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Dockable Probe
+    可停靠探针
   
 
     
@@ -789,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../INDX.html" class="md-nav__link">
+      <a href="INDX.html" class="md-nav__link">
         
   
   
@@ -842,7 +964,7 @@
   <span class="md-ellipsis">
     
   
-    G-Code Reference
+    G-Code 参考
   
 
     
@@ -858,7 +980,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    G-Code Reference
+    G-Code 参考
   
 
           </label>
@@ -871,14 +993,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../G-Codes.html" class="md-nav__link">
+      <a href="G-Codes.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    G-Codes
+    G代码
   
 
     
@@ -899,14 +1021,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Command_Templates.html" class="md-nav__link">
+      <a href="Command_Templates.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Commands templates
+    命令模板
   
 
     
@@ -927,14 +1049,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../G-Code_Shell_Command.html" class="md-nav__link">
+      <a href="G-Code_Shell_Command.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    G-Code Shell Command Extension
+    G-Code Shell 命令扩展
   
 
     
@@ -955,14 +1077,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Status_Reference.html" class="md-nav__link">
+      <a href="Status_Reference.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Status reference
+    状态参考
   
 
     
@@ -1008,7 +1130,7 @@
   <span class="md-ellipsis">
     
   
-    Getting up and running
+    入门与运行
   
 
     
@@ -1024,7 +1146,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Getting up and running
+    入门与运行
   
 
           </label>
@@ -1037,14 +1159,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Migrating_from_Klipper.html" class="md-nav__link">
+      <a href="Migrating_from_Klipper.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Migrating from Klipper
+    从 Klipper 迁移
   
 
     
@@ -1065,14 +1187,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Installation.html" class="md-nav__link">
+      <a href="Installation.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Installation
+    安装
   
 
     
@@ -1093,14 +1215,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../OctoPrint.html" class="md-nav__link">
+      <a href="OctoPrint.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Using OctoPrint
+    使用 OctoPrint
   
 
     
@@ -1121,14 +1243,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../TMC_Drivers.html" class="md-nav__link">
+      <a href="MCU_Connection_Methods.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TMC drivers
+    MCU 连接方式
   
 
     
@@ -1149,14 +1271,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LYX_Drivers.html" class="md-nav__link">
+      <a href="RT_Performance_Optimization.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    LYX stepper drivers
+    实时性能优化
   
 
     
@@ -1177,14 +1299,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Config_checks.html" class="md-nav__link">
+      <a href="TMC_Drivers.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration checks
+    TMC驱动程序
   
 
     
@@ -1205,14 +1327,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rotation_Distance.html" class="md-nav__link">
+      <a href="LYX_Drivers.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Rotation distance
+    LYX 步进驱动
   
 
     
@@ -1233,14 +1355,98 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Multi_MCU_Homing.html" class="md-nav__link">
+      <a href="Config_checks.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Multiple Micro-controller Homing and Probing
+    配置检查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="System_Checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统配置检查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Rotation_Distance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    旋转距离
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Multi_MCU_Homing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多微控制器归位和探针
   
 
     
@@ -1269,17 +1475,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_12" >
         
           
-          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_12" id="__nav_9_12_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Bed leveling, Probes and Endstops
+    床平、探针与末端限位
   
 
     
@@ -1290,12 +1496,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_12">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bed leveling, Probes and Endstops
+    床平、探针与末端限位
   
 
           </label>
@@ -1308,14 +1514,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Z_Calibration.html" class="md-nav__link">
+      <a href="Z_Calibration.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Automatic Z-Offset Calibration
+    自动 Z 偏移校准
   
 
     
@@ -1336,14 +1542,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bed_Level.html" class="md-nav__link">
+      <a href="Bed_Level.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bed leveling
+    床面平整化
   
 
     
@@ -1364,14 +1570,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Delta_Calibrate.html" class="md-nav__link">
+      <a href="Delta_Calibrate.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Delta calibration
+    Delta 校准
   
 
     
@@ -1392,14 +1598,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Probe_Calibrate.html" class="md-nav__link">
+      <a href="Probe_Calibrate.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Probe calibration
+    探针校准
   
 
     
@@ -1420,7 +1626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../BLTouch.html" class="md-nav__link">
+      <a href="BLTouch.html" class="md-nav__link">
         
   
   
@@ -1448,14 +1654,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Manual_Level.html" class="md-nav__link">
+      <a href="Manual_Level.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Manual leveling
+    手动调平
   
 
     
@@ -1476,14 +1682,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bed_Mesh.html" class="md-nav__link">
+      <a href="Bed_Mesh.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bed Mesh
+    床面网格
   
 
     
@@ -1504,14 +1710,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Endstop_Phase.html" class="md-nav__link">
+      <a href="Endstop_Phase.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Endstop phase
+    限位开关相位
   
 
     
@@ -1532,14 +1738,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Axis_Twist_Compensation.html" class="md-nav__link">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Axis Twist Compensation
+    轴扭转补偿
   
 
     
@@ -1560,14 +1766,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Skew_Correction.html" class="md-nav__link">
+      <a href="Skew_Correction.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Skew correction
+    歪斜纠正
   
 
     
@@ -1604,17 +1810,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_13" >
         
           
-          <label class="md-nav__link" for="__nav_9_10" id="__nav_9_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_13" id="__nav_9_13_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Tuning
+    调优
   
 
     
@@ -1625,12 +1831,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_13">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Tuning
+    调优
   
 
           </label>
@@ -1643,14 +1849,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Measuring_Resonances.html" class="md-nav__link">
+      <a href="Measuring_Resonances.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Measuring Resonances
+    测量共振
   
 
     
@@ -1671,14 +1877,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Resonance_Compensation.html" class="md-nav__link">
+      <a href="Resonance_Compensation.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Resonance Compensation
+    共振补偿
   
 
     
@@ -1699,14 +1905,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Pressure_Advance.html" class="md-nav__link">
+      <a href="Pressure_Advance.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pressure advance
+    压力前进
   
 
     
@@ -1760,7 +1966,7 @@
   <span class="md-ellipsis">
     
   
-    Slicers
+    切片软件
   
 
     
@@ -1776,7 +1982,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Slicers
+    切片软件
   
 
           </label>
@@ -1789,14 +1995,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Slicers.html" class="md-nav__link">
+      <a href="Slicers.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Slicers
+    切片机
   
 
     
@@ -1817,14 +2023,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Exclude_Object.html" class="md-nav__link">
+      <a href="Exclude_Object.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Exclude Objects
+    排除对象
   
 
     
@@ -1845,14 +2051,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Using_PWM_Tools.html" class="md-nav__link">
+      <a href="Using_PWM_Tools.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Using PWM tools
+    使用 PWM 工具
   
 
     
@@ -1877,18 +2083,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1898,7 +2106,7 @@
   <span class="md-ellipsis">
     
   
-    Developer Documentation
+    开发者文档
   
 
     
@@ -1909,12 +2117,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Developer Documentation
+    开发者文档
   
 
           </label>
@@ -1927,14 +2135,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Code_Overview.html" class="md-nav__link">
+      <a href="Code_Overview.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Code overview
+    代码概览
   
 
     
@@ -1955,14 +2163,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Kinematics.html" class="md-nav__link">
+      <a href="Kinematics.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kinematics
+    运动学
   
 
     
@@ -1983,14 +2191,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Protocol.html" class="md-nav__link">
+      <a href="Protocol.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Protocol
+    协议
   
 
     
@@ -2011,14 +2219,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../API_Server.html" class="md-nav__link">
+      <a href="Communication_Protocol.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API server
+    通信协议：C 与 Python 接口
   
 
     
@@ -2039,14 +2247,806 @@
   
   
     <li class="md-nav__item">
-      <a href="../../MCU_Commands.html" class="md-nav__link">
+      <a href="Dependency_System.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    MCU commands
+    依赖自动禁用系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    插件开发指南
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Plugin_Development.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    插件开发指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键设计决策
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速入门
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        插件目录结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="插件目录结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        单文件 vs 子包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        导入规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生命周期
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="生命周期">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各阶段详情
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        插件 API 参考
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="插件 API 参考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load_configconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        load_config(config) → 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_config_prefixconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        load_config_prefix(config) → 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_componentssubsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        register_components(subsystem)（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configwrapper-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigWrapper API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        子系统组件注册
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="子系统组件注册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提供方（注册到子系统）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        消费方（从子系统查询）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        服务定位器模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="服务定位器模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#printer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Printer 上的关键方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么使用拉取式？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生命周期事件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="生命周期事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标准事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事件处理函数规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G-code 命令注册
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G-code 命令注册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gcmd-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gcmd 对象 API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhooks / 远程 API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Webhooks / 远程 API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_status() 自动状态暴露
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本配置段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_config_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通过 load_config_prefix 实现多实例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        插件覆盖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        包含其他配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最佳实践
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        调试与自检
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试与自检">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list_modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LIST_MODULES 命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        日志
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extras-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从 extras/ 迁移到 plugins/
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="从 extras/ 迁移到 plugins/">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自动迁移
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手动迁移步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allow_plugin_override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        何时使用 allow_plugin_override
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用插件安装器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用插件安装器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本用法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从本地目录安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从 GitHub 仓库安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        故障排除
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="故障排除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-xxx-found-in-both-extras-and-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Module 'xxx' found in both extras and plugins!"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unable-to-load-module-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Unable to load module 'xxx'"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unknown-config-object-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Unknown config object 'xxx'"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_modules_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        插件在 LIST_MODULES 中不显示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_modules-unused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 LIST_MODULES 中显示为 "unused"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="API_Server.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API 服务器
   
 
     
@@ -2067,14 +3067,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CANBUS_protocol.html" class="md-nav__link">
+      <a href="MCU_Commands.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CANBUS protocol
+    MCU 命令
   
 
     
@@ -2095,14 +3095,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Debugging.html" class="md-nav__link">
+      <a href="CANBUS_protocol.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Debugging
+    CANBUS 协议
   
 
     
@@ -2123,14 +3123,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Benchmarks.html" class="md-nav__link">
+      <a href="Debugging.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Benchmarks
+    调试
   
 
     
@@ -2151,14 +3151,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CONTRIBUTING.html" class="md-nav__link">
+      <a href="Benchmarks.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Contributing to Kalico
+    基准测试
   
 
     
@@ -2179,14 +3179,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Packaging.html" class="md-nav__link">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Packaging Kalico
+    为 Kalico 做出贡献
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Packaging.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打包Kalico
   
 
     
@@ -2232,7 +3260,7 @@
   <span class="md-ellipsis">
     
   
-    Device Specific Documents
+    设备专属文档
   
 
     
@@ -2248,7 +3276,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Device Specific Documents
+    设备专属文档
   
 
           </label>
@@ -2261,14 +3289,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Example_Configs.html" class="md-nav__link">
+      <a href="Example_Configs.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Example configurations
+    示例配置
   
 
     
@@ -2289,14 +3317,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../SDCard_Updates.html" class="md-nav__link">
+      <a href="SDCard_Updates.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    SDCard updates
+    SD 卡更新
   
 
     
@@ -2317,14 +3345,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RPi_microcontroller.html" class="md-nav__link">
+      <a href="RPi_microcontroller.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    RPi microcontroller
+    RPi 微控制器
   
 
     
@@ -2345,7 +3373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Beaglebone.html" class="md-nav__link">
+      <a href="Beaglebone.html" class="md-nav__link">
         
   
   
@@ -2373,14 +3401,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bootloaders.html" class="md-nav__link">
+      <a href="Bootloaders.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bootloaders
+    引导加载程序
   
 
     
@@ -2401,14 +3429,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bootloader_Entry.html" class="md-nav__link">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bootloader Entry
+    引导加载程序入口
   
 
     
@@ -2429,7 +3457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CANBUS.html" class="md-nav__link">
+      <a href="CANBUS.html" class="md-nav__link">
         
   
   
@@ -2457,14 +3485,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CANBUS_Troubleshooting.html" class="md-nav__link">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CANBUS Troubleshooting
+    CANBUS 故障排查
   
 
     
@@ -2485,14 +3513,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+      <a href="CANopen.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TSL1401CL filament width sensor
+    CANopen 伺服支持
   
 
     
@@ -2513,14 +3541,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hall_Filament_Width_Sensor.html" class="md-nav__link">
+      <a href="EtherCAT.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Hall filament width sensor
+    EtherCAT 伺服支持
   
 
     
@@ -2541,14 +3569,182 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Load_Cell.html" class="md-nav__link">
+      <a href="RS485.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Load Cells
+    RS485 伺服支持
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PulseGen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部脉冲发生器支持
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSL1401CL 线材宽度传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hall 灯丝宽度传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Load_Cell.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    负载传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="safety-monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工业安全监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="servo-safety.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伺服安全监控
   
 
     
@@ -2576,14 +3772,429 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Telemetry.html" class="md-nav__link">
+      <a href="Klipper_Guide_CN.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kalico Telemetry
+    Kalico Klipper 指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly 功能集
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly 功能集
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico Fly 功能集
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/power_loss_resume.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    断电续打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/filament_blockage_detection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耗材堵塞检测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/non_fatal_errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    非致命错误处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/nozzle_filament_diameter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    喷嘴与耗材直径命令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/ldc1612_frequency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDC1612 外部晶振频率配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/from_height_print.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从指定高度打印
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 助手
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI 助手
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/AI_QUICK_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI 快速参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/CLI_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    面向 AI 助手的 Kalico CLI 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Telemetry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遥测
   
 
     
@@ -2603,14 +4214,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Contact.html" class="md-nav__link">
+      <a href="Contact.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Contact
+    联系
   
 
     
@@ -2630,14 +4241,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Sponsors.html" class="md-nav__link">
+      <a href="Sponsors.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sponsors
+    赞助
   
 
     
@@ -3384,7 +4995,7 @@
   
     <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/i18n/simple-chinese/Plugin_Development.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
   
   
@@ -3462,46 +5073,43 @@
 <hr />
 <h2 id="_5">快速入门<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>创建 <code>klippy/plugins/my_tool.py</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyTool</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
-        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
-        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_COMMAND&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_COMMAND</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;klippy:ready&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_ready</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_on_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>  <span class="c1"># 需要已连接打印机的初始化工作</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_COMMAND</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
-        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;Hello from my_tool!&quot;</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">MyTool</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyTool</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_COMMAND&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_COMMAND</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;klippy:ready&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_ready</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="k">pass</span>  <span class="c1"># 需要已连接打印机的初始化工作</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_COMMAND</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;Hello from my_tool!&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">return</span> <span class="n">MyTool</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
-
 <p>在 <code>printer.cfg</code> 中添加：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[my_tool]</span>
 </code></pre></div>
-
 <p>重启 Kalico，在控制台中运行 <code>MY_COMMAND</code> —— 即可看到 "Hello from my_tool!"。</p>
 <hr />
 <h2 id="_6">插件目录结构<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>klippy/
-├── extras/                  # 内置模块（Kalico 核心的一部分）
-│   ├── __init__.py
-│   ├── respond.py
-│   └── ...
-├── plugins/                 # 用户插件（git 不跟踪）
-│   ├── __init__.py          # 包标记（始终存在）
-│   ├── my_tool.py           # 单文件插件
-│   ├── my_complex_plugin/   # 子包插件
-│   │   ├── __init__.py      # 包含 load_config / load_config_prefix
-│   │   ├── helpers.py
-│   │   └── sensor.py
-│   └── ...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>klippy/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── extras/                  # 内置模块（Kalico 核心的一部分）
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── __init__.py
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   ├── respond.py
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   └── ...
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>├── plugins/                 # 用户插件（git 不跟踪）
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   ├── __init__.py          # 包标记（始终存在）
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   ├── my_tool.py           # 单文件插件
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   ├── my_complex_plugin/   # 子包插件
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   │   ├── __init__.py      # 包含 load_config / load_config_prefix
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   │   ├── helpers.py
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│   │   └── sensor.py
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   └── ...
 </code></pre></div>
-
 <h3 id="vs">单文件 vs 子包<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -3527,18 +5135,16 @@
 <p>两种方式都会被自动发现。模块名称是文件名（去掉 <code>.py</code>）或目录名。</p>
 <h3 id="_7">导入规则<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>你的插件位于 <code>klippy.plugins</code> 包中。需要从内置 extras 导入时，使用完整的 <code>klippy.extras.*</code> 路径：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>  <span class="c1"># 正确</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.servo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Servo</span>            <span class="c1"># 正确</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>  <span class="c1"># 正确</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.servo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Servo</span>            <span class="c1"># 正确</span>
 </code></pre></div>
-
 <p>插件子包内部的相对导入照常工作：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">my_helper</span>                   <span class="c1"># 插件子包内部</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">my_helper</span>                   <span class="c1"># 插件子包内部</span>
 </code></pre></div>
-
 <hr />
 <h2 id="_8">架构<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>下图展示了各关键组件之间的交互：</p>
-<p><img alt="插件架构图" src="https://github.com/KalicoCrew/kalico//blob/main/img/zh/plugin-architecture.svg" /></p>
+<p><img alt="插件架构图" src="img/zh/plugin-architecture.svg" /></p>
 <ul>
 <li><strong>printer.cfg</strong> 提供 <code>[section]</code> 定义和选项值。</li>
 <li><strong>ConfigWrapper</strong> 包装每个配置段，提供类型化访问（<code>get()</code>、<code>getfloat()</code>、<code>getint()</code> 等）。</li>
@@ -3553,7 +5159,7 @@
 </ul>
 <hr />
 <h2 id="_9">生命周期<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p><img alt="插件生命周期" src="https://github.com/KalicoCrew/kalico//blob/main/img/zh/plugin-lifecycle.svg" /></p>
+<p><img alt="插件生命周期" src="img/zh/plugin-lifecycle.svg" /></p>
 <h3 id="_10">各阶段详情<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p><strong>阶段 1 – 发现</strong>（<code>printer.py:_load_modules</code>）
 <code>klippy/extras/</code> 和 <code>klippy/plugins/</code> 中的所有 <code>*.py</code> 文件通过
@@ -3585,88 +5191,81 @@
 <h2 id="api">插件 API 参考<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
 <p>每个插件模块必须暴露以下至少一个模块级函数：</p>
 <h3 id="load_configconfig"><code>load_config(config)</code> → 对象<a class="headerlink" href="#load_configconfig" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
-
 <p>当 <code>printer.cfg</code> 包含 <code>[my_plugin]</code>（精确匹配，无后缀）时调用。
 接收该配置段的 <code>ConfigWrapper</code>。必须返回构造好的对象。</p>
 <h3 id="load_config_prefixconfig"><code>load_config_prefix(config)</code> → 对象<a class="headerlink" href="#load_config_prefixconfig" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_config_prefix</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_config_prefix</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
-
 <p>用于 <code>[my_plugin instance1]</code>、<code>[my_plugin instance2]</code> 等形式的配置段（前缀匹配）。
 支持同一模块的多个实例。</p>
 <h3 id="register_componentssubsystem"><code>register_components(subsystem)</code>（可选）<a class="headerlink" href="#register_componentssubsystem" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
-    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span> <span class="s2">&quot;my_component&quot;</span><span class="p">,</span> <span class="n">MyDriver</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span> <span class="s2">&quot;my_component&quot;</span><span class="p">,</span> <span class="n">MyDriver</span><span class="p">)</span>
 </code></pre></div>
-
 <p>在启动期间调用，用于将命名组件注册到子系统注册表中。
 详见<a href="#子系统组件注册">子系统组件注册</a>。</p>
 <h3 id="configwrapper-api"><code>ConfigWrapper</code> API<a class="headerlink" href="#configwrapper-api" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;option_name&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">flag</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">&quot;bool_option&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">num</span>   <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;float_option&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
-<span class="n">count</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;int_option&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">choice</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;fast&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;slow&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s2">&quot;fast&quot;</span><span class="p">)</span>
-<span class="n">name</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>         <span class="c1"># 完整配置段名称，如 &quot;my_plugin instance1&quot;</span>
-<span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>    <span class="c1"># Printer 服务定位器</span>
-<span class="n">section</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getsection</span><span class="p">(</span><span class="s2">&quot;subsection&quot;</span><span class="p">)</span>  <span class="c1"># 获取嵌套配置段</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;option_name&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">flag</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">&quot;bool_option&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">num</span>   <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;float_option&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">count</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;int_option&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">choice</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;fast&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;slow&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s2">&quot;fast&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">name</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>         <span class="c1"># 完整配置段名称，如 &quot;my_plugin instance1&quot;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>    <span class="c1"># Printer 服务定位器</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">section</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getsection</span><span class="p">(</span><span class="s2">&quot;subsection&quot;</span><span class="p">)</span>  <span class="c1"># 获取嵌套配置段</span>
 </code></pre></div>
-
 <hr />
 <h2 id="_11">子系统组件注册<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>有些插件不是"独立模块"，而是为更大的子系统提供组件。
 例如，每个 ADC 传感器驱动都向 <code>"load_cell_sensors"</code> 子系统注册自己，
 主 <code>[load_cell]</code> 配置段通过 <code>config.getchoice("sensor_type", sensors)</code> 让用户选择。</p>
 <h3 id="_12">提供方（注册到子系统）<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 在插件的 register_components() 中：</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
-    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span>
-        <span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span>           <span class="c1"># 子系统名称（字符串键）</span>
-        <span class="s2">&quot;my_driver_v1&quot;</span><span class="p">,</span>           <span class="c1"># 组件名称（配置中显示给用户）</span>
-        <span class="n">MyDriverClass</span>             <span class="c1"># 组件（类、函数或值）</span>
-    <span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 在插件的 register_components() 中：</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span>           <span class="c1"># 子系统名称（字符串键）</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="s2">&quot;my_driver_v1&quot;</span><span class="p">,</span>           <span class="c1"># 组件名称（配置中显示给用户）</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="n">MyDriverClass</span>             <span class="c1"># 组件（类、函数或值）</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="p">)</span>
 </code></pre></div>
-
 <p>参考 <code>klippy/extras/load_cell/__init__.py:14</code> 中的实际例子。</p>
 <h3 id="_13">消费方（从子系统查询）<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">sensors</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">)</span>  <span class="c1"># → {&quot;my_driver_v1&quot;: MyDriverClass, ...}</span>
-<span class="n">chosen</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;driver_type&quot;</span><span class="p">,</span> <span class="n">sensors</span><span class="p">)</span>    <span class="c1"># 用户从选项中选取</span>
-<span class="n">instance</span> <span class="o">=</span> <span class="n">chosen</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>                             <span class="c1"># 实例化选中的组件</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">sensors</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">)</span>  <span class="c1"># → {&quot;my_driver_v1&quot;: MyDriverClass, ...}</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">chosen</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;driver_type&quot;</span><span class="p">,</span> <span class="n">sensors</span><span class="p">)</span>    <span class="c1"># 用户从选项中选取</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">instance</span> <span class="o">=</span> <span class="n">chosen</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>                             <span class="c1"># 实例化选中的组件</span>
 </code></pre></div>
-
 <hr />
 <h2 id="_14">服务定位器模式<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
 <p>Kalico 使用 <strong>服务定位器</strong>（拉取式）模式，而不是依赖注入（推送式）。
 你的插件负责从 <code>Printer</code> 实例中拉取所需的依赖。</p>
 <h3 id="printer"><code>Printer</code> 上的关键方法<a class="headerlink" href="#printer" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 获取 Printer 实例的引用</span>
-<span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
-
-<span class="c1"># 通过配置段名称查找之前注册的对象</span>
-<span class="n">gcode</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
-<span class="n">toolhead</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
-
-<span class="c1"># 懒加载另一个模块（后续调用返回缓存的实例）</span>
-<span class="n">heaters</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;heaters&quot;</span><span class="p">)</span>
-
-<span class="c1"># 查询子系统组件注册表</span>
-<span class="n">components</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;load_cell_sensors&quot;</span><span class="p">)</span>
-
-<span class="c1"># 获取 reactor（用于定时器、文件 I/O、sleep）</span>
-<span class="n">reactor</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_reactor</span><span class="p">()</span>
-
-<span class="c1"># 获取启动参数</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_start_args</span><span class="p">()</span>
-
-<span class="c1"># 检查打印机是否处于关闭状态</span>
-<span class="k">if</span> <span class="n">printer</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
-    <span class="k">return</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 获取 Printer 实例的引用</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># 通过配置段名称查找之前注册的对象</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">gcode</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">toolhead</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># 懒加载另一个模块（后续调用返回缓存的实例）</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">heaters</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;heaters&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1"># 查询子系统组件注册表</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">components</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;load_cell_sensors&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="c1"># 获取 reactor（用于定时器、文件 I/O、sleep）</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="n">reactor</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_reactor</span><span class="p">()</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="c1"># 获取启动参数</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="n">args</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_start_args</span><span class="p">()</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="c1"># 检查打印机是否处于关闭状态</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="k">if</span> <span class="n">printer</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>    <span class="k">return</span>
 </code></pre></div>
-
 <h3 id="_15">为什么使用拉取式？<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
 <ul>
 <li>初始化顺序不是线性的——你的插件被构造时，并非所有模块都存在。
@@ -3677,9 +5276,8 @@
 <hr />
 <h2 id="_16">生命周期事件<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <p>通过注册事件处理函数来挂钩 Kalico 的生命周期：</p>
-<div class="highlight"><pre><span></span><code><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;event_name&quot;</span><span class="p">,</span> <span class="n">callback_function</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;event_name&quot;</span><span class="p">,</span> <span class="n">callback_function</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="_17">标准事件<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -3733,115 +5331,106 @@
 </tbody>
 </table>
 <h3 id="_18">事件处理函数规范<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_handle_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="c1"># 安全：查找其他对象</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">toolhead</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_handle_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="c1"># 安全：开始操作，发送命令</span>
-    <span class="c1"># 不要在这里抛出错误</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_handle_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">pass</span>  <span class="c1"># 在关闭期间抑制错误</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">_handle_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="c1"># 安全：查找其他对象</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">toolhead</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">_handle_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="c1"># 安全：开始操作，发送命令</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="c1"># 不要在这里抛出错误</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">_handle_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="k">except</span><span class="p">:</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>        <span class="k">pass</span>  <span class="c1"># 在关闭期间抑制错误</span>
 </code></pre></div>
-
 <hr />
 <h2 id="g-code">G-code 命令注册<a class="headerlink" href="#g-code" title="Permanent link">&para;</a></h2>
 <p>在模块的 <code>__init__</code> 中注册自定义 G-code 命令：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_CMD&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_CMD</span><span class="p">,</span> <span class="s2">&quot;帮助描述文本&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_CMD</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
-        <span class="c1"># 读取参数</span>
-        <span class="n">speed</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PARAM&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
-
-        <span class="c1"># 向控制台回复</span>
-        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got S=</span><span class="si">{</span><span class="n">speed</span><span class="si">}</span><span class="s2">, PARAM=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-        <span class="c1"># 输入无效时抛出错误</span>
-        <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Speed must be positive&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_CMD&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_CMD</span><span class="p">,</span> <span class="s2">&quot;帮助描述文本&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_CMD</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        <span class="c1"># 读取参数</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        <span class="n">speed</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PARAM&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>        <span class="c1"># 向控制台回复</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got S=</span><span class="si">{</span><span class="n">speed</span><span class="si">}</span><span class="s2">, PARAM=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        <span class="c1"># 输入无效时抛出错误</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Speed must be positive&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="gcmd-api"><code>gcmd</code> 对象 API<a class="headerlink" href="#gcmd-api" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>              <span class="c1"># 字符串参数</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># 浮点参数</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>       <span class="c1"># 整数参数</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>                 <span class="c1"># 标准回复</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">respond_raw</span><span class="p">(</span><span class="s2">&quot;raw text&quot;</span><span class="p">)</span>                 <span class="c1"># 原始输出</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;error message&quot;</span><span class="p">)</span>                  <span class="c1"># 抛出错误（终止命令执行）</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>              <span class="c1"># 字符串参数</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># 浮点参数</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>       <span class="c1"># 整数参数</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>                 <span class="c1"># 标准回复</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">respond_raw</span><span class="p">(</span><span class="s2">&quot;raw text&quot;</span><span class="p">)</span>                 <span class="c1"># 原始输出</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;error message&quot;</span><span class="p">)</span>                  <span class="c1"># 抛出错误（终止命令执行）</span>
 </code></pre></div>
-
 <hr />
 <h2 id="webhooks-api">Webhooks / 远程 API<a class="headerlink" href="#webhooks-api" title="Permanent link">&para;</a></h2>
 <p>为外部客户端（Mainsail、Fluidd 等）暴露 JSON-RPC 端点：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="n">webhooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;webhooks&quot;</span><span class="p">)</span>
-        <span class="n">webhooks</span><span class="o">.</span><span class="n">register_endpoint</span><span class="p">(</span><span class="s2">&quot;my_plugin/get_status&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_api</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">web_request</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">42.0</span><span class="p">,</span>
-            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>        <span class="n">webhooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;webhooks&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>        <span class="n">webhooks</span><span class="o">.</span><span class="n">register_endpoint</span><span class="p">(</span><span class="s2">&quot;my_plugin/get_status&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_api</span><span class="p">)</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">web_request</span><span class="p">):</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>        <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">42.0</span><span class="p">,</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>        <span class="p">}</span>
 </code></pre></div>
-
 <h3 id="get_status"><code>get_status()</code> 自动状态暴露<a class="headerlink" href="#get_status" title="Permanent link">&para;</a></h3>
 <p>在你的打印机对象上定义 <code>get_status()</code> 方法，即可通过 API 服务器和 Jinja 模板
 自动暴露其状态：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span>
-            <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">,</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>            <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">,</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>        <span class="p">}</span>
 </code></pre></div>
-
 <p>状态值必须是：<code>int</code>、<code>float</code>、<code>str</code>、<code>bool</code>、<code>list</code>、<code>dict</code>、<code>tuple</code> 或 <code>None</code>。
 导出的列表和字典必须视为"不可变"——如果内容发生变化，必须从 <code>get_status()</code> 返回新对象，
 否则 API 服务器不会检测到这些变化。</p>
 <hr />
 <h2 id="_19">配置<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
 <h3 id="_20">基本配置段<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
-<span class="na">option1</span><span class="o">:</span><span class="w"> </span><span class="s">some_value</span>
-<span class="na">option2</span><span class="o">:</span><span class="w"> </span><span class="s">3.14</span>
-<span class="na">option3</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[my_tool]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="na">option1</span><span class="o">:</span><span class="w"> </span><span class="s">some_value</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="na">option2</span><span class="o">:</span><span class="w"> </span><span class="s">3.14</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="na">option3</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
 </code></pre></div>
-
 <h3 id="load_config_prefix">通过 <code>load_config_prefix</code> 实现多实例<a class="headerlink" href="#load_config_prefix" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">[my_tool extruder]</span>
-<span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">hotend_left</span>
-<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">300</span>
-
-<span class="k">[my_tool bed]</span>
-<span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">heated_bed</span>
-<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">120</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">[my_tool extruder]</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">hotend_left</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">300</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="k">[my_tool bed]</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">heated_bed</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">120</span>
 </code></pre></div>
-
 <p>你的 <code>load_config_prefix()</code> 会为每个实例收到单独的 <code>ConfigWrapper</code>。</p>
 <h3 id="_21">插件覆盖<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
 <p>如果你的插件与内置 extra 同名（例如创建了 <code>klippy/plugins/respond.py</code>），
 则必须启用覆盖：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[danger_options]</span>
-<span class="na">allow_plugin_override</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">[danger_options]</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="na">allow_plugin_override</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
 </code></pre></div>
-
 <p>否则 Kalico 会报错：<code>"Module 'respond' found in both extras and plugins!"</code>。</p>
 <h3 id="_22">包含其他配置文件<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
 <p>在插件的配置中使用 <code>!!include</code> 引入更大的配置：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
-<span class="na">!!include path/to/my_tool_defaults.cfg</span>
-<span class="na">custom_option</span><span class="o">:</span><span class="w"> </span><span class="s">my_value</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">[my_tool]</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="na">!!include path/to/my_tool_defaults.cfg</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="na">custom_option</span><span class="o">:</span><span class="w"> </span><span class="s">my_value</span>
 </code></pre></div>
-
 <hr />
 <h2 id="_23">最佳实践<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
 <ol>
@@ -3871,8 +5460,8 @@
 </li>
 <li>
 <p><strong>在 disconnect 时关闭文件/socket。</strong> 注册 <code>"klippy:disconnect"</code> 事件：</p>
-<p><code>python
- self.printer.register_event_handler("klippy:disconnect", self._cleanup)</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;klippy:disconnect&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cleanup</span><span class="p">)</span>
+</code></pre></div>
 </li>
 <li>
 <p><strong>在 shutdown 处理函数中抑制错误。</strong> 在紧急关闭期间，记录错误并吞下异常
@@ -3883,18 +5472,16 @@
 <h2 id="_24">调试与自检<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
 <h3 id="list_modules"><code>LIST_MODULES</code> 命令<a class="headerlink" href="#list_modules" title="Permanent link">&para;</a></h3>
 <p>检查所有已加载模块的状态：</p>
-<div class="highlight"><pre><span></span><code>LIST_MODULES DETAIL=1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>LIST_MODULES DETAIL=1
 </code></pre></div>
-
-<p>输出示例：</p>
-<div class="highlight"><pre><span></span><code>Loaded modules:
-
-  my_tool (plugins, loaded)
-    Path: klippy/plugins/my_tool.py
-    Loaded: 2025-05-14 12:00:00
-    Used: yes
-</code></pre></div>
-
+<p>输出示例：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Loaded modules:
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>  my_tool (plugins, loaded)
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    Path: klippy/plugins/my_tool.py
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    Loaded: 2025-05-14 12:00:00
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    Used: yes
+</code></pre></div></p>
 <p>字段说明：</p>
 <ul>
 <li><strong>source</strong>：<code>"plugins"</code> 或 <code>"extras"</code> —— 模块来源</li>
@@ -3903,13 +5490,12 @@
 <li><strong>error</strong>：加载失败的异常详情（仅在 <code>loaded: False</code> 时显示）</li>
 </ul>
 <h3 id="_25">日志<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-
-<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;信息性消息&quot;</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;警告消息&quot;</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;异常回溯&quot;</span><span class="p">)</span>  <span class="c1"># 在 except 块中使用</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;信息性消息&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;警告消息&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;异常回溯&quot;</span><span class="p">)</span>  <span class="c1"># 在 except 块中使用</span>
 </code></pre></div>
-
 <p>日志输出到 Kalico 的 <code>klippy.log</code>（如果未配置日志文件则输出到 stderr）。</p>
 <h3 id="_26">测试<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
 <p>以 <code>test/klippy_testing_plugin.py</code> 参考测试插件为模板。
@@ -3919,9 +5505,8 @@
 <p>如果你在 <code>klippy/extras/</code> 中已有模块，想迁移到 <code>klippy/plugins/</code> 以保持 Kalico 仓库干净：</p>
 <h3 id="_27">自动迁移<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
 <p>使用插件安装器并指定本地路径：</p>
-<div class="highlight"><pre><span></span><code>python scripts/install_plugin.py /path/to/your/local/plugin --name my_plugin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>python scripts/install_plugin.py /path/to/your/local/plugin --name my_plugin
 </code></pre></div>
-
 <p>详见<a href="#使用插件安装器">使用插件安装器</a>。</p>
 <h3 id="_28">手动迁移步骤<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
 <ol>
@@ -3954,9 +5539,8 @@
 <p>Kalico 提供了 <code>scripts/install_plugin.py</code>，一个自动化获取、分析和安装
 git 仓库插件的工具。</p>
 <h3 id="_30">基本用法<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>&lt;url&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>&lt;url&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
 </code></pre></div>
-
 <table>
 <thead>
 <tr>
@@ -3998,121 +5582,116 @@ git 仓库插件的工具。</p>
 <li>打印友好的安装摘要。</li>
 </ol>
 <h3 id="_32">示例输出<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Fetching plugin from https://github.com/user/kalico-my-cool-sensor...
-
-[1/4] Cloning repository... done.
-[2/4] Scanning for plugin modules...
-       Found: my_cool_sensor.py (entry: load_config)
-[3/4] Analyzing plugin...
-       G-code commands detected: COOL_CALIBRATE, COOL_REPORT
-       Dependencies detected: gcode, heaters, toolhead
-[4/4] Installing to klippy/plugins/...
-       klippy/plugins/my_cool_sensor.py installed.
-
-========================================
- Plugin installed: my_cool_sensor
-========================================
-
-  Source:        https://github.com/user/kalico-my-cool-sensor
-  Install path:  klippy/plugins/my_cool_sensor.py
-  Entry point:   load_config(config)
-
-  Available G-code commands:
-    COOL_CALIBRATE    → calibrate the cool sensor
-    COOL_REPORT       → report current readings
-
-  Required config section (add to printer.cfg):
-    [my_cool_sensor]
-    sensor_pin: PA0
-    # see the plugin&#39;s README for full options
-
-  Dependencies (ensure these exist in your config):
-    gcode
-    heaters
-    toolhead
-
-  To activate: send RESTART to Kalico
-========================================
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>Fetching plugin from https://github.com/user/kalico-my-cool-sensor...
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>[1/4] Cloning repository... done.
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>[2/4] Scanning for plugin modules...
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>       Found: my_cool_sensor.py (entry: load_config)
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>[3/4] Analyzing plugin...
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>       G-code commands detected: COOL_CALIBRATE, COOL_REPORT
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>       Dependencies detected: gcode, heaters, toolhead
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>[4/4] Installing to klippy/plugins/...
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>       klippy/plugins/my_cool_sensor.py installed.
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>========================================
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a> Plugin installed: my_cool_sensor
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>========================================
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>  Source:        https://github.com/user/kalico-my-cool-sensor
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>  Install path:  klippy/plugins/my_cool_sensor.py
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>  Entry point:   load_config(config)
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>  Available G-code commands:
+<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>    COOL_CALIBRATE    → calibrate the cool sensor
+<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>    COOL_REPORT       → report current readings
+<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>
+<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a>  Required config section (add to printer.cfg):
+<a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a>    [my_cool_sensor]
+<a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a>    sensor_pin: PA0
+<a id="__codelineno-28-27" name="__codelineno-28-27" href="#__codelineno-28-27"></a>    # see the plugin&#39;s README for full options
+<a id="__codelineno-28-28" name="__codelineno-28-28" href="#__codelineno-28-28"></a>
+<a id="__codelineno-28-29" name="__codelineno-28-29" href="#__codelineno-28-29"></a>  Dependencies (ensure these exist in your config):
+<a id="__codelineno-28-30" name="__codelineno-28-30" href="#__codelineno-28-30"></a>    gcode
+<a id="__codelineno-28-31" name="__codelineno-28-31" href="#__codelineno-28-31"></a>    heaters
+<a id="__codelineno-28-32" name="__codelineno-28-32" href="#__codelineno-28-32"></a>    toolhead
+<a id="__codelineno-28-33" name="__codelineno-28-33" href="#__codelineno-28-33"></a>
+<a id="__codelineno-28-34" name="__codelineno-28-34" href="#__codelineno-28-34"></a>  To activate: send RESTART to Kalico
+<a id="__codelineno-28-35" name="__codelineno-28-35" href="#__codelineno-28-35"></a>========================================
 </code></pre></div>
-
 <h3 id="_33">从本地目录安装<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
 <p>你也可以将安装器指向本地路径，将插件从 <code>extras/</code> 迁移过来：</p>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>./klippy/extras/my_module.py<span class="w"> </span>--name<span class="w"> </span>my_module
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>./klippy/extras/my_module.py<span class="w"> </span>--name<span class="w"> </span>my_module
 </code></pre></div>
-
 <h3 id="github">从 GitHub 仓库安装<a class="headerlink" href="#github" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 默认分支</span>
-python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin
-
-<span class="c1"># 指定分支或标签</span>
-python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin<span class="w"> </span>--branch<span class="w"> </span>v1.2.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># 默认分支</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="c1"># 指定分支或标签</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin<span class="w"> </span>--branch<span class="w"> </span>v1.2.0
 </code></pre></div>
-
 <hr />
 <h2 id="_34">完整示例<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h2>
 <p>以下是基于 <code>test/klippy_testing_plugin.py</code> 的完整插件示例。
 它注册了一个自定义 G-code 命令 <code>ASSERT</code>，用于评估 Jinja2 表达式。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># klippy/plugins/assert_plugin.py</span>
-<span class="c1">#</span>
-<span class="c1"># 评估表达式，如果为 False 则报错。</span>
-<span class="c1"># 用法：ASSERT TEST=&quot;{1 + 1 == 2}&quot;</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">AssertPlugin</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
-        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;gcode_macro&quot;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
-            <span class="s2">&quot;gcode:command_error&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_command_error</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
-            <span class="s2">&quot;gcode:unknown_command&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_unknown_command</span>
-        <span class="p">)</span>
-        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;ASSERT&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_ASSERT</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_on_command_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span><span class="s2">&quot;测试期间发生异常&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_on_unknown_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;测试期间出现未知命令: </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_ASSERT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
-        <span class="n">expression</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TEST&quot;</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">template</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">env</span><span class="p">,</span>
-                <span class="s2">&quot;ASSERT:runtime_expression&quot;</span><span class="p">,</span>
-                <span class="n">expression</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: 无法解析 &#39;</span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-
-        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">create_template_context</span><span class="p">()</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="kc">None</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: </span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">AssertPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># klippy/plugins/assert_plugin.py</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="c1">#</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="c1"># 评估表达式，如果为 False 则报错。</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1"># 用法：ASSERT TEST=&quot;{1 + 1 == 2}&quot;</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">AssertPlugin</span><span class="p">:</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a>        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;gcode_macro&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>
+<a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
+<a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a>            <span class="s2">&quot;gcode:command_error&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_command_error</span>
+<a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a>        <span class="p">)</span>
+<a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
+<a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a>            <span class="s2">&quot;gcode:unknown_command&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_unknown_command</span>
+<a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a>        <span class="p">)</span>
+<a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a>        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;ASSERT&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_ASSERT</span><span class="p">)</span>
+<a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a>
+<a id="__codelineno-31-24" name="__codelineno-31-24" href="#__codelineno-31-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_command_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-31-25" name="__codelineno-31-25" href="#__codelineno-31-25"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-26" name="__codelineno-31-26" href="#__codelineno-31-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span><span class="s2">&quot;测试期间发生异常&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-27" name="__codelineno-31-27" href="#__codelineno-31-27"></a>
+<a id="__codelineno-31-28" name="__codelineno-31-28" href="#__codelineno-31-28"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_unknown_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+<a id="__codelineno-31-29" name="__codelineno-31-29" href="#__codelineno-31-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-30" name="__codelineno-31-30" href="#__codelineno-31-30"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span>
+<a id="__codelineno-31-31" name="__codelineno-31-31" href="#__codelineno-31-31"></a>            <span class="sa">f</span><span class="s2">&quot;测试期间出现未知命令: </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-31-32" name="__codelineno-31-32" href="#__codelineno-31-32"></a>        <span class="p">)</span>
+<a id="__codelineno-31-33" name="__codelineno-31-33" href="#__codelineno-31-33"></a>
+<a id="__codelineno-31-34" name="__codelineno-31-34" href="#__codelineno-31-34"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_ASSERT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+<a id="__codelineno-31-35" name="__codelineno-31-35" href="#__codelineno-31-35"></a>        <span class="n">expression</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TEST&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-36" name="__codelineno-31-36" href="#__codelineno-31-36"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-31-37" name="__codelineno-31-37" href="#__codelineno-31-37"></a>            <span class="n">template</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span>
+<a id="__codelineno-31-38" name="__codelineno-31-38" href="#__codelineno-31-38"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="p">,</span>
+<a id="__codelineno-31-39" name="__codelineno-31-39" href="#__codelineno-31-39"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">env</span><span class="p">,</span>
+<a id="__codelineno-31-40" name="__codelineno-31-40" href="#__codelineno-31-40"></a>                <span class="s2">&quot;ASSERT:runtime_expression&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-41" name="__codelineno-31-41" href="#__codelineno-31-41"></a>                <span class="n">expression</span><span class="p">,</span>
+<a id="__codelineno-31-42" name="__codelineno-31-42" href="#__codelineno-31-42"></a>            <span class="p">)</span>
+<a id="__codelineno-31-43" name="__codelineno-31-43" href="#__codelineno-31-43"></a>        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<a id="__codelineno-31-44" name="__codelineno-31-44" href="#__codelineno-31-44"></a>            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: 无法解析 &#39;</span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-45" name="__codelineno-31-45" href="#__codelineno-31-45"></a>
+<a id="__codelineno-31-46" name="__codelineno-31-46" href="#__codelineno-31-46"></a>        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">create_template_context</span><span class="p">()</span>
+<a id="__codelineno-31-47" name="__codelineno-31-47" href="#__codelineno-31-47"></a>        <span class="n">result</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<a id="__codelineno-31-48" name="__codelineno-31-48" href="#__codelineno-31-48"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-31-49" name="__codelineno-31-49" href="#__codelineno-31-49"></a>
+<a id="__codelineno-31-50" name="__codelineno-31-50" href="#__codelineno-31-50"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+<a id="__codelineno-31-51" name="__codelineno-31-51" href="#__codelineno-31-51"></a>            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: </span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-52" name="__codelineno-31-52" href="#__codelineno-31-52"></a>
+<a id="__codelineno-31-53" name="__codelineno-31-53" href="#__codelineno-31-53"></a>
+<a id="__codelineno-31-54" name="__codelineno-31-54" href="#__codelineno-31-54"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-31-55" name="__codelineno-31-55" href="#__codelineno-31-55"></a>    <span class="k">return</span> <span class="n">AssertPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
-
 <p><code>printer.cfg</code> 中的配置：</p>
-<div class="highlight"><pre><span></span><code><span class="k">[assert_plugin]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">[assert_plugin]</span>
 </code></pre></div>
-
 <hr />
 <h2 id="_35">故障排除<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h2>
 <h3 id="module-xxx-found-in-both-extras-and-plugins">"Module 'xxx' found in both extras and plugins!"<a class="headerlink" href="#module-xxx-found-in-both-extras-and-plugins" title="Permanent link">&para;</a></h3>
@@ -4152,8 +5731,6 @@ python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>h
 
 
 
-  
-
 
 
 
@@ -4175,6 +5752,46 @@ python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>h
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="Dependency_System.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 依赖自动禁用系统">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                依赖自动禁用系统
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="API_Server.html" class="md-footer__link md-footer__link--next" aria-label="Next: API 服务器">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                API 服务器
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -4183,19 +5800,6 @@ python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>h
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
-    </a>
-  
-</div>
-      
-        
-<div class="md-social">
-  
-    
-    
-    
-    
-    <a href="https://kalico.gg/discord" target="_blank" rel="noopener" title="Join our Discord server!" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
     </a>
   
 </div>
@@ -4215,10 +5819,10 @@ python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>h
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.code.copy", "content.code.annotate", "content.code.select", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

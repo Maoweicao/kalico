@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://docs.kalico.gg/Plugin_Development.html">
       
       
+        <link rel="prev" href="Dependency_System.html">
+      
+      
+        <link rel="next" href="API_Server.html">
       
       
         
@@ -95,6 +99,22 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://github.com/KalicoCrew/kalico">
+    <span style="display: inline-flex; align-items: center; gap: 6px;">
+      <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.672.668 3.059 6.197 6.838.993a.75.75 0 0 1 .416 1.28l-4.948 4.823 1.168 6.812a.75.75 0 0 1-1.088.79L12 18.347l-6.116 3.216a.75.75 0 0 1-1.088-.791l1.168-6.811-4.948-4.823a.749.749 0 0 1 .416-1.279l6.838-.994L11.327.668a.75.75 0 0 1 1.345 0"/></svg></span>
+      Kalico is community maintained and free - consider supporting the project
+      <span style="font-weight: 700; text-transform: uppercase;">on GitHub</span>
+    </span>
+  </a>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -139,7 +159,7 @@
     <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
@@ -149,7 +169,7 @@
     <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
@@ -202,7 +222,7 @@
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
@@ -565,6 +585,118 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="Dummy_Thermistor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dummy Thermistor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Cold_Extruder.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cold Extruder (No Heater)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kinematics_Additions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Kinematics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Handwheel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handwheel (Jog Wheel) Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -574,10 +706,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
         
           
-          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
             
   
   
@@ -595,8 +727,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1121,6 +1253,62 @@
   
   
     <li class="md-nav__item">
+      <a href="MCU_Connection_Methods.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU Connection Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RT_Performance_Optimization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time Performance Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="TMC_Drivers.html" class="md-nav__link">
         
   
@@ -1205,6 +1393,34 @@
   
   
     <li class="md-nav__item">
+      <a href="System_Checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Configuration Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="Rotation_Distance.html" class="md-nav__link">
         
   
@@ -1269,10 +1485,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_12" >
         
           
-          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_12" id="__nav_9_12_label" tabindex="0">
             
   
   
@@ -1290,8 +1506,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_12">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1604,10 +1820,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_13" >
         
           
-          <label class="md-nav__link" for="__nav_9_10" id="__nav_9_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_13" id="__nav_9_13_label" tabindex="0">
             
   
   
@@ -1625,8 +1841,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_13">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1877,18 +2093,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1909,7 +2127,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1999,6 +2217,826 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Communication_Protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Communication Protocol: C ↔ Python Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dependency_System.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Auto-Disable System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Development Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Plugin_Development.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Development Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Design Decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Directory Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin Directory Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-file-vs-sub-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-file vs Sub-package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin API Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load_configconfig-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        load_config(config) → object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_config_prefixconfig-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        load_config_prefix(config) → object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_componentssubsystem-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        register_components(subsystem) (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configwrapper-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigWrapper API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subsystem-component-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsystem Component Registration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subsystem Component Registration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-side-registering-into-a-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider Side (registering into a subsystem)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumer-side-looking-up-from-a-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumer Side (looking up from a subsystem)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-locator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Locator Pattern
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Locator Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-methods-on-printer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Methods on Printer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-pull-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Pull-based?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lifecycle Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-handler-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Handler Guidelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g-code-command-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G-code Command Registration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G-code Command Registration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gcmd-object-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gcmd Object API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks-remote-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhooks / Remote API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Webhooks / Remote API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_status-for-automatic-status-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_status() for Automatic Status Exposure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-instances-via-load_config_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Instances via load_config_prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Override
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-other-config-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Include Other Config Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-introspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging &amp; Introspection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging &amp; Introspection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list_modules-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LIST_MODULES Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrating-from-extras-to-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrating from extras/ to plugins/
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migrating from extras/ to plugins/">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Migration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-migration-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Migration Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-allow_plugin_override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use allow_plugin_override
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-plugin-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the Plugin Installer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the Plugin Installer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Does
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-from-a-local-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing from a Local Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-from-a-github-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing from a GitHub Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-xxx-found-in-both-extras-and-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Module 'xxx' found in both extras and plugins!"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unable-to-load-module-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Unable to load module 'xxx'"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unknown-config-object-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Unknown config object 'xxx'"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-not-showing-in-list_modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Plugin not showing in LIST_MODULES"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unused-in-list_modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Unused" in LIST_MODULES
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2485,6 +3523,118 @@
   
   
     <li class="md-nav__item">
+      <a href="CANopen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CANopen Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="EtherCAT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherCAT Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RS485.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RS485 Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PulseGen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Pulse Generator Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
         
   
@@ -2549,6 +3699,450 @@
     
   
     Load Cells
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="safety-monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Industrial Safety Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="servo-safety.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servo Safety Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico Fly Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/power_loss_resume.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Loss Resume
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/filament_blockage_detection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filament Blockage Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/non_fatal_errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Fatal Error Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/nozzle_filament_diameter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nozzle &amp; Filament Diameter Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/ldc1612_frequency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDC1612 External Crystal Frequency Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/from_height_print.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From-Height Print
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Assistant
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI Assistant
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/AI_QUICK_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/CLI_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico CLI Reference for AI Assistants
   
 
     
@@ -3384,7 +4978,7 @@
   
     <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/Plugin_Development.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
   
   
@@ -3406,10 +5000,10 @@ source tree, ensuring your customizations survive updates.</p>
 <li><a href="#service-locator-pattern">Service Locator Pattern</a></li>
 <li><a href="#lifecycle-events">Lifecycle Events</a></li>
 <li><a href="#g-code-command-registration">G-code Command Registration</a></li>
-<li><a href="#webhooks--remote-api">Webhooks / Remote API</a></li>
+<li><a href="#webhooks-remote-api">Webhooks / Remote API</a></li>
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#debugging--introspection">Debugging &amp; Introspection</a></li>
+<li><a href="#debugging-introspection">Debugging &amp; Introspection</a></li>
 <li><a href="#migrating-from-extras-to-plugins">Migrating from <code>extras/</code> to <code>plugins/</code></a></li>
 <li><a href="#using-the-plugin-installer">Using the Plugin Installer</a></li>
 <li><a href="#complete-example">Complete Example</a></li>
@@ -3466,46 +5060,43 @@ The presence of the file is its registration.</p>
 <hr />
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
 <p>Create the file <code>klippy/plugins/my_tool.py</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyTool</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
-        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
-        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_COMMAND&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_COMMAND</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;klippy:ready&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_ready</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_on_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>  <span class="c1"># Initialization that requires a connected printer</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_COMMAND</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
-        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;Hello from my_tool!&quot;</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">MyTool</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyTool</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_COMMAND&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_COMMAND</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;klippy:ready&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_ready</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="k">pass</span>  <span class="c1"># Initialization that requires a connected printer</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_COMMAND</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;Hello from my_tool!&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">return</span> <span class="n">MyTool</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
-
 <p>Add to <code>printer.cfg</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[my_tool]</span>
 </code></pre></div>
-
 <p>Restart Kalico. Run <code>MY_COMMAND</code> from the console — you should see "Hello from my_tool!".</p>
 <hr />
 <h2 id="plugin-directory-structure">Plugin Directory Structure<a class="headerlink" href="#plugin-directory-structure" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>klippy/
-├── extras/                  # Built-in modules (part of Kalico core)
-│   ├── __init__.py
-│   ├── respond.py
-│   └── ...
-├── plugins/                 # User plugins (git-untracked)
-│   ├── __init__.py          # Package marker (always present)
-│   ├── my_tool.py           # Single-file plugin
-│   ├── my_complex_plugin/   # Sub-package plugin
-│   │   ├── __init__.py      # Contains load_config / load_config_prefix
-│   │   ├── helpers.py
-│   │   └── sensor.py
-│   └── ...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>klippy/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── extras/                  # Built-in modules (part of Kalico core)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── __init__.py
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   ├── respond.py
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   └── ...
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>├── plugins/                 # User plugins (git-untracked)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   ├── __init__.py          # Package marker (always present)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   ├── my_tool.py           # Single-file plugin
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   ├── my_complex_plugin/   # Sub-package plugin
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   │   ├── __init__.py      # Contains load_config / load_config_prefix
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   │   ├── helpers.py
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│   │   └── sensor.py
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   └── ...
 </code></pre></div>
-
 <h3 id="single-file-vs-sub-package">Single-file vs Sub-package<a class="headerlink" href="#single-file-vs-sub-package" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -3533,14 +5124,12 @@ or the directory name.</p>
 <h3 id="import-rules">Import Rules<a class="headerlink" href="#import-rules" title="Permanent link">&para;</a></h3>
 <p>Your plugin lives inside the <code>klippy.plugins</code> package. When you need to import
 from built-in extras, use the full <code>klippy.extras.*</code> path:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>  <span class="c1"># correct</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.servo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Servo</span>            <span class="c1"># correct</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>  <span class="c1"># correct</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.servo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Servo</span>            <span class="c1"># correct</span>
 </code></pre></div>
-
 <p>Relative imports within your own sub-package work as usual:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">my_helper</span>                   <span class="c1"># within your sub-package</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">my_helper</span>                   <span class="c1"># within your sub-package</span>
 </code></pre></div>
-
 <hr />
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <p>The following diagram shows how the key components interact:</p>
@@ -3596,38 +5185,34 @@ There is no hot-plug mechanism — a restart is required.</p>
 <p>Every plugin module must expose at least one of the following module-level
 functions:</p>
 <h3 id="load_configconfig-object"><code>load_config(config)</code> → object<a class="headerlink" href="#load_configconfig-object" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
-
 <p>Called when <code>printer.cfg</code> contains <code>[my_plugin]</code> (exact match, no suffix).
 Receives a <code>ConfigWrapper</code> for that section. Must return the constructed object.</p>
 <h3 id="load_config_prefixconfig-object"><code>load_config_prefix(config)</code> → object<a class="headerlink" href="#load_config_prefixconfig-object" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_config_prefix</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_config_prefix</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">return</span> <span class="n">MyPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
-
 <p>Called for sections like <code>[my_plugin instance1]</code>, <code>[my_plugin instance2]</code>, etc.
 (prefixed match, with a space separating the module name and suffix).
 Enables multiple instances of the same module.</p>
 <h3 id="register_componentssubsystem-optional"><code>register_components(subsystem)</code> (optional)<a class="headerlink" href="#register_componentssubsystem-optional" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
-    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span> <span class="s2">&quot;my_component&quot;</span><span class="p">,</span> <span class="n">MyDriver</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span> <span class="s2">&quot;my_component&quot;</span><span class="p">,</span> <span class="n">MyDriver</span><span class="p">)</span>
 </code></pre></div>
-
 <p>Called during startup to register named components into a subsystem registry.
 See <a href="#subsystem-component-registration">Subsystem Component Registration</a> for details.</p>
 <h3 id="configwrapper-api"><code>ConfigWrapper</code> API<a class="headerlink" href="#configwrapper-api" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;option_name&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">flag</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">&quot;bool_option&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">num</span>   <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;float_option&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
-<span class="n">count</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;int_option&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">choice</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;fast&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;slow&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s2">&quot;fast&quot;</span><span class="p">)</span>
-<span class="n">name</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>         <span class="c1"># Full section name, e.g. &quot;my_plugin instance1&quot;</span>
-<span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>    <span class="c1"># The Printer service locator</span>
-<span class="n">section</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getsection</span><span class="p">(</span><span class="s2">&quot;subsection&quot;</span><span class="p">)</span>  <span class="c1"># Get nested section</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;option_name&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">flag</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">&quot;bool_option&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">num</span>   <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getfloat</span><span class="p">(</span><span class="s2">&quot;float_option&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">count</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">&quot;int_option&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">choice</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;fast&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;slow&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s2">&quot;fast&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">name</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>         <span class="c1"># Full section name, e.g. &quot;my_plugin instance1&quot;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>    <span class="c1"># The Printer service locator</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">section</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getsection</span><span class="p">(</span><span class="s2">&quot;subsection&quot;</span><span class="p">)</span>  <span class="c1"># Get nested section</span>
 </code></pre></div>
-
 <hr />
 <h2 id="subsystem-component-registration">Subsystem Component Registration<a class="headerlink" href="#subsystem-component-registration" title="Permanent link">&para;</a></h2>
 <p>Some plugins are not "standalone modules" but instead provide components
@@ -3635,52 +5220,49 @@ to a larger subsystem. For example, each ADC sensor driver registers itself
 into the <code>"load_cell_sensors"</code> subsystem, and the main <code>[load_cell]</code> config
 section uses <code>config.getchoice("sensor_type", sensors)</code> to let the user choose.</p>
 <h3 id="provider-side-registering-into-a-subsystem">Provider Side (registering into a subsystem)<a class="headerlink" href="#provider-side-registering-into-a-subsystem" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># In your plugin&#39;s register_components():</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
-    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span>
-        <span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span>           <span class="c1"># subsystem name (string key)</span>
-        <span class="s2">&quot;my_driver_v1&quot;</span><span class="p">,</span>           <span class="c1"># component name (shown to user in config)</span>
-        <span class="n">MyDriverClass</span>             <span class="c1"># the component (class, function, or value)</span>
-    <span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># In your plugin&#39;s register_components():</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">register_components</span><span class="p">(</span><span class="n">subsystem</span><span class="p">):</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">subsystem</span><span class="o">.</span><span class="n">register_component</span><span class="p">(</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="s2">&quot;my_subsystem&quot;</span><span class="p">,</span>           <span class="c1"># subsystem name (string key)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="s2">&quot;my_driver_v1&quot;</span><span class="p">,</span>           <span class="c1"># component name (shown to user in config)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="n">MyDriverClass</span>             <span class="c1"># the component (class, function, or value)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="p">)</span>
 </code></pre></div>
-
 <p>See <code>klippy/extras/load_cell/__init__.py:14</code> for a real example.</p>
 <h3 id="consumer-side-looking-up-from-a-subsystem">Consumer Side (looking up from a subsystem)<a class="headerlink" href="#consumer-side-looking-up-from-a-subsystem" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">sensors</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">)</span>  <span class="c1"># → {&quot;my_driver_v1&quot;: MyDriverClass, ...}</span>
-<span class="n">chosen</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;driver_type&quot;</span><span class="p">,</span> <span class="n">sensors</span><span class="p">)</span>    <span class="c1"># user picks from choices</span>
-<span class="n">instance</span> <span class="o">=</span> <span class="n">chosen</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>                             <span class="c1"># instantiate the chosen one</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">sensors</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;my_subsystem&quot;</span><span class="p">)</span>  <span class="c1"># → {&quot;my_driver_v1&quot;: MyDriverClass, ...}</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">chosen</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getchoice</span><span class="p">(</span><span class="s2">&quot;driver_type&quot;</span><span class="p">,</span> <span class="n">sensors</span><span class="p">)</span>    <span class="c1"># user picks from choices</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">instance</span> <span class="o">=</span> <span class="n">chosen</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>                             <span class="c1"># instantiate the chosen one</span>
 </code></pre></div>
-
 <hr />
 <h2 id="service-locator-pattern">Service Locator Pattern<a class="headerlink" href="#service-locator-pattern" title="Permanent link">&para;</a></h2>
 <p>Kalico uses a <strong>Service Locator</strong> (pull-based) pattern rather than Dependency
 Injection (push-based). Your plugin is responsible for pulling its dependencies
 from the <code>Printer</code> instance.</p>
 <h3 id="key-methods-on-printer">Key Methods on <code>Printer</code><a class="headerlink" href="#key-methods-on-printer" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Get a reference to the Printer instance</span>
-<span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
-
-<span class="c1"># Look up a previously registered object by its config section name</span>
-<span class="n">gcode</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
-<span class="n">toolhead</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
-
-<span class="c1"># Lazily load another module (returns cached instance on subsequent calls)</span>
-<span class="n">heaters</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;heaters&quot;</span><span class="p">)</span>
-
-<span class="c1"># Query a subsystem component registry</span>
-<span class="n">components</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;load_cell_sensors&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get the reactor (for timers, file I/O, sleep)</span>
-<span class="n">reactor</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_reactor</span><span class="p">()</span>
-
-<span class="c1"># Get startup arguments</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_start_args</span><span class="p">()</span>
-
-<span class="c1"># Check if printer is in shutdown state</span>
-<span class="k">if</span> <span class="n">printer</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
-    <span class="k">return</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Get a reference to the Printer instance</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Look up a previously registered object by its config section name</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">gcode</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">toolhead</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># Lazily load another module (returns cached instance on subsequent calls)</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">heaters</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;heaters&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1"># Query a subsystem component registry</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">components</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">lookup_components</span><span class="p">(</span><span class="s2">&quot;load_cell_sensors&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="c1"># Get the reactor (for timers, file I/O, sleep)</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="n">reactor</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_reactor</span><span class="p">()</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="c1"># Get startup arguments</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="n">args</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">get_start_args</span><span class="p">()</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="c1"># Check if printer is in shutdown state</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="k">if</span> <span class="n">printer</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>    <span class="k">return</span>
 </code></pre></div>
-
 <h3 id="why-pull-based">Why Pull-based?<a class="headerlink" href="#why-pull-based" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The initialization order is non-trivial — not all modules exist when your
@@ -3692,9 +5274,8 @@ from the <code>Printer</code> instance.</p>
 <hr />
 <h2 id="lifecycle-events">Lifecycle Events<a class="headerlink" href="#lifecycle-events" title="Permanent link">&para;</a></h2>
 <p>Register event handlers to hook into Kalico's lifecycle:</p>
-<div class="highlight"><pre><span></span><code><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;event_name&quot;</span><span class="p">,</span> <span class="n">callback_function</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;event_name&quot;</span><span class="p">,</span> <span class="n">callback_function</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="standard-events">Standard Events<a class="headerlink" href="#standard-events" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -3748,115 +5329,106 @@ from the <code>Printer</code> instance.</p>
 </tbody>
 </table>
 <h3 id="event-handler-guidelines">Event Handler Guidelines<a class="headerlink" href="#event-handler-guidelines" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_handle_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="c1"># SAFE: look up other objects</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">toolhead</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_handle_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="c1"># SAFE: start operations, send commands</span>
-    <span class="c1"># Do NOT raise errors here</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_handle_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">pass</span>  <span class="c1"># Suppress errors during shutdown</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">_handle_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="c1"># SAFE: look up other objects</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">toolhead</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;toolhead&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">_handle_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="c1"># SAFE: start operations, send commands</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="c1"># Do NOT raise errors here</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">_handle_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="k">except</span><span class="p">:</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>        <span class="k">pass</span>  <span class="c1"># Suppress errors during shutdown</span>
 </code></pre></div>
-
 <hr />
 <h2 id="g-code-command-registration">G-code Command Registration<a class="headerlink" href="#g-code-command-registration" title="Permanent link">&para;</a></h2>
 <p>Register custom G-code commands in your module's <code>__init__</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_CMD&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_CMD</span><span class="p">,</span> <span class="s2">&quot;Description for help&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_CMD</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
-        <span class="c1"># Read parameters</span>
-        <span class="n">speed</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PARAM&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
-
-        <span class="c1"># Respond to the console</span>
-        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got S=</span><span class="si">{</span><span class="n">speed</span><span class="si">}</span><span class="s2">, PARAM=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-        <span class="c1"># Raise errors on invalid input</span>
-        <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Speed must be positive&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;MY_CMD&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_MY_CMD</span><span class="p">,</span> <span class="s2">&quot;Description for help&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_MY_CMD</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        <span class="c1"># Read parameters</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        <span class="n">speed</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PARAM&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>        <span class="c1"># Respond to the console</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>        <span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got S=</span><span class="si">{</span><span class="n">speed</span><span class="si">}</span><span class="s2">, PARAM=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        <span class="c1"># Raise errors on invalid input</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Speed must be positive&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="gcmd-object-api"><code>gcmd</code> Object API<a class="headerlink" href="#gcmd-object-api" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>           <span class="c1"># String parameter</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Float parameter</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># Integer parameter</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>             <span class="c1"># Standard response</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">respond_raw</span><span class="p">(</span><span class="s2">&quot;raw text&quot;</span><span class="p">)</span>             <span class="c1"># Raw output</span>
-<span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;error message&quot;</span><span class="p">)</span>              <span class="c1"># Raise an error (aborts command)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>           <span class="c1"># String parameter</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">get_float</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Float parameter</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># Integer parameter</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">respond_info</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>             <span class="c1"># Standard response</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">respond_raw</span><span class="p">(</span><span class="s2">&quot;raw text&quot;</span><span class="p">)</span>             <span class="c1"># Raw output</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;error message&quot;</span><span class="p">)</span>              <span class="c1"># Raise an error (aborts command)</span>
 </code></pre></div>
-
 <hr />
 <h2 id="webhooks-remote-api">Webhooks / Remote API<a class="headerlink" href="#webhooks-remote-api" title="Permanent link">&para;</a></h2>
 <p>Expose JSON-RPC endpoints for external clients (Mainsail, Fluidd, etc.):</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="n">webhooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;webhooks&quot;</span><span class="p">)</span>
-        <span class="n">webhooks</span><span class="o">.</span><span class="n">register_endpoint</span><span class="p">(</span><span class="s2">&quot;my_plugin/get_status&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_api</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">web_request</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">42.0</span><span class="p">,</span>
-            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>        <span class="n">webhooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;webhooks&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>        <span class="n">webhooks</span><span class="o">.</span><span class="n">register_endpoint</span><span class="p">(</span><span class="s2">&quot;my_plugin/get_status&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_api</span><span class="p">)</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">web_request</span><span class="p">):</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>        <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">42.0</span><span class="p">,</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>        <span class="p">}</span>
 </code></pre></div>
-
 <h3 id="get_status-for-automatic-status-exposure"><code>get_status()</code> for Automatic Status Exposure<a class="headerlink" href="#get_status-for-automatic-status-exposure" title="Permanent link">&para;</a></h3>
 <p>Define <code>get_status()</code> on your printer object to automatically expose its
 state via the API server and Jinja templates:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span>
-            <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">,</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyPlugin</span><span class="p">:</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_value</span><span class="p">,</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>            <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">,</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>        <span class="p">}</span>
 </code></pre></div>
-
 <p>Status values must be: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>list</code>, <code>dict</code>, <code>tuple</code>,
 or <code>None</code>. Lists and dicts must be treated as immutable — return a new object
 if contents change.</p>
 <hr />
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <h3 id="basic-section">Basic Section<a class="headerlink" href="#basic-section" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
-<span class="na">option1</span><span class="o">:</span><span class="w"> </span><span class="s">some_value</span>
-<span class="na">option2</span><span class="o">:</span><span class="w"> </span><span class="s">3.14</span>
-<span class="na">option3</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[my_tool]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="na">option1</span><span class="o">:</span><span class="w"> </span><span class="s">some_value</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="na">option2</span><span class="o">:</span><span class="w"> </span><span class="s">3.14</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="na">option3</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
 </code></pre></div>
-
 <h3 id="multiple-instances-via-load_config_prefix">Multiple Instances via <code>load_config_prefix</code><a class="headerlink" href="#multiple-instances-via-load_config_prefix" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">[my_tool extruder]</span>
-<span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">hotend_left</span>
-<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">300</span>
-
-<span class="k">[my_tool bed]</span>
-<span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">heated_bed</span>
-<span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">120</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">[my_tool extruder]</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">hotend_left</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">300</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="k">[my_tool bed]</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="na">name</span><span class="o">:</span><span class="w"> </span><span class="s">heated_bed</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="na">max_temp</span><span class="o">:</span><span class="w"> </span><span class="s">120</span>
 </code></pre></div>
-
 <p>Your <code>load_config_prefix()</code> receives a separate <code>ConfigWrapper</code> for each instance.</p>
 <h3 id="plugin-override">Plugin Override<a class="headerlink" href="#plugin-override" title="Permanent link">&para;</a></h3>
 <p>If your plugin shares a name with a built-in extra (e.g., you create
 <code>klippy/plugins/respond.py</code>), you must enable overrides:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[danger_options]</span>
-<span class="na">allow_plugin_override</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">[danger_options]</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="na">allow_plugin_override</span><span class="o">:</span><span class="w"> </span><span class="s">True</span>
 </code></pre></div>
-
 <p>Without this, Kalico raises an error: <code>"Module 'respond' found in both extras and plugins!"</code>.</p>
 <h3 id="include-other-config-files">Include Other Config Files<a class="headerlink" href="#include-other-config-files" title="Permanent link">&para;</a></h3>
 <p>Use <code>!!include</code> in your plugin's config to pull in larger configurations:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[my_tool]</span>
-<span class="na">!!include path/to/my_tool_defaults.cfg</span>
-<span class="na">custom_option</span><span class="o">:</span><span class="w"> </span><span class="s">my_value</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">[my_tool]</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="na">!!include path/to/my_tool_defaults.cfg</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="na">custom_option</span><span class="o">:</span><span class="w"> </span><span class="s">my_value</span>
 </code></pre></div>
-
 <hr />
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
 <ol>
@@ -3888,8 +5460,8 @@ if contents change.</p>
 </li>
 <li>
 <p><strong>Close files/sockets on disconnect.</strong> Register for <code>"klippy:disconnect"</code>:</p>
-<p><code>python
- self.printer.register_event_handler("klippy:disconnect", self._cleanup)</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span><span class="s2">&quot;klippy:disconnect&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cleanup</span><span class="p">)</span>
+</code></pre></div>
 </li>
 <li>
 <p><strong>Suppress errors in shutdown handlers.</strong> During emergency shutdown, logging
@@ -3901,18 +5473,16 @@ if contents change.</p>
 <h2 id="debugging-introspection">Debugging &amp; Introspection<a class="headerlink" href="#debugging-introspection" title="Permanent link">&para;</a></h2>
 <h3 id="list_modules-command"><code>LIST_MODULES</code> Command<a class="headerlink" href="#list_modules-command" title="Permanent link">&para;</a></h3>
 <p>Check the status of all loaded modules:</p>
-<div class="highlight"><pre><span></span><code>LIST_MODULES DETAIL=1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>LIST_MODULES DETAIL=1
 </code></pre></div>
-
-<p>Output example:</p>
-<div class="highlight"><pre><span></span><code>Loaded modules:
-
-  my_tool (plugins, loaded)
-    Path: klippy/plugins/my_tool.py
-    Loaded: 2025-05-14 12:00:00
-    Used: yes
-</code></pre></div>
-
+<p>Output example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Loaded modules:
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>  my_tool (plugins, loaded)
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    Path: klippy/plugins/my_tool.py
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    Loaded: 2025-05-14 12:00:00
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    Used: yes
+</code></pre></div></p>
 <p>Fields explained:</p>
 <ul>
 <li><strong>source</strong>: <code>"plugins"</code> or <code>"extras"</code> — where the module came from</li>
@@ -3922,13 +5492,12 @@ if contents change.</p>
 <li><strong>error</strong>: Exception details if loading failed (only shown if <code>loaded: False</code>)</li>
 </ul>
 <h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-
-<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Informational message&quot;</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning message&quot;</span><span class="p">)</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception traceback&quot;</span><span class="p">)</span>  <span class="c1"># In except blocks</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Informational message&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning message&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception traceback&quot;</span><span class="p">)</span>  <span class="c1"># In except blocks</span>
 </code></pre></div>
-
 <p>Log output goes to Kalico's <code>klippy.log</code> (or stderr if no log file is configured).</p>
 <h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
 <p>Use the reference test plugin at <code>test/klippy_testing_plugin.py</code> as a template.
@@ -3939,9 +5508,8 @@ Run tests with <code>scripts/test_klippy.py</code>.</p>
 <code>klippy/plugins/</code> to keep your Kalico tree clean:</p>
 <h3 id="automatic-migration">Automatic Migration<a class="headerlink" href="#automatic-migration" title="Permanent link">&para;</a></h3>
 <p>Use the plugin installer with a local path:</p>
-<div class="highlight"><pre><span></span><code>python scripts/install_plugin.py /path/to/your/local/plugin --name my_plugin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>python scripts/install_plugin.py /path/to/your/local/plugin --name my_plugin
 </code></pre></div>
-
 <p>See <a href="#using-the-plugin-installer">Using the Plugin Installer</a> for details.</p>
 <h3 id="manual-migration-steps">Manual Migration Steps<a class="headerlink" href="#manual-migration-steps" title="Permanent link">&para;</a></h3>
 <ol>
@@ -3975,9 +5543,8 @@ plugin names, no override flag is needed.</p>
 <p>Kalico ships with <code>scripts/install_plugin.py</code>, a tool that automates fetching,
 analyzing, and installing plugins from a git repository.</p>
 <h3 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>&lt;url&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>&lt;url&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
 </code></pre></div>
-
 <table>
 <thead>
 <tr>
@@ -4020,121 +5587,116 @@ analyzing, and installing plugins from a git repository.</p>
 <li>Prints a friendly installation summary.</li>
 </ol>
 <h3 id="example-output">Example Output<a class="headerlink" href="#example-output" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Fetching plugin from https://github.com/user/kalico-my-cool-sensor...
-
-[1/4] Cloning repository... done.
-[2/4] Scanning for plugin modules...
-       Found: my_cool_sensor.py (entry: load_config)
-[3/4] Analyzing plugin...
-       G-code commands detected: COOL_CALIBRATE, COOL_REPORT
-       Dependencies detected: gcode, heaters, toolhead
-[4/4] Installing to klippy/plugins/...
-       klippy/plugins/my_cool_sensor.py installed.
-
-========================================
- Plugin installed: my_cool_sensor
-========================================
-
-  Source:        https://github.com/user/kalico-my-cool-sensor
-  Install path:  klippy/plugins/my_cool_sensor.py
-  Entry point:   load_config(config)
-
-  Available G-code commands:
-    COOL_CALIBRATE    → calibrate the cool sensor
-    COOL_REPORT       → report current readings
-
-  Required config section (add to printer.cfg):
-    [my_cool_sensor]
-    sensor_pin: PA0
-    # see the plugin&#39;s README for full options
-
-  Dependencies (ensure these exist in your config):
-    gcode
-    heaters
-    toolhead
-
-  To activate: send RESTART to Kalico
-========================================
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>Fetching plugin from https://github.com/user/kalico-my-cool-sensor...
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>[1/4] Cloning repository... done.
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>[2/4] Scanning for plugin modules...
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>       Found: my_cool_sensor.py (entry: load_config)
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>[3/4] Analyzing plugin...
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>       G-code commands detected: COOL_CALIBRATE, COOL_REPORT
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>       Dependencies detected: gcode, heaters, toolhead
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>[4/4] Installing to klippy/plugins/...
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>       klippy/plugins/my_cool_sensor.py installed.
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>========================================
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a> Plugin installed: my_cool_sensor
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>========================================
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>  Source:        https://github.com/user/kalico-my-cool-sensor
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>  Install path:  klippy/plugins/my_cool_sensor.py
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>  Entry point:   load_config(config)
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>  Available G-code commands:
+<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>    COOL_CALIBRATE    → calibrate the cool sensor
+<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>    COOL_REPORT       → report current readings
+<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>
+<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a>  Required config section (add to printer.cfg):
+<a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a>    [my_cool_sensor]
+<a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a>    sensor_pin: PA0
+<a id="__codelineno-28-27" name="__codelineno-28-27" href="#__codelineno-28-27"></a>    # see the plugin&#39;s README for full options
+<a id="__codelineno-28-28" name="__codelineno-28-28" href="#__codelineno-28-28"></a>
+<a id="__codelineno-28-29" name="__codelineno-28-29" href="#__codelineno-28-29"></a>  Dependencies (ensure these exist in your config):
+<a id="__codelineno-28-30" name="__codelineno-28-30" href="#__codelineno-28-30"></a>    gcode
+<a id="__codelineno-28-31" name="__codelineno-28-31" href="#__codelineno-28-31"></a>    heaters
+<a id="__codelineno-28-32" name="__codelineno-28-32" href="#__codelineno-28-32"></a>    toolhead
+<a id="__codelineno-28-33" name="__codelineno-28-33" href="#__codelineno-28-33"></a>
+<a id="__codelineno-28-34" name="__codelineno-28-34" href="#__codelineno-28-34"></a>  To activate: send RESTART to Kalico
+<a id="__codelineno-28-35" name="__codelineno-28-35" href="#__codelineno-28-35"></a>========================================
 </code></pre></div>
-
 <h3 id="installing-from-a-local-directory">Installing from a Local Directory<a class="headerlink" href="#installing-from-a-local-directory" title="Permanent link">&para;</a></h3>
 <p>You can also point the installer at a local path to migrate a plugin from <code>extras/</code>:</p>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>./klippy/extras/my_module.py<span class="w"> </span>--name<span class="w"> </span>my_module
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>./klippy/extras/my_module.py<span class="w"> </span>--name<span class="w"> </span>my_module
 </code></pre></div>
-
 <h3 id="installing-from-a-github-repository">Installing from a GitHub Repository<a class="headerlink" href="#installing-from-a-github-repository" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Default branch</span>
-python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin
-
-<span class="c1"># Specific branch or tag</span>
-python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin<span class="w"> </span>--branch<span class="w"> </span>v1.2.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># Default branch</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="c1"># Specific branch or tag</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>python<span class="w"> </span>scripts/install_plugin.py<span class="w"> </span>https://github.com/user/kalico-my-plugin<span class="w"> </span>--branch<span class="w"> </span>v1.2.0
 </code></pre></div>
-
 <hr />
 <h2 id="complete-example">Complete Example<a class="headerlink" href="#complete-example" title="Permanent link">&para;</a></h2>
 <p>Below is a complete plugin example based on <code>test/klippy_testing_plugin.py</code>.
 It registers a custom G-code command <code>ASSERT</code> that evaluates a Jinja2 expression.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># klippy/plugins/assert_plugin.py</span>
-<span class="c1">#</span>
-<span class="c1"># Evaluate an expression and raise an error if False.</span>
-<span class="c1"># Usage: ASSERT TEST=&quot;{1 + 1 == 2}&quot;</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">AssertPlugin</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
-        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;gcode_macro&quot;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
-            <span class="s2">&quot;gcode:command_error&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_command_error</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
-            <span class="s2">&quot;gcode:unknown_command&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_unknown_command</span>
-        <span class="p">)</span>
-        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;ASSERT&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_ASSERT</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_on_command_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span><span class="s2">&quot;Exception during testing&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_on_unknown_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Unknown command during test: </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_ASSERT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
-        <span class="n">expression</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TEST&quot;</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">template</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">env</span><span class="p">,</span>
-                <span class="s2">&quot;ASSERT:runtime_expression&quot;</span><span class="p">,</span>
-                <span class="n">expression</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: Failed to parse &#39;</span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-
-        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">create_template_context</span><span class="p">()</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="kc">None</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: </span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">AssertPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># klippy/plugins/assert_plugin.py</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="c1">#</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="c1"># Evaluate an expression and raise an error if False.</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1"># Usage: ASSERT TEST=&quot;{1 + 1 == 2}&quot;</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">klippy.extras.gcode_macro</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">AssertPlugin</span><span class="p">:</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_printer</span><span class="p">()</span>
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a>        <span class="n">gcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">lookup_object</span><span class="p">(</span><span class="s2">&quot;gcode&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">load_object</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;gcode_macro&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>
+<a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
+<a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a>            <span class="s2">&quot;gcode:command_error&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_command_error</span>
+<a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a>        <span class="p">)</span>
+<a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">register_event_handler</span><span class="p">(</span>
+<a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a>            <span class="s2">&quot;gcode:unknown_command&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_unknown_command</span>
+<a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a>        <span class="p">)</span>
+<a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a>        <span class="n">gcode</span><span class="o">.</span><span class="n">register_command</span><span class="p">(</span><span class="s2">&quot;ASSERT&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd_ASSERT</span><span class="p">)</span>
+<a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a>
+<a id="__codelineno-31-24" name="__codelineno-31-24" href="#__codelineno-31-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_command_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-31-25" name="__codelineno-31-25" href="#__codelineno-31-25"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-26" name="__codelineno-31-26" href="#__codelineno-31-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span><span class="s2">&quot;Exception during testing&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-27" name="__codelineno-31-27" href="#__codelineno-31-27"></a>
+<a id="__codelineno-31-28" name="__codelineno-31-28" href="#__codelineno-31-28"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_unknown_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+<a id="__codelineno-31-29" name="__codelineno-31-29" href="#__codelineno-31-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">request_exit</span><span class="p">(</span><span class="s2">&quot;error_exit&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-30" name="__codelineno-31-30" href="#__codelineno-31-30"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="o">.</span><span class="n">invoke_shutdown</span><span class="p">(</span>
+<a id="__codelineno-31-31" name="__codelineno-31-31" href="#__codelineno-31-31"></a>            <span class="sa">f</span><span class="s2">&quot;Unknown command during test: </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-31-32" name="__codelineno-31-32" href="#__codelineno-31-32"></a>        <span class="p">)</span>
+<a id="__codelineno-31-33" name="__codelineno-31-33" href="#__codelineno-31-33"></a>
+<a id="__codelineno-31-34" name="__codelineno-31-34" href="#__codelineno-31-34"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">cmd_ASSERT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcmd</span><span class="p">):</span>
+<a id="__codelineno-31-35" name="__codelineno-31-35" href="#__codelineno-31-35"></a>        <span class="n">expression</span> <span class="o">=</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TEST&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-36" name="__codelineno-31-36" href="#__codelineno-31-36"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-31-37" name="__codelineno-31-37" href="#__codelineno-31-37"></a>            <span class="n">template</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span>
+<a id="__codelineno-31-38" name="__codelineno-31-38" href="#__codelineno-31-38"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">printer</span><span class="p">,</span>
+<a id="__codelineno-31-39" name="__codelineno-31-39" href="#__codelineno-31-39"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">env</span><span class="p">,</span>
+<a id="__codelineno-31-40" name="__codelineno-31-40" href="#__codelineno-31-40"></a>                <span class="s2">&quot;ASSERT:runtime_expression&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-41" name="__codelineno-31-41" href="#__codelineno-31-41"></a>                <span class="n">expression</span><span class="p">,</span>
+<a id="__codelineno-31-42" name="__codelineno-31-42" href="#__codelineno-31-42"></a>            <span class="p">)</span>
+<a id="__codelineno-31-43" name="__codelineno-31-43" href="#__codelineno-31-43"></a>        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<a id="__codelineno-31-44" name="__codelineno-31-44" href="#__codelineno-31-44"></a>            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: Failed to parse &#39;</span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-45" name="__codelineno-31-45" href="#__codelineno-31-45"></a>
+<a id="__codelineno-31-46" name="__codelineno-31-46" href="#__codelineno-31-46"></a>        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gcode_macro</span><span class="o">.</span><span class="n">create_template_context</span><span class="p">()</span>
+<a id="__codelineno-31-47" name="__codelineno-31-47" href="#__codelineno-31-47"></a>        <span class="n">result</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<a id="__codelineno-31-48" name="__codelineno-31-48" href="#__codelineno-31-48"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-31-49" name="__codelineno-31-49" href="#__codelineno-31-49"></a>
+<a id="__codelineno-31-50" name="__codelineno-31-50" href="#__codelineno-31-50"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+<a id="__codelineno-31-51" name="__codelineno-31-51" href="#__codelineno-31-51"></a>            <span class="k">raise</span> <span class="n">gcmd</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ASSERT: </span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2"> == </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-52" name="__codelineno-31-52" href="#__codelineno-31-52"></a>
+<a id="__codelineno-31-53" name="__codelineno-31-53" href="#__codelineno-31-53"></a>
+<a id="__codelineno-31-54" name="__codelineno-31-54" href="#__codelineno-31-54"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-31-55" name="__codelineno-31-55" href="#__codelineno-31-55"></a>    <span class="k">return</span> <span class="n">AssertPlugin</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
-
 <p>Configuration in <code>printer.cfg</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[assert_plugin]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">[assert_plugin]</span>
 </code></pre></div>
-
 <hr />
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="module-xxx-found-in-both-extras-and-plugins">"Module 'xxx' found in both extras and plugins!"<a class="headerlink" href="#module-xxx-found-in-both-extras-and-plugins" title="Permanent link">&para;</a></h3>
@@ -4191,13 +5753,53 @@ to your <code>printer.cfg</code>. Without this, the module is imported but never
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M214.6 17.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 117.3V488c0 17.7 14.3 32 32 32s32-14.3 32-32V117.3l105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
   Back to top
 </button>
         
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="Dependency_System.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dependency Auto-Disable System">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Dependency Auto-Disable System
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="API_Server.html" class="md-footer__link md-footer__link--next" aria-label="Next: API server">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                API server
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4239,7 +5841,7 @@ to your <code>printer.cfg</code>. Without this, the module is imported but never
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.code.copy", "content.code.annotate", "content.code.select", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>

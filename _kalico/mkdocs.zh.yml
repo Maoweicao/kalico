@@ -1,0 +1,227 @@
+# Secondary configuration for building the Simplified Chinese documentation.
+# Output is published under /i18n/simple-chinese/ alongside the main English site.
+# See cd-docs.yaml for how both sites are built and merged.
+
+# Site and directory configuration
+site_name: Kalico 文档
+site_url: https://docs.kalico.gg/i18n/simple-chinese/
+repo_url: https://github.com/KalicoCrew/kalico/
+repo_name: KalicoCrew/kalico
+edit_uri: edit/main/docs/i18n/simple-chinese/
+use_directory_urls: False
+docs_dir: '../i18n/simple-chinese/'
+site_dir: '../../site/i18n/simple-chinese/'
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+# Custom markdown dialect settings
+markdown_extensions:
+  - toc:
+      permalink: True
+      toc_depth: 6
+  - attr_list
+  - md_in_html
+  - mdx_partial_gfm
+  - mdx_truly_sane_lists
+  - mdx_breakless_lists
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: True
+  - pymdownx.highlight:
+      anchor_linenums: True
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.smartsymbols
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+plugins:
+  search:
+    lang: zh
+  mkdocs-simple-hooks:
+    hooks:
+      on_page_markdown: "mkdocs_hooks:transform"
+  gh-admonitions:
+  redirects:
+    redirect_maps:
+      'RT_Performance_Optimization_CN.md': 'RT_Performance_Optimization.md'
+      'safety-monitoring_CN.md': 'safety-monitoring.md'
+      'servo-safety_CN.md': 'servo-safety.md'
+      'Handwheel_zh.md': 'Handwheel.md'
+
+# Website layout configuration (using mkdocs-material theme)
+theme:
+  name: material
+  logo: logo/kalico-96x96.png
+  favicon: logo/kalico-32x32.png
+  custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/github
+    alternate: material/web
+    logo: fontawesome/brands/bolt
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
+    top: material/arrow-up
+    edit: material/pencil
+    search: material/magnify
+  features:
+    - navigation.top # back to top button
+    - navigation.instant # XHR loading instead of full page reload
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tracking # url automatically refers to the current paragraph
+    - navigation.footer # render prev/next links in the footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
+    - content.code.copy
+    - content.code.annotate
+    - content.code.select
+    - optimize # output optimization
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: orange
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: orange
+      accent: yellow
+      toggle:
+        icon: material/weather-night
+        name: 切换到浅色模式
+
+extra_css:
+  - _kalico/css/extra.css
+
+extra:
+  alternate:
+    - name: English
+      link: /
+      lang: en
+    - name: 简体中文
+      link: /i18n/simple-chinese/
+      lang: zh-Hans
+
+# Navigation hierarchy (mirrors the English nav in mkdocs.yml)
+nav:
+  - 首页: index.md
+  - 概述: Overview.md
+  - 功能: Features.md
+  - 常见问题: FAQ.md
+  - 版本发布: https://github.com/KalicoCrew/kalico/releases
+  - 配置变更: Config_Changes.md
+  - 配置:
+    - 配置参考: Config_Reference.md
+    - Kalico 附加功能: Kalico_Additions.md
+    - 虚拟热敏电阻: Dummy_Thermistor.md
+    - 冷挤出: Cold_Extruder.md
+    - 运动学附加功能: Kinematics_Additions.md
+    - 手轮: Handwheel.md
+    - 边缘版本:
+      - Bleeding_Edge.md
+      - Config_Reference_Bleeding_Edge.md
+      - Nonlinear_Pressure_Advance.md
+    - PID: PID.md
+    - MPC: MPC.md
+    - 可停靠探针: Dockable_Probe.md
+    - Bondtech INDX: INDX.md
+  - G-Code 参考:
+    - G-Codes.md
+    - Command_Templates.md
+    - G-Code_Shell_Command.md
+    - Status_Reference.md
+  - 入门与运行:
+    - Migrating_from_Klipper.md
+    - Installation.md
+    - OctoPrint.md
+    - MCU_Connection_Methods.md
+    - RT_Performance_Optimization.md
+    - TMC_Drivers.md
+    - LYX_Drivers.md
+    - Config_checks.md
+    - System_Checklist.md
+    - Rotation_Distance.md
+    - Multi_MCU_Homing.md
+    - 床平、探针与末端限位:
+      - Z_Calibration.md
+      - Bed_Level.md
+      - Delta_Calibrate.md
+      - Probe_Calibrate.md
+      - BLTouch.md
+      - Manual_Level.md
+      - Bed_Mesh.md
+      - Endstop_Phase.md
+      - Axis_Twist_Compensation.md
+      - Skew_Correction.md
+    - 调优:
+      - Measuring_Resonances.md
+      - Resonance_Compensation.md
+      - Pressure_Advance.md
+  - 切片软件:
+    - Slicers.md
+    - Exclude_Object.md
+    - Using_PWM_Tools.md
+  - 开发者文档:
+    - Code_Overview.md
+    - Kinematics.md
+    - Protocol.md
+    - Communication_Protocol.md
+    - Dependency_System.md
+    - Plugin_Development.md
+    - API_Server.md
+    - MCU_Commands.md
+    - CANBUS_protocol.md
+    - Debugging.md
+    - Benchmarks.md
+    - CONTRIBUTING.md
+    - Packaging.md
+  - 设备专属文档:
+    - Example_Configs.md
+    - SDCard_Updates.md
+    - RPi_microcontroller.md
+    - Beaglebone.md
+    - Bootloaders.md
+    - Bootloader_Entry.md
+    - CANBUS.md
+    - CANBUS_Troubleshooting.md
+    - CANopen.md
+    - EtherCAT.md
+    - RS485.md
+    - PulseGen.md
+    - TSL1401CL_Filament_Width_Sensor.md
+    - Hall_Filament_Width_Sensor.md
+    - Load_Cell.md
+    - safety-monitoring.md
+    - servo-safety.md
+  - Kalico Klipper 指南: Klipper_Guide_CN.md
+  - Fly 功能集:
+    - fly_features/README.md
+    - fly_features/power_loss_resume.md
+    - fly_features/filament_blockage_detection.md
+    - fly_features/non_fatal_errors.md
+    - fly_features/nozzle_filament_diameter.md
+    - fly_features/ldc1612_frequency.md
+    - fly_features/from_height_print.md
+  - AI 助手:
+    - ai/README.md
+    - ai/AI_QUICK_REFERENCE.md
+    - ai/CLI_REFERENCE.md
+  - 遥测: Telemetry.md
+  - 联系: Contact.md
+  - 赞助: Sponsors.md

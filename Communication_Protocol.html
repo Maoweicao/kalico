@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://docs.kalico.gg/Communication_Protocol.html">
       
       
+        <link rel="prev" href="Protocol.html">
+      
+      
+        <link rel="next" href="Dependency_System.html">
       
       
         
@@ -95,6 +99,22 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://github.com/KalicoCrew/kalico">
+    <span style="display: inline-flex; align-items: center; gap: 6px;">
+      <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.672.668 3.059 6.197 6.838.993a.75.75 0 0 1 .416 1.28l-4.948 4.823 1.168 6.812a.75.75 0 0 1-1.088.79L12 18.347l-6.116 3.216a.75.75 0 0 1-1.088-.791l1.168-6.811-4.948-4.823a.749.749 0 0 1 .416-1.279l6.838-.994L11.327.668a.75.75 0 0 1 1.345 0"/></svg></span>
+      Kalico is community maintained and free - consider supporting the project
+      <span style="font-weight: 700; text-transform: uppercase;">on GitHub</span>
+    </span>
+  </a>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -139,7 +159,7 @@
     <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
@@ -149,7 +169,7 @@
     <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
@@ -202,7 +222,7 @@
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
@@ -565,6 +585,118 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="Dummy_Thermistor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dummy Thermistor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Cold_Extruder.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cold Extruder (No Heater)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Kinematics_Additions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Kinematics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Handwheel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handwheel (Jog Wheel) Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -574,10 +706,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
         
           
-          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
             
   
   
@@ -595,8 +727,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1121,6 +1253,62 @@
   
   
     <li class="md-nav__item">
+      <a href="MCU_Connection_Methods.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU Connection Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RT_Performance_Optimization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time Performance Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="TMC_Drivers.html" class="md-nav__link">
         
   
@@ -1205,6 +1393,34 @@
   
   
     <li class="md-nav__item">
+      <a href="System_Checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Configuration Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="Rotation_Distance.html" class="md-nav__link">
         
   
@@ -1269,10 +1485,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_12" >
         
           
-          <label class="md-nav__link" for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_12" id="__nav_9_12_label" tabindex="0">
             
   
   
@@ -1290,8 +1506,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_12">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1604,10 +1820,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_13" >
         
           
-          <label class="md-nav__link" for="__nav_9_10" id="__nav_9_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_13" id="__nav_9_13_label" tabindex="0">
             
   
   
@@ -1625,8 +1841,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_13">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1877,18 +2093,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1909,7 +2127,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1991,6 +2209,541 @@
     
   
     Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Communication Protocol: C ↔ Python Interface
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Communication_Protocol.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Communication Protocol: C ↔ Python Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-cffi-python-c-helper-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. CFFI: Python ↔ C Helper Library
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. CFFI: Python ↔ C Helper Library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cffi-function-definition-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CFFI Function Definition Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-in-python-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage in Python Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-callbacks-into-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Callbacks into C
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-cffi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow: CFFI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-serial-uart-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Serial / UART Communication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Serial / UART Communication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#location_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-establishment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection Establishment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-side-serial-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C-side Serial Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-serial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow: Serial
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-binary-message-protocol-the-core-rpc-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Binary Message Protocol (The Core RPC Layer)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Binary Message Protocol (The Core RPC Layer)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#location_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-block-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Block Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-length-quantity-vlq-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variable Length Quantity (VLQ) Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-declaration-c-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command Declaration (C side)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-transmission-c-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Transmission (C side)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-content-multiple-commands-per-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Content: Multiple Commands Per Block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crc-16-ccitt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CRC-16 CCITT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-dictionary-identify-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Dictionary (Identify Protocol)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acknowledgement-and-retransmission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acknowledgement and Retransmission
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-api-server-unix-domain-socket-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. API Server: Unix Domain Socket + JSON
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. API Server: Unix Domain Socket + JSON">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#location_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-thread-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Thread Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-complete-data-flow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Complete Data Flow Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Design Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dependency_System.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Auto-Disable System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Plugin_Development.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Development Guide
   
 
     
@@ -2485,6 +3238,118 @@
   
   
     <li class="md-nav__item">
+      <a href="CANopen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CANopen Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="EtherCAT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherCAT Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RS485.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RS485 Servo Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PulseGen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Pulse Generator Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-nav__link">
         
   
@@ -2549,6 +3414,450 @@
     
   
     Load Cells
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="safety-monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Industrial Safety Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="servo-safety.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servo Safety Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico Fly Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/power_loss_resume.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Loss Resume
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/filament_blockage_detection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filament Blockage Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/non_fatal_errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Fatal Error Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/nozzle_filament_diameter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nozzle &amp; Filament Diameter Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/ldc1612_frequency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDC1612 External Crystal Frequency Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fly_features/from_height_print.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From-Height Print
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Assistant
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI Assistant
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/AI_QUICK_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico AI Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/CLI_REFERENCE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalico CLI Reference for AI Assistants
   
 
     
@@ -3099,7 +4408,7 @@
   
     <a href="https://github.com/KalicoCrew/kalico/edit/main/docs/Communication_Protocol.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
   
   
@@ -3172,9 +4481,8 @@ to call C functions directly for performance-critical operations.
 On startup, Kalico checks if <code>c_helper.so</code> exists and is
 up-to-date. If not, it compiles all C helper files using <code>gcc</code>
 with the following flags:</p>
-<div class="highlight"><pre><span></span><code>-Wall -g -O2 -shared -fPIC -flto -fwhole-program -fno-use-linker-plugin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>-Wall -g -O2 -shared -fPIC -flto -fwhole-program -fno-use-linker-plugin
 </code></pre></div>
-
 <p>The C source files are compiled into a single shared library:</p>
 <table>
 <thead>
@@ -3265,48 +4573,44 @@ with the following flags:</p>
 <h3 id="cffi-function-definition-example">CFFI Function Definition Example<a class="headerlink" href="#cffi-function-definition-example" title="Permanent link">&para;</a></h3>
 <p>In <code>chelper/__init__.py</code>, function signatures are declared as C
 strings:</p>
-<div class="highlight"><pre><span></span><code><span class="n">defs_stepcompress</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    struct stepcompress *stepcompress_alloc(uint32_t oid);</span>
-<span class="s2">    void stepcompress_fill(struct stepcompress *sc, uint32_t max_error</span>
-<span class="s2">        , int32_t queue_step_msgtag, int32_t set_next_step_dir_msgtag);</span>
-<span class="s2">    void stepcompress_free(struct stepcompress *sc);</span>
-<span class="s2">    // ...</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">defs_stepcompress</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="s2">    struct stepcompress *stepcompress_alloc(uint32_t oid);</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="s2">    void stepcompress_fill(struct stepcompress *sc, uint32_t max_error</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s2">        , int32_t queue_step_msgtag, int32_t set_next_step_dir_msgtag);</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s2">    void stepcompress_free(struct stepcompress *sc);</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="s2">    // ...</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="s2">&quot;&quot;&quot;</span>
 </code></pre></div>
-
 <p>These definitions are loaded with:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">cffi</span>
-<span class="n">FFI_main</span> <span class="o">=</span> <span class="n">cffi</span><span class="o">.</span><span class="n">FFI</span><span class="p">()</span>
-<span class="n">FFI_main</span><span class="o">.</span><span class="n">cdef</span><span class="p">(</span><span class="n">defs_stepcompress</span><span class="p">)</span>
-<span class="n">FFI_lib</span> <span class="o">=</span> <span class="n">FFI_main</span><span class="o">.</span><span class="n">dlopen</span><span class="p">(</span><span class="s2">&quot;c_helper.so&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">cffi</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">FFI_main</span> <span class="o">=</span> <span class="n">cffi</span><span class="o">.</span><span class="n">FFI</span><span class="p">()</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">FFI_main</span><span class="o">.</span><span class="n">cdef</span><span class="p">(</span><span class="n">defs_stepcompress</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">FFI_lib</span> <span class="o">=</span> <span class="n">FFI_main</span><span class="o">.</span><span class="n">dlopen</span><span class="p">(</span><span class="s2">&quot;c_helper.so&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="usage-in-python-code">Usage in Python Code<a class="headerlink" href="#usage-in-python-code" title="Permanent link">&para;</a></h3>
 <p>Python modules import and use the C helpers like this:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">chelper</span>
-<span class="n">ffi_main</span><span class="p">,</span> <span class="n">ffi_lib</span> <span class="o">=</span> <span class="n">chelper</span><span class="o">.</span><span class="n">get_ffi</span><span class="p">()</span>
-
-<span class="c1"># Call C functions directly</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">_stepqueue</span> <span class="o">=</span> <span class="n">ffi_main</span><span class="o">.</span><span class="n">gc</span><span class="p">(</span>
-    <span class="n">ffi_lib</span><span class="o">.</span><span class="n">stepcompress_alloc</span><span class="p">(</span><span class="n">oid</span><span class="p">),</span>
-    <span class="n">ffi_lib</span><span class="o">.</span><span class="n">stepcompress_free</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">chelper</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">ffi_main</span><span class="p">,</span> <span class="n">ffi_lib</span> <span class="o">=</span> <span class="n">chelper</span><span class="o">.</span><span class="n">get_ffi</span><span class="p">()</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Call C functions directly</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="bp">self</span><span class="o">.</span><span class="n">_stepqueue</span> <span class="o">=</span> <span class="n">ffi_main</span><span class="o">.</span><span class="n">gc</span><span class="p">(</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">ffi_lib</span><span class="o">.</span><span class="n">stepcompress_alloc</span><span class="p">(</span><span class="n">oid</span><span class="p">),</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">ffi_lib</span><span class="o">.</span><span class="n">stepcompress_free</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="python-callbacks-into-c">Python Callbacks into C<a class="headerlink" href="#python-callbacks-into-c" title="Permanent link">&para;</a></h3>
 <p>C code can also call Python functions via CFFI callbacks.
 For example, logging from C to Python:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># In chelper/__init__.py</span>
-<span class="nd">@FFI_main</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="s2">&quot;void func(const char *)&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">logging_callback</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;MCU: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ffi_main</span><span class="o">.</span><span class="n">string</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-
-<span class="n">pyhelper_logging_callback</span> <span class="o">=</span> <span class="n">FFI_main</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="s2">&quot;void func(const char *)&quot;</span><span class="p">,</span> <span class="n">logging_callback</span>
-<span class="p">)</span>
-<span class="n">FFI_lib</span><span class="o">.</span><span class="n">set_python_logging_callback</span><span class="p">(</span><span class="n">pyhelper_logging_callback</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># In chelper/__init__.py</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nd">@FFI_main</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="s2">&quot;void func(const char *)&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">logging_callback</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;MCU: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ffi_main</span><span class="o">.</span><span class="n">string</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">pyhelper_logging_callback</span> <span class="o">=</span> <span class="n">FFI_main</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="s2">&quot;void func(const char *)&quot;</span><span class="p">,</span> <span class="n">logging_callback</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">FFI_lib</span><span class="o">.</span><span class="n">set_python_logging_callback</span><span class="p">(</span><span class="n">pyhelper_logging_callback</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="data-flow-cffi">Data Flow: CFFI<a class="headerlink" href="#data-flow-cffi" title="Permanent link">&para;</a></h3>
 <p><img alt="CFFI Data Flow" src="img/en/comm-cffi-flow.svg" /></p>
 <hr />
@@ -3326,24 +4630,21 @@ micro-controller via a serial connection. This can be:</p>
 <li><strong>CAN Bus</strong>: Controller Area Network using <code>python-can</code></li>
 </ul>
 <h3 id="connection-establishment">Connection Establishment<a class="headerlink" href="#connection-establishment" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># In serialhdl.py</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">serial</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">serial</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">Serial</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">baudrate</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># In serialhdl.py</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">serial</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="bp">self</span><span class="o">.</span><span class="n">serial</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">Serial</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">baudrate</span><span class="p">)</span>
 </code></pre></div>
-
 <p>For CAN bus:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">can</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">can</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">Bus</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;can0&#39;</span><span class="p">,</span> <span class="n">bustype</span><span class="o">=</span><span class="s1">&#39;socketcan&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">can</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="bp">self</span><span class="o">.</span><span class="n">can</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">Bus</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;can0&#39;</span><span class="p">,</span> <span class="n">bustype</span><span class="o">=</span><span class="s1">&#39;socketcan&#39;</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="c-side-serial-handling">C-side Serial Handling<a class="headerlink" href="#c-side-serial-handling" title="Permanent link">&para;</a></h3>
 <p>On the micro-controller, serial data reception is interrupt-driven:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// In src/generic/serial_irq.c</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">serial_enable_receive</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Enable UART RX interrupt</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// In src/generic/serial_irq.c</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">serial_enable_receive</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="c1">// Enable UART RX interrupt</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">}</span>
 </code></pre></div>
-
 <p>Received bytes are accumulated and passed to <code>command_find_and_dispatch()</code>
 which locates complete message blocks and dispatches commands.</p>
 <h3 id="data-flow-serial">Data Flow: Serial<a class="headerlink" href="#data-flow-serial" title="Permanent link">&para;</a></h3>
@@ -3361,15 +4662,14 @@ that works like a Remote Procedure Call (RPC) system.</p>
 <h3 id="message-block-format">Message Block Format<a class="headerlink" href="#message-block-format" title="Permanent link">&para;</a></h3>
 <p>Every message transmitted between host and MCU is wrapped in a
 message block with the following structure:</p>
-<div class="highlight"><pre><span></span><code>Offset  Size  Field
-─────────────────────────
- 0       1    Length (total block size, min=5, max=64)
- 1       1    Sequence (4-bit seq | 0x10)
- 2       n    Content (VLQ-encoded commands/responses)
- 2+n     2    CRC-16 CCITT
- 2+n+2   1    Sync byte (0x7E)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Offset  Size  Field
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>─────────────────────────
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a> 0       1    Length (total block size, min=5, max=64)
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a> 1       1    Sequence (4-bit seq | 0x10)
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a> 2       n    Content (VLQ-encoded commands/responses)
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a> 2+n     2    CRC-16 CCITT
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a> 2+n+2   1    Sync byte (0x7E)
 </code></pre></div>
-
 <p><strong>Key Constants</strong> (identical in both <code>msgproto.py</code> and <code>command.h</code>):</p>
 <table>
 <thead>
@@ -3451,36 +4751,34 @@ scheme that supports both positive and negative values:</p>
 <li>Sign extension is handled at decode time</li>
 <li>Smaller absolute values use fewer bytes</li>
 </ul>
-<p><strong>C Implementation</strong> (<code>src/command.c</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="nf">encode_int</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">3L</span><span class="o">&lt;&lt;</span><span class="mi">5</span><span class="p">)</span><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">5</span><span class="p">))</span><span class="w">  </span><span class="k">goto</span><span class="w"> </span><span class="n">f4</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1 byte</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">3L</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">))</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">f3</span><span class="p">;</span><span class="w">  </span><span class="c1">// 2 bytes</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">3L</span><span class="o">&lt;&lt;</span><span class="mi">19</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">19</span><span class="p">))</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">f2</span><span class="p">;</span><span class="w">  </span><span class="c1">// 3 bytes</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">3L</span><span class="o">&lt;&lt;</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">26</span><span class="p">))</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">f1</span><span class="p">;</span><span class="w">  </span><span class="c1">// 4 bytes</span>
-<span class="w">    </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">28</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span><span class="w">                           </span><span class="c1">// 5 bytes</span>
-<span class="nl">f1</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span>
-<span class="nl">f2</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">14</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span>
-<span class="nl">f3</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span>
-<span class="nl">f4</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p><strong>Python Implementation</strong> (<code>klippy/msgproto.py</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PT_uint32</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mh">0xC000000</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x4000000</span><span class="p">:</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">28</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mh">0x180000</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x80000</span><span class="p">:</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">21</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mh">0x3000</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x1000</span><span class="p">:</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">14</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mh">0x60</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x20</span><span class="p">:</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">)</span>
-        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0x7F</span><span class="p">)</span>
-</code></pre></div>
-
+<p><strong>C Implementation</strong> (<code>src/command.c</code>):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="nf">encode_int</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">3L</span><span class="o">&lt;&lt;</span><span class="mi">5</span><span class="p">)</span><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">5</span><span class="p">))</span><span class="w">  </span><span class="k">goto</span><span class="w"> </span><span class="n">f4</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1 byte</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">3L</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">))</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">f3</span><span class="p">;</span><span class="w">  </span><span class="c1">// 2 bytes</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">3L</span><span class="o">&lt;&lt;</span><span class="mi">19</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">19</span><span class="p">))</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">f2</span><span class="p">;</span><span class="w">  </span><span class="c1">// 3 bytes</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">3L</span><span class="o">&lt;&lt;</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sv</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">26</span><span class="p">))</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">f1</span><span class="p">;</span><span class="w">  </span><span class="c1">// 4 bytes</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">28</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span><span class="w">                           </span><span class="c1">// 5 bytes</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nl">f1</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nl">f2</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">14</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nl">f3</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">v</span><span class="o">&gt;&gt;</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0x80</span><span class="p">;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nl">f4</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">;</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Python Implementation</strong> (<code>klippy/msgproto.py</code>):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PT_uint32</span><span class="p">:</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mh">0xC000000</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x4000000</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">28</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mh">0x180000</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x80000</span><span class="p">:</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">21</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mh">0x3000</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x1000</span><span class="p">:</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">14</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">)</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mh">0x60</span> <span class="ow">or</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x20</span><span class="p">:</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7F</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">)</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0x7F</span><span class="p">)</span>
+</code></pre></div></p>
 <h3 id="parameter-types">Parameter Types<a class="headerlink" href="#parameter-types" title="Permanent link">&para;</a></h3>
 <p>The protocol supports these parameter types:</p>
 <table>
@@ -3545,52 +4843,47 @@ scheme that supports both positive and negative values:</p>
 </table>
 <h3 id="command-declaration-c-side">Command Declaration (C side)<a class="headerlink" href="#command-declaration-c-side" title="Permanent link">&para;</a></h3>
 <p>Commands are declared in C using <code>DECL_COMMAND()</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">DECL_COMMAND</span><span class="p">(</span><span class="n">command_update_digital_out</span><span class="p">,</span>
-<span class="w">             </span><span class="s">&quot;update_digital_out oid=%c value=%c&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">DECL_COMMAND</span><span class="p">(</span><span class="n">command_update_digital_out</span><span class="p">,</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">             </span><span class="s">&quot;update_digital_out oid=%c value=%c&quot;</span><span class="p">);</span>
 </code></pre></div>
-
 <p>This generates a <code>command_parser</code> structure in the compiled binary:</p>
-<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">command_parser</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">encoded_msgid</span><span class="p">;</span><span class="w">   </span><span class="c1">// VLQ-encoded message ID</span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">num_args</span><span class="p">;</span><span class="w">         </span><span class="c1">// Number of function arguments</span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w">            </span><span class="c1">// Handler flags (e.g., HF_IN_SHUTDOWN)</span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">num_params</span><span class="p">;</span><span class="w">       </span><span class="c1">// Number of wire-format parameters</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">param_types</span><span class="p">;</span><span class="w"> </span><span class="c1">// Array of parameter type enums</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">);</span><span class="w"> </span><span class="c1">// Handler function pointer</span>
-<span class="p">};</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">command_parser</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">encoded_msgid</span><span class="p">;</span><span class="w">   </span><span class="c1">// VLQ-encoded message ID</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">num_args</span><span class="p">;</span><span class="w">         </span><span class="c1">// Number of function arguments</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w">            </span><span class="c1">// Handler flags (e.g., HF_IN_SHUTDOWN)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">num_params</span><span class="p">;</span><span class="w">       </span><span class="c1">// Number of wire-format parameters</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">param_types</span><span class="p">;</span><span class="w"> </span><span class="c1">// Array of parameter type enums</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">);</span><span class="w"> </span><span class="c1">// Handler function pointer</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="p">};</span>
 </code></pre></div>
-
 <h3 id="response-transmission-c-side">Response Transmission (C side)<a class="headerlink" href="#response-transmission-c-side" title="Permanent link">&para;</a></h3>
 <p>Responses are sent using the <code>sendf()</code> macro:</p>
-<div class="highlight"><pre><span></span><code><span class="n">sendf</span><span class="p">(</span><span class="s">&quot;status clock=%u status=%c&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="n">sched_read_time</span><span class="p">(),</span><span class="w"> </span><span class="n">sched_is_shutdown</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">sendf</span><span class="p">(</span><span class="s">&quot;status clock=%u status=%c&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">      </span><span class="n">sched_read_time</span><span class="p">(),</span><span class="w"> </span><span class="n">sched_is_shutdown</span><span class="p">());</span>
 </code></pre></div>
-
 <h3 id="message-content-multiple-commands-per-block">Message Content: Multiple Commands Per Block<a class="headerlink" href="#message-content-multiple-commands-per-block" title="Permanent link">&para;</a></h3>
 <p>A single message block can contain multiple commands:</p>
-<div class="highlight"><pre><span></span><code>Human Readable:
-  update_digital_out oid=6 value=1
-  update_digital_out oid=5 value=0
-  get_config
-  get_clock
-
-Binary (VLQ integers):
-  &lt;id_update_digital_out&gt;&lt;6&gt;&lt;1&gt;&lt;id_update_digital_out&gt;&lt;5&gt;&lt;0&gt;&lt;id_get_config&gt;&lt;id_get_clock&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Human Readable:
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  update_digital_out oid=6 value=1
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  update_digital_out oid=5 value=0
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  get_config
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>  get_clock
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>Binary (VLQ integers):
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>  &lt;id_update_digital_out&gt;&lt;6&gt;&lt;1&gt;&lt;id_update_digital_out&gt;&lt;5&gt;&lt;0&gt;&lt;id_get_config&gt;&lt;id_get_clock&gt;
 </code></pre></div>
-
 <h3 id="crc-16-ccitt">CRC-16 CCITT<a class="headerlink" href="#crc-16-ccitt" title="Permanent link">&para;</a></h3>
 <p>Both sides use identical CRC-16 CCITT implementations for data
 integrity verification:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Python (msgproto.py)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">crc16_ccitt</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
-    <span class="n">crc</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
-    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">buf</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">^=</span> <span class="n">crc</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
-        <span class="n">data</span> <span class="o">^=</span> <span class="p">(</span><span class="n">data</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span>
-        <span class="n">crc</span> <span class="o">=</span> <span class="p">((</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">crc</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">))</span> <span class="o">^</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">crc</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="n">crc</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Python (msgproto.py)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">crc16_ccitt</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">crc</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">buf</span><span class="p">:</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>        <span class="n">data</span> <span class="o">^=</span> <span class="n">crc</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>        <span class="n">data</span> <span class="o">^=</span> <span class="p">(</span><span class="n">data</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        <span class="n">crc</span> <span class="o">=</span> <span class="p">((</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">crc</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">))</span> <span class="o">^</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="k">return</span> <span class="p">[</span><span class="n">crc</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="n">crc</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">]</span>
 </code></pre></div>
-
 <p>The C implementation is in board-specific code (e.g.,
 <code>src/generic/crc16_ccitt.c</code>).</p>
 <h3 id="data-dictionary-identify-protocol">Data Dictionary (Identify Protocol)<a class="headerlink" href="#data-dictionary-identify-protocol" title="Permanent link">&para;</a></h3>
@@ -3629,16 +4922,14 @@ the only messages with hard-coded IDs. Everything else is dynamic.</p>
 <h3 id="how-it-works_2">How It Works<a class="headerlink" href="#how-it-works_2" title="Permanent link">&para;</a></h3>
 <p>The API Server provides external access to printer status and
 controls via a Unix Domain Socket:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># In webhooks.py</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_UNIX</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;/tmp/kalico_uds&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># In webhooks.py</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_UNIX</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;/tmp/kalico_uds&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="message-format">Message Format<a class="headerlink" href="#message-format" title="Permanent link">&para;</a></h3>
 <p>Messages are JSON-encoded strings terminated by <code>0x03</code> (ETX):</p>
-<div class="highlight"><pre><span></span><code>&lt;json_object_1&gt;&lt;0x03&gt;&lt;json_object_2&gt;&lt;0x03&gt;...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>&lt;json_object_1&gt;&lt;0x03&gt;&lt;json_object_2&gt;&lt;0x03&gt;...
 </code></pre></div>
-
 <p>This allows tools like OctoPrint, Mainsail, and Fluidd to
 communicate with Kalico for monitoring and control.</p>
 <hr />
@@ -3775,13 +5066,53 @@ communicate with Kalico for monitoring and control.</p>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M214.6 17.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 117.3V488c0 17.7 14.3 32 32 32s32-14.3 32-32V117.3l105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
   Back to top
 </button>
         
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="Protocol.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Protocol">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Protocol
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="Dependency_System.html" class="md-footer__link md-footer__link--next" aria-label="Next: Dependency Auto-Disable System">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Dependency Auto-Disable System
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -3823,7 +5154,7 @@ communicate with Kalico for monitoring and control.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.code.copy", "content.code.annotate", "content.code.select", "optimize"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
