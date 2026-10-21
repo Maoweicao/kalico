@@ -1,0 +1,27 @@
+# Normalize the line endings of the files that need them
+#
+# The firmware build and the test suite run shell scripts - a CRLF line
+# ending makes bash fail with "command not found".  Keep the text files in
+# the repository normalized and check them out with LF.
+* text=auto
+
+*.sh text eol=lf
+*.py text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+*.cfg text eol=lf
+*.md text eol=lf
+Makefile text eol=lf
+*.mk text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.zip binary
+*.gz binary
+*.bin binary
+*.elf binary
+*.hex binary

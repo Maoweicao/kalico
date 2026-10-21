@@ -24,6 +24,7 @@ dev = [
   "pre-commit>=4.0.1",
   "pytest-xdist>=3.6.1",
   "pytest>=8.3.4",
+  "pytest-cov>=5.0.0",
 ]
 
 [project.optional-dependencies]
@@ -69,3 +70,21 @@ ignore = [
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["test"]
+markers = [
+  "unit: a pure unit test that needs no printer",
+  "proto: a protocol simulation test",
+  "slow: a test that takes a long time to run",
+]
+
+[tool.coverage.run]
+source = ["klippy"]
+omit = [
+  "klippy/chelper/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+# The floor is a ratchet - it has to be raised whenever more of the
+# package is covered
+fail_under = 20

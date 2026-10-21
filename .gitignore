@@ -1,5 +1,9 @@
 # development
 out
+out_*/
+dict/
+.coverage
+coverage.xml
 *.so
 *.pyc
 __pycache__/
@@ -15,6 +19,10 @@ klippy/plugins/*
 !klippy/plugins/__init__.py
 .vscode
 .idea/*
+
+# host compiled test binaries
+test/closed_loop/*.exe
+test/**/*.exe
 
 # docs
 site/

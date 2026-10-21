@@ -1,9 +1,9 @@
-from .shims import PrinterShim, Restart
+from .shims import PrinterShim, ReactorShim, Restart
 from .utils import configwrapper_to_dict
 
 __all__ = (
-    "ConfigRoot",
     "configwrapper_to_dict",
     "PrinterShim",
+    "ReactorShim",
     "Restart",
 )
